@@ -1,0 +1,13 @@
+{
+  "name": "chispa-lab",
+  "version": "0.1.0",
+  "description": "Videojuego educativo de ciencias para el móvil (hack4edu 2026, reto 17)",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "start": "node scripts/serve.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": { "node": ">=20" }
+}
