@@ -8,8 +8,9 @@ import { pedirMovimiento, detenerMovimiento } from './sensor.js?v=1';
 import * as pantallas from './pantallas.js?v=1';
 import rampa from './niveles/rampa.js?v=1';
 import pendulo from './niveles/pendulo.js?v=1';
+import voz from './niveles/voz.js?v=1';
 
-const NIVELES = [rampa, pendulo];
+const NIVELES = [rampa, pendulo, voz];
 
 const estado = leer();
 fijarIdioma(estado.idioma || detectarIdioma(navigator.languages || [navigator.language]));

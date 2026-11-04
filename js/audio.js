@@ -66,3 +66,12 @@ export const sfx = {
   /** Clic de vidrio al llegar la canica. */
   vidrio: () => { nota(1800, 0, 0.12, 'triangle', 0.1); nota(2400, 0.03, 0.1, 'sine', 0.06); },
 };
+
+export const estaSilenciado = () => silencio;
+
+/** Ejecuta `fn` aunque el sonido esté silenciado (p. ej. un aviso mientras se escucha el micrófono). */
+export function sonarAunSilenciado(fn) {
+  const previo = silencio;
+  silencio = false;
+  try { fn(); } finally { silencio = previo; }
+}
