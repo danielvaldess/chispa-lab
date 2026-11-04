@@ -4,6 +4,7 @@
   'use strict';
   var AJ = typeof require === 'function' && typeof module !== 'undefined' ? require('./ajustes.js') : root.AJUSTES;
   var TU = typeof require === 'function' && typeof module !== 'undefined' ? require('./tutor.js') : root.TUTOR;
+  var MT = typeof require === 'function' && typeof module !== 'undefined' ? require('./metodo.js') : root.METODO;
   var DG = typeof require === 'function' && typeof module !== 'undefined' ? require('./diagnostico.js') : root.DIAGNOSTICO;
   var BD = typeof require === 'function' && typeof module !== 'undefined' ? require('./bandido.js') : root.BANDIDO;
 
@@ -12,7 +13,9 @@
   var MAX = 4;
   var MAX_SESIONES = 60;
   var MAX_INTENTOS = 30; // últimos intentos que se guardan por juego
-  var NIVELES_IDS = ['rampa', 'pendulo', 'voz', 'globo', 'luz', 'burbujas'];
+  var NIVELES_IDS = ['rampa', 'pendulo', 'voz', 'globo', 'luz', 'burbujas']; // los seis juegos de la estación (cuentan para los finales)
+  var EXPERIMENTOS_IDS = ['hilo', 'col'];                                   // experimentos con materiales (opcionales, no cuentan para los finales)
+  var TODOS_IDS = NIVELES_IDS.concat(EXPERIMENTOS_IDS);
 
   function almacenar(a) { return a || (typeof localStorage !== 'undefined' ? localStorage : null); }
 
@@ -53,6 +56,7 @@
       aprendizaje: normalizarAprendizaje(p.aprendizaje),
       maestria: normalizarMaestria(p.maestria),
       ia: normalizarIA(p.ia),
+      cuaderno: MT.normalizarCuaderno(p.cuaderno, TODOS_IDS),
       sesionesVoz: (Array.isArray(p.sesionesVoz) ? p.sesionesVoz : []).slice(-MAX_SESIONES).map(function (s) {
         s = objetoPlano(s);
         return { f: String(s.f || '').slice(0, 10), max: Number(s.max) || 0, hzMin: Number(s.hzMin) || 0, hzMax: Number(s.hzMax) || 0 };
@@ -72,7 +76,7 @@
   function normalizarAprendizaje(a) {
     var out = {};
     a = objetoPlano(a);
-    NIVELES_IDS.forEach(function (id) {
+    TODOS_IDS.forEach(function (id) {
       var x = objetoPlano(a[id]);
       var n = numeros(x);
       if (n.partidas > 0) out[id] = { partidas: Math.floor(n.partidas), predOk: Math.min(Math.floor(n.predOk || 0), Math.floor(n.partidas)), seg: Math.min(n.seg || 0, 1e6), estrellas: Math.min(3, Math.floor(n.estrellas || 0)) };
@@ -84,7 +88,7 @@
   function normalizarMaestria(m) {
     var out = {};
     m = objetoPlano(m);
-    NIVELES_IDS.forEach(function (id) {
+    TODOS_IDS.forEach(function (id) {
       var x = objetoPlano(m[id]), n = numeros(x);
       if (!(n.pn > 0) || !(Number(x.p) > 0)) return;
       var pn = Math.floor(n.pn), hn = Math.floor(n.hn || 0);
@@ -97,7 +101,7 @@
   function normalizarIA(x) {
     x = objetoPlano(x);
     var diag = {}, intentos = {}, d = objetoPlano(x.diag), it = objetoPlano(x.intentos);
-    NIVELES_IDS.forEach(function (id) {
+    TODOS_IDS.forEach(function (id) {
       var e = DG.normalizar(d[id], id);
       if (e) diag[id] = e;
       if (Array.isArray(it[id])) {
@@ -108,7 +112,7 @@
         if (l.length) intentos[id] = l;
       }
     });
-    return { diag: diag, bandido: BD.normalizar(x.bandido, NIVELES_IDS), intentos: intentos };
+    return { diag: diag, bandido: BD.normalizar(x.bandido, TODOS_IDS), intentos: intentos };
   }
 
   function vacio() { return { activo: null, perfiles: [] }; }
@@ -153,7 +157,7 @@
     var primero = estado.perfiles.length === 0;
     var perfil = {
       id: idNuevo(), nombre: nombre, nac: nac, apoyos: apoyos, extras: {},
-      progreso: primero ? leerLegado(almacen) : {}, aprendizaje: {}, maestria: {}, ia: normalizarIA({}), sesionesVoz: [], creado: fechaISO(hoy)
+      progreso: primero ? leerLegado(almacen) : {}, aprendizaje: {}, maestria: {}, ia: normalizarIA({}), cuaderno: [], sesionesVoz: [], creado: fechaISO(hoy)
     };
     return { ok: true, perfil: perfil, estado: { activo: perfil.id, perfiles: estado.perfiles.concat([perfil]) } };
   }
@@ -211,7 +215,7 @@
 
   /** Anota una partida terminada de un nivel (solo en el teléfono). resultado: { predOk, estrellas, seg }. */
   function registrarPartida(perfil, nivelId, resultado) {
-    if (NIVELES_IDS.indexOf(nivelId) < 0) return perfil;
+    if (TODOS_IDS.indexOf(nivelId) < 0) return perfil;
     var a = perfil.aprendizaje[nivelId] || { partidas: 0, predOk: 0, seg: 0, estrellas: 0 };
     a.partidas += 1;
     if (resultado.predOk) a.predOk += 1;
@@ -226,7 +230,7 @@
    * partida: { predOk, habil }. Con el apoyo de voz se ignora la destreza en los juegos de micrófono.
    */
   function registrarMaestria(perfil, nivelId, partida) {
-    if (NIVELES_IDS.indexOf(nivelId) < 0 || (perfil.extras && perfil.extras.tutor === false)) return perfil;
+    if (TODOS_IDS.indexOf(nivelId) < 0 || (perfil.extras && perfil.extras.tutor === false)) return perfil;
     perfil.maestria[nivelId] = TU.registrar(perfil.maestria[nivelId], {
       predOk: !!partida.predOk, habil: !!partida.habil, ignorarDestreza: TU.ignorarDestreza(nivelId, perfil.apoyos)
     });
@@ -242,7 +246,7 @@
    * o null si el adulto apagó la IA o el juego no existe.
    */
   function registrarIA(perfil, nivelId, datos) {
-    if (NIVELES_IDS.indexOf(nivelId) < 0 || (perfil.extras && perfil.extras.tutor === false)) return null;
+    if (TODOS_IDS.indexOf(nivelId) < 0 || (perfil.extras && perfil.extras.tutor === false)) return null;
     var ia = perfil.ia = normalizarIA(perfil.ia), ant = ia.bandido.ultimo[nivelId];
     if (ant) { ia.bandido = BD.premiar(ia.bandido, ant, !!(datos.ok || datos.habil)); delete ia.bandido.ultimo[nivelId]; }
     ia.diag[nivelId] = DG.observar(ia.diag[nivelId], nivelId, datos.opcion);
@@ -254,10 +258,17 @@
     return { brazo: brazo, idea: DG.probable(ia.diag[nivelId]) };
   }
 
+  /** Añade una entrada al cuaderno de laboratorio del jugador (se guardan las últimas 20). datos: { hipotesis, datos, conclusion }. */
+  function agregarCuaderno(perfil, nivelId, datos, hoy) {
+    if (TODOS_IDS.indexOf(nivelId) < 0) return perfil;
+    perfil.cuaderno = MT.agregar(perfil.cuaderno, MT.entrada(nivelId, datos, fechaISO(hoy)));
+    return perfil;
+  }
+
   /** Para el adulto: ideas que parecen costarle (probabilidad alta), de mayor a menor. */
   function ideasPorReforzar(perfil) {
     var out = [];
-    NIVELES_IDS.forEach(function (id) {
+    TODOS_IDS.forEach(function (id) {
       var e = perfil.ia && perfil.ia.diag[id], pr = DG.probable(e, 0.5);
       if (pr) out.push({ nivel: id, idea: pr.idea, texto: DG.texto(pr.idea), p: pr.p, n: e.n });
     });
@@ -267,7 +278,7 @@
   /** Resumen para un adulto: por nivel, y cuál es la idea que más le cuesta (la que menos predice bien). */
   function resumenAprendizaje(perfil) {
     var filas = [], peor = null;
-    NIVELES_IDS.forEach(function (id) {
+    TODOS_IDS.forEach(function (id) {
       var a = perfil.aprendizaje[id];
       if (!a) return;
       var fila = { id: id, partidas: a.partidas, predOk: a.predOk, minutos: Math.round(a.seg / 60), estrellas: a.estrellas, acierto: a.predOk / a.partidas };
@@ -291,7 +302,7 @@
   var PERFILES = {
     CLAVE: CLAVE, LEGADO: LEGADO, MAX: MAX, cargar: cargar, guardar: guardar, crear: crear, activar: activar, actual: actual,
     cambiarApoyos: cambiarApoyos, borrar: borrar, borrarTodo: borrarTodo, necesitaAdulto: necesitaAdulto,
-    registrarSesionVoz: registrarSesionVoz, resumenSesiones: resumenSesiones, finalAlcanzado: finalAlcanzado, registrarMaestria: registrarMaestria, reiniciarMaestria: reiniciarMaestria, registrarIA: registrarIA, ideasPorReforzar: ideasPorReforzar, normalizarIA: normalizarIA, registrarPartida: registrarPartida, resumenAprendizaje: resumenAprendizaje, NIVELES_IDS: NIVELES_IDS
+    registrarSesionVoz: registrarSesionVoz, resumenSesiones: resumenSesiones, finalAlcanzado: finalAlcanzado, registrarMaestria: registrarMaestria, reiniciarMaestria: reiniciarMaestria, agregarCuaderno: agregarCuaderno, EXPERIMENTOS_IDS: EXPERIMENTOS_IDS, TODOS_IDS: TODOS_IDS, registrarIA: registrarIA, ideasPorReforzar: ideasPorReforzar, normalizarIA: normalizarIA, registrarPartida: registrarPartida, resumenAprendizaje: resumenAprendizaje, NIVELES_IDS: NIVELES_IDS
   };
   if (typeof module !== 'undefined' && module.exports) module.exports = PERFILES;
   else root.PERFILES = PERFILES;

@@ -158,6 +158,58 @@
           explicacion: 'Acertaste. Un dato más:'
         };
       }
+    },
+    hilo: {
+      'hilo-proporcional': function (d) {
+        var c = todos(d.L1, d.L2, d.T1, d.T2);
+        return {
+          pregunta: c ? 'Pensaste que con el hilo 4 veces más largo tardaría 4 veces más. Con ' + fmt(d.L1, 0) + ' cm mediste ' + fmt(d.T1, 2) + ' s y con ' + fmt(d.L2, 0) + ' cm, ' + fmt(d.T2, 2) + ' s. ¿Salió 4 veces más?' :
+            'Pensaste que con el hilo 4 veces más largo tardaría 4 veces más. ¿Cómo lo comprobarías con dos hilos y un cronómetro?',
+          pista: c ? 'Divide ' + fmt(d.T2, 2) + ' entre ' + fmt(d.T1, 2) + ': da ' + fmt(d.T2 / d.T1, 2) + '. Si fuera 4 veces más, saldría 4.' : 'Divide un tiempo entre el otro. Si fuera 4 veces más, saldría 4.',
+          explicacion: 'Tu idea tiene sentido: más largo, más lento. Pero el tiempo crece más despacio que el largo: con el hilo 4 veces más largo, tarda el doble.'
+        };
+      },
+      'hilo-no-importa': function (d) {
+        var c = todos(d.L1, d.L2, d.T1, d.T2);
+        return {
+          pregunta: c ? 'Pensaste que el largo del hilo no cambia el tiempo. Con ' + fmt(d.L1, 0) + ' cm mediste ' + fmt(d.T1, 2) + ' s y con ' + fmt(d.L2, 0) + ' cm, ' + fmt(d.T2, 2) + ' s. ¿Son iguales?' :
+            'Pensaste que el largo no cambia nada. ¿Qué pasa con un columpio de cuerda corta y uno de cuerda larga?',
+          pista: c ? 'La diferencia es de ' + fmt(Math.abs(d.T2 - d.T1), 2) + ' s. ¿Es poco para una vuelta de péndulo?' : 'Prueba dos hilos muy distintos y compara los tiempos.',
+          explicacion: 'Es fácil pensarlo, porque el objeto es el mismo. Pero el largo del hilo sí cambia el ritmo.'
+        };
+      },
+      ok: function (d) {
+        var c = todos(d.L1, d.L2, d.T1, d.T2);
+        return {
+          pregunta: c ? '¡Bien! El hilo pasó de ' + fmt(d.L1, 0) + ' a ' + fmt(d.L2, 0) + ' cm y el tiempo de ' + fmt(d.T1, 2) + ' a ' + fmt(d.T2, 2) + ' s. ¿Cuántas veces más largo es, y cuántas veces más lento?' :
+            '¡Bien! Con 4 veces más hilo tarda el doble. ¿Por qué no tarda 4 veces más?',
+          pista: c ? 'Divide ' + fmt(d.T2, 2) + ' entre ' + fmt(d.T1, 2) + ': da ' + fmt(d.T2 / d.T1, 2) + ', cerca de 2.' : 'Compara cuántas veces creció el largo y cuántas el tiempo.',
+          explicacion: 'Acertaste. Fíjate en la regla:'
+        };
+      }
+    },
+    col: {
+      'col-invertida': function () {
+        return {
+          pregunta: 'Pensaste que el ácido vuelve la col verde o azul. ¿De qué color se puso el vaso con limón en tu prueba?',
+          pista: 'El limón y el vinagre son ácidos. Mira qué color tomó la col con ellos y compáralo con el agua.',
+          explicacion: 'Es fácil confundirlo: la col morada cambia de color con ácidos y con bases, pero cada uno la lleva hacia un lado distinto.'
+        };
+      },
+      'col-no-cambia': function () {
+        return {
+          pregunta: 'Pensaste que la col morada no cambia con un ácido. ¿Se veía igual el vaso del agua y el del limón?',
+          pista: 'Compara el vaso del agua con el del limón: si fueran iguales, la col no serviría para detectar ácidos.',
+          explicacion: 'Es normal dudarlo: el jugo parece solo un líquido de color. Pero cambia con lo que se le echa.'
+        };
+      },
+      ok: function () {
+        return {
+          pregunta: '¡Bien! La col se puso rosada con el ácido. ¿Y con el bicarbonato, un polvo que no es ácido, qué crees que pasó?',
+          pista: 'Compara el vaso del bicarbonato con el del agua y con el del limón.',
+          explicacion: 'Acertaste. Un dato más:'
+        };
+      }
     }
   };
 
