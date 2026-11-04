@@ -3,7 +3,8 @@
 
 window.addEventListener('hashchange', ruta);
 
-function pintarEstado() { $('estado').textContent = navigator.onLine ? 'Con conexión' : 'Sin conexión (funciona igual)'; }
+// Solo se avisa cuando no hay internet, y para tranquilizar: el juego funciona igual.
+function pintarEstado() { $('estado').textContent = navigator.onLine ? '' : 'Sin internet: todo funciona igual'; }
 window.addEventListener('online', pintarEstado);
 window.addEventListener('offline', pintarEstado);
 pintarEstado();
