@@ -61,6 +61,12 @@ Las recompensas son **cosméticas**: nada necesario para jugar queda bloqueado, 
 completar los juegos; con 2 estrellas basta con predecir bien (no depende de la destreza), y con el apoyo de voz la tercera estrella de los juegos de voz no
 penaliza el tiempo ni la estabilidad del tono.
 
+## Investigación y presentación
+
+- **Artículo de investigación** con datos de Panamá, evidencia de la literatura, mediciones técnicas propias y ODS, con fuentes y una nota de qué se verificó: [`docs/investigacion/articulo.md`](docs/investigacion/articulo.md).
+- **Presentación de 5 minutos** (11 diapositivas, con notas y guion): [`docs/presentacion/`](docs/presentacion/).
+- **Transferencia al mercado:** [`docs/transferencia-al-mercado.md`](docs/transferencia-al-mercado.md).
+
 ## IA ligera y ética
 
 Chispa incluye un **tutor adaptativo** (seguimiento bayesiano del conocimiento, aprendizaje automático clásico, no generativo) que estima qué ideas domina cada
@@ -144,4 +150,4 @@ dificultad por edad son heurísticas por validar.
 
 ## Licencia
 
-Código bajo licencia [MIT](LICENSE).
+Código bajo licencia [MIT](LICENSE). Documentación y recursos (`docs/`) bajo [CC BY-NC-SA 3.0](docs/LICENCIA.md).
