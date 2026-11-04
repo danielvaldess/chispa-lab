@@ -1,5 +1,5 @@
 // Service worker: guarda la app para jugar sin conexión. Sube VERSION al cambiar archivos.
-const VERSION = 'chispalab-v3';
+const VERSION = 'chispalab-v4';
 const ARCHIVOS = [
   './',
   'index.html',
@@ -19,9 +19,9 @@ const ARCHIVOS = [
   'js/physics.js?v=1',
   'js/pitch.js?v=1',
   'js/microfono.js?v=1',
-  'js/levels/rampa.js?v=1',
-  'js/levels/pendulo.js?v=1',
-  'js/levels/botella.js?v=1',
+  'js/pantallas.js?v=1',
+  'js/sensor.js?v=1',
+  'js/niveles/rampa.js?v=1',
 ];
 
 self.addEventListener('install', (evento) => {

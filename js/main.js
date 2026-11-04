@@ -1,65 +1,57 @@
-// Punto de entrada: menú de niveles, idioma y sonido.
-import { IDIOMAS, NOMBRES_IDIOMA, detectarIdioma, fijarIdioma, idiomaActual, t } from './i18n.js?v=1';
-import { h, mostrar, tutor, estrellas } from './ui.js?v=1';
+// Punto de entrada: navegación entre menú, predicción, juego y resultado; idioma y sonido.
+import { detectarIdioma, fijarIdioma, idiomaActual, t } from './i18n.js?v=1';
+import { mostrar } from './ui.js?v=1';
 import { fijarSilencio, sfx } from './audio.js?v=1';
-import { leer, guardar, registrarEstrellas, total } from './progreso.js?v=1';
-import rampa from './levels/rampa.js?v=1';
-import pendulo from './levels/pendulo.js?v=1';
-import botella from './levels/botella.js?v=1';
+import { leer, guardar, registrarResultado } from './progreso.js?v=1';
+import { pantallaCompleta, salirPantallaCompleta } from './motor.js?v=1';
+import { pedirMovimiento, detenerMovimiento } from './sensor.js?v=1';
+import * as pantallas from './pantallas.js?v=1';
+import rampa from './niveles/rampa.js?v=1';
 
-const NIVELES = [rampa, pendulo, botella];
-const CLASES = ['n1', 'n2', 'n3'];
+const NIVELES = [rampa];
 
 const estado = leer();
 fijarIdioma(estado.idioma || detectarIdioma(navigator.languages || [navigator.language]));
 fijarSilencio(!estado.sonido);
 
-function cambiarIdioma(idioma) {
-  fijarIdioma(idioma);
-  estado.idioma = idioma;
-  guardar(estado);
-  document.documentElement.lang = idioma;
-  menu();
-}
-
 function menu() {
+  detenerMovimiento();
   document.title = t('app.nombre');
   document.documentElement.lang = idiomaActual();
-  const selector = h('select', { class: 'idioma', 'aria-label': t('menu.idioma'), onchange: (ev) => cambiarIdioma(ev.target.value) },
-    IDIOMAS.map((id) => h('option', { value: id, selected: id === idiomaActual() }, NOMBRES_IDIOMA[id])));
-  const sonido = h('button', {
-    type: 'button',
-    class: 'btn suave chico',
-    onclick: () => {
-      estado.sonido = !estado.sonido;
-      fijarSilencio(!estado.sonido);
-      guardar(estado);
-      menu();
-    },
-  }, t(estado.sonido ? 'sonido.si' : 'sonido.no'));
-
-  mostrar(
-    h('header', { class: 'portada' }, h('h1', {}, t('app.nombre')), h('p', { class: 'nota' }, t('menu.total', { n: total(estado) }))),
-    tutor(t('menu.saludo')),
-    h('nav', { class: 'niveles' }, NIVELES.map((nivel, i) =>
-      h('button', { type: 'button', class: `nivel ${CLASES[i]}`, onclick: () => jugar(nivel) },
-        h('span', { class: 'icono', 'aria-hidden': 'true' }, nivel.icono),
-        h('span', { class: 'texto' }, h('b', {}, t(nivel.nombre)), h('small', {}, t(nivel.sub))),
-        estrellas(estado.estrellas[nivel.id])))),
-    h('div', { class: 'menu-pie' }, selector, sonido));
-}
-
-async function jugar(nivel) {
-  sfx.toque();
-  const estrellasLogradas = await new Promise((resolver) => {
-    nivel.jugar({ salir: () => resolver(null) }).then(resolver, (error) => {
-      console.error(error);
-      resolver(null);
-    });
+  pantallas.menu({
+    niveles: NIVELES,
+    estado,
+    abrir: abrirNivel,
+    cambiarIdioma: (idioma) => { fijarIdioma(idioma); estado.idioma = idioma; guardar(estado); menu(); },
+    alternarSonido: () => { estado.sonido = !estado.sonido; fijarSilencio(!estado.sonido); guardar(estado); menu(); },
   });
-  if (estrellasLogradas != null) registrarEstrellas(estado, nivel.id, estrellasLogradas);
-  menu();
 }
+
+function abrirNivel(nivel) {
+  sfx.toque();
+  pantallas.intro({ nivel, volver: menu, jugar: (opcion) => empezar(nivel, opcion) });
+}
+
+/** Arranca el juego del nivel. Se llama desde un toque, que es lo que permiten el audio, la pantalla completa y el sensor. */
+function empezar(nivel, opcion) {
+  pantallaCompleta();
+  if (nivel.sensor === 'mov') pedirMovimiento();
+  const salir = () => { salirPantallaCompleta(); menu(); };
+  const terminar = (res) => {
+    const record = registrarResultado(estado, nivel.id, res.estrellas, res.puntos);
+    const siguiente = NIVELES[NIVELES.indexOf(nivel) + 1] || null;
+    pantallas.resultado({
+      nivel, res, record, siguiente,
+      otra: () => abrirNivel(nivel),
+      abrirSiguiente: () => abrirNivel(siguiente),
+      menu,
+    });
+  };
+  mostrar(nivel.jugar({ pred: opcion, salir, terminar }));
+}
+
+window.addEventListener('online', () => document.querySelector('.estado-red')?.replaceChildren(t('estado.con')));
+window.addEventListener('offline', () => document.querySelector('.estado-red')?.replaceChildren(t('estado.sin')));
 
 menu();
 
