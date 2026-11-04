@@ -43,3 +43,12 @@ export function detectarTono(buf, sampleRate, { minHz = 80, maxHz = 1400, umbral
   }
   return null;
 }
+
+/**
+ * Lleva `medida` a la octava más cercana a `objetivo`: quien tararea una nota una octava
+ * más grave o más aguda (voces distintas) también la afina.
+ */
+export function plegarOctava(medida, objetivo) {
+  const octavas = Math.round(Math.log2(medida / objetivo));
+  return medida / 2 ** octavas;
+}
