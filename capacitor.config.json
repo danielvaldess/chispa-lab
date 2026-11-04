@@ -1,0 +1,6 @@
+{
+  "appId": "studio.sweetcode.chispalab",
+  "appName": "Chispa Lab",
+  "webDir": "www",
+  "android": { "allowMixedContent": false }
+}

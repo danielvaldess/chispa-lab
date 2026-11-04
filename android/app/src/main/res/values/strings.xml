@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Chispa Lab</string>
+    <string name="title_activity_main">Chispa Lab</string>
+    <string name="package_name">studio.sweetcode.chispalab</string>
+    <string name="custom_url_scheme">studio.sweetcode.chispalab</string>
+</resources>
