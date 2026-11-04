@@ -1,6 +1,6 @@
 // Red primero (para recibir cambios) y caché como respaldo sin conexión.
-var VERSION = 'chispalab-v3';
-var ARCHIVOS = ['./', 'index.html', 'css/style.css', 'css/juego.css?v=5', 'css/perfil.css?v=1', 'js/ajustes.js?v=1', 'js/perfiles.js?v=1', 'js/perfil.js?v=1', 'js/juego.js?v=6', 'js/niveles/globo.js?v=1', 'js/inicio.js?v=1', 'js/fisica.js', 'js/dsp.js', 'lab.html', 'js/lab.js', 'manifest.webmanifest', 'icon.svg', 'icon-180.png', 'icon-192.png', 'icon-512.png', 'sensores.html'];
+var VERSION = 'chispalab-v4';
+var ARCHIVOS = ['./', 'index.html', 'css/style.css', 'css/juego.css?v=5', 'css/perfil.css?v=1', 'js/ajustes.js?v=1', 'js/perfiles.js?v=1', 'js/perfil.js?v=1', 'js/juego.js?v=6', 'js/niveles/globo.js?v=1', 'js/niveles/luz.js?v=1', 'js/niveles/burbujas.js?v=1', 'js/camara.js?v=1', 'js/inicio.js?v=1', 'js/fisica.js', 'js/dsp.js', 'lab.html', 'js/lab.js', 'manifest.webmanifest', 'icon.svg', 'icon-180.png', 'icon-192.png', 'icon-512.png', 'sensores.html'];
 
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(VERSION).then(function (c) { return c.addAll(ARCHIVOS); }));
