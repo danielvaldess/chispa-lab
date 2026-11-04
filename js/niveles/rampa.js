@@ -179,7 +179,7 @@ export default {
     ajustarRango(rango);
     rango.addEventListener('input', () => { valor.textContent = rango.value; ajustarRango(rango); sfx.toque(); });
 
-    const objetivo = () => OBJETIVOS[etapa];
+    const objetivo = () => OBJETIVOS[Math.min(etapa, OBJETIVOS.length - 1)];
     const angulo = () => (usaSensor ? Math.min(30, inclinacion.grados) : Number(rango.value));
     function mostrarPedido() {
       juego.pedido(etapa);
@@ -239,7 +239,7 @@ export default {
       terminar({
         estrellas,
         puntos: juego.puntos,
-        motivos: [t('rampa.m1'), t(pred.ok ? 'rampa.mOk' : 'rampa.mNo'), t(intentos <= 5 ? 'rampa.tOk' : 'rampa.tNo')],
+        motivos: [t('rampa.m1'), t(pred.ok ? 'res.predOk' : 'res.predNo'), t(intentos <= 5 ? 'res.intentosOk' : 'res.intentosNo')],
         pregunta: t('rampa.analisis', { a: a.angulo, b: b.angulo, r: (b.angulo / a.angulo).toFixed(1), t1: a.tiempo.toFixed(2), t2: b.tiempo.toFixed(2) }),
         tabla: h('table', { class: 'tabla' }, h('tr', {}, h('th', {}, t('tabla.pedido')), h('th', {}, t('tabla.angulo')), h('th', {}, t('tabla.tiempo'))), filas),
         revela: t('rampa.revela'),
