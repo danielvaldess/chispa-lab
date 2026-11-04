@@ -119,3 +119,20 @@ export function confeti(cantidad = 36) {
     setTimeout(() => pieza.remove(), 2400);
   }
 }
+
+/**
+ * Bucle de animación ligado a un nodo: se detiene solo cuando el nodo sale de la página.
+ * `cuadro(dt, ahora)` devuelve false para terminar. Devuelve una función para cancelar.
+ */
+export function animar(nodo, cuadro) {
+  let activo = true;
+  let previo = null;
+  const paso = (ahora) => {
+    if (!activo || !nodo.isConnected) return;
+    const dt = previo == null ? 0 : ahora - previo;
+    previo = ahora;
+    if (cuadro(dt, ahora) !== false) requestAnimationFrame(paso);
+  };
+  requestAnimationFrame(paso);
+  return () => { activo = false; };
+}
