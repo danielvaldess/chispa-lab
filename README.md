@@ -30,28 +30,25 @@ propios datos.
 
 | Nivel | Qué se aprende | Cómo se juega |
 |---|---|---|
-| 🎢 **La rampa de cartón** | Más inclinación, menos tiempo, pero no la mitad | Inclina el teléfono (o la barra) y suelta la canica para que llegue al vaso en 3, 2 y 1,4 s |
-| ⏱ **El péndulo del estante** | El periodo depende del largo del hilo, no de la masa | Iguala el ritmo de la lámpara cambiando el largo del hilo; cuelga una moneda, unas llaves, una manzana o una lata |
-| 🎤 **La voz y el globo** | Más agudo = más vibraciones por segundo | Canta una nota base y súbela ×1,25, ×1,5 y ×2 para pasar el globo por tres aros (con micrófono o con barra) |
+| 🎢 **La rampa de cartón** | Al doblar el ángulo, la canica tarda menos, pero no la mitad | Inclina el teléfono (o la barra) y suelta la canica para que llegue al vaso en 3, 2 y 1,4 s |
+| ⏱ **El péndulo del estante** | El periodo depende del largo del hilo, no de la masa | Iguala el ritmo de la lámpara cambiando el largo del hilo con una moneda, unas llaves, una manzana o una lata |
+| 🎤 **La voz y el globo** | Más agudo = más vibraciones por segundo | Canta una nota base y súbela para pasar el globo por tres aros (con micrófono o con barra) |
 
-Cada pedido da puntos según la precisión, con **combo** (hasta ×5). Cada nivel da hasta 3 estrellas, y al
-final una pregunta con tus datos y una explicación de qué pasó.
+Cada pedido da puntos según la precisión, con **combo**. Cada nivel da hasta 3 estrellas y, al final, una
+pregunta con tus datos y una explicación de qué pasó. Además hay un **laboratorio real**
+([`lab.html`](lab.html)) que mide con los sensores del teléfono (péndulo, pulso y sonido) y una página de
+[prueba de sensores](sensores.html).
 
 ## Cómo funciona
 
-- **Física real:** las simulaciones usan las fórmulas del fenómeno (canica que rueda `a = 5/7·g·sen θ`,
-  péndulo `T = 2π√(L/g)`), en [`js/physics.js`](js/physics.js), con pruebas.
-- **Micrófono:** el tono se detecta con el método YIN ([`js/pitch.js`](js/pitch.js)). El audio no se
-  graba ni sale del teléfono, y el juego avisa antes de pedir el permiso.
+- **Física real:** las escenas usan las fórmulas del fenómeno, en [`js/fisica.js`](js/fisica.js), y el
+  tono se detecta con el método YIN en [`js/dsp.js`](js/dsp.js). El audio no se graba ni sale del teléfono.
 - **Sin conexión:** es una PWA; un service worker guarda los archivos y el juego funciona sin internet.
-- **Sin dependencias:** HTML, CSS y JavaScript puros (módulos ES), con las escenas dibujadas en canvas 2D
-  con degradados y sombras para dar volumen sin motores 3D, de modo que corra en móviles modestos.
-  Sonidos generados con Web Audio.
-- **Idiomas:** español, inglés y portugués; se elige según el navegador y se cambia en el menú.
-- **Privacidad:** sin cuentas ni datos personales. Solo se guardan en el dispositivo el idioma, el sonido,
-  las estrellas y los récords.
-- **Accesibilidad:** respeta `prefers-reduced-motion`, reduce partículas en móviles de pocos núcleos y
-  cada nivel tiene alternativa sin sensor (barra) y sin micrófono.
+- **Sin dependencias:** HTML, CSS y JavaScript puros (ES5, para celulares viejos). Las escenas se dibujan en
+  canvas 2D con degradados y sombras para dar volumen sin motores 3D.
+- **Privacidad:** sin cuentas ni datos personales. Solo se guardan en el dispositivo las estrellas y los récords.
+- **Accesibilidad:** respeta `prefers-reduced-motion`, baja las partículas en móviles de pocos núcleos y cada
+  nivel tiene alternativa sin sensor (barra) y sin micrófono.
 
 ## Ejecutar
 
@@ -59,7 +56,7 @@ Requiere Node 20 o superior (solo para el servidor estático y las pruebas).
 
 ```bash
 npm start        # http://localhost:8080
-npm test         # pruebas de física, tono, textos, progreso y PWA
+npm test         # pruebas de procesamiento de señal y física
 ```
 
 ### App de Android
@@ -81,33 +78,24 @@ desarrollo y activa la vista de dispositivo.
 ## Estructura
 
 ```
-index.html          punto de entrada
-css/                styles.css (menú y pantallas) · juego.css (escena, HUD y mandos)
-js/main.js          navegación, idioma y sonido
-js/pantallas.js     menú, predicción y resultado
-js/motor.js         lienzo, partículas, puntos con combo y HUD
-js/dibujo.js        primitivas de dibujo (degradados, esferas, sombras)
-js/niveles/         rampa.js · pendulo.js · voz.js
-js/physics.js       modelos físicos (puros)
-js/pitch.js         detector de tono YIN
-js/microfono.js     lectura del micrófono
-js/sensor.js        inclinación del teléfono
-js/i18n.js          textos es/en/pt
-js/ui.js            componentes y robot Chispa
-js/audio.js         efectos con Web Audio
-js/progreso.js      estrellas, récords y ajustes locales
+index.html          el videojuego
+lab.html            laboratorio con sensores reales
+sensores.html       prueba de sensores del teléfono
+css/                style.css · juego.css
+js/juego.js         menú, niveles, puntos y resultados
+js/lab.js           laboratorio real
+js/dsp.js           procesamiento de señal (tono YIN, filtros)
+js/fisica.js        fórmulas de la rampa y el péndulo
 sw.js               modo sin conexión
 android/            proyecto nativo de Capacitor
 scripts/            servidor estático y empaquetado
-test/               pruebas con node:test
+test/               pruebas
 ```
 
 ## Estado
 
-Escrito durante el hackatón #hack4edu 2026 (3–5 de noviembre); el historial de commits de este
-repositorio es el registro del trabajo. Los tres niveles son jugables. Probado en Chromium
-(escritorio emulando móvil); falta probar en teléfonos reales, el sensor de inclinación y el
-micrófono en dispositivos físicos.
+Los tres niveles son jugables. Probado en Chromium (escritorio emulando móvil); falta probar en teléfonos
+reales el sensor de inclinación, el micrófono y la vibración.
 
 ## Licencia
 
