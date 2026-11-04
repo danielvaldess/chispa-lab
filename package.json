@@ -2,13 +2,12 @@
   "name": "chispa-lab",
   "version": "0.1.0",
   "description": "Videojuego educativo de ciencias para el móvil (hack4edu 2026, reto 17)",
-  "type": "module",
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "node scripts/serve.js",
-    "test": "node --test test/*.test.js",
-    "android": "node scripts/empaquetar.js && cap sync android && cd android && ./gradlew assembleDebug"
+    "start": "node scripts/serve.mjs",
+    "test": "node test/dsp.test.js && node test/juego.test.js",
+    "android": "node scripts/empaquetar.mjs && cap sync android && cd android && ./gradlew assembleDebug"
   },
   "engines": {
     "node": ">=20"

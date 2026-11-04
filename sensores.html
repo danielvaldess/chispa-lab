@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Spikes de sensores</title>
+<style>
+  body{font:16px system-ui,sans-serif;margin:16px;max-width:560px}
+  button{font-size:16px;padding:10px 14px;margin:4px 4px 4px 0}
+  pre{background:#eee;padding:8px;white-space:pre-wrap}
+  video{width:160px;display:block}
+</style>
+</head>
+<body>
+<h1>Spikes de sensores</h1>
+<p>Pruebas de viabilidad desechables. No son el proyecto.</p>
+
+<h2>Entorno</h2>
+<pre id="env"></pre>
+
+<h2>1. Acelerómetro</h2>
+<button id="btnMotion">Probar</button>
+<pre id="motion">sin datos</pre>
+
+<h2>2. Micrófono</h2>
+<button id="btnMic">Probar</button>
+<pre id="mic">sin datos</pre>
+
+<h2>3. Cámara y flash</h2>
+<button id="btnCam">Probar</button>
+<video id="video" playsinline muted></video>
+<pre id="cam">sin datos</pre>
+
+<script>
+const $ = id => document.getElementById(id);
+
+$('env').textContent = [
+  'secureContext: ' + isSecureContext,
+  'DeviceMotionEvent: ' + ('DeviceMotionEvent' in window),
+  'getUserMedia: ' + !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia),
+  'AudioContext: ' + !!(window.AudioContext || window.webkitAudioContext),
+  'serviceWorker: ' + ('serviceWorker' in navigator),
+  'userAgent: ' + navigator.userAgent,
+].join('\n');
+
+$('btnMotion').onclick = async () => {
+  if (typeof DeviceMotionEvent !== 'undefined' && DeviceMotionEvent.requestPermission) {
+    let r = 'error';
+    try { r = await DeviceMotionEvent.requestPermission(); } catch (e) { r = e.name; }
+    $('motion').textContent = 'permiso: ' + r + ' (escuchando de todos modos)';
+  }
+  let n = 0, t0 = performance.now();
+  addEventListener('devicemotion', e => {
+    n++;
+    const a = e.accelerationIncludingGravity;
+    if (!a || a.x === null) { $('motion').textContent = 'evento sin datos de aceleración'; return; }
+    const hz = (n / ((performance.now() - t0) / 1000)).toFixed(0);
+    const g = Math.hypot(a.x, a.y, a.z).toFixed(2);
+    $('motion').textContent = `x ${a.x.toFixed(2)} y ${a.y.toFixed(2)} z ${a.z.toFixed(2)}\n|a| ${g} m/s²\nmuestras/s ~ ${hz}`;
+  });
+  setTimeout(() => { if (!n) $('motion').textContent = 'no llegó ningún evento: no hay acelerómetro o está bloqueado'; }, 2000);
+};
+
+$('btnMic').onclick = async () => {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const src = ctx.createMediaStreamSource(stream);
+    const an = ctx.createAnalyser();
+    an.fftSize = 4096;
+    src.connect(an);
+    const buf = new Float32Array(an.frequencyBinCount);
+    (function tick() {
+      an.getFloatFrequencyData(buf);
+      let max = -Infinity, idx = 0;
+      for (let i = 1; i < buf.length; i++) if (buf[i] > max) { max = buf[i]; idx = i; }
+      const f = idx * ctx.sampleRate / an.fftSize;
+      $('mic').textContent = `frecuencia dominante ~ ${f.toFixed(0)} Hz\nnivel ${max.toFixed(0)} dB\nfs ${ctx.sampleRate} Hz`;
+      requestAnimationFrame(tick);
+    })();
+  } catch (err) { $('mic').textContent = 'error: ' + err.name; }
+};
+
+$('btnCam').onclick = async () => {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({video: {facingMode: 'environment'}});
+    const video = $('video');
+    video.srcObject = stream; await video.play();
+    const track = stream.getVideoTracks()[0];
+    const caps = track.getCapabilities ? track.getCapabilities() : {};
+    let torch = 'no soportado';
+    if (caps.torch) {
+      try { await track.applyConstraints({advanced: [{torch: true}]}); torch = 'encendido'; }
+      catch (e) { torch = 'error: ' + e.name; }
+    }
+    const c = document.createElement('canvas'); c.width = 32; c.height = 32;
+    const x = c.getContext('2d', {willReadFrequently: true});
+    (function tick() {
+      x.drawImage(video, 0, 0, 32, 32);
+      const d = x.getImageData(0, 0, 32, 32).data;
+      let r = 0; for (let i = 0; i < d.length; i += 4) r += d[i];
+      $('cam').textContent = `flash (torch): ${torch}\ncanal rojo medio: ${(r / 1024).toFixed(1)}`;
+      requestAnimationFrame(tick);
+    })();
+  } catch (err) { $('cam').textContent = 'error: ' + err.name; }
+};
+</script>
+</body>
+</html>

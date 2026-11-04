@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Chispa Lab">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="theme-color" content="#5ec8ff">
+<title>Chispa Lab: Chispa y la estación apagada</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/juego.css?v=5">
+<script>window.addEventListener("error",function(e){var d=document.getElementById("error-juego");if(!d){d=document.createElement("div");d.id="error-juego";(document.body||document.documentElement).appendChild(d);}d.innerHTML="<b>Algo falló al cargar</b><p>"+String(e.message||e.error)+" ("+(e.filename||"").split("/").pop()+":"+e.lineno+")</p><p>Haz una captura de pantalla y envíala a tu equipo.</p>";});</script>
+</head>
+<body class="juego">
+<header>
+  <a href="#/" class="marca">Chispa Lab</a>
+  <span id="estado" role="status"></span>
+</header>
+<main id="app"></main>
+<footer>
+  <p>Reto 17 de #hack4edu 2026. El teléfono es el único aparato. Tu progreso se queda en este teléfono.</p>
+  <p><a href="lab.html">Laboratorio real: mide con los sensores</a> · <a href="sensores.html">Prueba de sensores</a></p>
+</footer>
+<script src="js/dsp.js"></script>
+<script src="js/fisica.js"></script>
+<script src="js/juego.js?v=5"></script>
+</body>
+</html>
