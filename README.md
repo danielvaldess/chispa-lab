@@ -106,6 +106,7 @@ ayuda a jugar?**» (casillas opcionales: voz, oír, ver, concentrarme, leer o lo
 - Hasta **4 jugadores** por teléfono, con su progreso por separado. Sirve en la web, en el iPhone (instalada desde Safari) y en el APK.
 - Todo se guarda **solo en el teléfono** y se borra desde Ajustes. Un adulto debe confirmar si el jugador es menor de 18 años y elige algún apoyo.
   Detalle y límites en [`docs/impacto-y-etica.md`](docs/impacto-y-etica.md). Chispa Lab **no es un aparato médico ni da diagnósticos**.
+- **Voz de Chispa:** al «Leer en voz alta», elige entre las voces en español del propio teléfono una voz **femenina, cálida y que funcione sin internet** (tono apenas más alto que lo normal, sin chillar, y ritmo tranquilo); el botón «🔁 Otra voz» prueba otra y la recuerda. Depende de las voces que tenga el teléfono.
 - **Ajustes con secciones** (Pantalla, Sonido y vibración, Qué me ayuda a jugar, Jugadores, Mis datos) y un panel **«Para adultos y docentes»** con el
   resumen de aprendizaje de cada jugador y una guía breve para el aula.
 

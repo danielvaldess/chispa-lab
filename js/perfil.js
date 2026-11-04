@@ -67,10 +67,7 @@ var PERF = (function () {
   function leer(texto) {
     try {
       if (!AJ_ACT.leerVoz || !window.speechSynthesis || !texto) return;
-      window.speechSynthesis.cancel();
-      var u = new SpeechSynthesisUtterance(String(texto));
-      u.lang = 'es-ES'; u.rate = 0.95;
-      window.speechSynthesis.speak(u);
+      VOZ.hablar(texto);
     } catch (e) {}
   }
 
