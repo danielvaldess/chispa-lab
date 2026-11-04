@@ -4,11 +4,14 @@
   'use strict';
   var AJ = typeof require === 'function' && typeof module !== 'undefined' ? require('./ajustes.js') : root.AJUSTES;
   var TU = typeof require === 'function' && typeof module !== 'undefined' ? require('./tutor.js') : root.TUTOR;
+  var DG = typeof require === 'function' && typeof module !== 'undefined' ? require('./diagnostico.js') : root.DIAGNOSTICO;
+  var BD = typeof require === 'function' && typeof module !== 'undefined' ? require('./bandido.js') : root.BANDIDO;
 
   var CLAVE = 'chispalab.perfiles.v1';
   var LEGADO = 'chispalab.juego.v1';
   var MAX = 4;
   var MAX_SESIONES = 60;
+  var MAX_INTENTOS = 30; // últimos intentos que se guardan por juego
   var NIVELES_IDS = ['rampa', 'pendulo', 'voz', 'globo', 'luz', 'burbujas'];
 
   function almacenar(a) { return a || (typeof localStorage !== 'undefined' ? localStorage : null); }
@@ -49,6 +52,7 @@
       progreso: normalizarProgreso(p.progreso),
       aprendizaje: normalizarAprendizaje(p.aprendizaje),
       maestria: normalizarMaestria(p.maestria),
+      ia: normalizarIA(p.ia),
       sesionesVoz: (Array.isArray(p.sesionesVoz) ? p.sesionesVoz : []).slice(-MAX_SESIONES).map(function (s) {
         s = objetoPlano(s);
         return { f: String(s.f || '').slice(0, 10), max: Number(s.max) || 0, hzMin: Number(s.hzMin) || 0, hzMax: Number(s.hzMax) || 0 };
@@ -87,6 +91,24 @@
       out[id] = { p: Math.min(0.99, Math.max(0.01, Number(x.p) || 0.25)), h: Math.min(0.99, Math.max(0.01, Number(x.h) || 0.25)), pn: pn, pok: Math.min(Math.floor(n.pok || 0), pn), hn: hn, hok: Math.min(Math.floor(n.hok || 0), hn) };
     });
     return out;
+  }
+
+  /** Lo que la IA de Chispa sabe de este jugador: ideas erróneas probables, aprendizaje del bandido y últimos intentos. */
+  function normalizarIA(x) {
+    x = objetoPlano(x);
+    var diag = {}, intentos = {}, d = objetoPlano(x.diag), it = objetoPlano(x.intentos);
+    NIVELES_IDS.forEach(function (id) {
+      var e = DG.normalizar(d[id], id);
+      if (e) diag[id] = e;
+      if (Array.isArray(it[id])) {
+        var l = it[id].slice(-MAX_INTENTOS).map(function (i) {
+          i = objetoPlano(i);
+          return { o: String(i.o || '').slice(0, 16), k: i.k ? 1 : 0, e: Math.max(0, Math.min(3, Math.floor(Number(i.e) || 0))), s: Math.max(0, Math.min(3600, Math.round(Number(i.s) || 0))), b: BD.BRAZOS.indexOf(i.b) >= 0 ? i.b : '' };
+        }).filter(function (i) { return i.o; });
+        if (l.length) intentos[id] = l;
+      }
+    });
+    return { diag: diag, bandido: BD.normalizar(x.bandido, NIVELES_IDS), intentos: intentos };
   }
 
   function vacio() { return { activo: null, perfiles: [] }; }
@@ -131,7 +153,7 @@
     var primero = estado.perfiles.length === 0;
     var perfil = {
       id: idNuevo(), nombre: nombre, nac: nac, apoyos: apoyos, extras: {},
-      progreso: primero ? leerLegado(almacen) : {}, aprendizaje: {}, maestria: {}, sesionesVoz: [], creado: fechaISO(hoy)
+      progreso: primero ? leerLegado(almacen) : {}, aprendizaje: {}, maestria: {}, ia: normalizarIA({}), sesionesVoz: [], creado: fechaISO(hoy)
     };
     return { ok: true, perfil: perfil, estado: { activo: perfil.id, perfiles: estado.perfiles.concat([perfil]) } };
   }
@@ -211,8 +233,36 @@
     return perfil;
   }
 
-  /** El adulto puede borrar lo que el tutor sabe de este jugador. */
-  function reiniciarMaestria(perfil) { perfil.maestria = {}; return perfil; }
+  /** El adulto puede borrar lo que el tutor sabe de este jugador (dominio, ideas erróneas, bandido e intentos). */
+  function reiniciarMaestria(perfil) { perfil.maestria = {}; perfil.ia = normalizarIA({}); return perfil; }
+
+  /**
+   * La IA de Chispa aprende de una partida terminada: guarda el intento, actualiza la probabilidad de cada idea errónea
+   * y el bandido. datos: { opcion, ok, estrellas, seg, habil, rnd? }. Devuelve { brazo, idea } (idea = { idea, p } o null)
+   * o null si el adulto apagó la IA o el juego no existe.
+   */
+  function registrarIA(perfil, nivelId, datos) {
+    if (NIVELES_IDS.indexOf(nivelId) < 0 || (perfil.extras && perfil.extras.tutor === false)) return null;
+    var ia = perfil.ia = normalizarIA(perfil.ia), ant = ia.bandido.ultimo[nivelId];
+    if (ant) { ia.bandido = BD.premiar(ia.bandido, ant, !!(datos.ok || datos.habil)); delete ia.bandido.ultimo[nivelId]; }
+    ia.diag[nivelId] = DG.observar(ia.diag[nivelId], nivelId, datos.opcion);
+    var brazo = BD.elegir(ia.bandido, datos.rnd);
+    ia.bandido.ultimo[nivelId] = brazo;
+    var l = ia.intentos[nivelId] || [];
+    l.push({ o: String(datos.opcion || '').slice(0, 16), k: datos.ok ? 1 : 0, e: Math.max(0, Math.min(3, Math.floor(Number(datos.estrellas) || 0))), s: Math.max(0, Math.min(3600, Math.round(Number(datos.seg) || 0))), b: brazo });
+    ia.intentos[nivelId] = l.slice(-MAX_INTENTOS);
+    return { brazo: brazo, idea: DG.probable(ia.diag[nivelId]) };
+  }
+
+  /** Para el adulto: ideas que parecen costarle (probabilidad alta), de mayor a menor. */
+  function ideasPorReforzar(perfil) {
+    var out = [];
+    NIVELES_IDS.forEach(function (id) {
+      var e = perfil.ia && perfil.ia.diag[id], pr = DG.probable(e, 0.5);
+      if (pr) out.push({ nivel: id, idea: pr.idea, texto: DG.texto(pr.idea), p: pr.p, n: e.n });
+    });
+    return out.sort(function (a, b) { return b.p - a.p; });
+  }
 
   /** Resumen para un adulto: por nivel, y cuál es la idea que más le cuesta (la que menos predice bien). */
   function resumenAprendizaje(perfil) {
@@ -241,7 +291,7 @@
   var PERFILES = {
     CLAVE: CLAVE, LEGADO: LEGADO, MAX: MAX, cargar: cargar, guardar: guardar, crear: crear, activar: activar, actual: actual,
     cambiarApoyos: cambiarApoyos, borrar: borrar, borrarTodo: borrarTodo, necesitaAdulto: necesitaAdulto,
-    registrarSesionVoz: registrarSesionVoz, resumenSesiones: resumenSesiones, finalAlcanzado: finalAlcanzado, registrarMaestria: registrarMaestria, reiniciarMaestria: reiniciarMaestria, registrarPartida: registrarPartida, resumenAprendizaje: resumenAprendizaje, NIVELES_IDS: NIVELES_IDS
+    registrarSesionVoz: registrarSesionVoz, resumenSesiones: resumenSesiones, finalAlcanzado: finalAlcanzado, registrarMaestria: registrarMaestria, reiniciarMaestria: reiniciarMaestria, registrarIA: registrarIA, ideasPorReforzar: ideasPorReforzar, normalizarIA: normalizarIA, registrarPartida: registrarPartida, resumenAprendizaje: resumenAprendizaje, NIVELES_IDS: NIVELES_IDS
   };
   if (typeof module !== 'undefined' && module.exports) module.exports = PERFILES;
   else root.PERFILES = PERFILES;
