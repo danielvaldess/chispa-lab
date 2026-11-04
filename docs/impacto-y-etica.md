@@ -44,7 +44,7 @@ almacenamiento, los datos se pierden. Con «Borrar todos los datos» (en Ajustes
 | Oír | Cada tic y tac del péndulo también se ve; la vibración queda activa |
 | Ver | Alto contraste, texto más grande, símbolos además del color |
 | Concentrarme | Modo calma, pausa para descansar, margen algo mayor |
-| Leer o los números | Texto más grande, lectura en voz alta, números siempre con dibujo |
+| Leer o los números | Texto más grande y lectura en voz alta |
 | Mover las manos | Botones grandes, «+» y «−», más margen, barra en lugar de inclinar el teléfono |
 | Luces, ruidos o cambios me molestan | Modo calma, sin destellos, sonidos más suaves, avisos antes de cada juego |
 
