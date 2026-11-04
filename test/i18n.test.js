@@ -31,3 +31,14 @@ test('detectarIdioma', () => {
   assert.equal(detectarIdioma(['fr-FR', 'en-US']), 'en');
   assert.equal(detectarIdioma(['fr']), 'es');
 });
+
+import { readFileSync } from 'node:fs';
+
+test('no hay claves repetidas dentro de un mismo idioma', () => {
+  const fuente = readFileSync(new URL('../js/i18n.js', import.meta.url), 'utf8');
+  for (const bloque of fuente.split(/\n  (?:es|en|pt): \{/).slice(1)) {
+    const cuerpo = bloque.split('\n  },')[0];
+    const claves = [...cuerpo.matchAll(/^ {4}'([^']+)':/gm)].map((m) => m[1]);
+    assert.equal(new Set(claves).size, claves.length, `repetidas: ${claves.filter((c, i) => claves.indexOf(c) !== i)}`);
+  }
+});
