@@ -1,0 +1,156 @@
+// Almacén de perfiles locales (sin DOM, para probarlo en Node). Todo vive en el dispositivo:
+// nada se envía a ningún servidor. Solo se guarda año y mes de nacimiento, no el día.
+(function (root) {
+  'use strict';
+  var AJ = typeof require === 'function' && typeof module !== 'undefined' ? require('./ajustes.js') : root.AJUSTES;
+
+  var CLAVE = 'chispalab.perfiles.v1';
+  var LEGADO = 'chispalab.juego.v1';
+  var MAX = 4;
+  var MAX_SESIONES = 60;
+
+  function almacenar(a) { return a || (typeof localStorage !== 'undefined' ? localStorage : null); }
+
+  function objetoPlano(o) { return o && typeof o === 'object' && !Array.isArray(o) ? o : {}; }
+
+  function numeros(o) {
+    var out = {};
+    Object.keys(objetoPlano(o)).forEach(function (k) {
+      var n = Number(o[k]);
+      if (isFinite(n) && n >= 0 && n < 1e7) out[k] = n;
+    });
+    return out;
+  }
+
+  function normalizarPerfil(p, hoy) {
+    p = objetoPlano(p);
+    var nombre = AJ.limpiarNombre(p.nombre);
+    var m = /^(\d{4})-(\d{2})$/.exec(String(p.nac || ''));
+    var nac = m ? AJ.validarNac(m[1], m[2], hoy) : null;
+    if (!nombre || !nac || typeof p.id !== 'string' || !p.id) return null;
+    var ex = objetoPlano(p.extras);
+    return {
+      id: p.id.slice(0, 24),
+      nombre: nombre,
+      nac: nac,
+      apoyos: AJ.apoyosValidos(p.apoyos),
+      extras: {
+        escala: typeof ex.escala === 'number' ? ex.escala : undefined,
+        calma: typeof ex.calma === 'boolean' ? ex.calma : undefined,
+        contraste: typeof ex.contraste === 'boolean' ? ex.contraste : undefined,
+        leerVoz: typeof ex.leerVoz === 'boolean' ? ex.leerVoz : undefined,
+        vibrar: typeof ex.vibrar === 'boolean' ? ex.vibrar : undefined,
+        volumen: typeof ex.volumen === 'number' ? ex.volumen : undefined
+      },
+      progreso: numeros(p.progreso),
+      sesionesVoz: (Array.isArray(p.sesionesVoz) ? p.sesionesVoz : []).slice(-MAX_SESIONES).map(function (s) {
+        s = objetoPlano(s);
+        return { f: String(s.f || '').slice(0, 10), max: Number(s.max) || 0, hzMin: Number(s.hzMin) || 0, hzMax: Number(s.hzMax) || 0 };
+      }),
+      creado: String(p.creado || '').slice(0, 10)
+    };
+  }
+
+  function vacio() { return { activo: null, perfiles: [] }; }
+
+  function cargar(almacen, hoy) {
+    try {
+      var crudo = JSON.parse(almacenar(almacen).getItem(CLAVE));
+      var perfiles = (crudo && Array.isArray(crudo.perfiles) ? crudo.perfiles : []).map(function (p) { return normalizarPerfil(p, hoy); }).filter(Boolean).slice(0, MAX);
+      var activo = crudo && perfiles.some(function (p) { return p.id === crudo.activo; }) ? crudo.activo : (perfiles[0] ? perfiles[0].id : null);
+      return { activo: activo, perfiles: perfiles };
+    } catch (e) { return vacio(); }
+  }
+
+  function guardar(estado, almacen) {
+    try { almacenar(almacen).setItem(CLAVE, JSON.stringify(estado)); return true; } catch (e) { return false; }
+  }
+
+  function leerLegado(almacen) {
+    try { return numeros(JSON.parse(almacenar(almacen).getItem(LEGADO))); } catch (e) { return {}; }
+  }
+
+  function idNuevo() { return 'p' + Date.now().toString(36) + Math.floor(Math.random() * 1296).toString(36); }
+
+  function fechaISO(hoy) { hoy = hoy || new Date(); return hoy.getFullYear() + '-' + ('0' + (hoy.getMonth() + 1)).slice(-2) + '-' + ('0' + hoy.getDate()).slice(-2); }
+
+  /** Un menor de 18 años necesita que un adulto confirme antes de guardar cualquier apoyo. */
+  function necesitaAdulto(nac, apoyos, hoy) {
+    var e = AJ.edadDe(nac, hoy);
+    return AJ.apoyosValidos(apoyos).length > 0 && e !== null && e < 18;
+  }
+
+  /** Crea un perfil. datos: { nombre, anio, mes, apoyos, adulto }. Devuelve { ok, estado, perfil } o { ok:false, error }. */
+  function crear(estado, datos, hoy, almacen) {
+    datos = datos || {};
+    var nombre = AJ.limpiarNombre(datos.nombre);
+    if (!nombre) return { ok: false, error: 'nombre' };
+    var nac = AJ.validarNac(datos.anio, datos.mes, hoy);
+    if (!nac) return { ok: false, error: 'fecha' };
+    if (estado.perfiles.length >= MAX) return { ok: false, error: 'lleno' };
+    var apoyos = AJ.apoyosValidos(datos.apoyos);
+    if (necesitaAdulto(nac, apoyos, hoy) && !datos.adulto) return { ok: false, error: 'adulto' };
+    var primero = estado.perfiles.length === 0;
+    var perfil = {
+      id: idNuevo(), nombre: nombre, nac: nac, apoyos: apoyos, extras: {},
+      progreso: primero ? leerLegado(almacen) : {}, sesionesVoz: [], creado: fechaISO(hoy)
+    };
+    return { ok: true, perfil: perfil, estado: { activo: perfil.id, perfiles: estado.perfiles.concat([perfil]) } };
+  }
+
+  function activar(estado, id) {
+    return estado.perfiles.some(function (p) { return p.id === id; }) ? { activo: id, perfiles: estado.perfiles } : estado;
+  }
+
+  function actual(estado) {
+    for (var i = 0; i < estado.perfiles.length; i++) if (estado.perfiles[i].id === estado.activo) return estado.perfiles[i];
+    return null;
+  }
+
+  /** Cambia los apoyos de un perfil, con la misma regla del adulto. */
+  function cambiarApoyos(estado, id, apoyos, adulto, hoy) {
+    var p = estado.perfiles.filter(function (x) { return x.id === id; })[0];
+    if (!p) return { ok: false, error: 'no existe' };
+    var nuevos = AJ.apoyosValidos(apoyos);
+    if (necesitaAdulto(p.nac, nuevos, hoy) && !adulto) return { ok: false, error: 'adulto' };
+    var copia = JSON.parse(JSON.stringify(p));
+    copia.apoyos = nuevos;
+    return { ok: true, estado: { activo: estado.activo, perfiles: estado.perfiles.map(function (x) { return x.id === id ? copia : x; }) } };
+  }
+
+  function borrar(estado, id) {
+    var perfiles = estado.perfiles.filter(function (p) { return p.id !== id; });
+    var activo = estado.activo === id ? (perfiles[0] ? perfiles[0].id : null) : estado.activo;
+    return { activo: activo, perfiles: perfiles };
+  }
+
+  /** Borra TODOS los datos de la app en este dispositivo. */
+  function borrarTodo(almacen) {
+    try { almacenar(almacen).removeItem(CLAVE); almacenar(almacen).removeItem(LEGADO); return true; } catch (e) { return false; }
+  }
+
+  /** Añade una sesión de voz (tiempo sostenido máximo y rango de tono) al perfil activo. */
+  function registrarSesionVoz(perfil, sesion, hoy) {
+    perfil.sesionesVoz.push({ f: fechaISO(hoy), max: Math.round(sesion.max * 10) / 10, hzMin: Math.round(sesion.hzMin) || 0, hzMax: Math.round(sesion.hzMax) || 0 });
+    if (perfil.sesionesVoz.length > MAX_SESIONES) perfil.sesionesVoz.shift();
+    return perfil;
+  }
+
+  /** Texto para copiar y llevar al terapeuta o al docente. */
+  function resumenSesiones(perfil) {
+    var l = ['Chispa Lab · práctica de voz de ' + perfil.nombre, 'Es un juego de práctica, no un diagnóstico ni una medición clínica.', ''];
+    if (!perfil.sesionesVoz.length) l.push('Todavía no hay sesiones.');
+    perfil.sesionesVoz.forEach(function (s) {
+      l.push(s.f + ' · «aaa» sostenida: ' + s.max + ' s' + (s.hzMin ? ' · tono entre ' + s.hzMin + ' y ' + s.hzMax + ' Hz' : ''));
+    });
+    return l.join('\n');
+  }
+
+  var PERFILES = {
+    CLAVE: CLAVE, LEGADO: LEGADO, MAX: MAX, cargar: cargar, guardar: guardar, crear: crear, activar: activar, actual: actual,
+    cambiarApoyos: cambiarApoyos, borrar: borrar, borrarTodo: borrarTodo, necesitaAdulto: necesitaAdulto,
+    registrarSesionVoz: registrarSesionVoz, resumenSesiones: resumenSesiones
+  };
+  if (typeof module !== 'undefined' && module.exports) module.exports = PERFILES;
+  else root.PERFILES = PERFILES;
+})(typeof self !== 'undefined' ? self : this);
