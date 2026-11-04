@@ -1,0 +1,38 @@
+/* Finales de la estación: salas que se encienden, fuegos artificiales y diploma. */
+.juego .final { position: relative; }
+.juego .estacion { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 14px 0; }
+.juego .estacion .sala {
+  background: #fff; border-radius: 20px; padding: 12px 6px; text-align: center; color: #1d2250; font-weight: 800;
+  box-shadow: 0 0 0 4px var(--c), 0 0 18px 6px rgba(255, 210, 63, .85), 0 5px 0 rgba(29, 34, 80, .25);
+  animation: encender 0.8s ease-out var(--d) both;
+}
+.juego .estacion .sala .ico { display: block; font-size: 38px; line-height: 1.1; }
+.juego .estacion .sala small { display: block; font-size: 12px; line-height: 1.15; margin-top: 4px; }
+@keyframes encender { from { background: #2b3070; color: #8a90c8; box-shadow: 0 0 0 4px #4a4f86, 0 5px 0 rgba(29, 34, 80, .25); filter: grayscale(1) brightness(.7); } to { filter: none; } }
+.juego .tier-2 .estacion .sala, .juego .tier-3 .estacion .sala { box-shadow: 0 0 0 4px #ffd23f, 0 0 26px 10px rgba(255, 210, 63, .95), 0 5px 0 rgba(29, 34, 80, .25); }
+.juego .ideas-final { list-style: none; margin: 0; padding: 4px 0; }
+.juego .ideas-final li { background: #fff; border-radius: 16px; padding: 10px 14px; margin: 8px 0; color: #1d2250; }
+.juego .ideas-final small { font-size: 14px; opacity: .85; }
+.juego main > ul.ideas-final { background: none; box-shadow: none; padding: 0; }
+
+/* fuegos artificiales (solo con 2 o 3 estrellas; con el modo calma no se muestran) */
+.juego .fuegos { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 3; }
+.juego .fuegos i { position: absolute; width: 8px; height: 8px; border-radius: 50%; background: transparent; animation: fuego 1.8s ease-out var(--d) infinite; }
+@keyframes fuego {
+  0% { box-shadow: 0 0 0 0 #ffd23f, 0 0 0 0 #ff5c8a, 0 0 0 0 #2fd18b, 0 0 0 0 #3b82f6, 0 0 0 0 #ff9f43, 0 0 0 0 #8a6cff, 0 0 0 0 #ffd23f, 0 0 0 0 #ff5c8a; opacity: 1; }
+  100% { box-shadow: 46px 0 0 #ffd23f, -46px 0 0 #ff5c8a, 0 46px 0 #2fd18b, 0 -46px 0 #3b82f6, 32px 32px 0 #ff9f43, -32px 32px 0 #8a6cff, 32px -32px 0 #ffd23f, -32px -32px 0 #ff5c8a; opacity: 0; }
+}
+body.calma .fuegos { display: none; }
+
+.juego canvas.diploma { width: 100%; height: auto; border-radius: 12px; box-shadow: 0 6px 0 rgba(29, 34, 80, .25); background: #fff; display: block; }
+
+/* tercer final: Chispa científico y estación dorada */
+.chispa .cientifico { display: none; }
+body.cientifico .chispa .cientifico { display: inline; }
+body.estacion-dorada h2:first-of-type { background: linear-gradient(135deg, #ffd23f, #e8a900); color: #1d2250; }
+body.estacion-dorada .bombillas .b.on { background: #ffe27a; box-shadow: 0 0 16px 6px rgba(255, 214, 80, .95), inset 0 -4px 0 rgba(0, 0, 0, .1); }
+.juego .medalla { text-align: center; font-weight: 900; margin: 6px 0; color: #fff; text-shadow: 0 2px 0 rgba(29, 34, 80, .45); }
+body.estacion-dorada .medalla { color: #ffe27a; }
+.juego .btn-final { display: block; width: 100%; background: linear-gradient(#ffe27a, #f5a700); color: #1d2250; text-shadow: none; box-shadow: 0 6px 0 #b45309, 0 12px 16px rgba(0, 0, 0, .2); animation: latido-final 1.4s ease-in-out infinite alternate; }
+@keyframes latido-final { to { transform: scale(1.03); } }
+body.calma .btn-final { animation: none; }
