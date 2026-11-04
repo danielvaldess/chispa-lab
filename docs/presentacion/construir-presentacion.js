@@ -55,7 +55,7 @@ s.addNotes(notas());
 // ---------- 1b. Demo ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Problema' });
 s.addText('Mira cómo se juega', { placeholder: 'title' });
-[['rampa.png', 'Predice y juega'], ['pistas.png', 'Chispa pregunta con tus datos'], ['hilo.png', 'Experimentos con materiales'], ['col.png', 'Chispa aprende de ti']].forEach((t, i) => {
+[['rampa.png', 'Predice y juega'], ['pistas.png', 'Chispa pregunta con tus datos'], ['lab-mezclas.png', 'Mi laboratorio: juega libre'], ['hilo.png', 'Experimentos con materiales']].forEach((t, i) => {
   const x = 0.55 + i * 2.3;
   telefono(s, t[0], x, 1.3, 3.3, t[1]);
   s.addText(t[1], { x: x - 0.1, y: 4.78, w: 1.9, h: 0.5, fontSize: 12, bold: true, color: C.text1, align: 'center', valign: 'top', margin: 0, isTextBox: true, objectName: 'Pie ' + (i + 1) });
@@ -103,7 +103,7 @@ s.addNotes(notas());
 
 // ---------- 5. Seis juegos ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Solución' });
-s.addText('Seis juegos y dos experimentos con materiales', { placeholder: 'title' });
+s.addText('Seis juegos, cuatro experimentos y un laboratorio libre', { placeholder: 'title' });
 const juegos = [
   ['🎢', 'La rampa', 'Inclinación', 'Doblar el ángulo no reduce el tiempo a la mitad', C.accent5],
   ['⏱', 'El péndulo', 'Táctil', 'Solo importa el largo del hilo, no el peso', C.accent2],
@@ -120,7 +120,7 @@ juegos.forEach((j, i) => {
   s.addText([{ text: j[1], options: { bold: true, fontSize: 16, color: C.text1, breakLine: true } }, { text: j[2], options: { fontSize: 12, color: C.text2 } }], { x: x + 0.95, y: y + 0.15, w: 1.8, h: 0.7, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Nombre ' + j[1] });
   s.addText(j[3], { x: x + 0.15, y: y + 0.92, w: 2.55, h: 0.62, fontSize: 13, color: C.text1, margin: 0, valign: 'top', isTextBox: true, objectName: 'Idea ' + j[1] });
 });
-s.addText('+ El péndulo de hilo y la col morada: con materiales de casa o simulados en pantalla. Cada juego tiene alternativa sin sensor.', { x: 0.5, y: 4.85, w: 9, h: 0.5, fontSize: 12, italic: true, color: C.text1, margin: 0, isTextBox: true, objectName: 'Aviso' });
+s.addText('+ Experimentos con materiales de casa (péndulo, col morada, huevo con sal, volcán) y Mi laboratorio, un juego libre con 24 descubrimientos.', { x: 0.5, y: 4.85, w: 9, h: 0.5, fontSize: 12, italic: true, color: C.text1, margin: 0, isTextBox: true, objectName: 'Aviso' });
 s.addNotes(notas());
 
 // ---------- 6. Inclusión ----------
@@ -157,7 +157,7 @@ s.addNotes(notas());
 pres.addSection({ title: 'Impacto y mercado' });
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Impacto y mercado' });
 s.addText('Datos del proyecto', { placeholder: 'title' });
-[['121 KB', 'primera carga comprimida (312 KB sin comprimir)', C.accent1], ['0', 'librerías externas', C.accent4], ['330', 'comprobaciones automáticas sin fallos', C.accent6], ['0,4 ms', 'la IA por partida, con la CPU 6× más lenta', C.accent5]].forEach((d, i) => {
+[['≈ 155 KB', 'primera carga comprimida (411 KB sin comprimir)', C.accent1], ['0', 'librerías externas', C.accent4], ['450+', 'comprobaciones automáticas sin fallos', C.accent6], ['0,4 ms', 'la IA por partida, con la CPU 6× más lenta', C.accent5]].forEach((d, i) => {
   const x = 0.5 + (i % 2) * 2.55, y = 1.4 + Math.floor(i / 2) * 1.75;
   s.addShape(pres.ShapeType.roundRect, { x, y, w: 2.4, h: 1.6, rectRadius: 0.12, fill: { color: C.background2 }, line: { color: C.background2 }, objectName: 'Tarjeta dato ' + (i + 1) });
   s.addText(d[0], { x: x + 0.15, y: y + 0.1, w: 2.1, h: 0.8, fontSize: 36, bold: true, color: C.text1, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Dato ' + (i + 1) });

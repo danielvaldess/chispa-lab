@@ -14,8 +14,9 @@ Hasta ahora Chispa Lab solo se probó en Chromium de escritorio con la CPU frena
 6. **Luz y color / Burbujas mágicas:** concede la cámara. ¿Se ve la imagen? Sí / No. ¿Detecta el color o el movimiento? Sí / No
 7. **El péndulo de hilo** (experimento): usa un hilo y una moneda. ¿El cronómetro mide bien 10 vueltas? Sí / No. ¿Sale una gráfica con puntos casi en línea recta? Sí / No
 8. **Chispa detective:** prepara jugo de col morada si puedes. Enséñale agua, limón y bicarbonato. ¿Acertó los vasos misteriosos? ______ de ______. ¿Dijo «no estoy segura» alguna vez? ______
-9. Termina un juego y mira las pistas de Chispa. ¿Se entienden? ¿Tardó algo en aparecer? ______
-10. Después de 10 minutos: ¿se calentó el teléfono? Sí / No · ¿batería usada? ______ % · ¿se cerró o se colgó la app? Sí / No
+9. **Mi laboratorio:** abre el juego libre. ¿Se ve el laboratorio completo (ventana, estante, vaso) sin que lo tape el panel de abajo? Sí / No. Echa jugo de col y limón: ¿cambia el color y aparece un descubrimiento? Sí / No. ¿Los botones se tocan bien con el dedo? Sí / No
+10. Termina un juego y mira las pistas de Chispa. ¿Se entienden? ¿Tardó algo en aparecer? ______
+11. Después de 10 minutos: ¿se calentó el teléfono? Sí / No · ¿batería usada? ______ % · ¿se cerró o se colgó la app? Sí / No
 
 ## Qué hacer con el resultado
 

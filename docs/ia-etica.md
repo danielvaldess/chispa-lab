@@ -15,7 +15,7 @@ Chispa Lab incluye una **IA ligera de tres piezas**, todas clásicas, pequeñas 
    explicación con **los números que midió el propio jugador**, y un *bandido de Thompson* aprende si a ese niño le sirve más la pista de una vez o que
    Chispa pregunte primero.
 
-- **Es** un conjunto de modelos pequeños (unos 23 KB de código en total para las piezas 2 y 3), que se calcula en el teléfono, **sin internet,
+- **Es** un conjunto de modelos pequeños (unos 31 KB de código en total para las piezas 2 y 3, casi todo plantillas de texto), que se calcula en el teléfono, **sin internet,
   sin servidor y sin librerías**.
 - **No es** inteligencia artificial generativa ni un chatbot: las frases de Chispa son plantillas escritas de antemano, con huecos que se rellenan con los
   números del niño; **no inventa texto**. No reconoce rostros ni voces para identificar a nadie, y no usa datos de otros niños.
@@ -104,7 +104,7 @@ Medido con [`test/rendimiento.test.js`](../test/rendimiento.test.js) y [`scripts
 
 | Medida | Resultado |
 |---|---|
-| Código de la IA nueva (3 archivos, sin comprimir) | ≈ 22,9 KB |
+| Código de la IA nueva (3 archivos, sin comprimir) | ≈ 31,5 KB (casi todo son plantillas de texto) |
 | Lo que se guarda por jugador (últimos 30 intentos por juego, probabilidades) | ≈ 9 KB |
 | Tiempo de una partida terminada en la IA, CPU ×6 más lenta | ≈ 0,4 ms |
 | Tiempo de armar las pistas, CPU ×6 más lenta | ≈ 0,01 ms |

@@ -45,6 +45,14 @@
     col: {
       ok: 'rosa',
       ideas: { verde: 'col-invertida', igual: 'col-no-cambia' }
+    },
+    huevo: {
+      ok: 'flota',
+      ideas: { igual: 'huevo-no-cambia', hunde: 'huevo-hunde-mas' }
+    },
+    volcan: {
+      ok: 'tope',
+      ideas: { siempre: 'volcan-siempre-mas', igual: 'volcan-no-cambia' }
     }
   };
 
@@ -63,7 +71,11 @@
     'hilo-proporcional': 'Cree que si el hilo es 4 veces más largo, el péndulo tarda 4 veces más.',
     'hilo-no-importa': 'Cree que el largo del hilo no cambia el tiempo del péndulo.',
     'col-invertida': 'Confunde el color que toma la col morada con un ácido y con una base.',
-    'col-no-cambia': 'Cree que el jugo de col morada no cambia de color con un ácido.'
+    'col-no-cambia': 'Cree que el jugo de col morada no cambia de color con un ácido.',
+    'huevo-no-cambia': 'Cree que la sal no cambia si un huevo flota o se hunde.',
+    'huevo-hunde-mas': 'Cree que más sal hace que el huevo se hunda más.',
+    'volcan-siempre-mas': 'Cree que con más vinagre siempre burbujea más tiempo, sin un tope.',
+    'volcan-no-cambia': 'Cree que la cantidad de vinagre no cambia cuánto burbujea.'
   };
 
   function ideasDe(nivelId) {

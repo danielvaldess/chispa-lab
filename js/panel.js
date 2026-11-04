@@ -206,7 +206,9 @@ var PANEL = (function () {
     luz: 'Un objeto se ve de un color porque devuelve esa luz; una sombra aparece cuando algo tapa la luz.',
     burbujas: 'Una cámara detecta el movimiento comparando fotos seguidas.',
     hilo: 'El tiempo de un péndulo depende del largo del hilo, y crece más despacio que el largo (4 veces más hilo, el doble de tiempo).',
-    col: 'La col morada es un indicador: cambia de color según sea ácido o base lo que se le echa.'
+    col: 'La col morada es un indicador: cambia de color según sea ácido o base lo que se le echa.',
+    huevo: 'Un objeto flota si es menos denso que el líquido; al disolver sal, el agua se vuelve más densa y puede hacer flotar un huevo.',
+    volcan: 'El vinagre y el bicarbonato reaccionan y sueltan gas; la reacción para cuando se acaba uno de los dos (reactivo limitante), por eso hay un tope.'
   };
   function nivelDe(id) { return buscarNivel(id); }
   function estrellasTxt(n) { var s = ''; for (var i = 0; i < 3; i++) s += i < n ? '★' : '☆'; return s; }

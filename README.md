@@ -71,6 +71,8 @@ y cada uno se puede **simular en la pantalla** si no hay materiales (un laborato
 | Experimento | Materiales | Qué se aprende |
 |---|---|---|
 | 🧵 **El péndulo de hilo** | Hilo, un objeto pequeño y el cronómetro del teléfono | El tiempo depende del largo del hilo (no del peso) y crece como su raíz; gráfica de T² contra el largo y estimación de la gravedad |
+| 🥚 **¿Flota o se hunde?** | Un vaso de agua, sal y un huevo (o una uva) | El clásico del huevo y la sal: cambia solo la sal y anota si flota; el agua con sal es más densa |
+| 🌋 **El volcán de bicarbonato** | Bicarbonato, vinagre, un vaso abierto y una bandeja | Con la misma cantidad de bicarbonato y más y más vinagre, mide cuánto burbujea y descubre que hay un tope (reactivo limitante) |
 | 🔎 **Chispa detective: ¿ácido o base?** | Jugo de col morada, vasos, limón, bicarbonato, vinagre y la cámara | La col es un indicador: el niño le **enseña** a Chispa tres vasos y ella reconoce los vasos misteriosos por su color (aprendizaje con pocas muestras en el teléfono) |
 
 Cada experimento abre con una tarjeta de seguridad (adulto cerca, solo cosas de cocina, no probar ni oler, no mezclar productos de limpieza). Chispa **no mide el pH**: dice a cuál de los
@@ -98,7 +100,7 @@ penaliza el tiempo ni la estabilidad del tono.
 
 ## IA ligera y ética
 
-Chispa incluye una **IA ligera de tres piezas** que corre **en el teléfono, sin internet y sin enviar datos** (unos 23 KB de código, sin librerías):
+Chispa incluye una **IA ligera de tres piezas** que corre **en el teléfono, sin internet y sin enviar datos** (unos 31 KB de código, casi todo plantillas de texto, sin librerías):
 
 - **Tutor bayesiano:** estima qué ideas domina cada niño y recomienda el siguiente juego.
 - **Diagnóstico de ideas erróneas:** cada respuesta equivocada delata una idea concreta («si doblo el ángulo, el tiempo baja a la mitad») y se calcula su probabilidad con la regla de Bayes.
@@ -182,6 +184,8 @@ js/color-ml.js      aprendizaje de colores con pocas muestras (centroide más ce
 js/experimento.js   pantallas comunes de los experimentos con materiales
 js/niveles/hilo.js  experimento del péndulo de hilo
 js/niveles/col.js   experimento ácido/base con col morada
+js/niveles/huevo.js experimento del huevo y la sal
+js/niveles/volcan.js experimento del volcán de bicarbonato
 js/diagnostico.js   diagnóstico de ideas erróneas
 js/pistas.js        pregunta, pista y explicación con los datos del jugador
 js/bandido.js       aprendizaje por niño (bandido de Thompson)
@@ -197,7 +201,7 @@ test/               pruebas
 | Qué | Valor (medido en un ordenador) |
 |---|---|
 | APK de Android | ≈ 4,2 MB; Android 6.0 o más |
-| Primera carga de la web | ≈ 121 KB comprimidos (312 KB sin comprimir) y ninguna librería externa |
+| Primera carga de la web | ≈ 155 KB comprimidos (411 KB sin comprimir, con los iconos) y ninguna librería externa |
 | Internet | No hace falta después de abrirla una vez; sin cuentas ni servidores |
 | Costo de la IA | ≈ 0,4 ms por partida con la CPU 6 veces más lenta (Chromium); solo corre al terminar un juego |
 | Materiales | Teléfono; los experimentos usan cosas de casa o se simulan en pantalla |
@@ -206,7 +210,7 @@ Para docentes: [`docs/guia-docente.md`](docs/guia-docente.md). Cómo probarlo en
 
 ## Estado
 
-- **Hecho:** seis juegos, dos experimentos con materiales, perfiles con apoyos, IA ligera, panel para adultos, finales, PWA sin conexión y APK de Android. `npm test` ejecuta 449 comprobaciones.
+- **Hecho:** seis juegos, cuatro experimentos con materiales, un laboratorio libre con 24 descubrimientos, perfiles con apoyos, IA ligera, panel para adultos, finales, PWA sin conexión y APK de Android. `npm test` ejecuta 469 comprobaciones.
 - **Probado:** en Chromium de escritorio (tamaño de teléfono, CPU frenada, micrófono y cámara simulados) y con pruebas automáticas. El APK se compila y se instala en el emulador, pero **el emulador de WSL se cierra
   al abrir cualquier app con WebView, así que no se recorrió un nivel en Android**.
 - **Sin probar:** en un teléfono real (sensor de inclinación, micrófono, cámara, vibración, voz sintetizada, calor y batería), con niños, con un docente y con col morada real. La simulación de la IA **no es un piloto**.

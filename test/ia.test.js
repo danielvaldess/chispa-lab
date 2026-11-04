@@ -87,6 +87,10 @@ t = PI.crear('pendulo', { ok: false, opcion: 'mas', datos: { par: { L: 40, m1: 5
 ok('pistas del péndulo con la prueba justa', /40 cm/.test(t.pregunta) && /0,01 s/.test(t.pista), t.pregunta + ' | ' + t.pista);
 t = PI.crear('voz', { ok: false, opcion: 'baja', datos: { base: 200, f: 400 } });
 ok('pistas de la voz: calcula la razón', /400 Hz/.test(t.pregunta) && /2/.test(t.pista), t.pista);
+t = PI.crear('huevo', { ok: false, opcion: 'igual', datos: { umbral: 6 } });
+ok('pistas del huevo: usa la sal con la que flotó', t && /6 cucharaditas/.test(t.pregunta), t && t.pregunta);
+t = PI.crear('volcan', { ok: false, opcion: 'siempre', datos: { t1: 14, t2: 37, t3: 39 } });
+ok('pistas del volcán: calcula el cociente 39 ÷ 37 = 1,05', t && /37 s a 39 s/.test(t.pregunta) && /1,05/.test(t.pista), t && t.pista);
 ok('un juego sin plantillas devuelve null', PI.crear('x', { ok: true }) === null);
 // toda combinación juego/opción tiene frases completas y cortas
 Object.keys(DG.CATALOGO).forEach((id) => {

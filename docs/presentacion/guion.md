@@ -9,7 +9,7 @@ Este archivo es la fuente de las notas del orador del `.pptx` (el script de la p
 
 ## 2. Mira cómo se juega
 
-[0:12 a 0:55] Así se juega. El niño inclina el teléfono y una canica rueda por una rampa de cartón. Antes de jugar tiene que predecir qué va a pasar, y si se equivoca, Chispa no le da la respuesta: le pregunta con sus propios números, «usaste 5 y 10 grados y el tiempo pasó de 1,5 a 1,1 segundos, ¿es la mitad?». Y hay experimentos de verdad con cosas de casa: mide un péndulo con un hilo y dibuja su propia gráfica, o le enseña a Chispa a reconocer ácidos y bases con jugo de col morada. Todo en el teléfono, sin conexión.
+[0:12 a 0:55] Así se juega. El niño inclina el teléfono y una canica rueda por una rampa de cartón. Antes de jugar predice, y si se equivoca, Chispa no le da la respuesta: le pregunta con sus propios números, «usaste 5 y 10 grados, ¿es la mitad?». Pero no todo es guiado: en Mi laboratorio juega libre, sin reglas ni tiempo, con mezclas, líquidos que flotan, plantas y caídas en la Luna, y los descubrimientos aparecen solos. Y hay experimentos de verdad con cosas de casa, como medir un péndulo con un hilo y dibujar su propia gráfica. Todo en el teléfono, sin conexión.
 
 ## 3. Panamá tiene un reto de aprendizaje en ciencias
 
@@ -23,9 +23,9 @@ Este archivo es la fuente de las notas del orador del `.pptx` (el script de la p
 
 [1:40 a 2:05] Es el método científico, jugando. El niño predice, formula su hipótesis, experimenta con el teléfono como instrumento y compara con sus propios datos. Esta estrategia, predecir, observar y explicar, tiene respaldo en un metaanálisis de 2024 de Koyunlu Ünlü; no verificamos el tamaño del efecto. Y todo queda en su cuaderno de laboratorio, en el teléfono.
 
-## 6. Seis juegos y dos experimentos con materiales
+## 6. Seis juegos, cuatro experimentos y un laboratorio libre
 
-[2:05 a 2:30] Son seis juegos con ideas de física reales: la rampa, el péndulo, la voz, el globo largo, la luz y las burbujas con la cámara. Y dos experimentos con materiales, opcionales: el péndulo de hilo y la col morada. Cada uno se puede simular en la pantalla si no hay materiales: un laboratorio híbrido, virtual o real.
+[2:05 a 2:30] Son seis juegos con ideas de física reales, cuatro experimentos con materiales de casa, el péndulo de hilo, la col morada, el huevo con sal y el volcán de bicarbonato, y un laboratorio libre con 24 descubrimientos. Cada experimento se puede simular en la pantalla si no hay materiales: un laboratorio híbrido, virtual o real. Química, física, biología y matemáticas, todo en un teléfono.
 
 ## 7. Para todos los niños
 
@@ -37,7 +37,7 @@ Este archivo es la fuente de las notas del orador del `.pptx` (el script de la p
 
 ## 9. Datos del proyecto
 
-[3:30 a 3:50] Medimos el sistema: unos 121 kilobytes comprimidos en la primera carga, cero librerías externas y 330 comprobaciones automáticas sin fallos. La IA tarda menos de medio milisegundo por partida con la CPU seis veces más lenta. Son mediciones en un ordenador; falta probarlo en teléfonos reales.
+[3:30 a 3:50] Medimos el sistema: unos 155 kilobytes comprimidos en la primera carga, cero librerías externas y más de 450 comprobaciones automáticas sin fallos. La IA tarda menos de medio milisegundo por partida con la CPU seis veces más lenta. Son mediciones en un ordenador; falta probarlo en teléfonos reales.
 
 ## 10. Impacto: contribuimos a tres ODS
 

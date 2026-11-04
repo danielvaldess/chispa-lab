@@ -28,5 +28,5 @@
 ## Qué cifras tienen fuente y cuáles son medidas propias
 
 - **Con fuente en la propia diapositiva** (pie de página): ERCE 2019, conectividad, licitación de laboratorios, ENDIS-2, gasto público en educación. Detalle y lo que se verificó en [`../investigacion/articulo.md`](../investigacion/articulo.md).
-- **Medidas propias (no son de una fuente externa):** 121 KB comprimidos / 312 KB sin comprimir en la primera carga (suma de los archivos del service worker), 330 comprobaciones automáticas (`npm test`), 0,4 ms de la IA
+- **Medidas propias (no son de una fuente externa):** 155 KB comprimidos / 411 KB sin comprimir en la primera carga (suma de los archivos del service worker), más de 450 comprobaciones automáticas (`npm test`), 0,4 ms de la IA
   por partida con la CPU 6 veces más lenta (`scripts/medir-navegador.mjs`) y el ≈ 68 % de acierto del diagnóstico, que es **una simulación**. La diapositiva 9 dice que son mediciones en un ordenador, no en un teléfono real.

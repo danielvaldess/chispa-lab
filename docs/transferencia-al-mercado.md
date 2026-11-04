@@ -46,7 +46,7 @@ Medidas propias de la versión 1.0.0, hechas en un ordenador (no en un teléfono
 | Qué | Valor |
 |---|---|
 | Peso de la app para Android (APK) | ≈ 4,2 MB: cabe en un mensaje de WhatsApp o se pasa por Bluetooth |
-| Primera carga de la web | ≈ 121 KB comprimidos (312 KB sin comprimir), 0 librerías externas |
+| Primera carga de la web | ≈ 155 KB comprimidos (411 KB sin comprimir, con los iconos), 0 librerías externas |
 | Android mínimo | 6.0 (nivel 23) |
 | Internet | No hace falta después de abrirla una vez (PWA con service worker); el APK no la usa |
 | Cuentas y servidores | Ninguno: los datos viven en el teléfono y se borran desde Ajustes |

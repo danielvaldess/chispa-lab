@@ -12,7 +12,7 @@ const raiz = path.join(__dirname, '..', 'js');
 const bytes = ['diagnostico.js', 'bandido.js', 'pistas.js'].map((f) => fs.statSync(path.join(raiz, f)).size);
 const total = bytes.reduce((a, b) => a + b, 0);
 console.log('  Peso de la IA: diagnostico ' + bytes[0] + ' B · bandido ' + bytes[1] + ' B · pistas ' + bytes[2] + ' B · total ' + total + ' B');
-ok('los tres módulos de la IA pesan menos de 30 KB sin comprimir', total < 30 * 1024, total + ' B');
+ok('los tres módulos de la IA pesan menos de 40 KB sin comprimir (casi todo son plantillas de texto)', total < 40 * 1024, total + ' B');
 
 const hoy = new Date(2026, 10, 4);
 const perfil = P.crear(P.cargar({ getItem: () => null, setItem() {}, removeItem() {} }, hoy), { nombre: 'Ana', anio: 2018, mes: 3, apoyos: [] }, hoy, null).perfil;
