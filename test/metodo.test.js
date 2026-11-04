@@ -8,7 +8,7 @@ ok('arma la frase con las tres casillas', M.hipotesis({ cambio: 'el largo del hi
 ok('con una casilla vacía no hay hipótesis', M.hipotesis({ cambio: 'x', entonces: 'y' }) === '' && M.hipotesis() === '');
 const h = M.hipotesis({ cambio: ' <b>a</b>  b ', entonces: 'c', porque: 'd' });
 ok('quita « < » y « > » y los espacios de más', h === 'Si cambio ba/b b, entonces c porque d.', h);
-ok('recorta los textos largos a 140 caracteres', M.limpiarTexto('a'.repeat(500)).length === 140);
+ok('recorta los textos largos a 320 caracteres', M.limpiarTexto('a'.repeat(500)).length === 320);
 
 // Prueba justa
 const claves = ['largo', 'objeto', 'angulo'];

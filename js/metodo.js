@@ -4,7 +4,7 @@
   'use strict';
 
   var MAX_CUADERNO = 20;     // entradas que se guardan por jugador
-  var MAX_TEXTO = 140;       // caracteres por campo del cuaderno
+  var MAX_TEXTO = 320;       // caracteres por campo del cuaderno
 
   function limpiarTexto(t) { return String(t === undefined || t === null ? '' : t).replace(/[<>]/g, '').replace(/\s+/g, ' ').trim().slice(0, MAX_TEXTO); }
 
