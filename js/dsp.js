@@ -150,11 +150,11 @@
 
   // Tono de la voz (algoritmo YIN simplificado) sobre una ventana en el tiempo.
   // Más robusto que el pico de la FFT, que salta a los armónicos.
-  function pitchYIN(buf, sr, minHz, maxHz) {
+  function pitchYIN(buf, sr, minHz, maxHz, umbralRms) {
     var n = buf.length, i, rms = 0;
     for (i = 0; i < n; i++) rms += buf[i] * buf[i];
     rms = Math.sqrt(rms / n);
-    if (rms < 0.01) return null;
+    if (rms < (umbralRms || 0.01)) return null;
     var minLag = Math.max(2, Math.floor(sr / maxHz));
     var maxLag = Math.min(Math.floor(sr / minHz), (n >> 1) - 1);
     var w = n - maxLag, d = new Float32Array(maxLag + 1), cm = new Float32Array(maxLag + 1);

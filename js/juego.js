@@ -2,10 +2,9 @@
 // Chispa Lab · videojuego educativo. Sin dependencias; ES5 + async.
 // Pantalla completa en vertical, objetos del hogar dibujados en canvas 2D con volumen (ligero para celulares baratos).
 
-var KEY = 'chispalab.juego.v1';
 var app = document.getElementById('app');
-var progreso = {};
-try { progreso = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { progreso = {}; }
+var progreso = PERF.progreso(); // progreso del jugador activo (se guarda con su perfil)
+function recargarProgreso() { progreso = PERF.progreso(); }
 
 var REDUCIDO = false;
 try { REDUCIDO = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
@@ -14,7 +13,7 @@ var tt = 0; // reloj de animación
 var PAL = { tinta: '#1d2250', amarillo: '#ffd23f', rosa: '#ff5c8a', verde: '#2fd18b', azul: '#3b82f6', naranja: '#ff9f43', morado: '#8a6cff' };
 var CONF = ['#ffd23f', '#ff5c8a', '#2fd18b', '#3b82f6', '#ff9f43', '#8a6cff'];
 
-function guardar() { try { localStorage.setItem(KEY, JSON.stringify(progreso)); } catch (e) {} }
+function guardar() { PERF.guardar(); }
 function $(id) { return document.getElementById(id); }
 function esc(s) {
   return String(s).replace(/[&<>"']/g, function (c) {
@@ -23,7 +22,7 @@ function esc(s) {
 }
 function r(v, d) { var k = Math.pow(10, d || 0); return Math.round(v * k) / k; }
 function estrellas(n) { var s = ''; for (var i = 0; i < 3; i++) s += i < n ? '★' : '☆'; return s; }
-function vibra(p) { try { if (navigator.vibrate && !REDUCIDO) navigator.vibrate(p); } catch (e) {} }
+function vibra(p) { try { if (navigator.vibrate && !REDUCIDO && AJ_ACT.vibrar) navigator.vibrate(p); } catch (e) {} }
 
 // ---------- Chispa, el robot (SVG animado con CSS) ----------
 var ROBOT = '<svg class="robot" viewBox="0 0 100 100" aria-hidden="true">' +
@@ -43,6 +42,7 @@ function decir(t, animo) {
   var e = $('chispa-txt');
   if (!e) return;
   e.textContent = t;
+  PERF.leer(t);
   var b = e.parentNode, extra = b.className.indexOf('compacta') >= 0 ? ' compacta' : '';
   b.className = 'chispa' + extra;
   void b.offsetWidth; // reinicia la animación
@@ -65,7 +65,7 @@ function pip(f, dur, tipo, vol, demora, f2) {
   o.type = tipo || 'sine'; o.frequency.setValueAtTime(f, t0);
   if (f2) o.frequency.exponentialRampToValueAtTime(f2, t0 + dur);
   g.gain.setValueAtTime(0.0001, t0);
-  g.gain.exponentialRampToValueAtTime(vol || 0.15, t0 + 0.01);
+  g.gain.exponentialRampToValueAtTime(Math.max(0.0002, (vol || 0.15) * AJ_ACT.volumen), t0 + 0.01);
   g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
   o.connect(g); g.connect(a.destination);
   o.start(t0); o.stop(t0 + dur + 0.02);
@@ -157,6 +157,7 @@ function texto3d(t, x, y, tam, ancla, color) {
 
 // Partículas (chispas, estela, polvo)
 function chisporroteo(x, y, n, cols) {
+  if (AJ_ACT.calma) return;
   if (LIGERO) n = Math.ceil(n / 2);
   cols = cols || CONF;
   for (var i = 0; i < n; i++) parts.push({ x: x, y: y, vx: (Math.random() - 0.5) * 340, vy: -Math.random() * 300 - 50, t: 0, vida: 0.7 + Math.random() * 0.5, c: cols[i % cols.length], r: 3 + Math.random() * 3.5 });
@@ -180,7 +181,7 @@ function dibujarParts() {
 // Confeti de pantalla completa
 var conf = { cv: null, cx: null, p: [], raf: 0 };
 function confeti(n) {
-  if (REDUCIDO) return;
+  if (REDUCIDO || AJ_ACT.calma) return;
   if (LIGERO) n = Math.ceil(n / 2);
   if (!conf.cv) {
     conf.cv = document.createElement('canvas'); conf.cv.className = 'confeti'; document.body.appendChild(conf.cv);
@@ -222,7 +223,7 @@ function splash(txt, color) {
   clearTimeout(splashT); splashT = setTimeout(function () { if (c) c.innerHTML = ''; }, 1150);
 }
 function destello() {
-  var e = $('escena'); if (!e || REDUCIDO) return;
+  var e = $('escena'); if (!e || REDUCIDO || AJ_ACT.sinDestellos) return;
   var d = document.createElement('div'); d.className = 'destello'; e.appendChild(d);
   setTimeout(function () { if (d.parentNode) d.parentNode.removeChild(d); }, 600);
 }
@@ -242,7 +243,7 @@ function pintarPedidos(textos, hechas, actual) {
     return '<span class="ped' + (i < hechas ? ' hecha' : (i === actual ? ' act' : '')) + '">' + (i < hechas ? '✔ ' : '') + esc(t) + '</span>';
   }).join('');
 }
-function sacudir(m) { if (!REDUCIDO) shake = m; }
+function sacudir(m) { if (!REDUCIDO && !AJ_ACT.calma) shake = m; }
 function puntosPorAcierto(error, tol) {
   var bonus = Math.round(100 * Math.max(0, 1 - error / tol));
   combo++;
@@ -463,7 +464,7 @@ function cronometro(x, y, R, t, obj, tol, activo) {
 
 // ---------- Nivel 1: La rampa de cartón (acelerómetro) ----------
 function jugarRampa(pred) {
-  var OBJ = [3.0, 2.0, 1.4], TOL = 0.3, D = 3, MU = 0.02;
+  var OBJ = [3.0, 2.0, 1.4], TOLB = 0.3 * AJ_ACT.tol, TOL = r(TOLB, 2), D = 3, MU = 0.02, din = AJUSTES.dinamicoInicial();
   var etapa = 0, fase = 'apuntar', s = 0, v = 0, t = 0, thL = 0, quieta = 0, tr = 0, intentos = [], aciertos = [], timer = 0;
   var xm = 0, vm = 0, rotM = 0, golpe = 0, tTiempo = 0, enVaso = false, avisoSensor = false, avisoT = 0;
 
@@ -508,11 +509,12 @@ function jugarRampa(pred) {
     var obj = OBJ[etapa], g = geom();
     rodar(false);
     intentos.push({ th: r(thL, 1), t: r(tTiempo, 2), obj: obj });
-    var error = Math.abs(tTiempo - obj);
+    var error = Math.abs(tTiempo - obj), tolUsada = TOL;
+    din = AJUSTES.ajusteDinamico(din, error <= tolUsada); TOL = r(TOLB * din.mult, 2);
     fase = 'fin'; $('soltar').disabled = false;
-    if (error <= TOL) {
+    if (error <= tolUsada) {
       aciertos.push({ th: r(thL, 1), t: r(tTiempo, 2), obj: obj });
-      var pa = puntosPorAcierto(error, TOL), el = elogio(pa.bonus);
+      var pa = puntosPorAcierto(error, tolUsada), el = elogio(pa.bonus);
       sonido('ok'); if (pa.mult >= 2) sonido('combo');
       chisporroteo(g.bx - 36 * g.k, g.by - 24 * g.k, 40); confeti(pa.bonus >= 80 ? 80 : 40); destello(); sacudir(10); vibra([30, 30, 60]);
       splash(el.t, el.c); sumar(pa.ganados, W / 2, H * 0.34); pintarCombo();
@@ -525,8 +527,8 @@ function jugarRampa(pred) {
       $('soltar').innerHTML = '<span>⏭</span>SIGUIENTE';
     } else {
       combo = 0; pintarCombo(); sonido('mal'); sacudir(7); vibra([60, 40, 60]);
-      if (error <= TOL * 2) splash('¡CASI! 😮', '#ff9f43');
-      decir('Llegó en ' + r(tTiempo, 2) + ' s y el pedido pide ' + obj + ' s. ' + (tTiempo > obj ? 'Fue más lenta.' : 'Fue más rápida.') + ' ¿Inclinas más o menos?', 'triste');
+      if (error <= tolUsada * 2) splash('¡CASI! 😮', '#ff9f43');
+      decir('Llegó en ' + r(tTiempo, 2) + ' s y el pedido pide ' + obj + ' s. ' + (tTiempo > obj ? 'Fue más lenta.' : 'Fue más rápida.') + ' ¿Inclinas más o menos?' + (din.pista ? ' Pista: prueba con unos ' + r(Math.asin(Math.min(1, 2 * D / (obj * obj) / 9.81 + MU)) * 180 / Math.PI, 0) + '°.' : ''), 'triste');
       $('soltar').innerHTML = '<span>↻</span>OTRA VEZ';
     }
   }
@@ -671,7 +673,7 @@ function objetoColgante(i, x, y, rad, ang) {
 }
 
 function jugarPendulo(pred) {
-  var OBJ = [1.4, 2.0, 2.6], TOL = 0.05;
+  var OBJ = [1.4, 2.0, 2.6], TOLB = 0.05 * AJ_ACT.tol, TOL = r(TOLB, 3), din = AJUSTES.dinamicoInicial();
   var etapa = 0, fase = 'listo', est = { th: 0.35, w: 0 }, tSim = 0, cruces = [], L = 0.8, item = 2, intentos = [], tb = 0, medido = null, timer = 0, rastro = [], ultTic = -1;
 
   escena('⏱ El péndulo',
@@ -681,7 +683,7 @@ function jugarPendulo(pred) {
     '</div><button id="soltar" class="btn-go"><span>▶</span>SOLTAR</button></div><p id="info" role="status" aria-live="polite"></p>');
   var textos = OBJ.map(function (o) { return o + ' s'; });
   function pedidos() { pintarPedidos(textos, etapa, etapa); }
-  function info() { $('info').textContent = 'Luz ' + (etapa + 1) + ' de 3: el péndulo debe tardar ' + OBJ[etapa] + ' s en ir y volver (margen del 5 %).'; }
+  function info() { $('info').textContent = 'Luz ' + (etapa + 1) + ' de 3: el péndulo debe tardar ' + OBJ[etapa] + ' s en ir y volver (margen del ' + r(TOL * 100, 0) + ' %).'; }
   decir('La lámpara marca el ritmo del reloj. Escucha su tic y haz que tu péndulo haga tac al mismo ritmo. Cambia una sola cosa a la vez.');
   pedidos(); info();
 
@@ -698,10 +700,11 @@ function jugarPendulo(pred) {
 
   function medir(T) {
     fase = 'medido'; medido = T;
-    var obj = OBJ[etapa], error = Math.abs(T - obj) / obj;
+    var obj = OBJ[etapa], error = Math.abs(T - obj) / obj, tolUsada = TOL;
     intentos.push({ L: r(L * 100, 0), m: ITEMS[item].g, T: r(T, 2), obj: obj });
-    if (error <= TOL) {
-      var pa = puntosPorAcierto(error, TOL), el = elogio(pa.bonus);
+    din = AJUSTES.ajusteDinamico(din, error <= tolUsada); TOL = r(TOLB * din.mult, 3);
+    if (error <= tolUsada) {
+      var pa = puntosPorAcierto(error, tolUsada), el = elogio(pa.bonus);
       sonido('ok'); if (pa.mult >= 2) sonido('combo');
       chisporroteo(W * 0.82, H * 0.42, 40); confeti(pa.bonus >= 80 ? 80 : 40); destello(); sacudir(8); vibra([30, 30, 60]);
       splash(el.t, el.c); sumar(pa.ganados, W / 2, H * 0.34); pintarCombo();
@@ -713,7 +716,7 @@ function jugarPendulo(pred) {
       decir('¡Sincronizado! Tu péndulo tardó ' + r(T, 2) + ' s. La siguiente luz marca ' + OBJ[etapa] + ' s.', 'alegre'); info();
     } else {
       combo = 0; pintarCombo(); sonido('mal'); sacudir(6); vibra([60, 40, 60]);
-      if (error <= 0.12) splash('¡CASI! 😮', '#ff9f43');
+      if (error <= tolUsada * 2.4) splash('¡CASI! 😮', '#ff9f43');
       decir('Tu péndulo tardó ' + r(T, 2) + ' s y la luz marca ' + obj + ' s. ' + (T < obj ? 'Va más rápido que la luz.' : 'Va más lento que la luz.') + ' ¿Qué cambiarías? Recuerda: una sola cosa a la vez.', 'triste');
     }
   }
@@ -816,7 +819,7 @@ function jugarPendulo(pred) {
 
 // ---------- Nivel 3: La voz (micrófono) ----------
 function jugarVoz(pred) {
-  var RAT = [1.25, 1.5, 2.0], BANDA = 0.04, HOLD = 0.8;
+  var RAT = [1.25, 1.5, 2.0], BANDAB = 0.04 * AJ_ACT.tol * AJ_ACT.bandaVoz, BANDA = r(BANDAB, 3), HOLD = 0.8 * AJ_ACT.hold, HOLD0 = 1.2 * AJ_ACT.hold, din = AJUSTES.dinamicoInicial();
   var fase = 'abriendo', ref = null, hold = 0, base = null, g = 0, f = null, fT = 0, sinAcierto = 0, total = 0, aciertos = [], usaMic = false, tPitch = 0, timer = 0;
   var yv = null, estrellasFondo = [], anillos = [], tAnillo = 0, xg = 0.3;
   sfxOn = false; // el micrófono escucharía los sonidos del juego
@@ -913,7 +916,7 @@ function jugarVoz(pred) {
       if (usaMic && mic.an && tPitch > 0.05) {
         tPitch = 0;
         mic.an.getFloatTimeDomainData(mic.buf);
-        var res = DSP.pitchYIN(mic.buf, mic.ctx.sampleRate, 80, 1000);
+        var res = DSP.pitchYIN(mic.buf, mic.ctx.sampleRate, 80, 1000, 0.01 * AJ_ACT.sensibilidadMic);
         if (res) { f = res.freq; fT = performance.now(); }
       }
       var fr = frecuencia();
@@ -927,7 +930,7 @@ function jugarVoz(pred) {
       if (fase === 'calibrar') {
         if (fr === null) { hold = 0; ref = null; return; }
         if (ref !== null && Math.abs(fr - ref) / ref < 0.04) hold += dt; else { ref = fr; hold = 0; }
-        if (hold >= 1.2) {
+        if (hold >= HOLD0) {
           base = ref; fase = 'puertas'; hold = 0; g = 0; sinAcierto = 0; chisporroteo(W * 0.3, yv, 24); sonido('ok'); vibra(30);
           decir('¡Nota base: ' + r(base, 0) + ' Hz! Ahora sube tu voz hasta cada aro y mantén el tono.', 'alegre'); pedidos();
         }
@@ -941,6 +944,7 @@ function jugarVoz(pred) {
           if (hold >= HOLD) {
             var errorRel = Math.abs(fr / meta - 1), pa = puntosPorAcierto(errorRel, BANDA), el = elogio(pa.bonus);
             aciertos.push({ rat: RAT[g], meta: r(meta, 0), f: r(fr, 0) });
+            din = AJUSTES.ajusteDinamico(din, true); BANDA = r(BANDAB * din.mult, 3);
             chisporroteo(W * 0.62, Y(meta), 40); confeti(pa.bonus >= 80 ? 70 : 35); destello(); vibra([30, 30, 60]); sonidoVozOk();
             splash(el.t, el.c); sumar(pa.ganados, W / 2, H * 0.34); pintarCombo();
             g++; hold = 0; xg = 0.3; pedidos();
@@ -953,7 +957,8 @@ function jugarVoz(pred) {
             sinAcierto += dt;
             if (sinAcierto > 6) {
               sinAcierto = 0;
-              decir(fr < meta ? 'Tu tono está por debajo del aro. ¿Qué cambia en tu garganta cuando cantas más agudo?' : 'Te pasaste del aro. ¿Cómo bajarías tu tono con suavidad?');
+              din = AJUSTES.ajusteDinamico(din, false); BANDA = r(BANDAB * din.mult, 3);
+              decir((din.pista ? 'Pista: tu meta está cerca de ' + r(meta, 0) + ' Hz. ' : '') + (fr < meta ? 'Tu tono está por debajo del aro. ¿Qué cambia en tu garganta cuando cantas más agudo?' : 'Te pasaste del aro. ¿Cómo bajarías tu tono con suavidad?'));
             }
           }
         }
@@ -1032,9 +1037,15 @@ function buscarNivel(id) {
   return null;
 }
 
+function ordenNiveles() {
+  var l = NIVELES.slice(), i;
+  if (AJ_ACT.voz) for (i = 0; i < l.length; i++) if (l[i].id === 'voz') { l.unshift(l.splice(i, 1)[0]); break; }
+  return l;
+}
+
 function menu() {
-  var total = 0, puntosTotal = 0;
-  var tarjetas = NIVELES.map(function (n, i) {
+  var total = 0, puntosTotal = 0, jug = PERF.actual();
+  var tarjetas = ordenNiveles().map(function (n, i) {
     var e = progreso[n.id] || 0, p = progreso[n.id + '_pts'] || 0; total += e; puntosTotal += p;
     return '<a class="tarjeta" style="--c:' + n.color + ';--d:' + (0.15 + i * 0.12) + 's" href="#/n/' + n.id + '"><span class="ico" aria-hidden="true">' + n.icono +
       '</span><span><b>' + esc(n.titulo) + '</b><small>' + esc(n.sub) + (p ? ' · récord ' + p + ' ⭐' : '') + '</small><span class="est" aria-label="' + e + ' de 3 estrellas">' + estrellas(e) + '</span></span></a>';
@@ -1042,8 +1053,11 @@ function menu() {
   var bombillas = '';
   for (var b = 0; b < NIVELES.length * 3; b++) bombillas += '<span class="b' + (b < total ? ' on' : '') + '"></span>';
   app.innerHTML = '<h2>Chispa y la estación apagada</h2>' +
-    chispa('¡Hola! Soy Chispa. Ayúdame a encender la estación científica. Cada sala es un reto: predices, juegas y descubres cómo funciona el mundo. ¡Solo necesitas tu teléfono!') +
+    chispa('¡Hola' + (jug ? ', ' + jug.nombre : '') + '! Soy Chispa. Ayúdame a encender la estación científica. Cada sala es un reto: predices, juegas y descubres cómo funciona el mundo. ¡Solo necesitas tu teléfono!') +
     tarjetas + '<p>Energía de la estación: <b>' + total + ' de ' + (NIVELES.length * 3) + '</b><span class="bombillas" role="img" aria-label="' + total + ' de ' + (NIVELES.length * 3) + ' bombillas encendidas">' + bombillas + '</span></p>';
+  app.insertAdjacentHTML('beforeend', '<p class="fila-menu"><button class="sec chico" id="m-ajustes">⚙ Ajustes</button> <button class="sec chico" id="m-quien">👤 Cambiar de jugador</button></p>');
+  $('m-ajustes').onclick = function () { audio(); sonido('clic'); PERF.ajustes(); };
+  $('m-quien').onclick = function () { audio(); sonido('clic'); PERF.quien(); };
   var cc = document.querySelector('.chispa'); if (cc) cc.className = 'chispa habla';
 }
 
@@ -1092,17 +1106,7 @@ function ruta() {
   var h = location.hash || '#/', m = h.match(/^#\/n\/(\w+)/);
   window.scrollTo(0, 0);
   detener();
+  if (!PERF.actual()) { PERF.entrar(); return; }
   var n = m ? buscarNivel(m[1]) : null;
   if (n) intro(n); else menu();
-}
-window.addEventListener('hashchange', ruta);
-
-function pintarEstado() { $('estado').textContent = navigator.onLine ? 'Con conexión' : 'Sin conexión (funciona igual)'; }
-window.addEventListener('online', pintarEstado);
-window.addEventListener('offline', pintarEstado);
-pintarEstado();
-ruta();
-
-if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-  navigator.serviceWorker.register('sw.js').catch(function () {});
 }
