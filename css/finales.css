@@ -30,9 +30,10 @@ body.calma .fuegos { display: none; }
 .chispa .cientifico { display: none; }
 body.cientifico .chispa .cientifico { display: inline; }
 body.estacion-dorada h2:first-of-type { background: linear-gradient(135deg, #ffd23f, #e8a900); color: #1d2250; }
-body.estacion-dorada .bombillas .b.on { background: #ffe27a; box-shadow: 0 0 16px 6px rgba(255, 214, 80, .95), inset 0 -4px 0 rgba(0, 0, 0, .1); }
-.juego .medalla { text-align: center; font-weight: 900; margin: 6px 0; color: #fff; text-shadow: 0 2px 0 rgba(29, 34, 80, .45); }
-body.estacion-dorada .medalla { color: #ffe27a; }
+body.estacion-dorada .bombillas .b.on { background: #ffb800; box-shadow: 0 0 10px 3px rgba(255, 184, 0, .85), inset 0 -4px 0 rgba(0, 0, 0, .18); }
+/* píldora oscura: el texto claro se lee sobre cualquier fondo (la tarjeta blanca de main > p lo dejaba invisible) */
+.juego main > p.medalla { display: block; width: fit-content; margin: 12px auto; padding: 8px 18px; border-radius: 999px; background: #1d2250; color: #fff; font-weight: 900; text-align: center; text-shadow: none; box-shadow: 0 4px 0 rgba(29, 34, 80, .45); }
+body.estacion-dorada.juego main > p.medalla { color: #ffe27a; box-shadow: 0 0 14px 3px rgba(255, 214, 80, .7), 0 4px 0 rgba(29, 34, 80, .45); }
 .juego .btn-final { display: block; width: 100%; background: linear-gradient(#ffe27a, #f5a700); color: #1d2250; text-shadow: none; box-shadow: 0 6px 0 #b45309, 0 12px 16px rgba(0, 0, 0, .2); animation: latido-final 1.4s ease-in-out infinite alternate; }
 @keyframes latido-final { to { transform: scale(1.03); } }
 body.calma .btn-final { animation: none; }

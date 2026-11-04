@@ -111,3 +111,6 @@ body.calma .juego button.sw .perilla { transition: none; }
 .juego .insignia { display: block; width: fit-content; margin: 8px 0 10px; padding: 3px 10px; border-radius: 999px; background: #ffd23f; color: #1d2250; font-size: 13px; font-weight: 900; box-shadow: 0 2px 0 #c99a00; }
 .juego .barra { height: 12px; border-radius: 12px; background: #e3e6f7; overflow: hidden; margin: 6px 0 4px; }
 .juego .barra i { display: block; height: 100%; background: linear-gradient(90deg, #ff9f43, #2fd18b); border-radius: 12px; }
+
+/* los botones del pie del menú no necesitan tarjeta blanca */
+.juego main > p.fila-menu { background: none; box-shadow: none; padding: 0; }
