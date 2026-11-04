@@ -583,6 +583,7 @@ function jugarRampa(pred) {
       motivos: ['Entregaste los 3 pedidos.',
         pred.ok ? 'Tu predicción fue correcta.' : 'Tu predicción no fue la correcta, y eso también enseña.',
         n <= 8 ? 'Lo lograste en pocos intentos (' + n + ').' : 'Usaste ' + n + ' intentos; con 8 o menos ganas la tercera estrella.'],
+      datos: { th1: a.th, th2: b.th, t1: a.t, t2: b.t },
       pregunta: 'Mira tus pedidos 1 y 2: usaste ' + a.th + '° y ' + b.th + '° (el ángulo se multiplicó por ' + r(b.th / a.th, 1) +
         ') y el tiempo pasó de ' + a.t + ' s a ' + b.t + ' s. ¿Se redujo a la mitad? ¿Qué crees que pasa?',
       tabla: '<table><tr><th>#</th><th>Ángulo</th><th>Tiempo</th><th>Pedía</th></tr>' + filas + '</table>',
@@ -767,6 +768,7 @@ function jugarPendulo(pred) {
       motivos: ['Sincronizaste las 3 luces.',
         pred.ok ? 'Tu predicción fue correcta.' : 'Tu predicción no fue la correcta, y eso también enseña.',
         par ? 'Hiciste una prueba justa: mismo largo, distinto objeto.' : 'Te faltó una prueba justa con el peso (mismo largo, otro objeto) para la tercera estrella.'],
+      datos: par ? { par: { L: par[0].L, m1: par[0].m, m2: par[1].m, T1: par[0].T, T2: par[1].T } } : {},
       pregunta: par
         ? 'Con el mismo largo (' + par[0].L + ' cm) probaste ' + par[0].m + ' g y ' + par[1].m + ' g, y mediste ' + par[0].T + ' s y ' + par[1].T + ' s. ¿Qué te dice eso sobre el peso del objeto?'
         : 'No hiciste una prueba justa para el peso. ¿Cómo la harías? ¿Qué esperas que salga? Vuelve a jugar y compruébalo.',
@@ -907,6 +909,7 @@ function jugarVoz(pred) {
       motivos: ['Pasaste el globo por los 3 aros.',
         pred.ok ? 'Tu predicción fue correcta.' : 'Tu predicción no fue la correcta, y eso también enseña.',
         rapido ? (total <= 90 ? 'Lo lograste en menos de 90 segundos.' : 'Lo lograste con calma, a tu ritmo.') : 'Con menos de 90 segundos ganas la tercera estrella.'],
+      datos: { base: r(base, 0), f: ult.f },
       pregunta: 'Tu nota base fue de ' + r(base, 0) + ' Hz y en el último aro cantaste a ' + ult.f + ' Hz. ¿Cuánto da la última dividida entre la base? ¿Qué le pasa a la frecuencia cuando la nota se vuelve más aguda?',
       tabla: '<table><tr><th>Aro</th><th>Razón</th><th>Pedía</th><th>Lograste</th></tr>' + filas + '</table>',
       revela: 'Un sonido es una vibración y el tono depende de cuántas veces vibra por segundo (hercios, Hz): más agudo = más vibraciones por segundo. ' +
@@ -1137,11 +1140,18 @@ function resultado(n, pred, res) {
   if (record) progreso[n.id + '_pts'] = res.puntos;
   var verFinal = PERFILES.finalAlcanzado(progreso, NIVELES.map(function (x) { return x.id; }));
   if (verFinal <= (progreso.finalVisto || 0)) verFinal = 0; // solo si es un final que todavía no vio
-  var jug = PERF.actual();
+  var jug = PERF.actual(), ayuda = null;
   if (jug) {
     PERFILES.registrarPartida(jug, n.id, { predOk: !!pred.ok, estrellas: res.estrellas, seg: (performance.now() - tInicioPartida) / 1000 });
     // el tutor aprende: la idea (¿predijo bien?) y la destreza (tercera estrella)
-    PERFILES.registrarMaestria(jug, n.id, { predOk: !!pred.ok, habil: res.estrellas - 1 - (pred.ok ? 1 : 0) >= 1 });
+    var habil = res.estrellas - 1 - (pred.ok ? 1 : 0) >= 1;
+    PERFILES.registrarMaestria(jug, n.id, { predOk: !!pred.ok, habil: habil });
+    // la IA de Chispa: aprende de la partida y prepara las ayudas (pregunta, pista y explicación) con los datos del jugador
+    var ia = PERFILES.registrarIA(jug, n.id, { opcion: pred.id, ok: !!pred.ok, estrellas: res.estrellas, seg: (performance.now() - tInicioPartida) / 1000, habil: habil });
+    if (ia) {
+      var ay = PISTAS.crear(n.id, { ok: !!pred.ok, opcion: pred.id, idea: ia.idea && ia.idea.idea, datos: res.datos });
+      if (ay) { ayuda = ay; ayuda.brazo = ia.brazo; }
+    }
   }
   guardar();
   var sig = NIVELES[NIVELES.indexOf(n) + 1], est = '', i;
@@ -1154,10 +1164,12 @@ function resultado(n, pred, res) {
     '<p class="puntaje">⭐ ' + res.puntos + ' puntos' + (record && prevP ? ' · ¡NUEVO RÉCORD!' : '') + '</p>' +
     (verFinal ? '<p><button id="ver-final" class="btn-final" type="button">🌟 ¡Mira la estación!</button></p>' : '') +
     '<ul>' + res.motivos.map(function (m) { return '<li>' + esc(m) + '</li>'; }).join('') + '</ul>' +
-    chispa(res.pregunta) + res.tabla +
-    '<p><button id="revelar">Ver qué pasó</button></p><div id="revela" class="tutor" hidden><p>' + esc(res.revela) + '</p></div>' +
+    chispa(ayuda ? ayuda.pregunta : res.pregunta) + res.tabla +
+    (ayuda ? '<p><button id="pista" class="sec"' + (ayuda.brazo === 'directo' ? ' hidden' : '') + '>💡 Dame una pista</button></p><div id="pista-txt" class="tutor"' + (ayuda.brazo === 'directo' ? '' : ' hidden') + '><p>💡 ' + esc(ayuda.pista) + '</p></div>' : '') +
+    '<p><button id="revelar">Ver qué pasó</button></p><div id="revela" class="tutor" hidden><p>' + (ayuda ? esc(ayuda.explicacion) + ' ' : '') + esc(res.revela) + '</p></div>' +
     '<p><button id="otra" class="sec">Jugar otra vez</button> ' + (sig ? '<a class="btn" href="#/n/' + sig.id + '">Siguiente nivel →</a>' : '<a class="btn" href="#/">Volver al menú</a>') + '</p>';
   var cc = document.querySelector('.chispa'); if (cc) cc.className = 'chispa habla';
+  if ($('pista')) $('pista').onclick = function () { $('pista-txt').hidden = false; this.hidden = true; sonido('clic'); };
   $('revelar').onclick = function () { $('revela').hidden = false; this.hidden = true; sonido('clic'); };
   $('otra').onclick = function () { intro(n); };
   if ($('ver-final')) $('ver-final').onclick = function () { FINALES.mostrar(verFinal); };
