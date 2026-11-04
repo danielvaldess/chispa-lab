@@ -151,7 +151,7 @@ function mision(indice, intentos, salir) {
       barra(t('rampa.nombre'), 1, salir),
       ayuda,
       h('div', { class: 'escena' }, e.svg),
-      h('div', { class: 'tarjeta' }, h('div', { class: 'mision' }, t('rampa.mision', { min: min.toFixed(1), max: max.toFixed(1) })),
+      h('div', { class: 'tarjeta' },
         etiqueta, rango, sensor, lectura, estado, soltar));
   });
 }
