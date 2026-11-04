@@ -5,14 +5,21 @@
 
 ## Qué es (y qué no es)
 
-Chispa Lab incluye un **tutor adaptativo** basado en *Bayesian Knowledge Tracing* (seguimiento bayesiano del conocimiento), una técnica
-clásica de aprendizaje automático para la educación. Estima, para cada idea científica de un juego, **la probabilidad de que el niño la
-domine** a partir de lo que ocurre cuando juega.
+Chispa Lab incluye una **IA ligera de tres piezas**, todas clásicas, pequeñas y explicables, que corren en el teléfono sin internet:
 
-- **Es** un modelo pequeño, con unas pocas líneas de código ([`js/tutor.js`](../js/tutor.js)), que se calcula en el teléfono, **sin internet,
+1. **Seguimiento bayesiano del conocimiento** (*Bayesian Knowledge Tracing*, [`js/tutor.js`](../js/tutor.js)): estima, para cada idea científica, **la
+   probabilidad de que el niño la domine** (secciones «Qué observa» y «El modelo»).
+2. **Diagnóstico de ideas erróneas** ([`js/diagnostico.js`](../js/diagnostico.js)): cada respuesta equivocada de una predicción delata una idea concreta
+   (por ejemplo, «si el ángulo se duplica, el tiempo se reduce a la mitad»). Un clasificador bayesiano ingenuo calcula la probabilidad de cada idea errónea.
+3. **Tutor socrático con aprendizaje por niño** ([`js/pistas.js`](../js/pistas.js) y [`js/bandido.js`](../js/bandido.js)): arma una pregunta, una pista y una
+   explicación con **los números que midió el propio jugador**, y un *bandido de Thompson* aprende si a ese niño le sirve más la pista de una vez o que
+   Chispa pregunte primero.
+
+- **Es** un conjunto de modelos pequeños (unos 23 KB de código en total para las piezas 2 y 3), que se calcula en el teléfono, **sin internet,
   sin servidor y sin librerías**.
-- **No es** inteligencia artificial generativa ni un chatbot, no reconoce rostros ni voces para identificar a nadie, y no usa datos de otros niños.
-- Es **explicable**: cada estimación se puede reconstruir con cuatro números y una fórmula (abajo).
+- **No es** inteligencia artificial generativa ni un chatbot: las frases de Chispa son plantillas escritas de antemano, con huecos que se rellenan con los
+  números del niño; **no inventa texto**. No reconoce rostros ni voces para identificar a nadie, y no usa datos de otros niños.
+- Es **explicable**: cada estimación se puede reconstruir con unos pocos números y una fórmula (abajo).
 
 ## Qué observa
 
@@ -44,6 +51,56 @@ Para cada idea se guardan dos probabilidades, `p` (dominio de la idea) y `h` (so
 Un cálculo a mano: desde 0,25, una predicción acertada da 0,25·0,9 / (0,25·0,9 + 0,75·0,33) = 0,476, y luego 0,476 + 0,524·0,15 ≈ **0,555**. Está
 comprobado en las pruebas automáticas ([`test/tutor.test.js`](../test/tutor.test.js)).
 
+## Diagnóstico de ideas erróneas
+
+Cada predicción tiene una respuesta correcta y opciones equivocadas, y **cada opción equivocada delata una idea concreta** (catálogo en
+`CATALOGO` de [`js/diagnostico.js`](../js/diagnostico.js); hoy son 10 ideas en 6 juegos). Para cada juego se mantiene una probabilidad por
+hipótesis: «entiende la idea» y «tiene la idea errónea k». Se empieza con 40 % para «entiende» y el resto repartido, y con cada respuesta se aplica la
+regla de Bayes con estas probabilidades por defecto (**no ajustadas con datos de niños**):
+
+| Si la hipótesis es… | Elige la correcta | Elige una que delata la idea | Elige otra |
+|---|---|---|---|
+| Entiende | 0,80 | — | 0,20 repartido |
+| Tiene la idea errónea k | 0,15 (azar) | 0,70 repartido entre las que la delatan | 0,15 repartido |
+
+Cálculo a mano (rampa, primera respuesta «la mitad del tiempo»): entiende 0,4·0,1 = 0,040; «proporcional» 0,3·0,7 = 0,210; «no importa» 0,3·0,15 = 0,045;
+al normalizar (÷ 0,295) salen 0,136 · **0,712** · 0,153. Está comprobado en [`test/ia.test.js`](../test/ia.test.js). Solo se muestra una idea si su
+probabilidad supera 0,5 **y** a la de «entiende», para no señalar sin motivo.
+
+## Tutor socrático y bandido
+
+Al terminar un juego, [`js/pistas.js`](../js/pistas.js) arma tres ayudas con frases escritas de antemano y los números que midió el jugador: una **pregunta** que
+parte de su idea («Usaste 5° y 10°, y pasó de 1,5 s a 1,1 s. ¿Es la mitad?»), una **pista** con una cuenta sencilla («1,1 ÷ 1,5 = 0,73; la mitad sería 0,5») y una
+**explicación** que reconoce por qué la idea tiene sentido. No hay texto generado: si falta un dato, la plantilla usa una versión sin números.
+
+El **bandido de Thompson** ([`js/bandido.js`](../js/bandido.js)) decide, por jugador, si la pista aparece **de una vez** o si Chispa **pregunta primero** y el niño pide la
+pista con un botón. Aprende de si la **siguiente partida del mismo juego** sale bien (acierta la predicción o logra la tercera estrella). Es una aproximación: en
+esa partida influyen otras cosas. Empieza sin preferencia y se adapta a cada niño sin salir del teléfono.
+
+## Qué tan bien funciona (simulación, no piloto)
+
+En [`test/simulacion.test.js`](../test/simulacion.test.js) se usan **alumnos sintéticos** con una idea errónea conocida, que responden con probabilidades
+**distintas** de las que supone el modelo (para que la prueba no sea circular). Resultado medido con 400 alumnos por caso:
+
+- Tras 5 respuestas, el diagnóstico identifica la idea errónea correcta en **≈ 68 %** de los casos (56 % tras la primera respuesta). Es más bajo en los juegos con una sola idea errónea
+  (péndulo 56 %, globo 61 %).
+- Señala una idea errónea a **≈ 1 %** de los alumnos que sí entienden (el umbral de 0,5 prioriza no acusar en falso).
+
+**Esto es una simulación.** No demuestra que funcione con niños reales ni que mejore el aprendizaje; solo comprueba que la matemática hace lo que decimos.
+
+## Costo en el teléfono
+
+Medido con [`test/rendimiento.test.js`](../test/rendimiento.test.js) y [`scripts/medir-navegador.mjs`](../scripts/medir-navegador.mjs) (Chromium con la CPU frenada seis veces, que **no es** un teléfono real):
+
+| Medida | Resultado |
+|---|---|
+| Código de la IA nueva (3 archivos, sin comprimir) | ≈ 22,9 KB |
+| Lo que se guarda por jugador (últimos 30 intentos por juego, probabilidades) | ≈ 9 KB |
+| Tiempo de una partida terminada en la IA, CPU ×6 más lenta | ≈ 0,4 ms |
+| Tiempo de armar las pistas, CPU ×6 más lenta | ≈ 0,01 ms |
+
+Corre solo cuando termina un juego, no durante la partida, y no usa red. Hace falta medirlo en un teléfono de gama baja real.
+
 ## Qué decide
 
 Solo tres cosas, todas pequeñas y reversibles:
@@ -66,7 +123,7 @@ Solo tres cosas, todas pequeñas y reversibles:
 
 | Riesgo | Qué hacemos |
 |---|---|
-| Pérdida de control | Un **adulto puede apagarlo** («Recomendaciones de Chispa: Sí/No») y entonces **deja de registrar**; y puede **reiniciar** lo que sabe de ese jugador |
+| Pérdida de control | Un **adulto puede apagarlo** («IA de Chispa: Sí/No») y entonces **deja de registrar**; y puede **reiniciar** lo que sabe de ese jugador |
 | Sesgo contra quien tiene dificultades motrices o de voz | La idea se estima **solo con predicciones**, no con destreza; con el apoyo «voz» la soltura de los juegos de micrófono se ignora |
 | Que el modelo se equivoque | Los parámetros son por defecto; se dice con claridad; solo decide cosas pequeñas y reversibles; el adulto decide |
 | Privacidad | Todo se calcula y guarda en el teléfono; sin cuentas ni servidor; se borra con «Borrar todos los datos» |
@@ -78,6 +135,9 @@ Solo tres cosas, todas pequeñas y reversibles:
 - **No hay evidencia de que mejore el aprendizaje.** Hace falta un piloto con niños y docentes para comprobarlo.
 - **Parámetros sin calibrar.** Con pocos datos por niño (unas pocas partidas) las estimaciones son aproximadas.
 - **Una predicción de tres opciones** es una medida gruesa de comprensión; puede acertarse por azar (el modelo lo tiene en cuenta, pero no lo elimina).
+- **El diagnóstico de ideas erróneas es una hipótesis**, no una prueba: con una o dos respuestas puede equivocarse (en la simulación acierta ≈ 56 % tras una respuesta). Por eso solo se muestra
+  al adulto como «para conversar» y las pistas del niño no lo mencionan.
+- **El catálogo de ideas erróneas lo escribimos nosotros**, sin validarlo con docentes ni con niños. Faltaría revisarlo con un docente de ciencias.
 - La investigación sobre este tipo de modelos muestra que pueden tratar distinto a distintos grupos de alumnos; por eso no se usan para **excluir ni calificar**,
   solo para recomendar y ajustar con control humano ([estudio sobre equidad en BKT](https://arxiv.org/abs/2205.02333)). No encontré estudios de BKT funcionando
   sin conexión en escuelas con pocos recursos, así que esto es una propuesta, no un resultado ya demostrado.
