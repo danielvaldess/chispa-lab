@@ -99,3 +99,10 @@ body.calma .juego button.sw .perilla { transition: none; }
 .juego .apoyos { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .juego .apoyos .apoyo { align-items: center; display: flex; gap: 8px; }
 .juego .apoyos .apoyo:last-child:nth-child(odd) { grid-column: 1 / -1; }
+
+.juego .lista-aprendizaje { flex: 1 0 100%; margin: 0; padding: 0; list-style: none; }
+.juego .lista-aprendizaje li { padding: 8px 0; border-top: 2px solid #eef0ff; }
+.juego .lista-aprendizaje small { font-size: 14px; opacity: .85; }
+.juego ol.guia { flex: 1 0 100%; margin: 0; padding-left: 22px; font-weight: 500; line-height: 1.35; }
+.juego ol.guia li { margin: 8px 0; }
+.juego .previa p { background: none; box-shadow: none; padding: 4px 0; margin: 4px 0; }

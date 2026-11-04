@@ -385,8 +385,10 @@ function alternarPausa() {
   var d = $('descanso'); if (d) d.hidden = !pausado;
 }
 
+var tInicioPartida = 0;
 function escena(titulo, controles) {
   detener();
+  tInicioPartida = performance.now();
   app.innerHTML = ''; // evita ids repetidos (la burbuja de Chispa de la pantalla anterior)
   pts = 0; combo = 0;
   var d = document.createElement('div');
@@ -1115,6 +1117,8 @@ function resultado(n, pred, res) {
   var prev = progreso[n.id] || 0, prevP = progreso[n.id + '_pts'] || 0, record = res.puntos > prevP;
   if (res.estrellas > prev) progreso[n.id] = res.estrellas;
   if (record) progreso[n.id + '_pts'] = res.puntos;
+  var jug = PERF.actual();
+  if (jug) PERFILES.registrarPartida(jug, n.id, { predOk: !!pred.ok, estrellas: res.estrellas, seg: (performance.now() - tInicioPartida) / 1000 });
   guardar();
   var sig = NIVELES[NIVELES.indexOf(n) + 1], est = '', i;
   for (i = 0; i < 3; i++) {

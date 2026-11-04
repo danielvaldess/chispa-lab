@@ -196,11 +196,48 @@ var PANEL = (function () {
     };
   }
 
-  var VISTAS = { pantalla: pantalla, sonido: sonido, ayuda: ayuda, voz: voz, jugadores: jugadores, datos: datos };
+  // ---------- para adultos y docentes ----------
+  var IDEAS = {
+    rampa: 'Al doblar el ángulo de la rampa, la canica tarda menos, pero no la mitad.',
+    pendulo: 'Un péndulo tarda lo mismo con objetos de distinto peso: solo cambia con el largo del hilo.',
+    voz: 'Una nota más aguda vibra más veces por segundo.',
+    globo: 'Al sostener una vocal, el tono se mantiene casi plano.',
+    luz: 'Un objeto se ve de un color porque devuelve esa luz; una sombra aparece cuando algo tapa la luz.',
+    burbujas: 'Una cámara detecta el movimiento comparando fotos seguidas.'
+  };
+  function nivelDe(id) { for (var i = 0; i < NIVELES.length; i++) if (NIVELES[i].id === id) return NIVELES[i]; return null; }
+  function estrellasTxt(n) { var s = ''; for (var i = 0; i < 3; i++) s += i < n ? '★' : '☆'; return s; }
+
+  function adultos() {
+    var p = perfil(), r = PERFILES.resumenAprendizaje(p), n;
+    var filas = r.filas.map(function (f) {
+      n = nivelDe(f.id);
+      return '<li><b>' + (n ? n.icono + ' ' + esc(n.titulo) : esc(f.id)) + '</b><br><small>' + f.partidas + (f.partidas === 1 ? ' partida' : ' partidas') + ' · predijo bien ' + f.predOk + ' de ' + f.partidas + ' · ' + (f.minutos < 1 ? 'menos de 1 min' : f.minutos + ' min') + ' · ' + estrellasTxt(f.estrellas) + '</small></li>';
+    }).join('');
+    var dificil = '';
+    if (r.masDificil) {
+      n = nivelDe(r.masDificil);
+      dificil = '<div class="previa"><b>Lo que más le cuesta a ' + esc(p.nombre) + '</b><p>' + esc(IDEAS[r.masDificil] || '') + '</p>' +
+        (n ? '<p><b>Para conversar:</b> ' + esc(n.pred.q) + '</p>' : '') + '</div>';
+    }
+    app.innerHTML = cabecera('Para adultos y docentes', '👩‍🏫', COLORES.adultos, 'Para adultos y docentes') +
+      '<p class="sub-aj">Un resumen sencillo para acompañar a ' + esc(p.nombre) + '. Es una guía de observación, no una evaluación oficial.</p>' +
+      '<div class="fila-aj"><div class="txt"><b>Cómo va ' + esc(p.nombre) + '</b><small>' + (r.filas.length ? 'Tiempo jugado: ' + (r.minutosTotal < 1 ? 'menos de 1 min' : r.minutosTotal + ' min') : 'Todavía no hay partidas. Cuando termine un juego aparecerá aquí.') + '</small></div>' +
+      (filas ? '<ul class="lista-aprendizaje">' + filas + '</ul>' : '') + '</div>' + dificil +
+      '<div class="fila-aj"><div class="txt"><b>Guía breve para el aula</b></div><ol class="guia">' +
+      '<li><b>Un teléfono por grupo</b> de 2 o 3 niños. Una vez abierta, la app funciona sin internet.</li>' +
+      '<li><b>Primero predicen.</b> Antes de jugar piden a los niños que digan qué creen que pasará y por qué.</li>' +
+      '<li><b>Después comparan</b> con lo que pasó. Cada juego termina con una pregunta para conversar.</li>' +
+      '<li><b>Comparte la app sin internet:</b> pasa el archivo de la app de un teléfono a otro o ábrela desde un solo enlace.</li></ol></div>' +
+      '<p class="nota">Los datos se quedan en este teléfono. Para llevar el registro de voz a un especialista, usa «Mi práctica de voz».</p>';
+    ponerAtras(function () { abrir(); });
+  }
+
+  var VISTAS = { adultos: adultos, pantalla: pantalla, sonido: sonido, ayuda: ayuda, voz: voz, jugadores: jugadores, datos: datos };
   function abrir(vista, aviso) {
     clearTimeout(temporizador); window.scrollTo(0, 0);
     if (vista && PANEL.vistas[vista]) PANEL.vistas[vista](); else principal(aviso);
   }
 
-  return { abrir: abrir, vistas: VISTAS, adultos: null, cabecera: cabecera, fila: fila };
+  return { abrir: abrir, vistas: VISTAS, adultos: true, cabecera: cabecera, fila: fila };
 })();
