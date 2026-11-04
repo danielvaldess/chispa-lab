@@ -5,12 +5,13 @@ import { extname, join, normalize, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const RAIZ = resolve(fileURLToPath(new URL('..', import.meta.url)));
-const PUBLICO = ['index.html', 'manifest.webmanifest', 'icon.svg', 'sw.js', 'css', 'js'];
+const PUBLICO = ['index.html', 'manifest.webmanifest', 'icon.svg', 'icon-180.png', 'icon-512.png', 'sw.js', 'css', 'js'];
 const TIPOS = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
   '.svg': 'image/svg+xml',
+  '.png': 'image/png',
   '.webmanifest': 'application/manifest+json',
 };
 
