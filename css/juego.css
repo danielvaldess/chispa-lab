@@ -1,4 +1,5 @@
 /* Escenas de juego a pantalla completa: lienzo, HUD y mandos. */
+:root { --tinta: #1d2250; --rosa: #ff5c8a; --amarillo: #ffd23f; --naranja: #ff9f43; --morado: #8a6cff; --azul: #3b82f6; --verde: #2fd18b; }
 .juego { position: fixed; inset: 0; z-index: 10; overflow: hidden; background: #cfe8f4; touch-action: manipulation; user-select: none; -webkit-user-select: none; }
 .lienzo { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 
