@@ -5,6 +5,7 @@
   var AJ = typeof require === 'function' && typeof module !== 'undefined' ? require('./ajustes.js') : root.AJUSTES;
   var TU = typeof require === 'function' && typeof module !== 'undefined' ? require('./tutor.js') : root.TUTOR;
   var MT = typeof require === 'function' && typeof module !== 'undefined' ? require('./metodo.js') : root.METODO;
+  var DS = typeof require === 'function' && typeof module !== 'undefined' ? require('./descubrimientos.js') : root.DESCUBRIMIENTOS;
   var DG = typeof require === 'function' && typeof module !== 'undefined' ? require('./diagnostico.js') : root.DIAGNOSTICO;
   var BD = typeof require === 'function' && typeof module !== 'undefined' ? require('./bandido.js') : root.BANDIDO;
 
@@ -14,7 +15,7 @@
   var MAX_SESIONES = 60;
   var MAX_INTENTOS = 30; // últimos intentos que se guardan por juego
   var NIVELES_IDS = ['rampa', 'pendulo', 'voz', 'globo', 'luz', 'burbujas']; // los seis juegos de la estación (cuentan para los finales)
-  var EXPERIMENTOS_IDS = ['hilo', 'col'];                                   // experimentos con materiales (opcionales, no cuentan para los finales)
+  var EXPERIMENTOS_IDS = ['hilo', 'col', 'libre'];                                   // experimentos con materiales (opcionales, no cuentan para los finales)
   var TODOS_IDS = NIVELES_IDS.concat(EXPERIMENTOS_IDS);
 
   function almacenar(a) { return a || (typeof localStorage !== 'undefined' ? localStorage : null); }
@@ -57,6 +58,7 @@
       maestria: normalizarMaestria(p.maestria),
       ia: normalizarIA(p.ia),
       cuaderno: MT.normalizarCuaderno(p.cuaderno, TODOS_IDS),
+      descubrimientos: DS.normalizar(p.descubrimientos),
       sesionesVoz: (Array.isArray(p.sesionesVoz) ? p.sesionesVoz : []).slice(-MAX_SESIONES).map(function (s) {
         s = objetoPlano(s);
         return { f: String(s.f || '').slice(0, 10), max: Number(s.max) || 0, hzMin: Number(s.hzMin) || 0, hzMax: Number(s.hzMax) || 0 };
@@ -157,7 +159,7 @@
     var primero = estado.perfiles.length === 0;
     var perfil = {
       id: idNuevo(), nombre: nombre, nac: nac, apoyos: apoyos, extras: {},
-      progreso: primero ? leerLegado(almacen) : {}, aprendizaje: {}, maestria: {}, ia: normalizarIA({}), cuaderno: [], sesionesVoz: [], creado: fechaISO(hoy)
+      progreso: primero ? leerLegado(almacen) : {}, aprendizaje: {}, maestria: {}, ia: normalizarIA({}), cuaderno: [], descubrimientos: [], sesionesVoz: [], creado: fechaISO(hoy)
     };
     return { ok: true, perfil: perfil, estado: { activo: perfil.id, perfiles: estado.perfiles.concat([perfil]) } };
   }
@@ -265,6 +267,14 @@
     return perfil;
   }
 
+  /** Guarda un descubrimiento del laboratorio libre. Devuelve true si es nuevo. */
+  function desbloquear(perfil, id) {
+    perfil.descubrimientos = DS.normalizar(perfil.descubrimientos);
+    if (!DS.porId(id) || perfil.descubrimientos.indexOf(id) >= 0) return false;
+    perfil.descubrimientos.push(id);
+    return true;
+  }
+
   /** Para el adulto: ideas que parecen costarle (probabilidad alta), de mayor a menor. */
   function ideasPorReforzar(perfil) {
     var out = [];
@@ -302,7 +312,7 @@
   var PERFILES = {
     CLAVE: CLAVE, LEGADO: LEGADO, MAX: MAX, cargar: cargar, guardar: guardar, crear: crear, activar: activar, actual: actual,
     cambiarApoyos: cambiarApoyos, borrar: borrar, borrarTodo: borrarTodo, necesitaAdulto: necesitaAdulto,
-    registrarSesionVoz: registrarSesionVoz, resumenSesiones: resumenSesiones, finalAlcanzado: finalAlcanzado, registrarMaestria: registrarMaestria, reiniciarMaestria: reiniciarMaestria, agregarCuaderno: agregarCuaderno, EXPERIMENTOS_IDS: EXPERIMENTOS_IDS, TODOS_IDS: TODOS_IDS, registrarIA: registrarIA, ideasPorReforzar: ideasPorReforzar, normalizarIA: normalizarIA, registrarPartida: registrarPartida, resumenAprendizaje: resumenAprendizaje, NIVELES_IDS: NIVELES_IDS
+    registrarSesionVoz: registrarSesionVoz, resumenSesiones: resumenSesiones, finalAlcanzado: finalAlcanzado, registrarMaestria: registrarMaestria, reiniciarMaestria: reiniciarMaestria, agregarCuaderno: agregarCuaderno, desbloquear: desbloquear, EXPERIMENTOS_IDS: EXPERIMENTOS_IDS, TODOS_IDS: TODOS_IDS, registrarIA: registrarIA, ideasPorReforzar: ideasPorReforzar, normalizarIA: normalizarIA, registrarPartida: registrarPartida, resumenAprendizaje: resumenAprendizaje, NIVELES_IDS: NIVELES_IDS
   };
   if (typeof module !== 'undefined' && module.exports) module.exports = PERFILES;
   else root.PERFILES = PERFILES;

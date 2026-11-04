@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node scripts/serve.mjs",
-    "test": "node test/dsp.test.js && node test/juego.test.js && node test/ajustes.test.js && node test/perfiles.test.js && node test/camara.test.js && node test/textos.test.js && node test/tutor.test.js && node test/ia.test.js && node test/simulacion.test.js && node test/rendimiento.test.js && node test/metodo.test.js && node test/colorml.test.js && node test/voz.test.js",
+    "test": "node test/dsp.test.js && node test/juego.test.js && node test/ajustes.test.js && node test/perfiles.test.js && node test/camara.test.js && node test/textos.test.js && node test/tutor.test.js && node test/ia.test.js && node test/simulacion.test.js && node test/rendimiento.test.js && node test/metodo.test.js && node test/colorml.test.js && node test/voz.test.js && node test/mezclas.test.js && node test/densidad.test.js && node test/planta.test.js && node test/caida.test.js && node test/descubrimientos.test.js",
     "android": "node scripts/empaquetar.mjs && cap sync android && cd android && ./gradlew assembleDebug"
   },
   "engines": {
