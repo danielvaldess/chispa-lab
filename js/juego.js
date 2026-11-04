@@ -1039,7 +1039,9 @@ function buscarNivel(id) {
 
 function ordenNiveles() {
   var l = NIVELES.slice(), i;
-  if (AJ_ACT.voz) for (i = 0; i < l.length; i++) if (l[i].id === 'voz') { l.unshift(l.splice(i, 1)[0]); break; }
+  if (AJ_ACT.voz) ['voz', 'globo'].forEach(function (id) {
+    for (i = 0; i < l.length; i++) if (l[i].id === id) { l.unshift(l.splice(i, 1)[0]); break; }
+  });
   return l;
 }
 
