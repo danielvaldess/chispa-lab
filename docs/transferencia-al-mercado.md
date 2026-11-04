@@ -8,7 +8,7 @@
 
 Muchas escuelas no tienen laboratorio, instrumentos ni materiales para que los niños experimenten. Los docentes saben que aprender ciencia es
 formular hipótesis y probarlas, pero no tienen con qué. Los niños con dificultades (de voz, de audición, de visión, de atención, motrices) lo tienen aún más
-difícil, porque casi ninguna herramienta se adapta a ellos.
+difícil, porque no todas las herramientas están pensadas para sus necesidades.
 
 ## Por qué Panamá y por qué ahora (datos verificables)
 

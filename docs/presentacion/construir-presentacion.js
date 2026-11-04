@@ -1,4 +1,8 @@
 const pptxgen = require('pptxgenjs');
+const fs = require('fs'), path = require('path');
+// Las notas del orador salen de guion.md (una sección «## n. Título» por diapositiva, en el mismo orden).
+const NOTAS = fs.readFileSync(path.join(__dirname, 'guion.md'), 'utf8').split(/^## \d+\. .*$/m).slice(1).map((t) => t.trim());
+let _nota = 0; const notas = () => NOTAS[_nota++];
 const { applyTheme } = require(process.env.SKILL + '/scripts/apply_theme.js');
 const IMG = process.env.IMG;
 const THEME = {
@@ -45,7 +49,18 @@ s.addText([{ text: 'Reto 17 · #hack4edu 2026', options: { breakLine: true } }, 
   s.addText(t, { x: 0.6 + i * 1.85, y: 4.35, w: 1.7, h: 0.42, fontSize: 14, bold: true, color: C.text1, fill: { color: C.accent2 }, align: 'center', valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.2, margin: 0, isTextBox: true, objectName: 'Etiqueta ' + t });
 });
 telefono(s, 'menu.png', 7.0, 0.55, 4.5, 'menú del juego');
-s.addNotes('[0:00 a 0:15] Buenas. Soy Daniel Valdés, de la UTP de Veraguas. Les presento Chispa Lab: un videojuego que convierte el teléfono de cualquier niño en un laboratorio de ciencias. Funciona sin internet, es inclusivo y es de código abierto.');
+s.addNotes(notas());
+
+
+// ---------- 1b. Demo ----------
+s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Problema' });
+s.addText('Mira cómo se juega', { placeholder: 'title' });
+[['rampa.png', 'Predice y juega'], ['pistas.png', 'Chispa pregunta con tus datos'], ['hilo.png', 'Experimentos con materiales'], ['col.png', 'Chispa aprende de ti']].forEach((t, i) => {
+  const x = 0.55 + i * 2.3;
+  telefono(s, t[0], x, 1.3, 3.3, t[1]);
+  s.addText(t[1], { x: x - 0.1, y: 4.78, w: 1.9, h: 0.5, fontSize: 12, bold: true, color: C.text1, align: 'center', valign: 'top', margin: 0, isTextBox: true, objectName: 'Pie ' + (i + 1) });
+});
+s.addNotes(notas());
 
 // ---------- 2. Aprendizaje ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Problema' });
@@ -58,7 +73,7 @@ s.addText([{ text: '672', options: { fontSize: 54, bold: true, color: C.accent3,
 s.addText([{ text: '702', options: { fontSize: 54, bold: true, color: C.text2, breakLine: true } }, { text: 'es el promedio de la región', options: { fontSize: 14, color: C.text1 } }], { x: 5.7, y: 2.95, w: 3.8, h: 1.5, margin: 0, isTextBox: true, objectName: 'Dato región' });
 s.addText('Los estudiantes de pueblos originarios obtienen resultados más bajos.', { x: 5.7, y: 4.4, w: 3.8, h: 0.6, fontSize: 14, italic: true, color: C.text1, margin: 0, isTextBox: true, objectName: 'Nota' });
 nota(s, 'Fuente: UNESCO, ERCE 2019 (comunicado del 30 de noviembre de 2021). La diferencia de 30 puntos es estadísticamente significativa.');
-s.addNotes('[0:15 a 0:45] El problema. En el estudio regional de la UNESCO, los niños de sexto grado de Panamá sacaron 672 puntos en ciencias, frente a 702 de la región. Casi la mitad, el 48 por ciento, está en el nivel más bajo. Y los niños de pueblos originarios van aún más atrás.');
+s.addNotes(notas());
 
 // ---------- 3. Acceso ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Problema' });
@@ -71,24 +86,24 @@ s.addText('El laboratorio y la conexión llegan despacio, el teléfono ya está'
 });
 s.addText('Un laboratorio en el teléfono llega antes y no necesita conexión', { x: 0.5, y: 4.25, w: 9, h: 0.6, fontSize: 20, bold: true, color: C.text1, margin: 0, isTextBox: true, objectName: 'Mensaje' });
 nota(s, 'Fuentes: La Estrella (26/11/2022, cita un informe del Meduca); La Prensa (2/4/2026); Banco Mundial (2023). Las cifras de conectividad son anteriores a los contratos recientes.');
-s.addNotes('[0:45 a 1:15] El Estado invierte, pero llega a pocos y despacio: la licitación de laboratorios alcanza 73 escuelas, y en 2022 cerca del 45 por ciento de los centros no tenía internet. Sin embargo, hay más de 156 líneas móviles por cada 100 personas. El teléfono ya está. Esa es nuestra oportunidad.');
+s.addNotes(notas());
 
 // ---------- 4. Idea ----------
 pres.addSection({ title: 'Solución' });
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Solución' });
-s.addText('Nuestra idea: predice, juega, descubre', { placeholder: 'title' });
-[['1', 'Predice', 'Antes de jugar, el niño dice qué cree que pasará', C.accent3], ['2', 'Experimenta', 'Usa el teléfono como instrumento: lo inclina, canta, mueve la mano', C.accent5], ['3', 'Descubre', 'Compara su predicción con sus propios datos y entiende por qué', C.accent4]].forEach((p, i) => {
-  const y = 1.5 + i * 1.12;
-  s.addText(p[0], { x: 0.5, y, w: 0.75, h: 0.75, fontSize: 28, bold: true, color: C.background1, fill: { color: p[3] }, align: 'center', valign: 'middle', shape: pres.ShapeType.ellipse, margin: 0, isTextBox: true, objectName: 'Número ' + p[0] });
-  s.addText([{ text: p[1], options: { fontSize: 22, bold: true, color: C.text1, breakLine: true } }, { text: p[2], options: { fontSize: 14, color: C.text1 } }], { x: 1.45, y: y - 0.05, w: 4.7, h: 0.9, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Paso ' + p[0] });
+s.addText('Nuestra idea: predice, formula, juega, descubre', { placeholder: 'title' });
+[['1', 'Predice', 'Antes de jugar, el niño dice qué cree que pasará', C.accent3], ['2', 'Formula', 'Arma su hipótesis: «si cambio ___, entonces ___ porque ___»', C.accent2], ['3', 'Experimenta', 'Usa el teléfono como instrumento y haz una prueba justa', C.accent5], ['4', 'Descubre', 'Compara con sus propios datos, concluye y lo anota en su cuaderno', C.accent4]].forEach((p, i) => {
+  const y = 1.35 + i * 0.9;
+  s.addText(p[0], { x: 0.5, y, w: 0.65, h: 0.65, fontSize: 24, bold: true, color: C.background1, fill: { color: p[3] }, align: 'center', valign: 'middle', shape: pres.ShapeType.ellipse, margin: 0, isTextBox: true, objectName: 'Número ' + p[0] });
+  s.addText([{ text: p[1], options: { fontSize: 20, bold: true, color: C.text1, breakLine: true } }, { text: p[2], options: { fontSize: 13, color: C.text1 } }], { x: 1.35, y: y - 0.08, w: 5.0, h: 0.85, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Paso ' + p[0] });
 });
-telefono(s, 'rampa.png', 7.2, 1.4, 3.6, 'la rampa de cartón');
+telefono(s, 'hilo-hipotesis.png', 7.2, 1.4, 3.6, 'hipótesis del experimento');
 nota(s, 'Predecir, observar y explicar: un metaanálisis de 2024 con 35 estudios encontró un efecto alto en el rendimiento en ciencias (Koyunlu Ünlü, 2024).');
-s.addNotes('[1:15 a 1:45] Nuestra idea es el método científico, jugando. Primero el niño predice qué va a pasar. Luego experimenta usando el teléfono como instrumento: lo inclina, canta, mueve la mano. Y al final compara su predicción con sus propios datos. Esta estrategia, predecir, observar y explicar, tiene respaldo en un metaanálisis de 2024.');
+s.addNotes(notas());
 
 // ---------- 5. Seis juegos ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Solución' });
-s.addText('Seis laboratorios en un solo teléfono', { placeholder: 'title' });
+s.addText('Seis juegos y dos experimentos con materiales', { placeholder: 'title' });
 const juegos = [
   ['🎢', 'La rampa', 'Inclinación', 'Doblar el ángulo no reduce el tiempo a la mitad', C.accent5],
   ['⏱', 'El péndulo', 'Táctil', 'Solo importa el largo del hilo, no el peso', C.accent2],
@@ -105,8 +120,8 @@ juegos.forEach((j, i) => {
   s.addText([{ text: j[1], options: { bold: true, fontSize: 16, color: C.text1, breakLine: true } }, { text: j[2], options: { fontSize: 12, color: C.text2 } }], { x: x + 0.95, y: y + 0.15, w: 1.8, h: 0.7, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Nombre ' + j[1] });
   s.addText(j[3], { x: x + 0.15, y: y + 0.92, w: 2.55, h: 0.62, fontSize: 13, color: C.text1, margin: 0, valign: 'top', isTextBox: true, objectName: 'Idea ' + j[1] });
 });
-s.addText('Si falta el sensor, el permiso o el micrófono, cada juego tiene una alternativa', { x: 0.5, y: 4.85, w: 9, h: 0.3, fontSize: 14, italic: true, color: C.text1, margin: 0, isTextBox: true, objectName: 'Aviso' });
-s.addNotes('[1:45 a 2:10] Son seis juegos con ideas de física reales: la rampa, el péndulo, la voz, el globo largo, la luz y el color, y las burbujas con la cámara. Cada uno usa un sensor del teléfono, y si el sensor, el permiso o el micrófono no están, hay una alternativa.');
+s.addText('+ El péndulo de hilo y la col morada: con materiales de casa o simulados en pantalla. Cada juego tiene alternativa sin sensor.', { x: 0.5, y: 4.85, w: 9, h: 0.5, fontSize: 12, italic: true, color: C.text1, margin: 0, isTextBox: true, objectName: 'Aviso' });
+s.addNotes(notas());
 
 // ---------- 6. Inclusión ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Solución' });
@@ -120,29 +135,29 @@ s.addText([
 ], { x: 0.5, y: 3.0, w: 5.7, h: 2.0, fontSize: 14, color: C.text1, paraSpaceAfter: 6, margin: 0, valign: 'top', isTextBox: true, objectName: 'Inclusión' });
 telefono(s, 'ajustes.png', 7.2, 1.4, 3.6, 'ajustes');
 nota(s, 'Fuente: UNICEF Panamá, 8 de septiembre de 2026 (ENDIS-2, SENADIS e INEC): 174.701 niñas y niños de 2 a 14 años con discapacidad.');
-s.addNotes('[2:10 a 2:40] Y es para todos. Uno de cada seis niños panameños de 2 a 14 años tiene alguna discapacidad, y casi ninguna herramienta de ciencias se adapta a ellos. Chispa Lab sí: siete apoyos opcionales, dificultad por edad que nunca es imposible, modo calma, alto contraste. Sin pedir diagnósticos, y todo se queda en el teléfono.');
+s.addNotes(notas());
 
 // ---------- 7. IA ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Solución' });
 s.addText('IA pequeña, ética y sin conexión', { placeholder: 'title' });
-['Predicciones del niño', 'Tutor bayesiano en el teléfono', 'Recomienda el siguiente juego'].forEach((t, i) => {
+['Tutor bayesiano: qué ideas domina', 'Diagnóstico: qué idea equivocada delata cada respuesta', 'Pistas con tus datos y bandido de Thompson'].forEach((t, i) => {
   const x = 0.5 + i * 2.05;
-  s.addText(t, { x, y: 1.45, w: 1.75, h: 1.2, fontSize: 15, bold: true, color: i === 1 ? C.text1 : C.background1, fill: { color: i === 1 ? C.accent2 : C.text1 }, align: 'center', valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.12, margin: 0.08, isTextBox: true, objectName: 'Paso IA ' + (i + 1) });
+  s.addText(t, { x, y: 1.45, w: 1.75, h: 1.2, fontSize: 13, bold: true, color: i === 1 ? C.text1 : C.background1, fill: { color: i === 1 ? C.accent2 : C.text1 }, align: 'center', valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.12, margin: 0.08, isTextBox: true, objectName: 'Pieza ' + (i + 1) });
   if (i < 2) s.addShape(pres.ShapeType.rightArrow, { x: x + 1.78, y: 1.9, w: 0.24, h: 0.3, fill: { color: C.accent1 }, line: { color: C.accent1 }, objectName: 'Flecha ' + (i + 1) });
 });
-['Sin internet', 'Sin enviar datos', 'El adulto decide: puede apagarlo o borrarlo', 'No penaliza la voz ni la motricidad'].forEach((t, i) => {
+['Sin internet y sin enviar datos', 'No es IA generativa: no inventa texto', 'El adulto decide: puede apagarla o borrarla', 'No penaliza la voz ni la motricidad'].forEach((t, i) => {
   const x = 0.5 + (i % 2) * 3.05, y = 3.0 + Math.floor(i / 2) * 0.85;
   s.addText(t, { x, y, w: 2.9, h: 0.7, fontSize: 14, color: C.text1, fill: { color: C.background2 }, valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.1, margin: 0.12, isTextBox: true, objectName: 'Garantía ' + (i + 1) });
 });
 telefono(s, 'adultos.png', 7.2, 1.4, 3.6, 'panel para adultos');
-nota(s, 'Seguimiento bayesiano del conocimiento: aprendizaje automático clásico, no generativo. Parámetros por defecto; aún sin validar con niños.');
-s.addNotes('[2:40 a 3:10] Tiene una IA pequeña y responsable. Un tutor estima qué ideas domina cada niño y recomienda el siguiente juego. Todo ocurre en el teléfono, sin internet y sin enviar datos. Un adulto puede apagarlo o borrarlo, y no penaliza a quien tiene dificultades de voz o motrices. Es un tutor clásico, no un modelo generativo, y lo decimos con claridad.');
+nota(s, 'Simulación (no piloto): el diagnóstico acierta la idea errónea en ≈ 68 % tras 5 respuestas. Parámetros por defecto, aún sin validar con niños.');
+s.addNotes(notas());
 
 // ---------- 8. Datos ----------
 pres.addSection({ title: 'Impacto y mercado' });
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Impacto y mercado' });
 s.addText('Datos del proyecto', { placeholder: 'title' });
-[['86 KB', 'primera carga completa (24 archivos)', C.accent1], ['0', 'librerías externas', C.accent4], ['177', 'pruebas automáticas sin fallos', C.accent6], ['31 fps', 'con la CPU 4 veces más lenta (20 fps a 6 veces)', C.accent5]].forEach((d, i) => {
+[['121 KB', 'primera carga comprimida (312 KB sin comprimir)', C.accent1], ['0', 'librerías externas', C.accent4], ['330', 'comprobaciones automáticas sin fallos', C.accent6], ['0,4 ms', 'la IA por partida, con la CPU 6× más lenta', C.accent5]].forEach((d, i) => {
   const x = 0.5 + (i % 2) * 2.55, y = 1.4 + Math.floor(i / 2) * 1.75;
   s.addShape(pres.ShapeType.roundRect, { x, y, w: 2.4, h: 1.6, rectRadius: 0.12, fill: { color: C.background2 }, line: { color: C.background2 }, objectName: 'Tarjeta dato ' + (i + 1) });
   s.addText(d[0], { x: x + 0.15, y: y + 0.1, w: 2.1, h: 0.8, fontSize: 36, bold: true, color: C.text1, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Dato ' + (i + 1) });
@@ -153,8 +168,8 @@ s.addText([{ text: 'Lo que respalda la literatura', options: { bold: true, fontS
   { text: 'Juegos serios frente a la enseñanza convencional: d = 0,29 (77 estudios)', options: { bullet: true, breakLine: true } },
   { text: 'Laboratorios virtuales comparables a los reales, mejores si se combinan', options: { bullet: true } }],
   { x: 5.75, y: 1.4, w: 3.75, h: 3.3, fontSize: 14, color: C.text1, paraSpaceAfter: 6, margin: 0, valign: 'top', isTextBox: true, objectName: 'Literatura' });
-nota(s, 'Medición propia, única, en Chromium con la CPU limitada; falta probar en teléfonos reales. Fuentes: Koyunlu Ünlü (2024), Wouters et al. (2013), Fadda et al. (2022).');
-s.addNotes('[3:10 a 3:40] Medimos el sistema: 86 kilobytes en la primera carga, cero librerías externas, 177 pruebas automáticas, y con la CPU a una cuarta parte sigue a unos 31 fotogramas por segundo. Es una medición única en un equipo de escritorio; falta probarlo en teléfonos reales. Y la literatura respalda las ideas con las que está construido.');
+nota(s, 'Medición propia en Chromium con la CPU limitada, no en un teléfono real. Fuentes: Koyunlu Ünlü (2024), Wouters et al. (2013), Fadda et al. (2022).');
+s.addNotes(notas());
 
 // ---------- 9. ODS ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Impacto y mercado' });
@@ -167,7 +182,7 @@ s.addText('Impacto: contribuimos a tres ODS', { placeholder: 'title' });
   s.addText(o[3], { x: x + 0.2, y: 3.5, w: 2.45, h: 1.2, fontSize: 13, color: C.text1, margin: 0, valign: 'top', isTextBox: true, objectName: 'Meta ODS ' + o[0] });
 });
 nota(s, 'Textos de las metas: Naciones Unidas (sdgs.un.org), traducción propia. También alineado con la misión de ProFuturo: contenido sin internet, inclusión y medición de impacto.');
-s.addNotes('[3:40 a 4:05] Contribuimos a tres objetivos de desarrollo sostenible. El cuatro, educación de calidad, con acceso para la niñez vulnerable y entornos inclusivos. El diez, reducir desigualdades, sin importar la edad ni la discapacidad. Y el nueve, aprovechando el acceso móvil sin exigir conexión. Y encaja con la misión de ProFuturo.');
+s.addNotes(notas());
 
 // ---------- 10. Mercado ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Impacto y mercado' });
@@ -182,10 +197,10 @@ s.addText([
   { text: 'Modelo', options: { bold: true, fontSize: 16, color: C.text1, breakLine: true } },
   { text: 'Núcleo abierto y gratuito, más servicios: adaptación por país, packs de experimentos, formación docente y edición para terapeutas', options: { fontSize: 14, color: C.text1, breakLine: true, paraSpaceAfter: 8 } },
   { text: 'Señales', options: { bold: true, fontSize: 16, color: C.text1, breakLine: true } },
-  { text: '44 M$ en internet escolar, 28,9 M$ en laboratorios; ProFuturo ya está en Veraguas (28 de sus 76 escuelas)', options: { fontSize: 14, color: C.text1 } },
+  { text: '44 M$ en internet escolar, 28,9 M$ en laboratorios; en una fase inicial ProFuturo y el Meduca llegaron a 28 escuelas de Veraguas', options: { fontSize: 14, color: C.text1 } },
 ], { x: 4.9, y: 1.4, w: 4.6, h: 3.5, margin: 0, valign: 'top', isTextBox: true, objectName: 'Modelo de mercado' });
 nota(s, 'Fuentes: Banco Mundial; La Prensa (2025, 2026); ProFuturo. El presupuesto baja, y una solución de coste casi nulo es más fácil de adoptar. Son hipótesis, sin cifras de mercado.');
-s.addNotes('[4:05 a 4:35] El mercado. El presupuesto en educación bajó del 4,3 al 2,5 por ciento del PIB, así que una solución de coste casi nulo es más fácil de adoptar. Pagarían el Ministerio, fundaciones como ProFuturo, redes de escuelas y terapeutas, por servicios: adaptación, contenido nuevo, formación. Y ProFuturo ya trabaja con 28 escuelas en Veraguas.');
+s.addNotes(notas());
 
 // ---------- 11. Cierre ----------
 s = pres.addSlide({ masterName: 'OSCURO', sectionTitle: 'Impacto y mercado' });
@@ -198,7 +213,7 @@ s.addText('Lo que proponemos', { x: 0.6, y: 0.5, w: 6, h: 0.8, fontSize: 36, bol
 s.addText('Cada teléfono, un laboratorio', { x: 0.6, y: 4.1, w: 6.2, h: 0.6, fontSize: 28, bold: true, color: C.accent2, margin: 0, isTextBox: true, objectName: 'Lema' });
 s.addText('chispalab.sweetcode.studio · github.com/danielvaldess/chispa-lab', { x: 0.6, y: 4.75, w: 6.4, h: 0.4, fontSize: 14, color: C.accent1, margin: 0, isTextBox: true, objectName: 'Enlaces' });
 telefono(s, 'final.png', 7.35, 0.55, 4.5, 'final de la estación');
-s.addNotes('[4:35 a 5:00] Lo que proponemos: un piloto en Veraguas con la UTP, ProFuturo y el Meduca; probarlo con niños y docentes en teléfonos de gama baja; y traducirlo al portugués y al inglés. Chispa Lab convierte el teléfono que ya existe en un laboratorio para todos. Cada teléfono, un laboratorio. Gracias.');
+s.addNotes(notas());
 
 (async () => {
   await pres.writeFile({ fileName: process.env.SALIDA });
