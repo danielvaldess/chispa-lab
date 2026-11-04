@@ -47,6 +47,20 @@ Es un videojuego que enseña a **formular una hipótesis, probarla y comparar co
 la misión de ProFuturo y con el reto 17, con sus brechas y límites dichos con claridad, está en
 [`docs/alineacion-profuturo.md`](docs/alineacion-profuturo.md).
 
+## Experimentos con materiales
+
+Además de los seis juegos, el menú tiene una sección **opcional** de experimentos de verdad, con cosas de casa. No hacen falta para encender la estación ni cuentan para los finales,
+y cada uno se puede **simular en la pantalla** si no hay materiales (un laboratorio *híbrido*: virtual o real). Todos siguen el ciclo científico: predicción, **hipótesis**
+(«Si cambio ___, entonces ___ porque ___»), prueba justa, datos, conclusión y un **cuaderno de laboratorio** que queda en el teléfono.
+
+| Experimento | Materiales | Qué se aprende |
+|---|---|---|
+| 🧵 **El péndulo de hilo** | Hilo, un objeto pequeño y el cronómetro del teléfono | El tiempo depende del largo del hilo (no del peso) y crece como su raíz; gráfica de T² contra el largo y estimación de la gravedad |
+| 🔎 **Chispa detective: ¿ácido o base?** | Jugo de col morada, vasos, limón, bicarbonato, vinagre y la cámara | La col es un indicador: el niño le **enseña** a Chispa tres vasos y ella reconoce los vasos misteriosos por su color (aprendizaje con pocas muestras en el teléfono) |
+
+Cada experimento abre con una tarjeta de seguridad (adulto cerca, solo cosas de cocina, no probar ni oler, no mezclar productos de limpieza). Chispa **no mide el pH**: dice a cuál de los
+vasos que le enseñaron se parece, y si no está segura lo dice.
+
 ## Finales y recompensas
 
 La historia es **encender la estación científica**, y tiene tres finales según las estrellas (la menor cantidad entre los seis juegos):
@@ -142,6 +156,11 @@ js/juego.js         menú, niveles, puntos y resultados
 js/lab.js           medición con sensores
 js/dsp.js           procesamiento de señal (tono YIN, filtros)
 js/tutor.js         tutor bayesiano (dominio de cada idea)
+js/metodo.js        hipótesis, prueba justa, estadística y cuaderno de laboratorio
+js/color-ml.js      aprendizaje de colores con pocas muestras (centroide más cercano)
+js/experimento.js   pantallas comunes de los experimentos con materiales
+js/niveles/hilo.js  experimento del péndulo de hilo
+js/niveles/col.js   experimento ácido/base con col morada
 js/diagnostico.js   diagnóstico de ideas erróneas
 js/pistas.js        pregunta, pista y explicación con los datos del jugador
 js/bandido.js       aprendizaje por niño (bandido de Thompson)

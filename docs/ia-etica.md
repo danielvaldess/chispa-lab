@@ -77,6 +77,16 @@ El **bandido de Thompson** ([`js/bandido.js`](../js/bandido.js)) decide, por jug
 pista con un botón. Aprende de si la **siguiente partida del mismo juego** sale bien (acierta la predicción o logra la tercera estrella). Es una aproximación: en
 esa partida influyen otras cosas. Empieza sin preferencia y se adapta a cada niño sin salir del teléfono.
 
+## Aprendizaje de colores con pocas muestras (Chispa detective)
+
+En el experimento de la col morada ([`js/color-ml.js`](../js/color-ml.js)), el niño **le enseña** a Chispa tres vasos (agua, limón, bicarbonato) y ella clasifica los vasos
+misteriosos por el **centroide más cercano** en el plano a*/b* del espacio de color CIE Lab (sin la luminosidad, para que importe menos la luz). Es aprendizaje con pocas muestras,
+hecho en el teléfono: no descarga modelos, no usa internet y **no guarda imágenes** (solo promedia 20 fotos seguidas del centro de la imagen y deja el color).
+La confianza es `1 − d1/d2` (distancia al centroide más cercano entre la distancia al segundo): si baja de 0,35, Chispa dice que **no está segura** en lugar de adivinar.
+
+Límites: **no es un medidor de pH**, solo dice «se parece a lo que me enseñaste». Con colores sintéticos y ruido de cámara simulado ([`test/colorml.test.js`](../test/colorml.test.js)) acierta
+más del 90 %, pero **eso no está medido con col morada real ni con cámaras de teléfonos baratos**; la luz, la cantidad de jugo y el vaso cambian el color. Hace falta probarlo con material real.
+
 ## Qué tan bien funciona (simulación, no piloto)
 
 En [`test/simulacion.test.js`](../test/simulacion.test.js) se usan **alumnos sintéticos** con una idea errónea conocida, que responden con probabilidades
