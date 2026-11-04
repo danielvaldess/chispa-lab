@@ -40,7 +40,8 @@
         contraste: typeof ex.contraste === 'boolean' ? ex.contraste : undefined,
         leerVoz: typeof ex.leerVoz === 'boolean' ? ex.leerVoz : undefined,
         vibrar: typeof ex.vibrar === 'boolean' ? ex.vibrar : undefined,
-        volumen: typeof ex.volumen === 'number' ? ex.volumen : undefined
+        volumen: typeof ex.volumen === 'number' ? ex.volumen : undefined,
+        brillo: ex.brillo === 0 || ex.brillo === 1 || ex.brillo === 2 ? ex.brillo : undefined
       },
       progreso: numeros(p.progreso),
       sesionesVoz: (Array.isArray(p.sesionesVoz) ? p.sesionesVoz : []).slice(-MAX_SESIONES).map(function (s) {

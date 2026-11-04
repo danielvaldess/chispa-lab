@@ -35,6 +35,8 @@ ok('oír: equivalente visual del sonido', A.ajustesDe({ apoyos: ['oir'] }, hoy).
 ok('ver: contraste y símbolos', A.ajustesDe({ apoyos: ['ver'] }, hoy).contraste && A.ajustesDe({ apoyos: ['ver'] }, hoy).simbolos);
 ok('apoyos desconocidos se descartan', A.ajustesDe({ apoyos: ['x', 'voz', 'voz'] }, hoy).apoyos.length === 1);
 ok('extras: escala acotada a 1–1,6', A.ajustesDe({ extras: { escala: 9 } }, hoy).escala === 1.6 && A.ajustesDe({ extras: { escala: 0.1 } }, hoy).escala === 1);
+ok('brillo: por defecto normal, y se puede elegir suave o muy suave', A.ajustesDe({}, hoy).brillo === 0 && A.ajustesDe({ extras: { brillo: 2 } }, hoy).brillo === 2 && A.ajustesDe({ extras: { brillo: 9 } }, hoy).brillo === 0);
+ok('sensorial baja el brillo, salvo que la persona elija otro', A.ajustesDe({ apoyos: ['sensorial'] }, hoy).brillo === 1 && A.ajustesDe({ apoyos: ['sensorial'], extras: { brillo: 0 } }, hoy).brillo === 0);
 ok('calma implica sin destellos', A.ajustesDe({ extras: { calma: true } }, hoy).sinDestellos);
 ok('resumen nunca está vacío', A.resumen(A.ajustesDe({ nac: '2016-01' }, hoy)).length >= 1);
 
