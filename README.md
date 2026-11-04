@@ -177,6 +177,13 @@ Los seis niveles son jugables. Probado en Chromium (escritorio emulando móvil, 
 el sensor de inclinación, el micrófono, la cámara, la vibración y la voz sintetizada, y hacer un piloto con niños y con un especialista. Las bandas de
 dificultad por edad son heurísticas por validar.
 
+## Origen y evidencia de desarrollo
+
+Chispa Lab parte de un **prototipo previo** (tres juegos, detector de tono, física y PWA, hecho el 29–30 de octubre) que se incorporó a este repositorio el 4 de noviembre con la autorización de la
+organización del hackatón, según declara el autor. Hoy ≈ 42 % de las líneas de JavaScript, CSS y HTML vienen de esa importación y ≈ 58 % se escribió aquí: perfiles y apoyos,
+tres juegos nuevos, la IA ligera, el método científico y los experimentos con materiales. No hay commits del 3 de noviembre y las fechas son las reales.
+Detalle, números y cómo comprobarlos en [`docs/evidencia-desarrollo.md`](docs/evidencia-desarrollo.md).
+
 ## Licencia
 
 Código bajo licencia [MIT](LICENSE). Documentación y recursos (`docs/`) bajo [CC BY-NC-SA 3.0](docs/LICENCIA.md).
