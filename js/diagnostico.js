@@ -37,6 +37,14 @@
     burbujas: {
       ok: 'cero',
       ideas: { grande: 'camara-siempre', igual: 'camara-no-compara' }
+    },
+    hilo: {
+      ok: 'doble',
+      ideas: { cuatro: 'hilo-proporcional', igual: 'hilo-no-importa' }
+    },
+    col: {
+      ok: 'rosa',
+      ideas: { verde: 'col-invertida', igual: 'col-no-cambia' }
     }
   };
 
@@ -51,7 +59,11 @@
     'luz-fabrica': 'Cree que los objetos fabrican su propia luz de color.',
     'luz-absorbe': 'Confunde qué luz devuelve un objeto y cuál absorbe.',
     'camara-siempre': 'Cree que la cámara siempre ve cambios, aunque nada se mueva.',
-    'camara-no-compara': 'Cree que la cámara no compara fotos para detectar el movimiento.'
+    'camara-no-compara': 'Cree que la cámara no compara fotos para detectar el movimiento.',
+    'hilo-proporcional': 'Cree que si el hilo es 4 veces más largo, el péndulo tarda 4 veces más.',
+    'hilo-no-importa': 'Cree que el largo del hilo no cambia el tiempo del péndulo.',
+    'col-invertida': 'Confunde el color que toma la col morada con un ácido y con una base.',
+    'col-no-cambia': 'Cree que el jugo de col morada no cambia de color con un ácido.'
   };
 
   function ideasDe(nivelId) {
