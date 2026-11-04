@@ -173,7 +173,7 @@ var PERF = (function () {
       return '<button class="sec escala" data-v="' + o[1] + '" aria-pressed="' + (Math.abs(a.escala - o[1]) < 0.05) + '">' + o[0] + '</button>';
     }).join('');
     var voz = (p.sesionesVoz.length || a.voz) ? '<h3>Mi práctica de voz</h3><pre class="resumen-voz" id="resumen-voz">' + esc(PERFILES.resumenSesiones(p)) + '</pre><p><button class="sec" id="copiar">Copiar resumen</button></p>' : '';
-    app.innerHTML = '<a class="volver" href="#/">← Menú</a><h2>⚙ Ajustes de ' + esc(p.nombre) + '</h2>' + (aviso ? '<p class="ok" role="status">' + esc(aviso) + '</p>' : '') +
+    app.innerHTML = '<p class="accion"><button class="sec chico" id="volver-menu">← Menú</button></p><h2>⚙ Ajustes de ' + esc(p.nombre) + '</h2>' + (aviso ? '<p class="ok" role="status">' + esc(aviso) + '</p>' : '') +
       '<h3>Qué te ayuda a jugar</h3>' + chipsApoyos(sel) + '<div id="zona-adulto"></div><p id="error" class="error" role="alert"></p><p class="accion"><button id="guardar-apoyos">Guardar</button></p>' +
       '<h3>Cómo se ve y suena</h3><div class="apoyos" id="escalas" role="group" aria-label="Tamaño del texto">' + esc3 + '</div>' +
       '<div class="apoyos">' + interruptor('calma', 'Menos luces y movimiento', a.calma) + interruptor('contraste', 'Más contraste', a.contraste) +
@@ -182,6 +182,7 @@ var PERF = (function () {
       '<p class="accion"><button class="sec" id="borrar-uno">Borrar a ' + esc(p.nombre) + '</button></p><p><button class="sec" id="borrar-todo">Borrar todos los datos</button></p><div id="confirmar"></div>' +
       nota('Chispa Lab es un juego de práctica. No es un aparato médico ni da diagnósticos.');
 
+    $('volver-menu').onclick = irMenu;
     function pintarAdulto() {
       $('zona-adulto').innerHTML = bloqueAdulto(p.nac, sel, false);
     }
