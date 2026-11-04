@@ -1,6 +1,7 @@
 // Tutor adaptativo: seguimiento bayesiano del conocimiento (Bayesian Knowledge Tracing). Aprendizaje automático
 // clásico, pequeño y explicable; NO es IA generativa. Estima, por idea científica, la probabilidad de que el niño
-// la domine. Corre en el teléfono, sin internet y sin enviar nada. Sin DOM: funciona en el navegador y en Node.
+// la domine (concepto, a partir de sus predicciones) y, por separado, con qué soltura logra los retos (destreza).
+// El dominio de la idea NO depende de la destreza. Corre en el teléfono, sin internet y sin enviar nada. Sin DOM.
 // Los parámetros son valores por defecto de la literatura de BKT, NO están ajustados con datos de niños.
 (function (root) {
   'use strict';
@@ -25,21 +26,21 @@
     return acotar(posterior + (1 - posterior) * T);
   }
 
-  function nuevo() { return { p: P0, pn: 0, pok: 0, hn: 0, hok: 0 }; }
+  function nuevo() { return { p: P0, h: P0, pn: 0, pok: 0, hn: 0, hok: 0 }; }
 
   /**
    * Anota una partida terminada de una idea.
    * partida: { predOk: bool, habil: bool, ignorarDestreza: bool }. Devuelve una entrada nueva.
    */
   function registrar(entrada, partida) {
-    var e = entrada ? { p: entrada.p, pn: entrada.pn, pok: entrada.pok, hn: entrada.hn, hok: entrada.hok } : nuevo();
-    e.p = actualizar(e.p, !!partida.predOk, 'concepto');
+    var e = entrada ? { p: entrada.p, h: entrada.h === undefined ? P0 : entrada.h, pn: entrada.pn, pok: entrada.pok, hn: entrada.hn, hok: entrada.hok } : nuevo();
+    e.p = actualizar(e.p, !!partida.predOk, 'concepto'); // solo el concepto mueve el dominio de la idea
     e.pn += 1; if (partida.predOk) e.pok += 1;
     if (!partida.ignorarDestreza) {
-      e.p = actualizar(e.p, !!partida.habil, 'destreza');
+      e.h = actualizar(e.h, !!partida.habil, 'destreza');
       e.hn += 1; if (partida.habil) e.hok += 1;
     }
-    e.p = Math.round(e.p * 1000) / 1000;
+    e.p = Math.round(e.p * 1000) / 1000; e.h = Math.round(e.h * 1000) / 1000;
     return e;
   }
 
@@ -67,11 +68,11 @@
     return null;
   }
 
-  /** Multiplicador del margen inicial de un pedido según el dominio (se combina con el ajuste dinámico). */
+  /** Multiplicador del margen inicial de un pedido según la soltura (destreza), no según el concepto; se combina con el ajuste dinámico. */
   function margenInicial(entrada) {
-    if (!entrada || entrada.pn < 1) return 1;
-    if (entrada.p < 0.35) return 1.25;
-    if (entrada.p >= 0.8) return 0.9;
+    if (!entrada || !(entrada.hn >= 1)) return 1;
+    if (entrada.h < 0.35) return 1.25;
+    if (entrada.h >= 0.8) return 0.9;
     return 1;
   }
 

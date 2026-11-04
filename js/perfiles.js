@@ -3,6 +3,7 @@
 (function (root) {
   'use strict';
   var AJ = typeof require === 'function' && typeof module !== 'undefined' ? require('./ajustes.js') : root.AJUSTES;
+  var TU = typeof require === 'function' && typeof module !== 'undefined' ? require('./tutor.js') : root.TUTOR;
 
   var CLAVE = 'chispalab.perfiles.v1';
   var LEGADO = 'chispalab.juego.v1';
@@ -42,10 +43,12 @@
         leerVoz: typeof ex.leerVoz === 'boolean' ? ex.leerVoz : undefined,
         vibrar: typeof ex.vibrar === 'boolean' ? ex.vibrar : undefined,
         volumen: typeof ex.volumen === 'number' ? ex.volumen : undefined,
-        brillo: ex.brillo === 0 || ex.brillo === 1 || ex.brillo === 2 ? ex.brillo : undefined
+        brillo: ex.brillo === 0 || ex.brillo === 1 || ex.brillo === 2 ? ex.brillo : undefined,
+        tutor: typeof ex.tutor === 'boolean' ? ex.tutor : undefined
       },
       progreso: numeros(p.progreso),
       aprendizaje: normalizarAprendizaje(p.aprendizaje),
+      maestria: normalizarMaestria(p.maestria),
       sesionesVoz: (Array.isArray(p.sesionesVoz) ? p.sesionesVoz : []).slice(-MAX_SESIONES).map(function (s) {
         s = objetoPlano(s);
         return { f: String(s.f || '').slice(0, 10), max: Number(s.max) || 0, hzMin: Number(s.hzMin) || 0, hzMax: Number(s.hzMax) || 0 };
@@ -62,6 +65,19 @@
       var x = objetoPlano(a[id]);
       var n = numeros(x);
       if (n.partidas > 0) out[id] = { partidas: Math.floor(n.partidas), predOk: Math.min(Math.floor(n.predOk || 0), Math.floor(n.partidas)), seg: Math.min(n.seg || 0, 1e6), estrellas: Math.min(3, Math.floor(n.estrellas || 0)) };
+    });
+    return out;
+  }
+
+  /** Dominio estimado por idea (lo calcula el tutor): se acota y se descartan valores raros. */
+  function normalizarMaestria(m) {
+    var out = {};
+    m = objetoPlano(m);
+    NIVELES_IDS.forEach(function (id) {
+      var x = objetoPlano(m[id]), n = numeros(x);
+      if (!(n.pn > 0) || !(Number(x.p) > 0)) return;
+      var pn = Math.floor(n.pn), hn = Math.floor(n.hn || 0);
+      out[id] = { p: Math.min(0.99, Math.max(0.01, Number(x.p) || 0.25)), h: Math.min(0.99, Math.max(0.01, Number(x.h) || 0.25)), pn: pn, pok: Math.min(Math.floor(n.pok || 0), pn), hn: hn, hok: Math.min(Math.floor(n.hok || 0), hn) };
     });
     return out;
   }
@@ -108,7 +124,7 @@
     var primero = estado.perfiles.length === 0;
     var perfil = {
       id: idNuevo(), nombre: nombre, nac: nac, apoyos: apoyos, extras: {},
-      progreso: primero ? leerLegado(almacen) : {}, aprendizaje: {}, sesionesVoz: [], creado: fechaISO(hoy)
+      progreso: primero ? leerLegado(almacen) : {}, aprendizaje: {}, maestria: {}, sesionesVoz: [], creado: fechaISO(hoy)
     };
     return { ok: true, perfil: perfil, estado: { activo: perfil.id, perfiles: estado.perfiles.concat([perfil]) } };
   }
@@ -163,6 +179,21 @@
     return perfil;
   }
 
+  /**
+   * El tutor anota la partida terminada de una idea (solo si el adulto no lo apagó).
+   * partida: { predOk, habil }. Con el apoyo de voz se ignora la destreza en los juegos de micrófono.
+   */
+  function registrarMaestria(perfil, nivelId, partida) {
+    if (NIVELES_IDS.indexOf(nivelId) < 0 || (perfil.extras && perfil.extras.tutor === false)) return perfil;
+    perfil.maestria[nivelId] = TU.registrar(perfil.maestria[nivelId], {
+      predOk: !!partida.predOk, habil: !!partida.habil, ignorarDestreza: TU.ignorarDestreza(nivelId, perfil.apoyos)
+    });
+    return perfil;
+  }
+
+  /** El adulto puede borrar lo que el tutor sabe de este jugador. */
+  function reiniciarMaestria(perfil) { perfil.maestria = {}; return perfil; }
+
   /** Resumen para un adulto: por nivel, y cuál es la idea que más le cuesta (la que menos predice bien). */
   function resumenAprendizaje(perfil) {
     var filas = [], peor = null;
@@ -190,7 +221,7 @@
   var PERFILES = {
     CLAVE: CLAVE, LEGADO: LEGADO, MAX: MAX, cargar: cargar, guardar: guardar, crear: crear, activar: activar, actual: actual,
     cambiarApoyos: cambiarApoyos, borrar: borrar, borrarTodo: borrarTodo, necesitaAdulto: necesitaAdulto,
-    registrarSesionVoz: registrarSesionVoz, resumenSesiones: resumenSesiones, registrarPartida: registrarPartida, resumenAprendizaje: resumenAprendizaje, NIVELES_IDS: NIVELES_IDS
+    registrarSesionVoz: registrarSesionVoz, resumenSesiones: resumenSesiones, registrarMaestria: registrarMaestria, reiniciarMaestria: reiniciarMaestria, registrarPartida: registrarPartida, resumenAprendizaje: resumenAprendizaje, NIVELES_IDS: NIVELES_IDS
   };
   if (typeof module !== 'undefined' && module.exports) module.exports = PERFILES;
   else root.PERFILES = PERFILES;

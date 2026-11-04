@@ -24,11 +24,15 @@ ok('adivinar la destreza es menos probable que adivinar una predicción de tres 
 
 // Registro de una partida
 let e = TU.registrar(undefined, { predOk: true, habil: true });
-ok('registrar crea la entrada y cuenta concepto y destreza', e.pn === 1 && e.pok === 1 && e.hn === 1 && e.hok === 1 && e.p > TU.P0, JSON.stringify(e));
+ok('registrar crea la entrada y cuenta concepto y destreza', e.pn === 1 && e.pok === 1 && e.hn === 1 && e.hok === 1 && e.p > TU.P0 && e.h > TU.P0, JSON.stringify(e));
 e = TU.registrar(e, { predOk: false, habil: false });
 ok('registrar acumula los conteos', e.pn === 2 && e.pok === 1 && e.hn === 2 && e.hok === 1);
 const sinDestreza = TU.registrar(undefined, { predOk: true, habil: false, ignorarDestreza: true });
-ok('con destreza ignorada solo cuenta el concepto', sinDestreza.hn === 0 && cerca(sinDestreza.p, 0.555, 0.002), JSON.stringify(sinDestreza));
+ok('con destreza ignorada solo cuenta el concepto', sinDestreza.hn === 0 && sinDestreza.h === TU.P0 && cerca(sinDestreza.p, 0.555, 0.002), JSON.stringify(sinDestreza));
+const fallaIdea = TU.registrar(undefined, { predOk: false, habil: true });
+ok('fallar la idea pero lograr el reto NO sube el dominio de la idea (solo la soltura)', fallaIdea.p < TU.P0 && fallaIdea.h > TU.P0 && TU.etiqueta(fallaIdea.p) === 'Empezando', JSON.stringify(fallaIdea));
+const entiende = TU.registrar(undefined, { predOk: true, habil: false });
+ok('entender la idea aunque cueste el reto sube el dominio y baja la soltura', entiende.p > TU.P0 && entiende.h < TU.P0, JSON.stringify(entiende));
 ok('la entrada original no se modifica', (() => { const a = TU.nuevo(); TU.registrar(a, { predOk: true, habil: true }); return a.pn === 0 && a.p === 0.25; })());
 
 // Voz
@@ -47,9 +51,10 @@ const todo = {}; ids.forEach((i) => { todo[i] = { p: 0.9, pn: 2 }; });
 ok('si todo está dominado no recomienda nada', TU.recomendar(todo, ids) === null);
 ok('tolera datos ausentes', TU.recomendar(undefined, ids) === 'rampa');
 
-// Margen inicial
-ok('margen inicial: más ayuda si domina poco, algo menos si domina mucho, normal en medio o sin datos',
-  TU.margenInicial({ p: 0.2, pn: 2 }) === 1.25 && TU.margenInicial({ p: 0.85, pn: 3 }) === 0.9 && TU.margenInicial({ p: 0.5, pn: 2 }) === 1 && TU.margenInicial(undefined) === 1 && TU.margenInicial({ p: 0.1, pn: 0 }) === 1);
+// Margen inicial (según la soltura, no el concepto)
+ok('margen inicial: más ayuda si le cuesta lograrlo, algo menos si lo logra con soltura, normal en medio o sin datos',
+  TU.margenInicial({ h: 0.2, hn: 2 }) === 1.25 && TU.margenInicial({ h: 0.85, hn: 3 }) === 0.9 && TU.margenInicial({ h: 0.5, hn: 2 }) === 1 && TU.margenInicial(undefined) === 1 && TU.margenInicial({ h: 0.1, hn: 0 }) === 1);
+ok('el margen no depende del concepto', TU.margenInicial({ p: 0.01, h: 0.5, hn: 2 }) === 1);
 
 // Explicación
 ok('porQue explica con palabras sencillas', /Predijo bien 1 de 2/.test(TU.porQue(e)) && /soltura 1 de 2/.test(TU.porQue(e)) && /Todavía no/.test(TU.porQue(undefined)));

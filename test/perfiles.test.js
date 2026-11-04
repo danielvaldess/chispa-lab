@@ -91,5 +91,24 @@ al = falso({ [P.CLAVE]: JSON.stringify({ activo: 'a', perfiles: [{ id: 'a', nomb
 const raro = P.cargar(al, hoy).perfiles[0].aprendizaje;
 ok('aprendizaje: normaliza datos corruptos', raro.rampa.predOk === 3 && raro.rampa.estrellas === 3 && !raro.voz && !raro.globo);
 
+// maestría (tutor)
+let mp = P.crear(P.cargar(falso(), hoy), { nombre: 'Mia', anio: 2016, mes: 1 }, hoy, falso()).perfil;
+ok('un perfil nuevo empieza sin maestría', Object.keys(mp.maestria).length === 0);
+P.registrarMaestria(mp, 'rampa', { predOk: true, habil: true });
+P.registrarMaestria(mp, 'rampa', { predOk: false, habil: true });
+ok('registra el dominio y los conteos por idea', mp.maestria.rampa.pn === 2 && mp.maestria.rampa.pok === 1 && mp.maestria.rampa.hn === 2 && mp.maestria.rampa.p > 0 && mp.maestria.rampa.p < 1 && mp.maestria.rampa.h > 0 && mp.maestria.rampa.h < 1);
+P.registrarMaestria(mp, 'idea-rara', { predOk: true, habil: true });
+ok('ignora ideas desconocidas', !mp.maestria['idea-rara']);
+mp.extras.tutor = false; P.registrarMaestria(mp, 'pendulo', { predOk: true, habil: true });
+ok('con el tutor apagado no registra', !mp.maestria.pendulo);
+mp.extras.tutor = undefined; mp.apoyos = ['voz']; P.registrarMaestria(mp, 'voz', { predOk: true, habil: false });
+ok('con el apoyo de voz no cuenta la destreza en el juego de voz', mp.maestria.voz.pn === 1 && mp.maestria.voz.hn === 0);
+P.reiniciarMaestria(mp);
+ok('el adulto puede reiniciar lo que sabe el tutor', Object.keys(mp.maestria).length === 0);
+al = falso({ [P.CLAVE]: JSON.stringify({ activo: 'a', perfiles: [{ id: 'a', nombre: 'Ana', nac: '2016-05', maestria: { rampa: { p: 7, pn: 2, pok: 9, hn: 1, hok: 5 }, voz: { p: -3, pn: 1 }, luz: 'x', globo: { p: 0.5, pn: 0 } } }, { id: 'b', nombre: 'Beto', nac: '2016-05' }] }) });
+const mm = P.cargar(al, hoy);
+ok('maestría corrupta se acota', mm.perfiles[0].maestria.rampa.p === 0.99 && mm.perfiles[0].maestria.rampa.pok === 2 && mm.perfiles[0].maestria.rampa.hok === 1 && !mm.perfiles[0].maestria.voz && !mm.perfiles[0].maestria.luz && !mm.perfiles[0].maestria.globo);
+ok('perfiles anteriores sin el campo siguen funcionando', Object.keys(mm.perfiles[1].maestria).length === 0);
+
 console.log(fallos ? '\n' + fallos + ' prueba(s) fallaron' : '\nTodas las pruebas pasan');
 process.exit(fallos ? 1 : 0);

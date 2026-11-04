@@ -63,7 +63,7 @@
 
   /**
    * Ajustes de juego de un perfil { nac, apoyos, extras }. `extras` permite cambiar a mano
-   * (texto, brillo, calma, contraste, leerVoz, vibrar, volumen) desde la pantalla de ajustes.
+   * (texto, brillo, calma, contraste, leerVoz, vibrar, volumen, tutor) desde la pantalla de ajustes.
    */
   function ajustesDe(perfil, hoy) {
     perfil = perfil || {};
@@ -79,7 +79,7 @@
       tol: b.tol, hold: b.hold,
       bandaVoz: 1, sensibilidadMic: 1, sinTiempo: false, globoLargo: false, voz: has('voz'),
       visualSonido: false, vibrar: true,
-      contraste: false, escala: 1, simbolos: false, brillo: 0,
+      contraste: false, escala: 1, simbolos: false, brillo: 0, tutor: true,
       calma: false, pausa: false, avisos: false, sinDestellos: false, volumen: 1,
       leerVoz: false, minusculas: false, interlineado: 1.35, numerosConDibujo: false,
       toquesGrandes: false, masMenos: false, sensorInclinacion: true
@@ -96,7 +96,7 @@
     if (typeof ex.escala === 'number') aj.escala = Math.min(1.6, Math.max(1, ex.escala));
     if (ex.brillo === 0 || ex.brillo === 1 || ex.brillo === 2) aj.brillo = ex.brillo;
     if (has('sensorial') && ex.brillo === undefined) aj.brillo = 1;
-    ['calma', 'contraste', 'leerVoz', 'vibrar'].forEach(function (k) { if (typeof ex[k] === 'boolean') aj[k] = ex[k]; });
+    ['calma', 'contraste', 'leerVoz', 'vibrar', 'tutor'].forEach(function (k) { if (typeof ex[k] === 'boolean') aj[k] = ex[k]; });
     if (typeof ex.volumen === 'number') aj.volumen = Math.min(1, Math.max(0, ex.volumen));
     if (aj.calma) aj.sinDestellos = true;
     aj.tol = Math.round(aj.tol * 100) / 100;
