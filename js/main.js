@@ -4,8 +4,10 @@ import { h, mostrar, tutor, estrellas } from './ui.js?v=1';
 import { fijarSilencio, sfx } from './audio.js?v=1';
 import { leer, guardar, registrarEstrellas, total } from './progreso.js?v=1';
 import rampa from './levels/rampa.js?v=1';
+import pendulo from './levels/pendulo.js?v=1';
+import botella from './levels/botella.js?v=1';
 
-const NIVELES = [rampa];
+const NIVELES = [rampa, pendulo, botella];
 const CLASES = ['n1', 'n2', 'n3'];
 
 const estado = leer();
