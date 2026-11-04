@@ -226,11 +226,19 @@ var PANEL = (function () {
       var pc = Math.round(m.p * 100);
       return '<li><b>' + nv.icono + ' ' + esc(nv.titulo) + '</b> · ' + TUTOR.etiqueta(m.p) + '<div class="barra" role="img" aria-label="Dominio estimado ' + pc + ' por ciento"><i style="width:' + pc + '%"></i></div><small>' + esc(TUTOR.porQue(m)) + '</small></li>';
     }).join('');
+    var porReforzar = PERFILES.ideasPorReforzar(p).map(function (x) {
+      var nv = nivelDe(x.nivel);
+      return '<li><b>' + (nv ? nv.icono + ' ' + esc(nv.titulo) : esc(x.nivel)) + '</b><br><small>' + esc(x.texto) + ' (Chispa lo estima con ' + Math.round(x.p * 100) + ' % de probabilidad, tras ' + x.n + (x.n === 1 ? ' respuesta' : ' respuestas') + '.)</small></li>';
+    }).join('');
+    var bloqueIdeas = '<div class="fila-aj"><div class="txt"><b>Ideas por reforzar</b><small>Las respuestas de ' + esc(p.nombre) + ' dejan pistas de qué idea puede estar confundiendo. Es una estimación para conversar, no un diagnóstico.</small></div>' +
+      (porReforzar ? '<ul class="lista-aprendizaje">' + porReforzar + '</ul>' : '<p class="muestra">Todavía no hay ideas que reforzar. Aparecerán si alguna respuesta se repite.</p>') + '</div>';
     var bloqueTutor = '<div class="fila-aj"><div class="txt"><b>Dominio de ideas</b><small>Lo que Chispa estima de cada idea, con un cálculo de probabilidades que se hace solo en este teléfono. No es una nota ni un diagnóstico.</small></div>' +
       (dominio ? '<ul class="lista-aprendizaje">' + dominio + '</ul>' : '<p class="muestra">Todavía no hay datos. Aparecerán cuando termine algún juego.</p>') + '</div>' +
-      fila('Recomendaciones de Chispa', 'Chispa sugiere el siguiente juego y ajusta el margen al empezar. Si lo apagas, deja de recordar lo que aprende.', interruptor('tutor', tutorOn)) +
+      bloqueIdeas +
+      fila('IA de Chispa', 'Chispa sugiere el siguiente juego, ajusta el margen al empezar y arma preguntas y pistas con los datos de ' + esc(p.nombre) + '. Todo se calcula en este teléfono. Si la apagas, deja de recordar lo que aprende y usa mensajes fijos.', interruptor('tutor', tutorOn)) +
       '<p class="accion"><button class="sec" id="reiniciar-tutor" type="button">Reiniciar lo que Chispa sabe de ' + esc(p.nombre) + '</button></p><div id="confirmar"></div>' +
-      '<div class="fila-aj"><div class="txt"><b>¿Cómo decide Chispa?</b><small>Cada vez que termina un juego, suma una pista: si ' + esc(p.nombre) + ' predijo bien y si logró el reto con soltura. Con esas pistas sube o baja su estimación de cada idea. Después recomienda el juego donde hay más por aprender y da un poco más de margen al empezar si le cuesta. Un adulto siempre puede apagarlo o borrarlo.</small></div></div>';
+      '<div class="fila-aj"><div class="txt"><b>¿Cómo decide Chispa?</b><small>Cada vez que termina un juego, suma una pista: si ' + esc(p.nombre) + ' predijo bien y si logró el reto con soltura. Con esas pistas sube o baja su estimación de cada idea. Después recomienda el juego donde hay más por aprender y da un poco más de margen al empezar si le cuesta. ' +
+      'También calcula, con probabilidades, qué idea puede estar confundiendo según las respuestas que elige, y aprende si a ' + esc(p.nombre) + ' le sirve más una pista de una vez o que Chispa pregunte primero. No usa internet ni guarda nada fuera de este teléfono. Un adulto siempre puede apagarlo o borrarlo.</small></div></div>';
     app.innerHTML = cabecera('Para adultos y docentes', '👩‍🏫', COLORES.adultos, 'Para adultos y docentes') +
       '<p class="sub-aj">Un resumen sencillo para acompañar a ' + esc(p.nombre) + '. Es una guía de observación, no una evaluación oficial.</p>' +
       '<div class="fila-aj"><div class="txt"><b>Cómo va ' + esc(p.nombre) + '</b><small>' + (r.filas.length ? 'Tiempo jugado: ' + (r.minutosTotal < 1 ? 'menos de 1 min' : r.minutosTotal + ' min') : 'Todavía no hay partidas. Cuando termine un juego aparecerá aquí.') + '</small></div>' +
