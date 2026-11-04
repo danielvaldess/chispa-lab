@@ -39,6 +39,8 @@ Cada nivel sigue el mismo ciclo, el del método científico:
 - **Tres idiomas:** español, inglés y portugués.
 - **Privacidad:** sin cuentas y sin datos personales.
 
+<p align="center"><a href="https://chispalab.sweetcode.studio"><b>Probar el juego</b></a> (en el móvil, en vertical)</p>
+
 ## Los tres niveles
 
 | Nivel | Qué se aprende | Cómo se juega |
