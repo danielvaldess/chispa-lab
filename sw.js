@@ -1,5 +1,5 @@
 // Service worker: guarda la app para jugar sin conexión. Sube VERSION al cambiar archivos.
-const VERSION = 'chispalab-v2';
+const VERSION = 'chispalab-v3';
 const ARCHIVOS = [
   './',
   'index.html',
@@ -8,9 +8,12 @@ const ARCHIVOS = [
   'icon-180.png',
   'icon-512.png',
   'css/styles.css?v=1',
+  'css/juego.css?v=1',
   'js/main.js?v=1',
   'js/i18n.js?v=1',
   'js/ui.js?v=1',
+  'js/motor.js?v=1',
+  'js/dibujo.js?v=1',
   'js/audio.js?v=1',
   'js/progreso.js?v=1',
   'js/physics.js?v=1',

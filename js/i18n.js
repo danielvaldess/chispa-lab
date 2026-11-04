@@ -6,6 +6,10 @@ export const NOMBRES_IDIOMA = { es: 'Español', en: 'English', pt: 'Português' 
 export const TEXTOS = {
   es: {
     'app.nombre': 'Chispa Lab',
+    'juego.perfecto': '¡PERFECTO!',
+    'juego.genial': '¡GENIAL!',
+    'juego.bien': '¡BIEN!',
+    'juego.salir': 'Salir del juego',
     'menu.saludo': '¡Hola! Soy Chispa. ¿Qué experimento hacemos hoy?',
     'menu.total': '{n} de 9 estrellas',
     'menu.idioma': 'Idioma',
@@ -87,6 +91,10 @@ export const TEXTOS = {
   },
   en: {
     'app.nombre': 'Chispa Lab',
+    'juego.perfecto': 'PERFECT!',
+    'juego.genial': 'GREAT!',
+    'juego.bien': 'NICE!',
+    'juego.salir': 'Leave the game',
     'menu.saludo': "Hi! I'm Chispa. Which experiment shall we do today?",
     'menu.total': '{n} of 9 stars',
     'menu.idioma': 'Language',
@@ -168,6 +176,10 @@ export const TEXTOS = {
   },
   pt: {
     'app.nombre': 'Chispa Lab',
+    'juego.perfecto': 'PERFEITO!',
+    'juego.genial': 'ÓTIMO!',
+    'juego.bien': 'BEM!',
+    'juego.salir': 'Sair do jogo',
     'menu.saludo': 'Olá! Eu sou a Chispa. Que experimento vamos fazer hoje?',
     'menu.total': '{n} de 9 estrelas',
     'menu.idioma': 'Idioma',
