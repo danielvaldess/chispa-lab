@@ -38,8 +38,14 @@ propios datos.
 | 🫧 **Burbujas mágicas** | Una cámara detecta movimiento comparando fotos seguidas | Ves la cámara y revientas burbujas moviendo la mano (o tocándolas) |
 
 Cada pedido da puntos según la precisión, con **combo**. Cada nivel da hasta 3 estrellas y, al final, una pregunta con tus datos y una
-explicación de qué pasó. Además hay un **laboratorio real** ([`lab.html`](lab.html)) con los sensores del teléfono y una página de
-[prueba de sensores](sensores.html).
+explicación de qué pasó. 
+
+## Por qué importa
+
+Muchas escuelas no tienen laboratorio. Chispa Lab lleva la experimentación a cualquier salón con un teléfono, sin internet, sin cuentas y gratis.
+Es un videojuego que enseña a **formular una hipótesis, probarla y comparar con los datos propios**, y que se adapta a cada niño. Cómo encaja con
+la misión de ProFuturo y con el reto 17, con sus brechas y límites dichos con claridad, está en
+[`docs/alineacion-profuturo.md`](docs/alineacion-profuturo.md).
 
 ## Jugadores y apoyos
 
@@ -53,6 +59,8 @@ ayuda a jugar?**» (casillas opcionales: voz, oír, ver, concentrarme, leer o lo
 - Hasta **4 jugadores** por teléfono, con su progreso por separado. Sirve en la web, en el iPhone (instalada desde Safari) y en el APK.
 - Todo se guarda **solo en el teléfono** y se borra desde Ajustes. Un adulto debe confirmar si el jugador es menor de 18 años y elige algún apoyo.
   Detalle y límites en [`docs/impacto-y-etica.md`](docs/impacto-y-etica.md). Chispa Lab **no es un aparato médico ni da diagnósticos**.
+- **Ajustes con secciones** (Pantalla, Sonido y vibración, Qué me ayuda a jugar, Jugadores, Mis datos) y un panel **«Para adultos y docentes»** con el
+  resumen de aprendizaje de cada jugador y una guía breve para el aula.
 
 ## Cómo funciona
 
@@ -94,11 +102,11 @@ desarrollo y activa la vista de dispositivo.
 
 ```
 index.html          el videojuego
-lab.html            laboratorio con sensores reales
-sensores.html       prueba de sensores del teléfono
+lab.html            herramienta de medición con sensores (sin enlace desde el juego)
+sensores.html       prueba de sensores (sin enlace desde el juego)
 css/                style.css · juego.css
 js/juego.js         menú, niveles, puntos y resultados
-js/lab.js           laboratorio real
+js/lab.js           medición con sensores
 js/dsp.js           procesamiento de señal (tono YIN, filtros)
 js/fisica.js        fórmulas de la rampa y el péndulo
 sw.js               modo sin conexión

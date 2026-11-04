@@ -1,5 +1,7 @@
 # Impacto y ética
 
+> Cómo encaja el juego con ProFuturo y con el reto 17: [`alineacion-profuturo.md`](alineacion-profuturo.md).
+
 ## A quién ayuda
 
 Muchas escuelas no tienen laboratorio. Chispa Lab convierte el teléfono (inclinación, micrófono, cámara) y objetos de casa en un
@@ -16,6 +18,7 @@ ruidos que molestan).
 | Apoyos elegidos | Solo en el teléfono | Opcionales. No hay lista de diagnósticos ni se pide ninguno |
 | Progreso, estrellas y récords | Solo en el teléfono | Por jugador |
 | Sesiones de «El globo largo» | Solo en el teléfono | Fecha, segundos sostenidos y rango de tono. El adulto puede **copiar** el resumen; nada se envía solo |
+| Registro de aprendizaje | Solo en el teléfono | Por nivel: partidas, predicciones acertadas, tiempo y estrellas. Se ve en Ajustes, «Para adultos y docentes» |
 | Audio del micrófono | No se guarda | Se analiza en el momento para calcular el tono |
 | Imagen de la cámara | No se guarda | Se reduce a 64×48 píxeles para calcular color, sombra o movimiento y se descarta |
 
