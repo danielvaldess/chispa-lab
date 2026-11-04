@@ -72,7 +72,9 @@ function jugarGlobo(pred) {
 
   function terminar() {
     var estMedia = estables.reduce(function (a, b) { return a + b; }, 0) / (estables.length || 1);
-    var est = 1 + (pred.ok ? 1 : 0) + (estMedia >= 0.7 ? 1 : 0);
+    // con el apoyo de voz, mantener el tono parejo no se exige: sería penalizar la propia dificultad
+    var parejo = estMedia >= 0.7 || AJ.voz;
+    var est = 1 + (pred.ok ? 1 : 0) + (parejo ? 1 : 0);
     var p = PERF.actual();
     if (p) { PERFILES.registrarSesionVoz(p, { max: mejor, hzMin: hzMin, hzMax: hzMax }); PERF.guardar(); }
     var filas = METAS.map(function (mt, k) { return '<tr><td>' + (k + 1) + '</td><td>' + mt + ' s</td><td>' + Math.round((estables[k] || 0) * 100) + ' %</td></tr>'; }).join('');
@@ -80,7 +82,7 @@ function jugarGlobo(pred) {
       estrellas: est, puntos: pts,
       motivos: ['Lograste las 3 metas de voz sostenida.',
         pred.ok ? 'Tu predicción fue correcta.' : 'Tu predicción no fue la correcta, y eso también enseña.',
-        estMedia >= 0.7 ? 'Tu tono se mantuvo muy parejo.' : 'Si mantienes el tono más parejo ganas la tercera estrella.'],
+        parejo ? (estMedia >= 0.7 ? 'Tu tono se mantuvo muy parejo.' : 'Lo lograste a tu ritmo, ¡buen trabajo!') : 'Si mantienes el tono más parejo ganas la tercera estrella.'],
       pregunta: 'Tu «aaa» más larga duró ' + r(mejor, 1) + ' segundos' + (hzMax ? ' y tu tono estuvo entre ' + Math.round(hzMin) + ' y ' + Math.round(hzMax) + ' Hz' : '') + '. ¿Qué crees que pasa con la frecuencia cuando mantienes el sonido muy parejo?',
       tabla: '<table><tr><th>Meta</th><th>Pedía</th><th>Tono parejo</th></tr>' + filas + '</table>',
       revela: 'Al sostener una vocal, tus cuerdas vocales vibran a un ritmo casi constante, por eso la frecuencia queda casi plana. ' +
