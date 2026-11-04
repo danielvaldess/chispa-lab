@@ -235,9 +235,13 @@ var PANEL = (function () {
     }).join('');
     var bloqueIdeas = '<div class="fila-aj"><div class="txt"><b>Ideas por reforzar</b><small>Las respuestas de ' + esc(p.nombre) + ' dejan pistas de qué idea puede estar confundiendo. Es una estimación para conversar, no un diagnóstico.</small></div>' +
       (porReforzar ? '<ul class="lista-aprendizaje">' + porReforzar + '</ul>' : '<p class="muestra">Todavía no hay ideas que reforzar. Aparecerán si alguna respuesta se repite.</p>') + '</div>';
+    var prog = DESCUBRIMIENTOS.progreso(p.descubrimientos || []);
+    var bloqueLibre = '<div class="fila-aj"><div class="txt"><b>Mi laboratorio (juego libre)</b><small>' + esc(p.nombre) + ' lleva ' + prog.tiene + ' de ' + prog.total + ' descubrimientos: ' +
+      Object.keys(DESCUBRIMIENTOS.ESTACIONES).map(function (k) { return DESCUBRIMIENTOS.ESTACIONES[k].emoji + ' ' + DESCUBRIMIENTOS.ESTACIONES[k].nombre + ' ' + prog.porEstacion[k].tiene + '/' + prog.porEstacion[k].total; }).join(' · ') +
+      '. Es juego sin notas ni tiempo: sirve para conversar sobre qué probó y por qué cree que pasó.</small></div></div>';
     var bloqueTutor = '<div class="fila-aj"><div class="txt"><b>Dominio de ideas</b><small>Lo que Chispa estima de cada idea, con un cálculo de probabilidades que se hace solo en este teléfono. No es una nota ni un diagnóstico.</small></div>' +
       (dominio ? '<ul class="lista-aprendizaje">' + dominio + '</ul>' : '<p class="muestra">Todavía no hay datos. Aparecerán cuando termine algún juego.</p>') + '</div>' +
-      bloqueIdeas +
+      bloqueLibre + bloqueIdeas +
       fila('IA de Chispa', 'Chispa sugiere el siguiente juego, ajusta el margen al empezar y arma preguntas y pistas con los datos de ' + esc(p.nombre) + '. Todo se calcula en este teléfono. Si la apagas, deja de recordar lo que aprende y usa mensajes fijos.', interruptor('tutor', tutorOn)) +
       '<p class="accion"><button class="sec" id="reiniciar-tutor" type="button">Reiniciar lo que Chispa sabe de ' + esc(p.nombre) + '</button></p><div id="confirmar"></div>' +
       '<div class="fila-aj"><div class="txt"><b>¿Cómo decide Chispa?</b><small>Cada vez que termina un juego, suma una pista: si ' + esc(p.nombre) + ' predijo bien y si logró el reto con soltura. Con esas pistas sube o baja su estimación de cada idea. Después recomienda el juego donde hay más por aprender y da un poco más de margen al empezar si le cuesta. ' +

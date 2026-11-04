@@ -47,6 +47,21 @@ Es un videojuego que enseña a **formular una hipótesis, probarla y comparar co
 la misión de ProFuturo y con el reto 17, con sus brechas y límites dichos con claridad, está en
 [`docs/alineacion-profuturo.md`](docs/alineacion-profuturo.md).
 
+## Mi laboratorio (juego libre)
+
+Para jugar sin que nadie diga qué hacer, el menú tiene **«🔬 Mi laboratorio»**: un laboratorio dibujado como uno de verdad (ventana, estante con frascos rotulados, póster de seguridad,
+mesa con vaso de precipitados graduado, microscopio y gafas). No hay pedidos, puntos ni tiempo, y no se puede fallar. Todo es virtual y de cocina, así que **no hay riesgo**; cada hallazgo dice cómo probarlo en casa con un adulto.
+
+| Estación | Qué se puede probar |
+|---|---|
+| 🧪 **Mesa de mezclas** (química) | Echar agua, jugo de col, limón, vinagre, bicarbonato, sal, azúcar, aceite y colorantes. Ver el color del indicador, las burbujas de ácido + bicarbonato, las capas del aceite, la sal que se disuelve y se satura, y los colores que salen al mezclar los tres colorantes |
+| 🥚 **Flota o se hunde** (física y química) | Una torre de líquidos (aceite, agua, agua con sal, miel) y 11 objetos: el huevo que flota con sal, la naranja con y sin cáscara y la plastilina en bola o en barquito |
+| 🌱 **Invernadero** (biología y matemáticas) | Cuatro semillas de frijol con agua y luz distintas; dejar pasar los días y ver la gráfica de alturas |
+| 🪂 **Caída libre** (física) | Martillo, pluma, bola o papel, en la Tierra, la Luna o Marte, con o sin aire |
+
+Hay **24 descubrimientos** que aparecen solos al probar cosas, y el niño decide si los anota en su cuaderno. «💡 Dame una idea» sugiere una pregunta sin dar la respuesta. El invernadero y las densidades son **modelos
+simplificados y cualitativos** (la pantalla lo dice), pensados para jugar, no para medir. El panel para adultos muestra cuántos descubrimientos lleva cada niño.
+
 ## Experimentos con materiales
 
 Además de los seis juegos, el menú tiene una sección **opcional** de experimentos de verdad, con cosas de casa. No hacen falta para encender la estación ni cuentan para los finales,
@@ -157,6 +172,11 @@ js/juego.js         menú, niveles, puntos y resultados
 js/lab.js           medición con sensores
 js/dsp.js           procesamiento de señal (tono YIN, filtros)
 js/tutor.js         tutor bayesiano (dominio de cada idea)
+js/libre.js         escena de Mi laboratorio (juego libre)
+js/mezclas.js       motor de la mesa de mezclas (puro)
+js/densidad.js      motor de flota o se hunde (puro)
+js/planta.js        modelo cualitativo del invernadero (puro)
+js/descubrimientos.js  catálogo de 24 descubrimientos y sugerencias
 js/metodo.js        hipótesis, prueba justa, estadística y cuaderno de laboratorio
 js/color-ml.js      aprendizaje de colores con pocas muestras (centroide más cercano)
 js/experimento.js   pantallas comunes de los experimentos con materiales
@@ -186,7 +206,7 @@ Para docentes: [`docs/guia-docente.md`](docs/guia-docente.md). Cómo probarlo en
 
 ## Estado
 
-- **Hecho:** seis juegos, dos experimentos con materiales, perfiles con apoyos, IA ligera, panel para adultos, finales, PWA sin conexión y APK de Android. `npm test` ejecuta 330 comprobaciones.
+- **Hecho:** seis juegos, dos experimentos con materiales, perfiles con apoyos, IA ligera, panel para adultos, finales, PWA sin conexión y APK de Android. `npm test` ejecuta 449 comprobaciones.
 - **Probado:** en Chromium de escritorio (tamaño de teléfono, CPU frenada, micrófono y cámara simulados) y con pruebas automáticas. El APK se compila y se instala en el emulador, pero **el emulador de WSL se cierra
   al abrir cualquier app con WebView, así que no se recorrió un nivel en Android**.
 - **Sin probar:** en un teléfono real (sensor de inclinación, micrófono, cámara, vibración, voz sintetizada, calor y batería), con niños, con un docente y con col morada real. La simulación de la IA **no es un piloto**.
