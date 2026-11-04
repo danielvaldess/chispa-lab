@@ -59,11 +59,12 @@ El reto 17 lleva la etiqueta «Reto ProFuturo», así que opta a una segunda eva
    *Falta:* una **guía de distribución sin internet** (compartir el archivo de la app de un teléfono a otro) y un plan para que los docentes lo
    adopten. Una primera guía breve para el aula ya está dentro de la app, en Ajustes, «Para adultos y docentes».
 4. **Uso ético y responsable de la IA.**
-   *Hoy:* Chispa Lab **no usa IA generativa ni datos enviados a terceros**. La adaptación a la edad y a los apoyos funciona con reglas
-   transparentes (sube o baja el margen según los aciertos), explicables a un docente y sin perfilar a nadie. Es ética por diseño, pero no
-   demuestra un uso activo de IA.
-   *Falta / hoja de ruta:* ProFuturo quiere integrar IA en 2026; una extensión razonable sería ayuda para el docente que funcione en el
-   teléfono, sin enviar datos, y con revisión humana. No está hecha ni se promete aquí.
+   *Hoy:* Chispa Lab incluye una **IA ligera y explicable**: un tutor adaptativo que estima, **en el teléfono y sin internet**, qué ideas domina cada niño y
+   recomienda el siguiente juego (modelo bayesiano, no generativo). Tiene control humano (un adulto puede apagarlo o reiniciarlo), no envía datos a nadie,
+   no califica ni etiqueta al niño y **no penaliza las dificultades motrices o de voz** (el dominio de una idea se estima solo con predicciones). Está
+   documentado con sus fórmulas, sus límites y sus salvaguardas en [`ia-etica.md`](ia-etica.md).
+   *Falta:* **no está validado** con niños ni docentes y sus parámetros no están calibrados; no usa IA generativa. ProFuturo quiere integrar IA en 2026: una
+   extensión razonable sería ayuda para el docente que funcione en el teléfono, sin enviar datos y con revisión humana. No está hecha ni se promete aquí.
 
 ## Docentes y medición de impacto
 
@@ -99,7 +100,8 @@ en países de habla portuguesa e inglesa, así que traducirlo es el siguiente pa
 ## Resumen honesto
 
 - **Encaja muy bien** en: llevar un laboratorio donde no lo hay, funcionar sin internet y con un solo teléfono, inclusión y ética de los datos.
-- **Tiene brechas** en: evidencia de impacto (falta un piloto), cobertura de otras ciencias, distribución sin internet y uso activo de IA.
+- **Tiene brechas** en: evidencia de impacto (falta un piloto), cobertura de otras ciencias, distribución sin internet y validación de la IA.
 - **No está comprobado** con niños, docentes ni especialistas, ni en teléfonos reales de gama baja.
 
-Ver también [`impacto-y-etica.md`](impacto-y-etica.md) para el detalle de los datos, los apoyos y los límites.
+Ver también [`impacto-y-etica.md`](impacto-y-etica.md) para el detalle de los datos, los apoyos y los límites, [`ia-etica.md`](ia-etica.md) para el tutor y
+[`transferencia-al-mercado.md`](transferencia-al-mercado.md) para cómo puede sostenerse.

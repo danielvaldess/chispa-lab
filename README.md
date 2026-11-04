@@ -47,6 +47,13 @@ Es un videojuego que enseña a **formular una hipótesis, probarla y comparar co
 la misión de ProFuturo y con el reto 17, con sus brechas y límites dichos con claridad, está en
 [`docs/alineacion-profuturo.md`](docs/alineacion-profuturo.md).
 
+## IA ligera y ética
+
+Chispa incluye un **tutor adaptativo** (seguimiento bayesiano del conocimiento, aprendizaje automático clásico, no generativo) que estima qué ideas domina cada
+niño, recomienda el siguiente juego y explica el porqué a un adulto. Funciona **en el teléfono, sin internet y sin enviar datos**; un adulto puede apagarlo o
+reiniciarlo, y **no penaliza** las dificultades motrices o de voz. Detalle, fórmulas y límites en [`docs/ia-etica.md`](docs/ia-etica.md); cómo puede sostenerse
+en [`docs/transferencia-al-mercado.md`](docs/transferencia-al-mercado.md).
+
 ## Jugadores y apoyos
 
 Al abrir la app por primera vez, un asistente de una pantalla por paso pide el **nombre o apodo**, el **mes y año de nacimiento** y «**¿qué te
@@ -79,7 +86,7 @@ Requiere Node 20 o superior (solo para el servidor estático y las pruebas).
 
 ```bash
 npm start        # http://localhost:8080
-npm test         # señal, física, ajustes, perfiles y cámara
+npm test         # señal, física, ajustes, perfiles, cámara, tutor y textos
 ```
 
 ### App de Android
