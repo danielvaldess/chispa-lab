@@ -19,51 +19,39 @@
 ## ¿Qué es?
 
 **Reto 17 de #hack4edu 2026 (sede UTP Veraguas).** Muchas escuelas no tienen laboratorio.
-Chispa Lab convierte el teléfono y los objetos cotidianos (una rampa de cartón, una canica,
-una moneda colgada de un hilo) en un laboratorio de física que se juega.
+Chispa Lab convierte el teléfono y los objetos cotidianos (una rampa de cartón, una moneda colgada de un
+hilo, tu propia voz) en un laboratorio de física que se juega. En la historia, **Chispa** necesita ayuda para
+encender la estación científica: cada sala es un nivel.
 
-Cada nivel sigue el mismo ciclo, el del método científico:
-
-1. **Predecir**: el estudiante dice qué cree que va a pasar.
-2. **Jugar**: lo prueba con el teléfono (inclinándolo, tocando, usando el micrófono).
-3. **Descubrir**: compara su predicción con sus propios datos y entiende por qué.
-
-**Chispa**, un robot tutor, acompaña con preguntas en lugar de dar la respuesta.
-
-## Principios de diseño
-
-- **Aprender, no engancharse:** la recompensa premia afinar y comprobar; no hay cuentas
-  regresivas que presionen, anuncios ni culpa por no volver.
-- **Funciona en un móvil modesto:** sin motores pesados, con control táctil de respaldo si
-  falta un sensor.
-- **Tres idiomas:** español, inglés y portugués.
-- **Privacidad:** sin cuentas y sin datos personales.
-
-<p align="center"><a href="https://chispalab.sweetcode.studio"><b>Probar el juego</b></a> (en el móvil, en vertical)</p>
+Cada nivel sigue el ciclo del método científico: **predices**, **juegas** y **descubres** qué pasó con tus
+propios datos.
 
 ## Los tres niveles
 
 | Nivel | Qué se aprende | Cómo se juega |
 |---|---|---|
-| 🔵 **La rampa** | Más inclinación, más aceleración: la canica llega antes | Elige el ángulo (o inclina el teléfono) y suelta la canica para que tarde un tiempo exacto |
-| ⏱️ **El péndulo** | El periodo depende del largo del hilo, no de la masa | Construye un reloj de 1 segundo y cambia de objeto: moneda, llaves, manzana, lata |
-| 🍾 **La botella** | Más agua, menos aire, nota más aguda | Afina una botella a una nota objetivo y, de bonus, tararea la nota con el micrófono |
+| 🎢 **La rampa de cartón** | Más inclinación, menos tiempo, pero no la mitad | Inclina el teléfono (o la barra) y suelta la canica para que llegue al vaso en 3, 2 y 1,4 s |
+| ⏱ **El péndulo del estante** | El periodo depende del largo del hilo, no de la masa | Iguala el ritmo de la lámpara cambiando el largo del hilo; cuelga una moneda, unas llaves, una manzana o una lata |
+| 🎤 **La voz y el globo** | Más agudo = más vibraciones por segundo | Canta una nota base y súbela ×1,25, ×1,5 y ×2 para pasar el globo por tres aros (con micrófono o con barra) |
 
-Cada nivel termina con hasta 3 estrellas: una por completarlo, otra por acertar la predicción
-y otra por afinar con pocos intentos (o, en la botella, con la voz).
+Cada pedido da puntos según la precisión, con **combo** (hasta ×5). Cada nivel da hasta 3 estrellas, y al
+final una pregunta con tus datos y una explicación de qué pasó.
 
 ## Cómo funciona
 
-- **Física real:** las simulaciones usan las fórmulas del fenómeno (esfera rodando
-  `a = 5/7·g·sen θ`, péndulo `T = 2π√(L/g)`, tubo cerrado `f = v / 4(L + 0,6r)`), en
-  [`js/physics.js`](js/physics.js), con pruebas.
-- **Micrófono:** el tono se detecta con el método YIN ([`js/pitch.js`](js/pitch.js)); el audio no se
-  graba ni sale del teléfono.
+- **Física real:** las simulaciones usan las fórmulas del fenómeno (canica que rueda `a = 5/7·g·sen θ`,
+  péndulo `T = 2π√(L/g)`), en [`js/physics.js`](js/physics.js), con pruebas.
+- **Micrófono:** el tono se detecta con el método YIN ([`js/pitch.js`](js/pitch.js)). El audio no se
+  graba ni sale del teléfono, y el juego avisa antes de pedir el permiso.
 - **Sin conexión:** es una PWA; un service worker guarda los archivos y el juego funciona sin internet.
-- **Sin dependencias:** HTML, CSS y JavaScript puros (módulos ES). Sonidos generados con Web Audio.
-- **Idiomas:** español, inglés y portugués; se elige según el navegador y se puede cambiar en el menú.
-- **Privacidad:** sin cuentas ni datos personales. Solo se guardan en el dispositivo el idioma, el sonido
-  y las estrellas.
+- **Sin dependencias:** HTML, CSS y JavaScript puros (módulos ES), con las escenas dibujadas en canvas 2D
+  con degradados y sombras para dar volumen sin motores 3D, de modo que corra en móviles modestos.
+  Sonidos generados con Web Audio.
+- **Idiomas:** español, inglés y portugués; se elige según el navegador y se cambia en el menú.
+- **Privacidad:** sin cuentas ni datos personales. Solo se guardan en el dispositivo el idioma, el sonido,
+  las estrellas y los récords.
+- **Accesibilidad:** respeta `prefers-reduced-motion`, reduce partículas en móviles de pocos núcleos y
+  cada nivel tiene alternativa sin sensor (barra) y sin micrófono.
 
 ## Ejecutar
 
@@ -94,16 +82,20 @@ desarrollo y activa la vista de dispositivo.
 
 ```
 index.html          punto de entrada
-css/styles.css      sistema visual
-js/main.js          menú, idioma, sonido
-js/levels/          rampa.js · pendulo.js · botella.js
+css/                styles.css (menú y pantallas) · juego.css (escena, HUD y mandos)
+js/main.js          navegación, idioma y sonido
+js/pantallas.js     menú, predicción y resultado
+js/motor.js         lienzo, partículas, puntos con combo y HUD
+js/dibujo.js        primitivas de dibujo (degradados, esferas, sombras)
+js/niveles/         rampa.js · pendulo.js · voz.js
 js/physics.js       modelos físicos (puros)
 js/pitch.js         detector de tono YIN
-js/microfono.js     escucha del micrófono
+js/microfono.js     lectura del micrófono
+js/sensor.js        inclinación del teléfono
 js/i18n.js          textos es/en/pt
 js/ui.js            componentes y robot Chispa
 js/audio.js         efectos con Web Audio
-js/progreso.js      estrellas y ajustes locales
+js/progreso.js      estrellas, récords y ajustes locales
 sw.js               modo sin conexión
 android/            proyecto nativo de Capacitor
 scripts/            servidor estático y empaquetado
