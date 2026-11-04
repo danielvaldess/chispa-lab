@@ -256,5 +256,5 @@ var PANEL = (function () {
     if (vista && PANEL.vistas[vista]) PANEL.vistas[vista](); else principal(aviso);
   }
 
-  return { abrir: abrir, vistas: VISTAS, adultos: true, cabecera: cabecera, fila: fila };
+  return { abrir: abrir, vistas: VISTAS, adultos: true, cabecera: cabecera, fila: fila, ideas: IDEAS };
 })();

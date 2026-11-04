@@ -35,7 +35,11 @@ var ROBOT = '<svg class="robot" viewBox="0 0 100 100" aria-hidden="true">' +
   '<path class="boca ceno" d="M41 59 Q50 51 59 59" fill="none" stroke="#7cf0ff" stroke-width="3.5" stroke-linecap="round"/>' +
   '<circle cx="31" cy="54" r="3" fill="#ff8fb1" opacity=".85"/><circle cx="69" cy="54" r="3" fill="#ff8fb1" opacity=".85"/>' +
   '<rect x="30" y="73" width="40" height="20" rx="10" fill="#ff9f43" stroke="#1d2250" stroke-width="4"/>' +
-  '<circle class="luz" cx="50" cy="83" r="5" fill="#ffd23f"/></svg>';
+  '<circle class="luz" cx="50" cy="83" r="5" fill="#ffd23f"/>' +
+  '<g class="cientifico"><path d="M30 73 L50 87 L70 73 L70 79 L50 94 L30 79 Z" fill="#fff" stroke="#1d2250" stroke-width="3" stroke-linejoin="round"/>' +
+  '<path d="M18 28 Q50 14 82 28" fill="none" stroke="#1d2250" stroke-width="5" stroke-linecap="round"/>' +
+  '<circle cx="37" cy="22" r="7.5" fill="#bfe9ff" stroke="#1d2250" stroke-width="3"/><circle cx="63" cy="22" r="7.5" fill="#bfe9ff" stroke="#1d2250" stroke-width="3"/>' +
+  '<circle cx="34" cy="20" r="2.2" fill="#fff"/><circle cx="60" cy="20" r="2.2" fill="#fff"/></g></svg>';
 
 function chispa(t, compacta) { return '<div class="chispa' + (compacta ? ' compacta' : '') + '">' + ROBOT + '<p id="chispa-txt">' + esc(t) + '</p></div>'; }
 function decir(t, animo) {
@@ -894,13 +898,15 @@ function jugarVoz(pred) {
 
   function terminar() {
     var ult = aciertos[aciertos.length - 1];
-    var est = 1 + (pred.ok ? 1 : 0) + (total <= 90 ? 1 : 0);
+    // con el apoyo de voz el tiempo no cuenta: ese criterio penalizaría la propia dificultad
+    var rapido = total <= 90 || AJ_ACT.voz;
+    var est = 1 + (pred.ok ? 1 : 0) + (rapido ? 1 : 0);
     var filas = aciertos.map(function (x, i) { return '<tr><td>' + (i + 1) + '</td><td>×' + x.rat + '</td><td>' + x.meta + ' Hz</td><td>' + x.f + ' Hz</td></tr>'; }).join('');
     resultado(NIVELES[2], pred, {
       estrellas: est, puntos: pts,
       motivos: ['Pasaste el globo por los 3 aros.',
         pred.ok ? 'Tu predicción fue correcta.' : 'Tu predicción no fue la correcta, y eso también enseña.',
-        total <= 90 ? 'Lo lograste en menos de 90 segundos.' : 'Con menos de 90 segundos ganas la tercera estrella.'],
+        rapido ? (total <= 90 ? 'Lo lograste en menos de 90 segundos.' : 'Lo lograste con calma, a tu ritmo.') : 'Con menos de 90 segundos ganas la tercera estrella.'],
       pregunta: 'Tu nota base fue de ' + r(base, 0) + ' Hz y en el último aro cantaste a ' + ult.f + ' Hz. ¿Cuánto da la última dividida entre la base? ¿Qué le pasa a la frecuencia cuando la nota se vuelve más aguda?',
       tabla: '<table><tr><th>Aro</th><th>Razón</th><th>Pedía</th><th>Lograste</th></tr>' + filas + '</table>',
       revela: 'Un sonido es una vibración y el tono depende de cuántas veces vibra por segundo (hercios, Hz): más agudo = más vibraciones por segundo. ' +
@@ -1077,8 +1083,14 @@ function ordenNiveles() {
   return l;
 }
 
+var ESTADOS_ESTACION = ['apagada', 'encendida', 'a toda potencia', 'de las estrellas'];
+var MEDALLAS = ['', '💡 Estación encendida', '🎆 Estación a toda potencia', '🏅 Estación de estrellas'];
+
 function menu() {
   var total = 0, puntosTotal = 0, jug = PERF.actual();
+  var idsNiveles = NIVELES.map(function (x) { return x.id; });
+  var visto = Math.min(3, progreso.finalVisto || 0);
+  var pendiente = PERFILES.finalAlcanzado(progreso, idsNiveles) > visto;
   var tarjetas = ordenNiveles().map(function (n, i) {
     var e = progreso[n.id] || 0, p = progreso[n.id + '_pts'] || 0; total += e; puntosTotal += p;
     return '<a class="tarjeta" style="--c:' + n.color + ';--d:' + (0.15 + i * 0.12) + 's" href="#/n/' + n.id + '"><span class="ico" aria-hidden="true">' + n.icono +
@@ -1086,9 +1098,13 @@ function menu() {
   }).join('');
   var bombillas = '';
   for (var b = 0; b < NIVELES.length * 3; b++) bombillas += '<span class="b' + (b < total ? ' on' : '') + '"></span>';
-  app.innerHTML = '<h2>Chispa y la estación apagada</h2>' +
-    chispa('¡Hola' + (jug ? ', ' + jug.nombre : '') + '! Soy Chispa. Ayúdame a encender la estación científica. Cada sala es un reto: predices, juegas y descubres cómo funciona el mundo. ¡Solo necesitas tu teléfono!') +
-    tarjetas + '<p>Energía de la estación: <b>' + total + ' de ' + (NIVELES.length * 3) + '</b><span class="bombillas" role="img" aria-label="' + total + ' de ' + (NIVELES.length * 3) + ' bombillas encendidas">' + bombillas + '</span></p>';
+  var saludo = visto >= 1 ? '¡Hola' + (jug ? ', ' + jug.nombre : '') + '! La estación brilla gracias a ti. ¿Repetimos algún experimento o probamos conseguir más estrellas?' :
+    '¡Hola' + (jug ? ', ' + jug.nombre : '') + '! Soy Chispa. Ayúdame a encender la estación científica. Cada sala es un reto: predices, juegas y descubres cómo funciona el mundo. ¡Solo necesitas tu teléfono!';
+  app.innerHTML = '<h2>Chispa y la estación ' + ESTADOS_ESTACION[visto] + '</h2>' +
+    chispa(saludo) +
+    (pendiente ? '<p><button id="m-final" class="btn-final" type="button">🌟 ¡Mira la estación!</button></p>' : '') +
+    tarjetas + '<p>Energía de la estación: <b>' + total + ' de ' + (NIVELES.length * 3) + '</b><span class="bombillas" role="img" aria-label="' + total + ' de ' + (NIVELES.length * 3) + ' bombillas encendidas">' + bombillas + '</span></p>' + (visto >= 1 ? '<p class="medalla">' + MEDALLAS[visto] + '</p>' : '');
+  if ($('m-final')) $('m-final').onclick = function () { audio(); sonido('clic'); FINALES.mostrar(PERFILES.finalAlcanzado(progreso, idsNiveles)); };
   app.insertAdjacentHTML('beforeend', '<p class="fila-menu"><button class="sec chico" id="m-ajustes">⚙ Ajustes</button> <button class="sec chico" id="m-quien">👤 Cambiar de jugador</button></p>');
   $('m-ajustes').onclick = function () { audio(); sonido('clic'); PERF.ajustes(); };
   $('m-quien').onclick = function () { audio(); sonido('clic'); PERF.quien(); };
@@ -1119,6 +1135,8 @@ function resultado(n, pred, res) {
   var prev = progreso[n.id] || 0, prevP = progreso[n.id + '_pts'] || 0, record = res.puntos > prevP;
   if (res.estrellas > prev) progreso[n.id] = res.estrellas;
   if (record) progreso[n.id + '_pts'] = res.puntos;
+  var verFinal = PERFILES.finalAlcanzado(progreso, NIVELES.map(function (x) { return x.id; }));
+  if (verFinal <= (progreso.finalVisto || 0)) verFinal = 0; // solo si es un final que todavía no vio
   var jug = PERF.actual();
   if (jug) {
     PERFILES.registrarPartida(jug, n.id, { predOk: !!pred.ok, estrellas: res.estrellas, seg: (performance.now() - tInicioPartida) / 1000 });
@@ -1134,6 +1152,7 @@ function resultado(n, pred, res) {
   app.innerHTML = '<h2>' + n.icono + ' ' + esc(n.titulo) + ': ¡completado!</h2>' +
     '<p class="estrellas" role="img" aria-label="' + res.estrellas + ' de 3 estrellas">' + est + '</p>' +
     '<p class="puntaje">⭐ ' + res.puntos + ' puntos' + (record && prevP ? ' · ¡NUEVO RÉCORD!' : '') + '</p>' +
+    (verFinal ? '<p><button id="ver-final" class="btn-final" type="button">🌟 ¡Mira la estación!</button></p>' : '') +
     '<ul>' + res.motivos.map(function (m) { return '<li>' + esc(m) + '</li>'; }).join('') + '</ul>' +
     chispa(res.pregunta) + res.tabla +
     '<p><button id="revelar">Ver qué pasó</button></p><div id="revela" class="tutor" hidden><p>' + esc(res.revela) + '</p></div>' +
@@ -1141,6 +1160,7 @@ function resultado(n, pred, res) {
   var cc = document.querySelector('.chispa'); if (cc) cc.className = 'chispa habla';
   $('revelar').onclick = function () { $('revela').hidden = false; this.hidden = true; sonido('clic'); };
   $('otra').onclick = function () { intro(n); };
+  if ($('ver-final')) $('ver-final').onclick = function () { FINALES.mostrar(verFinal); };
 }
 
 function ruta() {

@@ -1,6 +1,6 @@
 // Red primero (para recibir cambios) y caché como respaldo sin conexión.
-var VERSION = 'chispalab-v8';
-var ARCHIVOS = ['./', 'index.html', 'css/style.css', 'css/juego.css?v=5', 'css/perfil.css?v=4', 'js/ajustes.js?v=3', 'js/tutor.js?v=1', 'js/perfiles.js?v=4', 'js/perfil.js?v=3', 'js/panel.js?v=3', 'js/juego.js?v=8', 'js/niveles/globo.js?v=1', 'js/niveles/luz.js?v=1', 'js/niveles/burbujas.js?v=1', 'js/camara.js?v=1', 'js/inicio.js?v=1', 'js/fisica.js', 'js/dsp.js', 'manifest.webmanifest', 'icon.svg', 'icon-180.png', 'icon-192.png', 'icon-512.png'];
+var VERSION = 'chispalab-v9';
+var ARCHIVOS = ['./', 'index.html', 'css/style.css', 'css/juego.css?v=5', 'css/perfil.css?v=5', 'css/finales.css?v=2', 'js/ajustes.js?v=3', 'js/tutor.js?v=1', 'js/perfiles.js?v=4', 'js/perfil.js?v=4', 'js/panel.js?v=4', 'js/finales.js?v=1', 'js/juego.js?v=9', 'js/niveles/globo.js?v=1', 'js/niveles/luz.js?v=1', 'js/niveles/burbujas.js?v=1', 'js/camara.js?v=1', 'js/inicio.js?v=1', 'js/fisica.js', 'js/dsp.js', 'manifest.webmanifest', 'icon.svg', 'icon-180.png', 'icon-192.png', 'icon-512.png'];
 
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(VERSION).then(function (c) { return c.addAll(ARCHIVOS); }));

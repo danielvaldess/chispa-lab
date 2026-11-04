@@ -33,6 +33,9 @@ var PERF = (function () {
     alternar('t-muy', a.escala >= 1.45);
     alternar('toques', a.toquesGrandes);
     capaBrillo(a.brillo);
+    var vistoFinal = (progreso() && progreso().finalVisto) || 0;
+    alternar('cientifico', vistoFinal >= 3); // Chispa se pone la bata y las gafas
+    alternar('estacion-dorada', vistoFinal >= 3);
     if (typeof recargarProgreso === 'function') recargarProgreso();
     return a;
   }
