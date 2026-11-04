@@ -37,7 +37,10 @@ almacenamiento, los datos se pierden. Con «Borrar todos los datos» (en Ajustes
 4. **Todo se puede cambiar o borrar.** En Ajustes, en cualquier momento.
 5. **Sin presión.** No hay anuncios, cuentas regresivas que apuren ni culpa por no volver. Con el modo calma no hay destellos, sacudidas
    ni confeti, y se puede pausar para descansar.
-6. **Nada depende de un solo sentido.** Los sonidos tienen equivalente visual, los colores van acompañados de símbolos, el texto puede
+6. **Recompensas que no excluyen.** Los finales y las recompensas por estrellas (diploma, Chispa científico, estación dorada) son cosméticos: nada
+   necesario para jugar queda bloqueado. Completar los juegos basta para el primer final, con 2 estrellas basta con predecir bien y, con el apoyo de voz, la
+   tercera estrella de los juegos de voz no depende del tiempo ni de la estabilidad del tono.
+7. **Nada depende de un solo sentido.** Los sonidos tienen equivalente visual, los colores van acompañados de símbolos, el texto puede
    agrandarse y leerse en voz alta, y los controles pueden ser grandes, con botones «+» y «−».
 
 ## Qué cambia según el apoyo

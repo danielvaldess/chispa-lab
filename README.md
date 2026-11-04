@@ -47,6 +47,20 @@ Es un videojuego que enseña a **formular una hipótesis, probarla y comparar co
 la misión de ProFuturo y con el reto 17, con sus brechas y límites dichos con claridad, está en
 [`docs/alineacion-profuturo.md`](docs/alineacion-profuturo.md).
 
+## Finales y recompensas
+
+La historia es **encender la estación científica**, y tiene tres finales según las estrellas (la menor cantidad entre los seis juegos):
+
+| Estrellas en cada juego | Qué pasa |
+|---|---|
+| 1 | **La estación se enciende:** las seis salas se iluminan una a una y Chispa cuenta lo que el jugador descubrió |
+| 2 | **A toda potencia:** final mejorado con fuegos artificiales y un **diploma** con su nombre, que se puede guardar como imagen |
+| 3 | **La estación de las estrellas:** **Chispa se pone la bata y las gafas de científico** en todo el juego y la estación se vuelve dorada |
+
+Las recompensas son **cosméticas**: nada necesario para jugar queda bloqueado, y con el modo calma no hay fuegos artificiales ni confeti. El final básico solo exige
+completar los juegos; con 2 estrellas basta con predecir bien (no depende de la destreza), y con el apoyo de voz la tercera estrella de los juegos de voz no
+penaliza el tiempo ni la estabilidad del tono.
+
 ## IA ligera y ética
 
 Chispa incluye un **tutor adaptativo** (seguimiento bayesiano del conocimiento, aprendizaje automático clásico, no generativo) que estima qué ideas domina cada
