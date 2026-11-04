@@ -57,3 +57,9 @@ export function errorRelativo(medida, objetivo) {
 }
 
 export const limitar = (v, min, max) => Math.min(max, Math.max(min, v));
+
+/** Duración (s) de la bajada de una canica que rueda `largo` metros por una rampa de `grados`; Infinity si no se mueve. */
+export function tiempoCanica(anguloGrados, largo = 3) {
+  const a = aceleracionRampa(anguloGrados);
+  return a < 0.02 ? Infinity : Math.sqrt((2 * largo) / a);
+}

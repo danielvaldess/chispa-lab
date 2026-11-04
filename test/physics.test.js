@@ -39,3 +39,13 @@ test('aireParaFrecuencia invierte frecuenciaBotella', () => {
 });
 
 test('errorRelativo', () => cerca(errorRelativo(530, 500), 0.06, 1e-9));
+
+import { tiempoCanica } from '../js/physics.js';
+
+test('canica en rampa de 3 m: ~3,1 s a 5° y menos al doble de ángulo, pero no la mitad', () => {
+  cerca(tiempoCanica(5), 3.13, 0.05);
+  const razon = tiempoCanica(10) / tiempoCanica(5);
+  assert.ok(razon < 1 && razon > 0.5, `razón ${razon}`);
+});
+
+test('sin inclinación la canica no se mueve', () => assert.equal(tiempoCanica(0), Infinity));
