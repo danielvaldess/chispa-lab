@@ -7,8 +7,9 @@ import { pantallaCompleta, salirPantallaCompleta } from './motor.js?v=1';
 import { pedirMovimiento, detenerMovimiento } from './sensor.js?v=1';
 import * as pantallas from './pantallas.js?v=1';
 import rampa from './niveles/rampa.js?v=1';
+import pendulo from './niveles/pendulo.js?v=1';
 
-const NIVELES = [rampa];
+const NIVELES = [rampa, pendulo];
 
 const estado = leer();
 fijarIdioma(estado.idioma || detectarIdioma(navigator.languages || [navigator.language]));
