@@ -110,5 +110,20 @@ const mm = P.cargar(al, hoy);
 ok('maestría corrupta se acota', mm.perfiles[0].maestria.rampa.p === 0.99 && mm.perfiles[0].maestria.rampa.pok === 2 && mm.perfiles[0].maestria.rampa.hok === 1 && !mm.perfiles[0].maestria.voz && !mm.perfiles[0].maestria.luz && !mm.perfiles[0].maestria.globo);
 ok('perfiles anteriores sin el campo siguen funcionando', Object.keys(mm.perfiles[1].maestria).length === 0);
 
+// finales de la estación
+const todos = P.NIVELES_IDS;
+const con = (n) => { const o = {}; todos.forEach((i) => { o[i] = n; }); return o; };
+ok('final: sin estrellas = 0', P.finalAlcanzado({}, todos) === 0);
+ok('final: una estrella en cada juego = 1', P.finalAlcanzado(con(1), todos) === 1);
+ok('final: dos en cada juego = 2 y tres = 3', P.finalAlcanzado(con(2), todos) === 2 && P.finalAlcanzado(con(3), todos) === 3);
+const casi = con(3); delete casi.burbujas;
+ok('final: si falta un solo juego no hay final', P.finalAlcanzado(casi, todos) === 0);
+const mezcla = con(3); mezcla.luz = 1;
+ok('final: manda el juego con menos estrellas', P.finalAlcanzado(mezcla, todos) === 1);
+ok('final: valores raros se acotan', P.finalAlcanzado(con(9), todos) === 3 && P.finalAlcanzado({ rampa: 'x' }, todos) === 0 && P.finalAlcanzado(undefined, todos) === 0);
+al = falso({ [P.CLAVE]: JSON.stringify({ activo: 'a', perfiles: [{ id: 'a', nombre: 'Ana', nac: '2016-05', progreso: { rampa: 3, finalVisto: 99 } }, { id: 'b', nombre: 'Beto', nac: '2016-05', progreso: { finalVisto: -4 } }] }) });
+const fv = P.cargar(al, hoy);
+ok('finalVisto se acota entre 0 y 3', fv.perfiles[0].progreso.finalVisto === 3 && fv.perfiles[1].progreso.finalVisto === 0);
+
 console.log(fallos ? '\n' + fallos + ' prueba(s) fallaron' : '\nTodas las pruebas pasan');
 process.exit(fallos ? 1 : 0);

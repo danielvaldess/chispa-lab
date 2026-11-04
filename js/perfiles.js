@@ -46,7 +46,7 @@
         brillo: ex.brillo === 0 || ex.brillo === 1 || ex.brillo === 2 ? ex.brillo : undefined,
         tutor: typeof ex.tutor === 'boolean' ? ex.tutor : undefined
       },
-      progreso: numeros(p.progreso),
+      progreso: normalizarProgreso(p.progreso),
       aprendizaje: normalizarAprendizaje(p.aprendizaje),
       maestria: normalizarMaestria(p.maestria),
       sesionesVoz: (Array.isArray(p.sesionesVoz) ? p.sesionesVoz : []).slice(-MAX_SESIONES).map(function (s) {
@@ -55,6 +55,13 @@
       }),
       creado: String(p.creado || '').slice(0, 10)
     };
+  }
+
+  /** Progreso del jugador (estrellas y récords por juego, y el último final que vio, de 0 a 3). */
+  function normalizarProgreso(o) {
+    var out = numeros(o);
+    if (out.finalVisto !== undefined) out.finalVisto = Math.max(0, Math.min(3, Math.floor(out.finalVisto)));
+    return out;
   }
 
   /** Registro de aprendizaje por nivel: partidas, predicciones acertadas, segundos jugados y mejores estrellas. */
@@ -167,6 +174,19 @@
     return perfil;
   }
 
+  /**
+   * Nivel de la estación: la menor cantidad de estrellas entre todos los juegos (0 a 3).
+   * 1 = estación encendida, 2 = a toda potencia, 3 = de las estrellas. Si falta algún juego, 0.
+   */
+  function finalAlcanzado(progreso, ids) {
+    var min = 3;
+    (ids || NIVELES_IDS).forEach(function (id) {
+      var e = Number(progreso && progreso[id]) || 0;
+      if (e < min) min = e;
+    });
+    return Math.max(0, Math.min(3, Math.floor(min)));
+  }
+
   /** Anota una partida terminada de un nivel (solo en el teléfono). resultado: { predOk, estrellas, seg }. */
   function registrarPartida(perfil, nivelId, resultado) {
     if (NIVELES_IDS.indexOf(nivelId) < 0) return perfil;
@@ -221,7 +241,7 @@
   var PERFILES = {
     CLAVE: CLAVE, LEGADO: LEGADO, MAX: MAX, cargar: cargar, guardar: guardar, crear: crear, activar: activar, actual: actual,
     cambiarApoyos: cambiarApoyos, borrar: borrar, borrarTodo: borrarTodo, necesitaAdulto: necesitaAdulto,
-    registrarSesionVoz: registrarSesionVoz, resumenSesiones: resumenSesiones, registrarMaestria: registrarMaestria, reiniciarMaestria: reiniciarMaestria, registrarPartida: registrarPartida, resumenAprendizaje: resumenAprendizaje, NIVELES_IDS: NIVELES_IDS
+    registrarSesionVoz: registrarSesionVoz, resumenSesiones: resumenSesiones, finalAlcanzado: finalAlcanzado, registrarMaestria: registrarMaestria, reiniciarMaestria: reiniciarMaestria, registrarPartida: registrarPartida, resumenAprendizaje: resumenAprendizaje, NIVELES_IDS: NIVELES_IDS
   };
   if (typeof module !== 'undefined' && module.exports) module.exports = PERFILES;
   else root.PERFILES = PERFILES;
