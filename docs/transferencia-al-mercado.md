@@ -10,6 +10,30 @@ Muchas escuelas no tienen laboratorio, instrumentos ni materiales para que los n
 formular hipótesis y probarlas, pero no tienen con qué. Los niños con dificultades (de voz, de audición, de visión, de atención, motrices) lo tienen aún más
 difícil, porque casi ninguna herramienta se adapta a ellos.
 
+## Por qué Panamá y por qué ahora (datos verificables)
+
+Todas las cifras llevan su fuente en [`investigacion/articulo.md`](investigacion/articulo.md) (referencias entre corchetes).
+
+| Señal | Dato | Qué significa para el producto |
+|---|---|---|
+| Aprendizaje en ciencias | ERCE 2019: 672 puntos frente a 702 de la región; 48,1 % en el nivel más bajo frente a 37,7 % [1] | Hay una necesidad medida y reconocida por la UNESCO |
+| El Estado ya compra tecnología escolar | 44 millones de dólares en internet para 3.102 escuelas (2025) [4]; 28,9 millones en laboratorios para 73 centros (2026) [5] | Existe presupuesto y un comprador para esta categoría |
+| Pero llega a pocos y despacio | 73 centros en la licitación de laboratorios; cerca del 45 % de los centros sin internet en 2022 [3] | Un laboratorio en el teléfono llega antes y complementa |
+| El teléfono ya está | 156,6 líneas móviles por cada 100 personas (2023) [7] | No hay que comprar equipos |
+| Pero no todos tienen conexión | 72,8 % de la población usa internet (2024) [7] | Funcionar sin conexión es una ventaja, no un detalle |
+| El presupuesto se aprieta | Gasto público en educación: 2,47 % del PIB (2023) frente a 4,30 % (2020) [7] | Una solución de coste casi nulo es más fácil de adoptar |
+| Hay una red de docentes en Veraguas | ProFuturo con MEDUCA: 76 escuelas, 28 en Veraguas, más de 700 docentes [9] | Un canal de piloto y distribución ya existe |
+| Niñez con discapacidad | 17,1 % de los niños de 2 a 14 años (ENDIS-2) [6] | Un segmento que casi nadie atiende |
+
+## Por qué convendría adoptarlo (propuesta de valor para Panamá)
+
+1. **Llega a donde el laboratorio y la conexión no llegan,** sin comprar equipos: usa el teléfono que ya existe.
+2. **Cumple lo que el Estado y los programas buscan:** ciencias con experimentación, inclusión y medición, alineado con los ODS 4, 9 y 10.
+3. **Cuesta casi nada escalarlo:** sin servidor ni licencias por usuario; un mismo archivo sirve a todos los teléfonos.
+4. **Es seguro con los datos de los niños:** todo se queda en el teléfono; un adulto decide; no envía nada.
+5. **Se puede probar rápido y con poco riesgo:** una clase, un par de semanas, indicadores definidos de antemano.
+6. **Es abierto:** una escuela, un ministerio o una universidad pueden revisarlo, adaptarlo y traducirlo.
+
 ## La solución, en una frase
 
 Un **videojuego que convierte el teléfono en un laboratorio**: el niño predice, juega con los sensores del teléfono y descubre qué pasó, con ayudas para cada
