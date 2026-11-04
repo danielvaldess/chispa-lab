@@ -1071,8 +1071,13 @@ var NIVELES = [
   }
 ];
 
+// Experimentos con materiales: opcionales, no cuentan para encender la estación ni para los finales.
+var EXPERIMENTOS = [];
+
 function buscarNivel(id) {
-  for (var i = 0; i < NIVELES.length; i++) if (NIVELES[i].id === id) return NIVELES[i];
+  var i;
+  for (i = 0; i < NIVELES.length; i++) if (NIVELES[i].id === id) return NIVELES[i];
+  for (i = 0; i < EXPERIMENTOS.length; i++) if (EXPERIMENTOS[i].id === id) return EXPERIMENTOS[i];
   return null;
 }
 
@@ -1099,6 +1104,12 @@ function menu() {
     return '<a class="tarjeta" style="--c:' + n.color + ';--d:' + (0.15 + i * 0.12) + 's" href="#/n/' + n.id + '"><span class="ico" aria-hidden="true">' + n.icono +
       '</span><span><b>' + esc(n.titulo) + '</b>' + (n.id === PERF.recomendado() ? '<span class="insignia">⭐ Para ti</span>' : '') + '<small>' + esc(n.sub) + (p ? ' · récord ' + p + ' ⭐' : '') + '</small><span class="est" aria-label="' + e + ' de 3 estrellas">' + estrellas(e) + '</span></span></a>';
   }).join('');
+  var tarjetasExp = EXPERIMENTOS.length ? '<h3 class="sala-exp">🔬 Experimentos con materiales</h3><p class="nota">Opcionales: se hacen con cosas de casa y no hacen falta para encender la estación. Tus descubrimientos quedan en tu cuaderno.</p>' +
+    EXPERIMENTOS.map(function (n, i) {
+      var e = progreso[n.id] || 0;
+      return '<a class="tarjeta" style="--c:' + n.color + ';--d:' + (0.15 + (NIVELES.length + i) * 0.12) + 's" href="#/n/' + n.id + '"><span class="ico" aria-hidden="true">' + n.icono +
+        '</span><span><b>' + esc(n.titulo) + '</b><small>' + esc(n.sub) + '</small><span class="est" aria-label="' + e + ' de 3 estrellas">' + estrellas(e) + '</span></span></a>';
+    }).join('') : '';
   var bombillas = '';
   for (var b = 0; b < NIVELES.length * 3; b++) bombillas += '<span class="b' + (b < total ? ' on' : '') + '"></span>';
   var saludo = visto >= 1 ? '¡Hola' + (jug ? ', ' + jug.nombre : '') + '! La estación brilla gracias a ti. ¿Repetimos algún experimento o probamos conseguir más estrellas?' :
@@ -1106,9 +1117,14 @@ function menu() {
   app.innerHTML = '<h2>Chispa y la estación ' + ESTADOS_ESTACION[visto] + '</h2>' +
     chispa(saludo) +
     (pendiente ? '<p><button id="m-final" class="btn-final" type="button">🌟 ¡Mira la estación!</button></p>' : '') +
-    tarjetas + '<p>Energía de la estación: <b>' + total + ' de ' + (NIVELES.length * 3) + '</b><span class="bombillas" role="img" aria-label="' + total + ' de ' + (NIVELES.length * 3) + ' bombillas encendidas">' + bombillas + '</span></p>' + (visto >= 1 ? '<p class="medalla">' + MEDALLAS[visto] + '</p>' : '');
+    tarjetas + '<p>Energía de la estación: <b>' + total + ' de ' + (NIVELES.length * 3) + '</b><span class="bombillas" role="img" aria-label="' + total + ' de ' + (NIVELES.length * 3) + ' bombillas encendidas">' + bombillas + '</span></p>' + (visto >= 1 ? '<p class="medalla">' + MEDALLAS[visto] + '</p>' : '') + tarjetasExp;
   if ($('m-final')) $('m-final').onclick = function () { audio(); sonido('clic'); FINALES.mostrar(PERFILES.finalAlcanzado(progreso, idsNiveles)); };
-  app.insertAdjacentHTML('beforeend', '<p class="fila-menu"><button class="sec chico" id="m-ajustes">⚙ Ajustes</button> <button class="sec chico" id="m-quien">👤 Cambiar de jugador</button></p>');
+  app.insertAdjacentHTML('beforeend', '<p class="fila-menu"><button class="sec chico" id="m-ajustes">⚙ Ajustes</button> <button class="sec chico" id="m-quien">👤 Cambiar de jugador</button>' + (EXPERIMENTOS.length ? ' <button class="sec chico" id="m-cuaderno">📓 Mi cuaderno</button>' : '') + '</p>');
+  if ($('m-cuaderno')) $('m-cuaderno').onclick = function () {
+    audio(); sonido('clic');
+    var t = {}; EXPERIMENTOS.forEach(function (x) { t[x.id] = x.icono + ' ' + x.titulo; });
+    EXP.pantallaCuaderno(PERF.actual(), t);
+  };
   $('m-ajustes').onclick = function () { audio(); sonido('clic'); PERF.ajustes(); };
   $('m-quien').onclick = function () { audio(); sonido('clic'); PERF.quien(); };
   var cc = document.querySelector('.chispa'); if (cc) cc.className = 'chispa habla';
@@ -1154,7 +1170,7 @@ function resultado(n, pred, res) {
     }
   }
   guardar();
-  var sig = NIVELES[NIVELES.indexOf(n) + 1], est = '', i;
+  var sig = n.experimento ? null : NIVELES[NIVELES.indexOf(n) + 1], est = '', i;
   for (i = 0; i < 3; i++) {
     est += '<span class="e' + (i < res.estrellas ? ' on' : '') + '" style="--i:' + i + '">' + (i < res.estrellas ? '★' : '☆') + '</span>';
     if (i < res.estrellas) pip(660 + i * 180, 0.25, 'triangle', 0.16, 0.2 + i * 0.35 + 0.5);
