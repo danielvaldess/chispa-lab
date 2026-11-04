@@ -23,46 +23,55 @@ function dibujarEscena(cx, W, H, k) {
   for (let y = 20 * k, f = 0; y < H; y += 56 * k, f++) {
     for (let x = (f % 2 ? 28 : 0) * k; x < W; x += 56 * k) { cx.beginPath(); cx.arc(x, y, 9 * k, 0, 7); cx.fill(); }
   }
-  // ventana nocturna
-  const wx = W * 0.5, wy = H * 0.33, ww = W * 0.3, wh = H * 0.27;
+  // ventana nocturna (del 51 % al 80 % del ancho)
+  const wx = W * 0.508, wy = H * 0.335, ww = W * 0.297, wh = H * 0.172;
   cx.fillStyle = '#fff';
-  rr(cx, wx - 6 * k, wy - 6 * k, ww + 12 * k, wh + 12 * k, 10 * k); cx.fill();
+  rr(cx, wx - 5 * k, wy - 5 * k, ww + 10 * k, wh + 10 * k, 9 * k); cx.fill();
   cx.fillStyle = grad(cx, wy, wy + wh, '#1f2a7a', '#5b6fe0');
   cx.fillRect(wx, wy, ww, wh);
-  esfera(cx, wx + ww * 0.82, wy + wh * 0.25, 13 * k, '#fff6c9', '#e8c85a');
+  esfera(cx, wx + ww * 0.8, wy + wh * 0.2, 11 * k, '#fff6c9', '#e8c85a');
   cx.fillStyle = '#fff';
   for (const [dx, dy] of [[0.15, 0.2], [0.4, 0.6], [0.7, 0.45], [0.25, 0.8], [0.6, 0.15]]) cx.fillRect(wx + ww * dx, wy + wh * dy, 3 * k, 3 * k);
   cx.fillRect(wx + ww / 2 - 2 * k, wy, 4 * k, wh);
-  // estante, planta y libros
-  const ey = H * 0.22;
+  // estante: del 4 % al 75 % del ancho, con soportes
+  const ey = H * 0.193;
   cx.fillStyle = '#7a4a1c';
-  cx.beginPath(); cx.moveTo(W * 0.1, ey + 12 * k); cx.lineTo(W * 0.1 + 46 * k, ey + 12 * k); cx.lineTo(W * 0.1, ey + 70 * k); cx.fill();
-  cx.beginPath(); cx.moveTo(W * 0.68, ey + 12 * k); cx.lineTo(W * 0.68 - 46 * k, ey + 12 * k); cx.lineTo(W * 0.68, ey + 70 * k); cx.fill();
+  cx.beginPath(); cx.moveTo(W * 0.103, ey + 16 * k); cx.lineTo(W * 0.103 + 30 * k, ey + 16 * k); cx.lineTo(W * 0.103, ey + 48 * k); cx.fill();
+  cx.beginPath(); cx.moveTo(W * 0.723, ey + 16 * k); cx.lineTo(W * 0.723 - 30 * k, ey + 16 * k); cx.lineTo(W * 0.723, ey + 48 * k); cx.fill();
   cx.fillStyle = '#c98b46';
-  rr(cx, W * 0.04, ey - 4 * k, W * 0.68, 18 * k, 6 * k); cx.fill();
+  rr(cx, W * 0.04, ey, W * 0.71, 18 * k, 5 * k); cx.fill();
   cx.strokeStyle = '#7a4a1c'; cx.lineWidth = 2; cx.stroke();
+  // maceta con planta
+  const mx = W * 0.149;
   cx.fillStyle = '#c4622d';
-  cx.beginPath(); cx.moveTo(W * 0.09, ey - 4 * k); cx.lineTo(W * 0.17, ey - 4 * k); cx.lineTo(W * 0.155, ey - 38 * k); cx.lineTo(W * 0.105, ey - 38 * k); cx.fill();
+  cx.beginPath(); cx.moveTo(mx - 20 * k, ey - 23 * k); cx.lineTo(mx + 20 * k, ey - 23 * k); cx.lineTo(mx + 14 * k, ey); cx.lineTo(mx - 14 * k, ey); cx.fill();
   cx.fillStyle = '#2fd18b';
-  for (const [dx, dy, a] of [[-0.03, -75, -0.6], [0, -86, 0], [0.03, -75, 0.6]]) {
-    cx.save(); cx.translate(W * 0.13 + dx * W, ey - 38 * k); cx.rotate(a);
-    cx.beginPath(); cx.ellipse(0, dy * k * 0.5, 9 * k, 28 * k, 0, 0, 7); cx.fill(); cx.restore();
+  for (const [a, largo] of [[-1.15, 30], [-0.6, 38], [0, 42], [0.6, 38], [1.15, 30]]) {
+    cx.save(); cx.translate(mx, ey - 22 * k); cx.rotate(a);
+    cx.beginPath(); cx.ellipse(0, -largo * k * 0.5, 10 * k, largo * k * 0.5, 0, 0, 7); cx.fill(); cx.restore();
   }
-  cx.fillStyle = '#e63946'; rr(cx, W * 0.37, ey - 30 * k, 56 * k, 14 * k, 3 * k); cx.fill();
-  cx.fillStyle = '#3b82f6'; rr(cx, W * 0.38, ey - 46 * k, 56 * k, 14 * k, 3 * k); cx.fill();
+  // libros
+  cx.fillStyle = '#e63946'; rr(cx, W * 0.487, ey - 13 * k, 50 * k, 13 * k, 3 * k); cx.fill();
+  cx.fillStyle = '#3b82f6'; rr(cx, W * 0.492, ey - 29 * k, 48 * k, 15 * k, 3 * k); cx.fill();
+  cx.fillStyle = '#fff'; cx.fillRect(W * 0.492 + 40 * k, ey - 27 * k, 5 * k, 11 * k); cx.fillRect(W * 0.487 + 42 * k, ey - 11 * k, 5 * k, 9 * k);
 }
 
 function dibujarLampara(cx, W, H, k, angulo) {
-  const bx = W * 0.84, by = H * 0.52;
-  cx.fillStyle = '#8a5a26'; rr(cx, bx - 62 * k, by, 124 * k, 12 * k, 4 * k); cx.fill();
-  cx.fillStyle = '#6b4219'; cx.fillRect(bx - 54 * k, by + 12 * k, 8 * k, 70 * k); cx.fillRect(bx + 46 * k, by + 12 * k, 8 * k, 70 * k);
-  cx.fillStyle = '#2d3a4e'; cx.beginPath(); cx.ellipse(bx + 8 * k, by - 2 * k, 26 * k, 7 * k, 0, 0, 7); cx.fill();
-  cx.strokeStyle = '#3d4d63'; cx.lineWidth = 6 * k; cx.lineCap = 'round';
-  cx.beginPath(); cx.moveTo(bx + 8 * k, by - 4 * k); cx.lineTo(bx + 14 * k, by - 80 * k); cx.lineTo(bx - 26 * k, by - 108 * k); cx.stroke();
+  const tx = W * 0.75, ty = H * 0.518;
+  // mesita
+  cx.fillStyle = '#8a5a26'; rr(cx, tx, ty, W * 0.204, 16 * k, 4 * k); cx.fill();
+  cx.fillStyle = '#6b4219';
+  cx.fillRect(tx + 8 * k, ty + 16 * k, 8 * k, 120 * k); cx.fillRect(tx + W * 0.204 - 16 * k, ty + 16 * k, 8 * k, 120 * k);
+  // lámpara
+  const bx = W * 0.833, by = ty - 4 * k;
+  cx.fillStyle = '#2d3a4e'; cx.beginPath(); cx.ellipse(bx, by, 24 * k, 7 * k, 0, 0, 7); cx.fill();
+  cx.strokeStyle = '#3d4d63'; cx.lineWidth = 6 * k; cx.lineCap = 'round'; cx.lineJoin = 'round';
+  cx.beginPath(); cx.moveTo(bx, by - 2 * k); cx.lineTo(bx - 13 * k, by - 62 * k); cx.lineTo(bx - 40 * k, by - 90 * k); cx.stroke();
+  const sx = W * 0.744, sy = H * 0.4;
   cx.fillStyle = '#ff6b4a';
-  cx.beginPath(); cx.moveTo(bx - 46 * k, by - 100 * k); cx.lineTo(bx - 4 * k, by - 100 * k); cx.lineTo(bx - 14 * k, by - 134 * k); cx.lineTo(bx - 36 * k, by - 134 * k); cx.closePath(); cx.fill();
+  cx.beginPath(); cx.moveTo(sx - 21 * k, sy - 18 * k); cx.lineTo(sx + 21 * k, sy - 18 * k); cx.lineTo(sx + 26 * k, sy + 12 * k); cx.lineTo(sx - 26 * k, sy + 12 * k); cx.closePath(); cx.fill();
   // bolita de acero que marca el ritmo
-  const px = bx - 25 * k, py = by - 100 * k, L = 46 * k;
+  const px = sx, py = sy + 12 * k, L = 22 * k;
   const x = px + Math.sin(angulo) * L, y = py + Math.cos(angulo) * L;
   cx.strokeStyle = '#4a5568'; cx.lineWidth = 2; cx.beginPath(); cx.moveTo(px, py); cx.lineTo(x, y); cx.stroke();
   esfera(cx, x, y, 9 * k, '#f1f5f9', '#64748b');
@@ -108,7 +117,7 @@ export default {
   jugar({ pred, salir, terminar }) {
     const juego = crearJuego({ titulo: t('pend.corto'), icono: '⏱', pedidos: OBJETIVOS.map((o) => `${o} s`), tema: 'tema-pendulo', alSalir: salir });
     let etapa = 0;
-    let objeto = OBJETOS[0];
+    let objeto = OBJETOS[2];
     let largoCm = 80;
     let fase = 'ajustar'; // ajustar | midiendo | espera
     let faseLampara = 0;
@@ -203,17 +212,17 @@ export default {
     function dibujar(cx, W, H, k) {
       dibujarEscena(cx, W, H, k);
       dibujarLampara(cx, W, H, k, AMPLITUD * Math.cos(faseLampara));
-      const px = W * 0.4, py = H * 0.222;
-      const largoPx = (largoCm / 100) * H * 0.2;
+      const px = W * 0.397, py = H * 0.218;
+      const largoPx = (largoCm / 100) * H * 0.178;
       const ang = fase === 'ajustar' ? AMPLITUD : AMPLITUD * Math.cos(fasePendulo);
       const x = px + Math.sin(ang) * largoPx;
       const y = py + Math.cos(ang) * largoPx;
       cx.strokeStyle = '#6b4a2a'; cx.lineWidth = 2.5 * k;
       cx.beginPath(); cx.moveTo(px, py); cx.lineTo(x, y); cx.stroke();
       esfera(cx, px, py, 7 * k, '#e2e8f0', '#64748b');
-      sombra(cx, x, y + 28 * k, 20 * k, 5 * k, 0.12);
-      dibujarObjeto(cx, objeto.id, x, y + 4 * k, 24 * k, ang);
-      texto3d(cx, t('pend.tic', { n: objetivo() }), W * 0.97, H * 0.55, 17 * k, 'right');
+      sombra(cx, x, y + 24 * k, 16 * k, 4 * k, 0.12);
+      dibujarObjeto(cx, objeto.id, x, y + 4 * k, 20 * k, ang);
+      texto3d(cx, t('pend.tic', { n: objetivo() }), W * 0.954, H * 0.549, 14 * k, 'right');
     }
 
     juego.decir(t('pend.tutor'));
