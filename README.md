@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/licencia-MIT-green" alt="Licencia MIT" />
   <img src="https://img.shields.io/badge/hack4edu-2026-005588" alt="hack4edu 2026" />
   <img src="https://img.shields.io/badge/Reto-17-e8590c" alt="Reto 17" />
-  <img src="https://img.shields.io/badge/idiomas-ES%20%C2%B7%20EN%20%C2%B7%20PT-blue" alt="Idiomas" />
+  <img src="https://img.shields.io/badge/idioma-espa%C3%B1ol-blue" alt="Idioma" />
   <img src="https://img.shields.io/badge/estado-en%20desarrollo-yellow" alt="En desarrollo" />
 </p>
 
