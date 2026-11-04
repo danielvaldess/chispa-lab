@@ -32,8 +32,17 @@ var PERF = (function () {
     alternar('t-grande', a.escala > 1.05 && a.escala < 1.45);
     alternar('t-muy', a.escala >= 1.45);
     alternar('toques', a.toquesGrandes);
+    capaBrillo(a.brillo);
     if (typeof recargarProgreso === 'function') recargarProgreso();
     return a;
+  }
+
+  /** Capa fija y semitransparente que baja el brillo (un filtro en el body rompería las escenas de pantalla completa). */
+  function capaBrillo(nivel) {
+    var c = document.getElementById('capa-brillo');
+    if (!nivel) { if (c && c.parentNode) c.parentNode.removeChild(c); return; }
+    if (!c) { c = document.createElement('div'); c.id = 'capa-brillo'; c.setAttribute('aria-hidden', 'true'); document.body.appendChild(c); }
+    c.className = 'brillo-' + nivel;
   }
 
   /** Lee el texto en voz alta si el jugador lo pidió y el teléfono puede. */
@@ -161,62 +170,6 @@ var PERF = (function () {
     $('jugar').onclick = irMenu;
   }
 
-  // ---------- Ajustes ----------
-  function ajustes(aviso) {
-    var p = actual();
-    if (!p) { entrar(); return; }
-    var sel = p.apoyos.slice(), a = aj(), ex = p.extras, confirmar = '';
-    function interruptor(id, texto, valor) {
-      return '<button class="sec interruptor" data-k="' + id + '" aria-pressed="' + !!valor + '">' + esc(texto) + '</button>';
-    }
-    var esc3 = [['Normal', 1], ['Grande', 1.3], ['Muy grande', 1.6]].map(function (o) {
-      return '<button class="sec escala" data-v="' + o[1] + '" aria-pressed="' + (Math.abs(a.escala - o[1]) < 0.05) + '">' + o[0] + '</button>';
-    }).join('');
-    var voz = (p.sesionesVoz.length || a.voz) ? '<h3>Mi práctica de voz</h3><pre class="resumen-voz" id="resumen-voz">' + esc(PERFILES.resumenSesiones(p)) + '</pre><p><button class="sec" id="copiar">Copiar resumen</button></p>' : '';
-    app.innerHTML = '<p class="accion"><button class="sec chico" id="volver-menu">← Menú</button></p><h2>⚙ Ajustes de ' + esc(p.nombre) + '</h2>' + (aviso ? '<p class="ok" role="status">' + esc(aviso) + '</p>' : '') +
-      '<h3>Qué te ayuda a jugar</h3>' + chipsApoyos(sel) + '<div id="zona-adulto"></div><p id="error" class="error" role="alert"></p><p class="accion"><button id="guardar-apoyos">Guardar</button></p>' +
-      '<h3>Cómo se ve y suena</h3><div class="apoyos" id="escalas" role="group" aria-label="Tamaño del texto">' + esc3 + '</div>' +
-      '<div class="apoyos">' + interruptor('calma', 'Menos luces y movimiento', a.calma) + interruptor('contraste', 'Más contraste', a.contraste) +
-      interruptor('leerVoz', 'Leer en voz alta', a.leerVoz) + interruptor('vibrar', 'Vibración', a.vibrar) + interruptor('suave', 'Sonidos suaves', a.volumen < 1) + '</div>' +
-      voz + '<h3>Mis datos</h3>' + nota('Todo se guarda solo en este teléfono. Chispa Lab no envía nada a ningún servidor.') +
-      '<p class="accion"><button class="sec" id="borrar-uno">Borrar a ' + esc(p.nombre) + '</button></p><p><button class="sec" id="borrar-todo">Borrar todos los datos</button></p><div id="confirmar"></div>' +
-      nota('Chispa Lab es un juego de práctica. No es un aparato médico ni da diagnósticos.');
-
-    $('volver-menu').onclick = irMenu;
-    function pintarAdulto() {
-      $('zona-adulto').innerHTML = bloqueAdulto(p.nac, sel, false);
-    }
-    ligarApoyos(sel, pintarAdulto);
-    pintarAdulto();
-    $('guardar-apoyos').onclick = function () {
-      var r = PERFILES.cambiarApoyos(estado, p.id, sel, !!($('adulto') && $('adulto').checked), new Date());
-      if (!r.ok) { $('error').textContent = r.error === 'adulto' ? 'Un adulto tiene que estar de acuerdo para guardar esto.' : 'No se pudo guardar.'; return; }
-      estado = r.estado; guardar(); aplicar(); ajustes('Guardado.');
-    };
-    var es = app.querySelectorAll('.escala'), i;
-    for (i = 0; i < es.length; i++) es[i].onclick = function () { cambiarExtra('escala', parseFloat(this.getAttribute('data-v'))); };
-    var is = app.querySelectorAll('.interruptor');
-    for (i = 0; i < is.length; i++) is[i].onclick = function () {
-      var k = this.getAttribute('data-k'), on = this.getAttribute('aria-pressed') !== 'true';
-      if (k === 'suave') cambiarExtra('volumen', on ? 0.4 : 1); else cambiarExtra(k, on);
-    };
-    function cambiarExtra(k, v) { var q = actual(); q.extras[k] = v; guardar(); aplicar(); ajustes('Guardado.'); }
-    if ($('copiar')) $('copiar').onclick = function () {
-      var t = PERFILES.resumenSesiones(actual());
-      try { navigator.clipboard.writeText(t).then(function () { $('copiar').textContent = '¡Copiado!'; }); } catch (e) { $('copiar').textContent = 'Selecciona el texto y cópialo'; }
-    };
-    $('borrar-uno').onclick = function () {
-      $('confirmar').innerHTML = chispa('¿Seguro? Se borra a ' + p.nombre + ' y todo su progreso de este teléfono.') + '<p class="accion"><button id="si-uno">Sí, borrar</button> <button class="sec" id="no">No</button></p>';
-      $('no').onclick = function () { $('confirmar').innerHTML = ''; };
-      $('si-uno').onclick = function () { estado = PERFILES.borrar(estado, p.id); guardar(); aplicar(); elegido = false; entrar(); };
-    };
-    $('borrar-todo').onclick = function () {
-      $('confirmar').innerHTML = chispa('¿Seguro? Se borran todos los jugadores y todo el progreso de este teléfono.') + '<p class="accion"><button id="si-todo">Sí, borrar todo</button> <button class="sec" id="no">No</button></p>';
-      $('no').onclick = function () { $('confirmar').innerHTML = ''; };
-      $('si-todo').onclick = function () { PERFILES.borrarTodo(); estado = { activo: null, perfiles: [] }; aplicar(); elegido = false; entrar(); };
-    };
-  }
-
   /** Punto de entrada: asistente si no hay jugadores, selector si hay varios, menú si hay uno. */
   function entrar() {
     if (!estado.perfiles.length) { reiniciarAsistente(); paso1(); return; }
@@ -228,6 +181,9 @@ var PERF = (function () {
 
   return {
     actual: actual, aj: aj, progreso: progreso, guardar: guardar, aplicar: aplicar, leer: leer, entrar: entrar,
-    quien: quien, ajustes: ajustes, estado: function () { return estado; }
+    quien: quien, estado: function () { return estado; }, volver: irMenu,
+    ajustes: function (aviso) { PANEL.abrir(null, aviso); },
+    fijarEstado: function (e) { estado = e; },
+    nuevo: function () { reiniciarAsistente(); paso1(); }
   };
 })();
