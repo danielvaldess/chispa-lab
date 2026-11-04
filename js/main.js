@@ -62,3 +62,7 @@ async function jugar(nivel) {
 }
 
 menu();
+
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  navigator.serviceWorker.register('sw.js').catch(() => { /* sin sw: el juego funciona igual con red */ });
+}
