@@ -1,51 +1,51 @@
 /* Escenas de juego a pantalla completa: lienzo, HUD y mandos. */
 :root { --tinta: #1d2250; --rosa: #ff5c8a; --amarillo: #ffd23f; --naranja: #ff9f43; --morado: #8a6cff; --azul: #3b82f6; --verde: #2fd18b; }
-.juego { position: fixed; inset: 0; z-index: 10; overflow: hidden; background: #cfe8f4; touch-action: manipulation; user-select: none; -webkit-user-select: none; }
+.juego { font-size: 14px; position: fixed; inset: 0; z-index: 10; overflow: hidden; background: #cfe8f4; touch-action: manipulation; user-select: none; -webkit-user-select: none; }
 .lienzo { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 
 .hud {
-  position: absolute; top: max(14px, env(safe-area-inset-top)); left: 12px; right: 12px;
+  position: absolute; top: max(10px, env(safe-area-inset-top)); left: 12px; right: 12px;
   display: flex; align-items: center; gap: 10px; z-index: 2;
 }
 .cerrar {
   appearance: none; border: 0; width: 46px; height: 46px; border-radius: 50%; background: #fff; color: var(--tinta);
-  font-size: 1.2rem; font-weight: 900; box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25); cursor: pointer; flex: none;
+  font-size: 1.4em; font-weight: 900; box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25); cursor: pointer; flex: none;
 }
 .cerrar:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25); }
 .titulo-juego {
-  flex: 1; min-width: 0; padding: 11px 16px; border-radius: 999px; background: rgba(29, 34, 80, 0.88); color: #fff;
-  font-weight: 800; font-size: 0.95rem; box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  flex: 1; min-width: 0; padding: 9px 16px; border-radius: 999px; background: rgba(29, 34, 80, 0.88); color: #fff;
+  font-weight: 800; font-size: 1.05em; box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .puntos {
   flex: none; display: flex; align-items: center; gap: 4px; padding: 10px 16px; border-radius: 999px;
-  background: var(--amarillo); color: var(--tinta); font-weight: 900; font-size: 1.1rem; box-shadow: 0 4px 0 #c99a00;
+  background: var(--amarillo); color: var(--tinta); font-weight: 900; font-size: 1.3em; box-shadow: 0 4px 0 #c99a00;
 }
 .combo { margin-left: 4px; font-size: 0.85rem; animation: latido 0.6s ease-in-out infinite alternate; }
 @keyframes latido { to { transform: scale(1.18); } }
 
-.pedidos { position: absolute; top: calc(max(14px, env(safe-area-inset-top)) + 62px); left: 0; right: 0; display: flex; justify-content: center; gap: 10px; z-index: 2; }
-.chip { padding: 7px 14px; border-radius: 14px; background: #fff; color: var(--tinta); font-weight: 800; box-shadow: 0 3px 0 rgba(0, 0, 0, 0.18); }
+.pedidos { position: absolute; top: calc(max(10px, env(safe-area-inset-top)) + 56px); left: 0; right: 0; display: flex; justify-content: center; gap: 10px; z-index: 2; }
+.chip { padding: 6px 12px; font-size: 1em; border-radius: 14px; background: #fff; color: var(--tinta); font-weight: 800; box-shadow: 0 3px 0 rgba(0, 0, 0, 0.18); }
 .chip.actual { background: var(--amarillo); box-shadow: 0 3px 0 #c99a00; }
 .chip.hecho { background: var(--verde); color: #fff; box-shadow: 0 3px 0 #1c9a64; }
 
 .mando {
   position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; display: flex; flex-direction: column; gap: 10px;
-  padding: 36px 14px max(14px, env(safe-area-inset-bottom));
+  padding: 36px 12px max(8px, env(safe-area-inset-bottom));
   background: linear-gradient(rgba(20, 20, 60, 0), rgba(20, 20, 60, 0.78) 38%);
 }
 .tutor-juego {
   display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 20px; background: #fff;
   border: 3px solid var(--tinta); box-shadow: 0 5px 0 rgba(0, 0, 0, 0.25);
 }
-.tutor-juego p { margin: 0; font-weight: 800; font-size: 0.95rem; line-height: 1.25; color: var(--tinta); }
-.mini-chispa { flex: none; width: 52px; height: 62px; }
+.tutor-juego p { margin: 0; font-weight: 800; font-size: 0.98em; line-height: 1.3; color: var(--tinta); }
+.mini-chispa { flex: none; width: 44px; height: 50px; }
 .mini-chispa .chispa { width: 100%; height: 100%; animation: none; }
-.info-juego { margin: 0; color: #fff; font-weight: 600; font-size: 0.9rem; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); min-height: 1.2em; }
+.info-juego { margin: 0; color: #fff; font-weight: 500; font-size: 0.97em; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); min-height: 1.2em; }
 
 .controles { display: flex; flex-direction: column; gap: 10px; }
 .fila-mando { display: flex; align-items: stretch; gap: 10px; }
 .caja-ctl { flex: 1; min-width: 0; background: #fff; border-radius: 18px; padding: 10px 14px; box-shadow: 0 4px 0 rgba(0, 0, 0, 0.18); color: var(--tinta); font-weight: 800; }
-.caja-ctl label b { color: var(--rosa); font-size: 1.25rem; }
+.caja-ctl label b { color: var(--rosa); font-size: 1.3em; }
 .caja-ctl[hidden] { display: none; }
 
 .juego input[type="range"] {
@@ -59,20 +59,20 @@
 .juego input[type="range"]::-moz-range-thumb { width: 32px; height: 32px; border-radius: 50%; background: var(--rosa); border: 5px solid #fff; box-shadow: 0 5px 0 #b3335a; cursor: pointer; }
 
 .soltar {
-  appearance: none; flex: none; width: 96px; height: 96px; border: 0; border-radius: 50%; color: #fff; font-weight: 900; font-size: 0.8rem;
+  appearance: none; flex: none; width: 96px; height: 96px; border: 0; border-radius: 50%; color: #fff; font-weight: 900; font-size: 0.9em;
   background: radial-gradient(circle at 35% 28%, #7df0b4, var(--verde) 55%, #17a566); box-shadow: 0 7px 0 #0f7a4b, 0 10px 14px rgba(0, 0, 0, 0.3);
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; cursor: pointer; align-self: center;
 }
-.soltar span { font-size: 1.7rem; line-height: 1; }
+.soltar span { font-size: 2em; line-height: 1; }
 .soltar:active { transform: translateY(5px); box-shadow: 0 2px 0 #0f7a4b; }
 .soltar[disabled] { opacity: 0.55; pointer-events: none; }
 
 .objetos-juego { display: flex; gap: 8px; flex: 1; }
 .obj {
-  appearance: none; flex: 1; border: 0; border-radius: 16px; padding: 8px 2px; background: #fff; color: var(--tinta); font: inherit; font-weight: 800; font-size: 0.8rem;
+  appearance: none; flex: 1; border: 0; border-radius: 16px; padding: 8px 2px; background: #fff; color: var(--tinta); font: inherit; font-weight: 800; font-size: 0.9em;
   box-shadow: 0 4px 0 #b9c1e8; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px;
 }
-.obj span { font-size: 1.6rem; line-height: 1; }
+.obj span { font-size: 1.8em; line-height: 1; }
 .obj[aria-pressed="true"] { background: var(--naranja); box-shadow: 0 4px 0 #c46d12; color: #fff; }
 
 .btn-sec {
@@ -92,3 +92,7 @@
 @keyframes flash { 0% { opacity: 0.6; } 100% { opacity: 0; } }
 
 @media (prefers-reduced-motion: reduce) { .combo, .flotante, .splash, .destello.on { animation: none; } }
+
+.tema-voz .chip:not(.actual):not(.hecho) { background: #e9e9f3; }
+.objetos-juego { align-items: flex-end; }
+.objetos-juego .obj { height: 62px; justify-content: center; }

@@ -248,10 +248,10 @@ export default {
       dibujarCuarto(cx, W, H, k, estrellas, reloj);
       const fr = fase === 'fin' ? null : frecuencia();
       if (fase === 'abriendo' || fase === 'calibrar') {
-        texto3d(cx, t('voz.cartel'), W / 2, H * 0.37, 21 * k);
-        cx.font = `${86 * k}px serif`; cx.textAlign = 'center'; cx.textBaseline = 'middle'; cx.fillStyle = '#fff';
-        cx.fillText('🎤', W / 2, H * 0.48);
-        texto3d(cx, fr ? t('voz.escucho', { n: Math.round(fr) }) : t('voz.noEscucho'), W / 2, H * 0.59, 30 * k);
+        texto3d(cx, t('voz.cartel'), W / 2, H * 0.412, 19 * k);
+        cx.font = `${54 * k}px serif`; cx.textAlign = 'center'; cx.textBaseline = 'middle'; cx.fillStyle = '#fff';
+        cx.fillText('🎤', W / 2, H * 0.498);
+        texto3d(cx, fr ? t('voz.escucho', { n: Math.round(fr) }) : t('voz.noEscucho'), W / 2, H * 0.589, 30 * k);
       }
       if (base) {
         RAZONES.forEach((_, i) => {
@@ -260,7 +260,7 @@ export default {
           if (i === g && fase === 'aros') texto3d(cx, `${Math.round(meta(i))} Hz`, posX(i), y - 38 * k, 15 * k);
         });
       }
-      if (yv !== null) {
+      if (yv !== null && (fase === 'aros' || fase === 'fin')) {
         for (const a of anillos) {
           cx.globalAlpha = Math.max(0, 1 - a.t / 0.8);
           cx.strokeStyle = '#fff'; cx.lineWidth = 3;
@@ -277,6 +277,7 @@ export default {
     }
 
     juego.decir(t('voz.abriendo'));
+    juego.pedido(0);
     juego.iniciar({ actualizar, dibujar });
     return juego.raiz;
   },
