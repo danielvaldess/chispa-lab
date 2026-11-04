@@ -8,6 +8,7 @@
   var LEGADO = 'chispalab.juego.v1';
   var MAX = 4;
   var MAX_SESIONES = 60;
+  var NIVELES_IDS = ['rampa', 'pendulo', 'voz', 'globo', 'luz', 'burbujas'];
 
   function almacenar(a) { return a || (typeof localStorage !== 'undefined' ? localStorage : null); }
 
@@ -44,12 +45,25 @@
         brillo: ex.brillo === 0 || ex.brillo === 1 || ex.brillo === 2 ? ex.brillo : undefined
       },
       progreso: numeros(p.progreso),
+      aprendizaje: normalizarAprendizaje(p.aprendizaje),
       sesionesVoz: (Array.isArray(p.sesionesVoz) ? p.sesionesVoz : []).slice(-MAX_SESIONES).map(function (s) {
         s = objetoPlano(s);
         return { f: String(s.f || '').slice(0, 10), max: Number(s.max) || 0, hzMin: Number(s.hzMin) || 0, hzMax: Number(s.hzMax) || 0 };
       }),
       creado: String(p.creado || '').slice(0, 10)
     };
+  }
+
+  /** Registro de aprendizaje por nivel: partidas, predicciones acertadas, segundos jugados y mejores estrellas. */
+  function normalizarAprendizaje(a) {
+    var out = {};
+    a = objetoPlano(a);
+    NIVELES_IDS.forEach(function (id) {
+      var x = objetoPlano(a[id]);
+      var n = numeros(x);
+      if (n.partidas > 0) out[id] = { partidas: Math.floor(n.partidas), predOk: Math.min(Math.floor(n.predOk || 0), Math.floor(n.partidas)), seg: Math.min(n.seg || 0, 1e6), estrellas: Math.min(3, Math.floor(n.estrellas || 0)) };
+    });
+    return out;
   }
 
   function vacio() { return { activo: null, perfiles: [] }; }
@@ -94,7 +108,7 @@
     var primero = estado.perfiles.length === 0;
     var perfil = {
       id: idNuevo(), nombre: nombre, nac: nac, apoyos: apoyos, extras: {},
-      progreso: primero ? leerLegado(almacen) : {}, sesionesVoz: [], creado: fechaISO(hoy)
+      progreso: primero ? leerLegado(almacen) : {}, aprendizaje: {}, sesionesVoz: [], creado: fechaISO(hoy)
     };
     return { ok: true, perfil: perfil, estado: { activo: perfil.id, perfiles: estado.perfiles.concat([perfil]) } };
   }
@@ -137,6 +151,32 @@
     return perfil;
   }
 
+  /** Anota una partida terminada de un nivel (solo en el teléfono). resultado: { predOk, estrellas, seg }. */
+  function registrarPartida(perfil, nivelId, resultado) {
+    if (NIVELES_IDS.indexOf(nivelId) < 0) return perfil;
+    var a = perfil.aprendizaje[nivelId] || { partidas: 0, predOk: 0, seg: 0, estrellas: 0 };
+    a.partidas += 1;
+    if (resultado.predOk) a.predOk += 1;
+    a.seg = Math.min(1e6, a.seg + Math.max(0, Math.min(3600, Number(resultado.seg) || 0)));
+    a.estrellas = Math.max(a.estrellas, Math.min(3, Number(resultado.estrellas) || 0));
+    perfil.aprendizaje[nivelId] = a;
+    return perfil;
+  }
+
+  /** Resumen para un adulto: por nivel, y cuál es la idea que más le cuesta (la que menos predice bien). */
+  function resumenAprendizaje(perfil) {
+    var filas = [], peor = null;
+    NIVELES_IDS.forEach(function (id) {
+      var a = perfil.aprendizaje[id];
+      if (!a) return;
+      var fila = { id: id, partidas: a.partidas, predOk: a.predOk, minutos: Math.round(a.seg / 60), estrellas: a.estrellas, acierto: a.predOk / a.partidas };
+      filas.push(fila);
+      if (!peor || fila.acierto < peor.acierto || (fila.acierto === peor.acierto && fila.partidas > peor.partidas)) peor = fila;
+    });
+    var totalSeg = Object.keys(perfil.aprendizaje).reduce(function (t, k) { return t + perfil.aprendizaje[k].seg; }, 0);
+    return { filas: filas, masDificil: peor && peor.acierto < 1 ? peor.id : null, minutosTotal: Math.round(totalSeg / 60) };
+  }
+
   /** Texto para copiar y llevar al terapeuta o al docente. */
   function resumenSesiones(perfil) {
     var l = ['Chispa Lab · práctica de voz de ' + perfil.nombre, 'Es un juego de práctica, no un diagnóstico ni una medición clínica.', ''];
@@ -150,7 +190,7 @@
   var PERFILES = {
     CLAVE: CLAVE, LEGADO: LEGADO, MAX: MAX, cargar: cargar, guardar: guardar, crear: crear, activar: activar, actual: actual,
     cambiarApoyos: cambiarApoyos, borrar: borrar, borrarTodo: borrarTodo, necesitaAdulto: necesitaAdulto,
-    registrarSesionVoz: registrarSesionVoz, resumenSesiones: resumenSesiones
+    registrarSesionVoz: registrarSesionVoz, resumenSesiones: resumenSesiones, registrarPartida: registrarPartida, resumenAprendizaje: resumenAprendizaje, NIVELES_IDS: NIVELES_IDS
   };
   if (typeof module !== 'undefined' && module.exports) module.exports = PERFILES;
   else root.PERFILES = PERFILES;

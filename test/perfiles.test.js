@@ -70,5 +70,26 @@ for (let i = 0; i < 80; i++) P.registrarSesionVoz(p, { max: 1, hzMin: 0, hzMax: 
 ok('guarda como máximo 60 sesiones', p.sesionesVoz.length === 60);
 ok('el resumen aclara que no es un diagnóstico', /no un diagnóstico/.test(P.resumenSesiones(p)));
 
+// aprendizaje
+let q = P.crear(P.cargar(falso(), hoy), { nombre: 'Lia', anio: 2016, mes: 1 }, hoy, falso()).perfil;
+P.registrarPartida(q, 'rampa', { predOk: false, estrellas: 2, seg: 120 });
+P.registrarPartida(q, 'rampa', { predOk: true, estrellas: 3, seg: 90 });
+P.registrarPartida(q, 'pendulo', { predOk: true, estrellas: 1, seg: 200 });
+ok('aprendizaje: acumula partidas, aciertos y tiempo', q.aprendizaje.rampa.partidas === 2 && q.aprendizaje.rampa.predOk === 1 && q.aprendizaje.rampa.seg === 210);
+ok('aprendizaje: guarda las mejores estrellas', q.aprendizaje.rampa.estrellas === 3);
+const rs = P.resumenAprendizaje(q);
+ok('resumen: lista los niveles jugados y suma minutos', rs.filas.length === 2 && rs.minutosTotal === 7, rs.minutosTotal);
+ok('resumen: la idea más difícil es la que menos acierta', rs.masDificil === 'rampa');
+P.registrarPartida(q, 'nivel-raro', { predOk: true, estrellas: 3, seg: 10 });
+ok('aprendizaje: ignora niveles desconocidos', !q.aprendizaje['nivel-raro']);
+P.registrarPartida(q, 'luz', { predOk: true, estrellas: 99, seg: 99999 });
+ok('aprendizaje: acota estrellas y tiempo', q.aprendizaje.luz.estrellas === 3 && q.aprendizaje.luz.seg <= 3600);
+const solo = P.crear(P.cargar(falso(), hoy), { nombre: 'Ana', anio: 2016, mes: 1 }, hoy, falso()).perfil;
+P.registrarPartida(solo, 'voz', { predOk: true, estrellas: 3, seg: 60 });
+ok('resumen: si acertó todo no marca ninguna idea difícil', P.resumenAprendizaje(solo).masDificil === null);
+al = falso({ [P.CLAVE]: JSON.stringify({ activo: 'a', perfiles: [{ id: 'a', nombre: 'Ana', nac: '2016-05', aprendizaje: { rampa: { partidas: 3, predOk: 9, seg: -5, estrellas: 8 }, voz: 'x', globo: { partidas: 0 } } }] }) });
+const raro = P.cargar(al, hoy).perfiles[0].aprendizaje;
+ok('aprendizaje: normaliza datos corruptos', raro.rampa.predOk === 3 && raro.rampa.estrellas === 3 && !raro.voz && !raro.globo);
+
 console.log(fallos ? '\n' + fallos + ' prueba(s) fallaron' : '\nTodas las pruebas pasan');
 process.exit(fallos ? 1 : 0);
