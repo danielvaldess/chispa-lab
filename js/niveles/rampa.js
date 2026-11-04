@@ -15,33 +15,32 @@ const COLORES_LIBROS = ['#e4572e', '#29a0b1', '#f2b134', '#7a5af8'];
 
 /** Sala: pared a rayas, ventana con cortinas, piso de madera. */
 function dibujarSala(cx, W, H, k) {
-  const piso = H * 0.52;
+  const piso = H * 0.486;
   cx.fillStyle = grad(cx, 0, piso, '#cfe9f5', '#b5d6e6');
   cx.fillRect(0, 0, W, piso);
   cx.fillStyle = 'rgba(255,255,255,.28)';
   for (let x = 0; x < W; x += 34 * k) cx.fillRect(x, 0, 17 * k, piso);
-  // ventana
-  const wx = W * 0.06, wy = H * 0.12, ww = W * 0.5, wh = H * 0.28;
+  // ventana con cortinas: ocupa del 3 % al 45 % del ancho
+  const x0 = W * 0.03, x1 = W * 0.45, cw = W * 0.085;
+  const wx = x0 + cw, ww = x1 - x0 - 2 * cw, wy = H * 0.133, wh = H * 0.255;
   cx.fillStyle = '#fff';
-  rr(cx, wx, wy, ww, wh, 8 * k); cx.fill();
+  cx.fillRect(wx, wy, ww, wh);
   cx.fillStyle = grad(cx, wy, wy + wh, '#69c6ff', '#d9f1ff');
-  cx.fillRect(wx + 8 * k, wy + 8 * k, ww - 16 * k, wh - 16 * k);
-  esfera(cx, wx + ww * 0.72, wy + wh * 0.38, 18 * k, '#fff2a8', '#ffc83a');
-  cx.fillStyle = 'rgba(255,255,255,.9)';
-  for (const [dx, dy, r] of [[0.28, 0.5, 16], [0.4, 0.58, 20], [0.2, 0.62, 13]]) {
+  cx.fillRect(wx + 5 * k, wy + 5 * k, ww - 10 * k, wh - 10 * k);
+  esfera(cx, wx + ww * 0.9, wy + wh * 0.26, 16 * k, '#fff2a8', '#ffc83a');
+  cx.fillStyle = 'rgba(255,255,255,.92)';
+  for (const [dx, dy, r] of [[0.22, 0.34, 15], [0.42, 0.38, 19], [0.12, 0.4, 11]]) {
     cx.beginPath(); cx.arc(wx + ww * dx, wy + wh * dy, r * k, 0, 7); cx.fill();
   }
   cx.fillStyle = '#fff';
   cx.fillRect(wx + ww / 2 - 3 * k, wy, 6 * k, wh);
-  cx.fillRect(wx, wy + wh * 0.55, ww, 6 * k);
-  // cortinas
-  for (const [x, ancho] of [[wx - 4 * k, ww * 0.2], [wx + ww * 0.8 + 4 * k, ww * 0.2]]) {
-    cx.fillStyle = grad(cx, wy, wy + wh * 1.2, '#ff7aa5', '#ff5c8a');
-    cx.fillRect(x, wy - 8 * k, ancho, wh * 1.2);
+  cx.fillRect(wx, wy + wh * 0.52, ww, 6 * k);
+  for (const x of [x0, x1 - cw]) {
+    cx.fillStyle = grad(cx, wy, wy + wh, '#ff7aa5', '#ff5c8a');
+    cx.fillRect(x, wy, cw, wh);
     cx.fillStyle = 'rgba(255,255,255,.22)';
-    for (let i = 1; i < 4; i++) cx.fillRect(x + (ancho / 4) * i - 2 * k, wy - 8 * k, 3 * k, wh * 1.2);
+    for (let i = 1; i < 3; i++) cx.fillRect(x + (cw / 3) * i - 1.5 * k, wy, 3 * k, wh);
   }
-  // zócalo y piso
   cx.fillStyle = '#e6d3a8';
   cx.fillRect(0, piso - 6 * k, W, 14 * k);
   cx.fillStyle = grad(cx, piso, H, '#d89a5a', '#b36f33');
@@ -52,6 +51,19 @@ function dibujarSala(cx, W, H, k) {
     const y = piso + 8 * k + ((H - piso) / 9) * i * 1.05;
     cx.beginPath(); cx.moveTo(0, y); cx.lineTo(W, y); cx.stroke();
   }
+}
+
+/** Vaso de lápices azul con lápices de colores, al fondo a la derecha. */
+function dibujarLapicero(cx, x, yBase, k) {
+  const w = 51 * k, alto = 40 * k;
+  [['#ffd23f', -14, -0.3], ['#ff5c8a', -4, -0.1], ['#3b82f6', 6, 0.1], ['#2fd18b', 16, 0.3]].forEach(([c, dx, a]) => {
+    cx.save(); cx.translate(x + dx * k, yBase - alto); cx.rotate(a);
+    cx.fillStyle = c; rr(cx, -3 * k, -34 * k, 6 * k, 38 * k, 3 * k); cx.fill(); cx.restore();
+  });
+  cx.fillStyle = '#3b82f6';
+  rr(cx, x - w / 2, yBase - alto, w, alto, 8 * k); cx.fill();
+  cx.fillStyle = 'rgba(255,255,255,.4)';
+  rr(cx, x - w / 2 + 6 * k, yBase - alto + 6 * k, 8 * k, alto - 12 * k, 4 * k); cx.fill();
 }
 
 function dibujarVaso(cx, x, y, k, golpe) {
@@ -265,12 +277,13 @@ export default {
       dibujarSala(cx, W, H, k);
       const deg = fase === 'apuntar' ? angulo() : anguloLanzado;
       const th = radianes(deg);
-      const len = Math.min(W * 0.55, H * 0.6);
-      const g = { bx: W * 0.33, by: H * 0.57, len, th };
+      const len = Math.min(W * 0.615, H * 0.62);
+      const g = { bx: W * 0.354, by: H * 0.58, len, th };
       const sx = g.bx + len * Math.cos(th);
       const sy = g.by - len * Math.sin(th);
-      dibujarLibros(cx, sx + 10 * k, sy + 2 * k, g.by + 6 * k, k);
-      dibujarVaso(cx, g.bx - 4 * k, g.by - 22 * k, k, golpe);
+      dibujarLapicero(cx, W * 0.875, H * 0.545, k);
+      if (g.by - sy > 36 * k) dibujarLibros(cx, sx - 8 * k, sy + 2 * k, g.by + 6 * k, k);
+      dibujarVaso(cx, g.bx - 30 * k, g.by - 28 * k, k, golpe);
       dibujarTablon(cx, g, k);
       // canica
       const r = ESFERA * k * 1.15;
@@ -283,18 +296,18 @@ export default {
       giro = -(p * len) / r;
       if (fase === 'vaso') {
         const caida = Math.min(1, enVasoT / 0.35);
-        mx = g.bx - (34 * k) * caida;
-        my = g.by - 22 * k + (caida > 0 ? 6 * k * caida : 0);
+        mx = g.bx - 8 * k - 44 * k * caida;
+        my = g.by - 28 * k + 8 * k * caida;
       }
       sombra(cx, mx, g.by + 8 * k, r * 0.9, 4 * k, 0.25);
       dibujarCanica(cx, mx, my, r, giro);
       // ángulo y cronómetro
       cx.fillStyle = PALETA.tinta;
-      rr(cx, g.bx - 34 * k, g.by + 14 * k, 74 * k, 30 * k, 14 * k); cx.fill();
-      texto(cx, `${deg.toFixed(deg % 1 ? 1 : 0)}°`, g.bx + 3 * k, g.by + 29 * k, 18 * k);
-      const R = W * 0.2;
-      dibujarCronometro(cx, W * 0.77, H * 0.3, R, tiempoMarcha, objetivo(), fase === 'rodando');
-      texto3d(cx, `${tiempoMarcha.toFixed(1)} s`, W * 0.77, H * 0.3 + R * 1.45, 22 * k);
+      rr(cx, g.bx + 12 * k, g.by + 10 * k, 70 * k, 27 * k, 13 * k); cx.fill();
+      texto(cx, `${deg.toFixed(deg % 1 ? 1 : 0)}°`, g.bx + 47 * k, g.by + 24 * k, 17 * k);
+      const R = W * 0.112;
+      dibujarCronometro(cx, W * 0.78, H * 0.235, R, tiempoMarcha, objetivo(), fase === 'rodando');
+      texto3d(cx, tiempoMarcha === 0 ? '0 s' : `${tiempoMarcha.toFixed(1)} s`, W * 0.78, H * 0.235 + R * 1.45, 16 * k);
     }
 
     juego.decir(t('rampa.tutor'));
