@@ -74,6 +74,19 @@ npm start        # http://localhost:8080
 npm test         # pruebas de física, tono, textos, progreso y PWA
 ```
 
+### App de Android
+
+La misma web se empaqueta como app nativa con [Capacitor](https://capacitorjs.com) (Android 6.0 o superior).
+Requiere JDK 21 y el SDK de Android (`ANDROID_HOME`):
+
+```bash
+npm install
+npm run android   # genera android/app/build/outputs/apk/debug/app-debug.apk
+```
+
+El APK de la última versión está en [Releases](../../releases). En el iPhone, el juego se instala desde
+Safari con «Añadir a pantalla de inicio».
+
 El juego está pensado para el móvil en vertical; en el ordenador, abre las herramientas de
 desarrollo y activa la vista de dispositivo.
 
@@ -92,6 +105,8 @@ js/ui.js            componentes y robot Chispa
 js/audio.js         efectos con Web Audio
 js/progreso.js      estrellas y ajustes locales
 sw.js               modo sin conexión
+android/            proyecto nativo de Capacitor
+scripts/            servidor estático y empaquetado
 test/               pruebas con node:test
 ```
 
