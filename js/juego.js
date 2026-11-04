@@ -1104,6 +1104,8 @@ function menu() {
     return '<a class="tarjeta" style="--c:' + n.color + ';--d:' + (0.15 + i * 0.12) + 's" href="#/n/' + n.id + '"><span class="ico" aria-hidden="true">' + n.icono +
       '</span><span><b>' + esc(n.titulo) + '</b>' + (n.id === PERF.recomendado() ? '<span class="insignia">⭐ Para ti</span>' : '') + '<small>' + esc(n.sub) + (p ? ' · récord ' + p + ' ⭐' : '') + '</small><span class="est" aria-label="' + e + ' de 3 estrellas">' + estrellas(e) + '</span></span></a>';
   }).join('');
+  var nDesc = (jug && jug.descubrimientos ? jug.descubrimientos.length : 0);
+  var tarjetaLibre = '<a class="tarjeta libre" style="--c:#0ea5e9;--d:0.1s" href="#/libre"><span class="ico" aria-hidden="true">🔬</span><span><b>Mi laboratorio</b><span class="insignia">Juego libre</span><small>Mezcla, suelta, riega y descubre. Sin reglas ni tiempo.</small><span class="est">🔎 ' + nDesc + ' de ' + DESCUBRIMIENTOS.CATALOGO.length + ' descubrimientos</span></span></a>';
   var tarjetasExp = EXPERIMENTOS.length ? '<h3 class="sala-exp">🔬 Experimentos con materiales</h3><p class="nota">Opcionales: se hacen con cosas de casa y no hacen falta para encender la estación. Tus descubrimientos quedan en tu cuaderno.</p>' +
     EXPERIMENTOS.map(function (n, i) {
       var e = progreso[n.id] || 0;
@@ -1117,12 +1119,12 @@ function menu() {
   app.innerHTML = '<h2>Chispa y la estación ' + ESTADOS_ESTACION[visto] + '</h2>' +
     chispa(saludo) +
     (pendiente ? '<p><button id="m-final" class="btn-final" type="button">🌟 ¡Mira la estación!</button></p>' : '') +
-    tarjetas + '<p>Energía de la estación: <b>' + total + ' de ' + (NIVELES.length * 3) + '</b><span class="bombillas" role="img" aria-label="' + total + ' de ' + (NIVELES.length * 3) + ' bombillas encendidas">' + bombillas + '</span></p>' + (visto >= 1 ? '<p class="medalla">' + MEDALLAS[visto] + '</p>' : '') + tarjetasExp;
+    tarjetaLibre + tarjetas + '<p>Energía de la estación: <b>' + total + ' de ' + (NIVELES.length * 3) + '</b><span class="bombillas" role="img" aria-label="' + total + ' de ' + (NIVELES.length * 3) + ' bombillas encendidas">' + bombillas + '</span></p>' + (visto >= 1 ? '<p class="medalla">' + MEDALLAS[visto] + '</p>' : '') + tarjetasExp;
   if ($('m-final')) $('m-final').onclick = function () { audio(); sonido('clic'); FINALES.mostrar(PERFILES.finalAlcanzado(progreso, idsNiveles)); };
   app.insertAdjacentHTML('beforeend', '<p class="fila-menu"><button class="sec chico" id="m-ajustes">⚙ Ajustes</button> <button class="sec chico" id="m-quien">👤 Cambiar de jugador</button>' + (EXPERIMENTOS.length ? ' <button class="sec chico" id="m-cuaderno">📓 Mi cuaderno</button>' : '') + '</p>');
   if ($('m-cuaderno')) $('m-cuaderno').onclick = function () {
     audio(); sonido('clic');
-    var t = {}; EXPERIMENTOS.forEach(function (x) { t[x.id] = x.icono + ' ' + x.titulo; });
+    var t = { libre: '🔬 Mi laboratorio' }; EXPERIMENTOS.forEach(function (x) { t[x.id] = x.icono + ' ' + x.titulo; });
     EXP.pantallaCuaderno(PERF.actual(), t);
   };
   $('m-ajustes').onclick = function () { audio(); sonido('clic'); PERF.ajustes(); };
@@ -1196,6 +1198,7 @@ function ruta() {
   window.scrollTo(0, 0);
   detener();
   if (!PERF.actual()) { PERF.entrar(); return; }
+  if (h === '#/libre') { jugarLibre(); return; }
   var n = m ? buscarNivel(m[1]) : null;
   if (n) intro(n); else menu();
 }
