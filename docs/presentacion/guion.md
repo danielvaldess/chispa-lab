@@ -1,47 +1,52 @@
 # Guion de la presentación (5 minutos)
 
-Las 11 diapositivas y el texto para decir en cada una, con su tiempo. Total aproximado: 4,6 minutos a ritmo normal; sobra margen para pausas.
+Las 12 diapositivas y el texto para decir en cada una, con su tiempo. Total: **5:00**. La demo va primero: el jurado ve el juego en los primeros 12 segundos y lo entiende antes de oír datos.
+Este archivo es la fuente de las notas del orador del `.pptx` (el script de la presentación lo lee). Para el vídeo de 3 minutos, ver [`guion-video.md`](guion-video.md).
 
 ## 1. Chispa Lab
 
-[0:00 a 0:15] Buenas. Soy Daniel Valdés, de la UTP de Veraguas. Les presento Chispa Lab: un videojuego que convierte el teléfono de cualquier niño en un laboratorio de ciencias. Funciona sin internet, es inclusivo y es de código abierto.
+[0:00 a 0:12] Buenas. Soy Daniel Valdés, de la UTP de Veraguas. Chispa Lab convierte el teléfono de cualquier niño en un laboratorio de ciencias. Funciona sin internet, es inclusivo y es de código abierto.
 
-## 2. Panamá tiene un reto de aprendizaje en ciencias
+## 2. Mira cómo se juega
 
-[0:15 a 0:45] El problema. En el estudio regional de la UNESCO, los niños de sexto grado de Panamá sacaron 672 puntos en ciencias, frente a 702 de la región. Casi la mitad, el 48 por ciento, está en el nivel más bajo. Y los niños de pueblos originarios van aún más atrás.
+[0:12 a 0:55] Así se juega. El niño inclina el teléfono y una canica rueda por una rampa de cartón. Antes de jugar tiene que predecir qué va a pasar, y si se equivoca, Chispa no le da la respuesta: le pregunta con sus propios números, «usaste 5 y 10 grados y el tiempo pasó de 1,5 a 1,1 segundos, ¿es la mitad?». Y hay experimentos de verdad con cosas de casa: mide un péndulo con un hilo y dibuja su propia gráfica, o le enseña a Chispa a reconocer ácidos y bases con jugo de col morada. Todo en el teléfono, sin conexión.
 
-## 3. El laboratorio y la conexión llegan despacio, el teléfono ya está
+## 3. Panamá tiene un reto de aprendizaje en ciencias
 
-[0:45 a 1:15] El Estado invierte, pero llega a pocos y despacio: la licitación de laboratorios alcanza 73 escuelas, y en 2022 cerca del 45 por ciento de los centros no tenía internet. Sin embargo, hay más de 156 líneas móviles por cada 100 personas. El teléfono ya está. Esa es nuestra oportunidad.
+[0:55 a 1:20] El problema. En el estudio regional de la UNESCO, los niños de sexto grado de Panamá sacaron 672 puntos en ciencias, frente a 702 de la región. Casi la mitad, el 48 por ciento, está en el nivel más bajo. Y los estudiantes de pueblos originarios obtienen resultados más bajos.
 
-## 4. Nuestra idea: predice, juega, descubre
+## 4. El laboratorio y la conexión llegan despacio, el teléfono ya está
 
-[1:15 a 1:45] Nuestra idea es el método científico, jugando. Primero el niño predice qué va a pasar. Luego experimenta usando el teléfono como instrumento: lo inclina, canta, mueve la mano. Y al final compara su predicción con sus propios datos. Esta estrategia, predecir, observar y explicar, tiene respaldo en un metaanálisis de 2024.
+[1:20 a 1:40] El Estado invierte, pero llega a pocos y despacio: la licitación de laboratorios alcanza 73 escuelas, y en 2022 cerca del 45 por ciento de los centros no tenía internet. Sin embargo, hay más de 156 líneas móviles por cada 100 personas. El teléfono ya está.
 
-## 5. Seis laboratorios en un solo teléfono
+## 5. Nuestra idea: predice, formula, juega, descubre
 
-[1:45 a 2:10] Son seis juegos con ideas de física reales: la rampa, el péndulo, la voz, el globo largo, la luz y el color, y las burbujas con la cámara. Cada uno usa un sensor del teléfono, y si el sensor, el permiso o el micrófono no están, hay una alternativa.
+[1:40 a 2:05] Es el método científico, jugando. El niño predice, formula su hipótesis, experimenta con el teléfono como instrumento y compara con sus propios datos. Esta estrategia, predecir, observar y explicar, tiene respaldo en un metaanálisis de 2024 de Koyunlu Ünlü; no verificamos el tamaño del efecto. Y todo queda en su cuaderno de laboratorio, en el teléfono.
 
-## 6. Para todos los niños
+## 6. Seis juegos y dos experimentos con materiales
 
-[2:10 a 2:40] Y es para todos. Uno de cada seis niños panameños de 2 a 14 años tiene alguna discapacidad, y casi ninguna herramienta de ciencias se adapta a ellos. Chispa Lab sí: siete apoyos opcionales, dificultad por edad que nunca es imposible, modo calma, alto contraste. Sin pedir diagnósticos, y todo se queda en el teléfono.
+[2:05 a 2:30] Son seis juegos con ideas de física reales: la rampa, el péndulo, la voz, el globo largo, la luz y las burbujas con la cámara. Y dos experimentos con materiales, opcionales: el péndulo de hilo y la col morada. Cada uno se puede simular en la pantalla si no hay materiales: un laboratorio híbrido, virtual o real.
 
-## 7. IA pequeña, ética y sin conexión
+## 7. Para todos los niños
 
-[2:40 a 3:10] Tiene una IA pequeña y responsable. Un tutor estima qué ideas domina cada niño y recomienda el siguiente juego. Todo ocurre en el teléfono, sin internet y sin enviar datos. Un adulto puede apagarlo o borrarlo, y no penaliza a quien tiene dificultades de voz o motrices. Es un tutor clásico, no un modelo generativo, y lo decimos con claridad.
+[2:30 a 2:55] Y es para todos. Uno de cada seis niños panameños de 2 a 14 años tiene alguna discapacidad. Chispa Lab se diseñó pensando en ellos: siete apoyos opcionales, dificultad por edad que nunca es imposible, modo calma, alto contraste. Sin pedir diagnósticos, y todo se queda en el teléfono.
 
-## 8. Datos del proyecto
+## 8. IA pequeña, ética y sin conexión
 
-[3:10 a 3:40] Medimos el sistema: 86 kilobytes en la primera carga, cero librerías externas, 177 pruebas automáticas, y con la CPU a una cuarta parte sigue a unos 31 fotogramas por segundo. Es una medición única en un equipo de escritorio; falta probarlo en teléfonos reales. Y la literatura respalda las ideas con las que está construido.
+[2:55 a 3:30] La IA son tres piezas pequeñas que corren en el teléfono, sin internet. Un tutor estima qué ideas domina cada niño. Un diagnóstico calcula qué idea equivocada delata cada respuesta, con la regla de Bayes. Y un tutor socrático arma la pregunta y la pista con los números del niño, mientras un bandido de Thompson aprende si a ese niño le sirve más la pista directa o la pregunta primero. En el experimento de la col, Chispa aprende los colores que el niño le enseña. No es IA generativa, no inventa texto, un adulto puede apagarla y no penaliza la voz ni la motricidad. En una simulación, no un piloto, el diagnóstico acierta la idea errónea en unos dos de cada tres casos tras cinco respuestas.
 
-## 9. Impacto: contribuimos a tres ODS
+## 9. Datos del proyecto
 
-[3:40 a 4:05] Contribuimos a tres objetivos de desarrollo sostenible. El cuatro, educación de calidad, con acceso para la niñez vulnerable y entornos inclusivos. El diez, reducir desigualdades, sin importar la edad ni la discapacidad. Y el nueve, aprovechando el acceso móvil sin exigir conexión. Y encaja con la misión de ProFuturo.
+[3:30 a 3:50] Medimos el sistema: unos 121 kilobytes comprimidos en la primera carga, cero librerías externas y 330 comprobaciones automáticas sin fallos. La IA tarda menos de medio milisegundo por partida con la CPU seis veces más lenta. Son mediciones en un ordenador; falta probarlo en teléfonos reales.
 
-## 10. Mercado: hay quién lo necesita y quién lo financia
+## 10. Impacto: contribuimos a tres ODS
 
-[4:05 a 4:35] El mercado. El presupuesto en educación bajó del 4,3 al 2,5 por ciento del PIB, así que una solución de coste casi nulo es más fácil de adoptar. Pagarían el Ministerio, fundaciones como ProFuturo, redes de escuelas y terapeutas, por servicios: adaptación, contenido nuevo, formación. Y ProFuturo ya trabaja con 28 escuelas en Veraguas.
+[3:50 a 4:05] Contribuimos a tres objetivos de desarrollo sostenible. El cuatro, educación de calidad, con acceso para la niñez vulnerable. El diez, reducir desigualdades, sin importar la edad ni la discapacidad. Y el nueve, aprovechando el acceso móvil sin exigir conexión.
 
-## 11. Lo que proponemos
+## 11. Mercado: hay quién lo necesita y quién lo financia
 
-[4:35 a 5:00] Lo que proponemos: un piloto en Veraguas con la UTP, ProFuturo y el Meduca; probarlo con niños y docentes en teléfonos de gama baja; y traducirlo al portugués y al inglés. Chispa Lab convierte el teléfono que ya existe en un laboratorio para todos. Cada teléfono, un laboratorio. Gracias.
+[4:05 a 4:35] El mercado. El presupuesto en educación bajó del 4,3 al 2,5 por ciento del PIB, así que una solución de coste casi nulo es más fácil de adoptar. Pagarían el Ministerio, fundaciones como ProFuturo, redes de escuelas y terapeutas, por servicios: adaptación, contenido nuevo y formación. Son hipótesis, sin cifras de mercado. En Veraguas, ProFuturo y el Ministerio llegaron en una fase inicial a 28 escuelas.
+
+## 12. Lo que proponemos
+
+[4:35 a 5:00] Lo que proponemos: un piloto en Veraguas con la UTP, ProFuturo y el Ministerio; probarlo con niños y docentes en teléfonos de gama baja; y traducirlo al portugués y al inglés. Chispa Lab convierte el teléfono que ya existe en un laboratorio para todos. Cada teléfono, un laboratorio. Gracias.

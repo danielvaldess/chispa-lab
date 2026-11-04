@@ -171,11 +171,32 @@ scripts/            servidor estático y empaquetado
 test/               pruebas
 ```
 
+## Bajo coste y conectividad limitada
+
+| Qué | Valor (medido en un ordenador) |
+|---|---|
+| APK de Android | ≈ 4,2 MB; Android 6.0 o más |
+| Primera carga de la web | ≈ 121 KB comprimidos (312 KB sin comprimir) y ninguna librería externa |
+| Internet | No hace falta después de abrirla una vez; sin cuentas ni servidores |
+| Costo de la IA | ≈ 0,4 ms por partida con la CPU 6 veces más lenta (Chromium); solo corre al terminar un juego |
+| Materiales | Teléfono; los experimentos usan cosas de casa o se simulan en pantalla |
+
+Para docentes: [`docs/guia-docente.md`](docs/guia-docente.md). Cómo probarlo en un teléfono: [`docs/prueba-telefono.md`](docs/prueba-telefono.md).
+
 ## Estado
 
-Los seis niveles son jugables. Probado en Chromium (escritorio emulando móvil, con micrófono y cámara simulados); falta probar en teléfonos reales
-el sensor de inclinación, el micrófono, la cámara, la vibración y la voz sintetizada, y hacer un piloto con niños y con un especialista. Las bandas de
-dificultad por edad son heurísticas por validar.
+- **Hecho:** seis juegos, dos experimentos con materiales, perfiles con apoyos, IA ligera, panel para adultos, finales, PWA sin conexión y APK de Android. `npm test` ejecuta 330 comprobaciones.
+- **Probado:** en Chromium de escritorio (tamaño de teléfono, CPU frenada, micrófono y cámara simulados) y con pruebas automáticas. El APK se compila y se instala en el emulador, pero **el emulador de WSL se cierra
+  al abrir cualquier app con WebView, así que no se recorrió un nivel en Android**.
+- **Sin probar:** en un teléfono real (sensor de inclinación, micrófono, cámara, vibración, voz sintetizada, calor y batería), con niños, con un docente y con col morada real. La simulación de la IA **no es un piloto**.
+- Las bandas de dificultad por edad y los parámetros de la IA son valores por defecto sin calibrar.
+
+## Origen y evidencia de desarrollo
+
+Chispa Lab parte de un **prototipo previo** (tres juegos, detector de tono, física y PWA, hecho el 29–30 de octubre) que se incorporó a este repositorio el 4 de noviembre con la autorización de la
+organización del hackatón, según declara el autor. Hoy ≈ 42 % de las líneas de JavaScript, CSS y HTML vienen de esa importación y ≈ 58 % se escribió aquí: perfiles y apoyos,
+tres juegos nuevos, la IA ligera, el método científico y los experimentos con materiales. No hay commits del 3 de noviembre y las fechas son las reales.
+Detalle, números y cómo comprobarlos en [`docs/evidencia-desarrollo.md`](docs/evidencia-desarrollo.md).
 
 ## Licencia
 

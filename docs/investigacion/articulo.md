@@ -65,7 +65,7 @@ el teléfono y sin conexión** complementa esas inversiones y llega antes.
 ### 2.3 Quién queda más atrás
 
 - **Discapacidad infantil.** La Segunda Encuesta Nacional de Discapacidad (ENDIS-2) identifica **174.701 niñas y niños de 2 a 14 años con discapacidad, el 17,1 % de la niñez del país** [6].
-  Casi ninguna herramienta de ciencias se adapta a ellos.
+  No hicimos una búsqueda sistemática de herramientas de ciencias adaptadas a estos niños, así que no afirmamos cuántas existen.
 - **Comarcas indígenas.** La pobreza multidimensional medida en 2017 fue de **93,4 %** en la comarca Ngäbe Buglé, **91,4 %** en Guna Yala y **70,8 %** en Emberá Wounaan [8]; son cifras de hace
   varios años, y el informe oficial más reciente que encontramos (2025) no pudimos abrirlo en un formato legible.
 - **Voz y habla.** En una encuesta a cuidadores en Estados Unidos, el 6,7 % de los niños de 4 a 12 años tenía problemas de voz [20]. **No encontramos una cifra para Panamá**; la citamos solo
