@@ -240,8 +240,13 @@ function pintarCombo() {
 function pintarPedidos(textos, hechas, actual) {
   var c = $('pedidos'); if (!c) return;
   c.innerHTML = textos.map(function (t, i) {
-    return '<span class="ped' + (i < hechas ? ' hecha' : (i === actual ? ' act' : '')) + '">' + (i < hechas ? '✔ ' : '') + esc(t) + '</span>';
+    return '<span class="ped' + (i < hechas ? ' hecha' : (i === actual ? ' act' : '')) + '">' + (i < hechas ? '✔ ' : (AJ_ACT.simbolos && i === actual ? '▶ ' : '')) + esc(t) + '</span>';
   }).join('');
+}
+/** Para quien no oye: cada tic o tac también se ve. */
+function pulsoSonido(n) {
+  if (!AJ_ACT.visualSonido) return;
+  flotante(n === 'tic' ? '♪ tic' : '♪ tac', n === 'tic' ? W * 0.74 : W * 0.34, H * 0.3, '');
 }
 function sacudir(m) { if (!REDUCIDO && !AJ_ACT.calma) shake = m; }
 function puntosPorAcierto(error, tol) {
@@ -331,6 +336,7 @@ function detener() {
 function arrancar(n) { nivel = n; ultimo = performance.now(); raf = requestAnimationFrame(bucle); }
 function bucle(ts) {
   if (!nivel) return;
+  if (pausado) { ultimo = ts; raf = requestAnimationFrame(bucle); return; }
   var dt = Math.min(0.05, Math.max(0, (ts - ultimo) / 1000));
   ultimo = ts; tt += dt; shake = Math.max(0, shake - dt * 40);
   try {
@@ -361,6 +367,24 @@ function mostrarError(err) {
 window.addEventListener('error', function (e) { mostrarError(e.error || e.message); });
 
 // Escena a pantalla completa con HUD
+/** Botones − y + junto a un deslizador (más fáciles que arrastrar). */
+function masMenos(id) {
+  var inp = $(id); if (!inp || !AJ_ACT.masMenos) return;
+  var paso = Math.max(parseFloat(inp.step) || 1, (parseFloat(inp.max) - parseFloat(inp.min)) / 30);
+  function mover(d) { inp.value = Math.min(parseFloat(inp.max), Math.max(parseFloat(inp.min), parseFloat(inp.value) + d * paso)); inp.dispatchEvent(new Event('input')); pintarBarras(); sonido('clic'); }
+  var fila = document.createElement('div'); fila.className = 'masmenos';
+  fila.innerHTML = '<button class="sec chico" type="button" aria-label="Menos">−</button><button class="sec chico" type="button" aria-label="Más">+</button>';
+  fila.children[0].onclick = function () { mover(-1); }; fila.children[1].onclick = function () { mover(1); };
+  inp.parentNode.appendChild(fila);
+}
+
+// Pausa para descansar (apoyo de concentración)
+var pausado = false;
+function alternarPausa() {
+  pausado = !pausado;
+  var d = $('descanso'); if (d) d.hidden = !pausado;
+}
+
 function escena(titulo, controles) {
   detener();
   app.innerHTML = ''; // evita ids repetidos (la burbuja de Chispa de la pantalla anterior)
@@ -369,11 +393,15 @@ function escena(titulo, controles) {
   d.id = 'escena'; d.className = 'escena';
   d.innerHTML = '<canvas id="cv" role="img" aria-label="' + esc(titulo) + '"></canvas>' +
     '<div class="hud-top"><a class="hud-btn" href="#/" aria-label="Salir al menú">✕</a><div class="hud-titulo">' + esc(titulo) + '</div>' +
-    '<div class="hud-pts" aria-label="Puntos">⭐ <b id="ptsn">0</b></div></div>' +
+    (AJ_ACT.pausa ? '<button class="hud-btn" id="pausa" aria-label="Descansar un momento">⏸</button>' : '') + '<div class="hud-pts" aria-label="Puntos">⭐ <b id="ptsn">0</b></div></div>' +
     '<div class="pedidos" id="pedidos"></div><div class="combo" id="combo" hidden></div>' +
     '<div class="hud-abajo">' + chispa('', true) + '<div class="ctl" id="ctl">' + controles + '</div></div>' +
-    '<div id="flotantes"></div><div id="splash" aria-live="polite"></div>';
+    '<div id="flotantes"></div><div id="splash" aria-live="polite"></div>' +
+    '<div id="descanso" class="descanso" hidden><p>Descansa un momento. Respira tranquilo.</p><button id="seguir">Seguir jugando</button></div>';
   document.body.appendChild(d);
+  pausado = false;
+  if ($('pausa')) $('pausa').onclick = alternarPausa;
+  if ($('seguir')) $('seguir').onclick = alternarPausa;
   document.body.classList.add('en-juego');
   prepararCanvas(); pintarBarras();
 }
@@ -487,8 +515,8 @@ function jugarRampa(pred) {
   }
   function info() { $('info').textContent = 'Pedido ' + (etapa + 1) + ' de 3: que la canica llegue al vaso en ' + OBJ[etapa] + ' s (margen ±' + TOL + ' s).'; }
   decir('¡Hola! Soy Chispa. Inclina el teléfono, suelta la canica y que llegue al vaso justo en el tiempo del pedido.');
-  pedidos(); info();
-  sens.manual = false;
+  pedidos(); info(); masMenos('ang');
+  sens.manual = !AJ_ACT.sensorInclinacion;
   $('modo').onclick = function () {
     if (!sens.manual) { $('ang').value = Math.min(30, Math.round(sens.theta * 2) / 2); $('vA').textContent = $('ang').value; pintarBarras(); }
     sens.manual = !sens.manual; decir(sens.manual ? 'Ahora inclinas con la barra.' : 'Ahora inclinas con el movimiento de tu teléfono.');
@@ -685,7 +713,7 @@ function jugarPendulo(pred) {
   function pedidos() { pintarPedidos(textos, etapa, etapa); }
   function info() { $('info').textContent = 'Luz ' + (etapa + 1) + ' de 3: el péndulo debe tardar ' + OBJ[etapa] + ' s en ir y volver (margen del ' + r(TOL * 100, 0) + ' %).'; }
   decir('La lámpara marca el ritmo del reloj. Escucha su tic y haz que tu péndulo haga tac al mismo ritmo. Cambia una sola cosa a la vez.');
-  pedidos(); info();
+  pedidos(); info(); masMenos('largo');
 
   function reiniciar() { fase = 'listo'; est = { th: 0.35, w: 0 }; cruces = []; medido = null; rastro = []; }
   $('largo').oninput = function () { L = parseInt(this.value, 10) / 100; $('vL').textContent = this.value; reiniciar(); };
@@ -776,13 +804,13 @@ function jugarPendulo(pred) {
     actualizar: function (dt) {
       tb += dt;
       var T = OBJ[etapa < OBJ.length ? etapa : OBJ.length - 1], nb = Math.floor(tb / T);
-      if (nb !== ultTic) { ultTic = nb; sonido('tic'); }
+      if (nb !== ultTic) { ultTic = nb; sonido('tic'); pulsoSonido('tic'); }
       if (fase === 'listo') return;
       var n = Math.max(1, Math.ceil(dt / 0.002)), h = dt / n;
       for (var i = 0; i < n; i++) {
         var prev = est.th;
         FIS.pasoPendulo(est, L, h); tSim += h;
-        if ((prev > 0) !== (est.th > 0) && prev !== 0) sonido('tac');
+        if ((prev > 0) !== (est.th > 0) && prev !== 0) { sonido('tac'); pulsoSonido('tac'); }
         if (fase === 'oscila' && prev > 0 && est.th <= 0) cruces.push(tSim - h + h * prev / (prev - est.th));
         if (fase === 'oscila' && cruces.length >= 2) { medir(cruces[1] - cruces[0]); break; }
       }
@@ -831,7 +859,7 @@ function jugarVoz(pred) {
   for (var q = 0; q < (LIGERO ? 18 : 40); q++) estrellasFondo.push({ x: Math.random() * W, y: Math.random() * H * 0.6, s: 0.8 + Math.random() * 1.6, ph: Math.random() * 6 });
   var textos = ['Aro 1', 'Aro 2', 'Aro 3'];
   function pedidos() { pintarPedidos(textos, g, g); }
-  pedidos();
+  pedidos(); masMenos('tono');
   decir('Hoy el globo sube con tu voz. Te pediré permiso para usar el micrófono; el sonido no sale de tu teléfono.');
 
   $('tono').addEventListener('input', function () { $('vT').textContent = this.value; });
@@ -1068,7 +1096,8 @@ function intro(n) {
   var letras = ['A', 'B', 'C'];
   app.innerHTML = '<a class="volver" href="#/">← Menú</a><br><h2>' + n.icono + ' ' + esc(n.titulo) + '</h2>' + chispa(n.historia) +
     '<h3>Antes de jugar, predice</h3><p>' + esc(n.pred.q) + '</p><div id="ops">' +
-    n.pred.ops.map(function (o, i) { return '<button class="op" data-i="' + i + '"><span class="letra">' + letras[i] + '</span>' + esc(o.t) + '</button>'; }).join('') + '</div>';
+    n.pred.ops.map(function (o, i) { return '<button class="op" data-i="' + i + '"><span class="letra">' + letras[i] + '</span>' + esc(o.t) + '</button>'; }).join('') + '</div>' +
+    (AJ_ACT.avisos ? '<p class="nota">Cuando elijas una respuesta, el juego se pone en pantalla completa. Para salir, toca la ✕ de arriba.</p>' : '');
   $('ops').onclick = function (e) {
     var el = e.target;
     while (el && el !== this && !(el.getAttribute && el.getAttribute('data-i') !== null)) el = el.parentNode;

@@ -42,10 +42,20 @@ body.t-muy .escena .chispa p { font-size: 20px; }
 body.t-muy .escena #info, body.t-muy .escena .ctl label { font-size: 19px; }
 
 /* ----- controles grandes ----- */
-body.toques .juego button, body.toques button { min-height: 64px; }
+body.toques .juego button:not(.hud-btn), body.toques button:not(.hud-btn) { min-height: 64px; }
 body.toques .escena .btn-go { width: 108px; height: 108px; }
 
 /* los párrafos de acciones y notas no llevan tarjeta blanca */
 .juego main > p.accion, .juego main > p.nota, .juego main > p.error { background: none; box-shadow: none; padding: 0; }
 .juego main > p.accion { margin: 10px 0; }
 .juego main > p.nota { padding: 0 4px; }
+
+/* + y − junto a los deslizadores; pausa para descansar */
+.juego .masmenos { display: flex; gap: 10px; margin-top: 6px; }
+.juego .masmenos button { flex: 1; font-size: 26px; min-height: 52px; }
+.juego .descanso { position: absolute; inset: 0; z-index: 40; background: rgba(16, 20, 58, 0.92); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 24px; text-align: center; color: #fff; font-weight: 800; font-size: 20px; }
+.juego .descanso[hidden] { display: none; }
+.juego .descanso p { background: none; box-shadow: none; color: #fff; }
+
+/* el botón de pausa del HUD se ve como los demás botones redondos */
+.juego button.hud-btn { flex: none; width: 46px; height: 46px; min-height: 0; padding: 0; border-radius: 50%; background: #fff; color: #1d2250; font-size: 20px; text-shadow: none; box-shadow: 0 4px 0 rgba(29, 34, 80, .4); }
