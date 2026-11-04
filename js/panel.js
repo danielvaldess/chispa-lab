@@ -220,10 +220,21 @@ var PANEL = (function () {
       dificil = '<div class="previa"><b>Lo que más le cuesta a ' + esc(p.nombre) + '</b><p>' + esc(IDEAS[r.masDificil] || '') + '</p>' +
         (n ? '<p><b>Para conversar:</b> ' + esc(n.pred.q) + '</p>' : '') + '</div>';
     }
+    var tutorOn = PERF.aj().tutor;
+    var dominio = NIVELES.map(function (nv) {
+      var m = p.maestria[nv.id]; if (!m) return '';
+      var pc = Math.round(m.p * 100);
+      return '<li><b>' + nv.icono + ' ' + esc(nv.titulo) + '</b> · ' + TUTOR.etiqueta(m.p) + '<div class="barra" role="img" aria-label="Dominio estimado ' + pc + ' por ciento"><i style="width:' + pc + '%"></i></div><small>' + esc(TUTOR.porQue(m)) + '</small></li>';
+    }).join('');
+    var bloqueTutor = '<div class="fila-aj"><div class="txt"><b>Dominio de ideas</b><small>Lo que Chispa estima de cada idea, con un cálculo de probabilidades que se hace solo en este teléfono. No es una nota ni un diagnóstico.</small></div>' +
+      (dominio ? '<ul class="lista-aprendizaje">' + dominio + '</ul>' : '<p class="muestra">Todavía no hay datos. Aparecerán cuando termine algún juego.</p>') + '</div>' +
+      fila('Recomendaciones de Chispa', 'Chispa sugiere el siguiente juego y ajusta el margen al empezar. Si lo apagas, deja de recordar lo que aprende.', interruptor('tutor', tutorOn)) +
+      '<p class="accion"><button class="sec" id="reiniciar-tutor" type="button">Reiniciar lo que Chispa sabe de ' + esc(p.nombre) + '</button></p><div id="confirmar"></div>' +
+      '<div class="fila-aj"><div class="txt"><b>¿Cómo decide Chispa?</b><small>Cada vez que termina un juego, suma una pista: si ' + esc(p.nombre) + ' predijo bien y si logró el reto con soltura. Con esas pistas sube o baja su estimación de cada idea. Después recomienda el juego donde hay más por aprender y da un poco más de margen al empezar si le cuesta. Un adulto siempre puede apagarlo o borrarlo.</small></div></div>';
     app.innerHTML = cabecera('Para adultos y docentes', '👩‍🏫', COLORES.adultos, 'Para adultos y docentes') +
       '<p class="sub-aj">Un resumen sencillo para acompañar a ' + esc(p.nombre) + '. Es una guía de observación, no una evaluación oficial.</p>' +
       '<div class="fila-aj"><div class="txt"><b>Cómo va ' + esc(p.nombre) + '</b><small>' + (r.filas.length ? 'Tiempo jugado: ' + (r.minutosTotal < 1 ? 'menos de 1 min' : r.minutosTotal + ' min') : 'Todavía no hay partidas. Cuando termine un juego aparecerá aquí.') + '</small></div>' +
-      (filas ? '<ul class="lista-aprendizaje">' + filas + '</ul>' : '') + '</div>' + dificil +
+      (filas ? '<ul class="lista-aprendizaje">' + filas + '</ul>' : '') + '</div>' + dificil + bloqueTutor +
       '<div class="fila-aj"><div class="txt"><b>Guía breve para el aula</b></div><ol class="guia">' +
       '<li><b>Un teléfono por grupo</b> de 2 o 3 niños. Una vez abierta, la app funciona sin internet.</li>' +
       '<li><b>Primero predicen.</b> Antes de jugar piden a los niños que digan qué creen que pasará y por qué.</li>' +
@@ -231,6 +242,12 @@ var PANEL = (function () {
       '<li><b>Comparte la app sin internet:</b> pasa el archivo de la app de un teléfono a otro o ábrela desde un solo enlace.</li></ol></div>' +
       '<p class="nota">Los datos se quedan en este teléfono. Para llevar el registro de voz a un especialista, usa «Mi práctica de voz».</p>';
     ponerAtras(function () { abrir(); });
+    ligarInterruptores();
+    $('reiniciar-tutor').onclick = function () {
+      $('confirmar').innerHTML = chispa('¿Seguro? Chispa olvida lo que sabe de ' + p.nombre + '. Su progreso y sus estrellas no se borran.') + '<p class="accion"><button id="si-tutor" type="button">Sí, reiniciar</button> <button class="sec" id="no" type="button">No</button></p>';
+      $('no').onclick = function () { $('confirmar').innerHTML = ''; };
+      $('si-tutor').onclick = function () { PERFILES.reiniciarMaestria(perfil()); PERF.guardar(); adultos(); };
+    };
   }
 
   var VISTAS = { adultos: adultos, pantalla: pantalla, sonido: sonido, ayuda: ayuda, voz: voz, jugadores: jugadores, datos: datos };

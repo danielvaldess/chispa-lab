@@ -37,6 +37,21 @@ var PERF = (function () {
     return a;
   }
 
+  /** Multiplicador del margen inicial de una idea según lo que el tutor sabe del jugador (1 si no hay datos o está apagado). */
+  function margenTutor(id) {
+    var p = actual();
+    return p && aj().tutor ? TUTOR.margenInicial(p.maestria[id]) : 1;
+  }
+
+  /** Id del juego que Chispa recomienda hoy, o null (sin datos, apagado o todo dominado). */
+  function recomendado() {
+    var p = actual();
+    if (!p || !aj().tutor) return null;
+    var ids = NIVELES.map(function (n) { return n.id; });
+    if (aj().voz) ids = ['voz', 'globo'].concat(ids.filter(function (i) { return i !== 'voz' && i !== 'globo'; }));
+    return TUTOR.recomendar(p.maestria, ids);
+  }
+
   /** Capa fija y semitransparente que baja el brillo (un filtro en el body rompería las escenas de pantalla completa). */
   function capaBrillo(nivel) {
     var c = document.getElementById('capa-brillo');
@@ -181,7 +196,7 @@ var PERF = (function () {
 
   return {
     actual: actual, aj: aj, progreso: progreso, guardar: guardar, aplicar: aplicar, leer: leer, entrar: entrar,
-    quien: quien, estado: function () { return estado; }, volver: irMenu,
+    quien: quien, estado: function () { return estado; }, volver: irMenu, margenTutor: margenTutor, recomendado: recomendado,
     ajustes: function (aviso) { PANEL.abrir(null, aviso); },
     fijarEstado: function (e) { estado = e; },
     nuevo: function () { reiniciarAsistente(); paso1(); }

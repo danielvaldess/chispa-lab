@@ -494,7 +494,7 @@ function cronometro(x, y, R, t, obj, tol, activo) {
 
 // ---------- Nivel 1: La rampa de cartón (acelerómetro) ----------
 function jugarRampa(pred) {
-  var OBJ = [3.0, 2.0, 1.4], TOLB = 0.3 * AJ_ACT.tol, TOL = r(TOLB, 2), D = 3, MU = 0.02, din = AJUSTES.dinamicoInicial();
+  var OBJ = [3.0, 2.0, 1.4], TOLB = 0.3 * AJ_ACT.tol * PERF.margenTutor('rampa'), TOL = r(TOLB, 2), D = 3, MU = 0.02, din = AJUSTES.dinamicoInicial();
   var etapa = 0, fase = 'apuntar', s = 0, v = 0, t = 0, thL = 0, quieta = 0, tr = 0, intentos = [], aciertos = [], timer = 0;
   var xm = 0, vm = 0, rotM = 0, golpe = 0, tTiempo = 0, enVaso = false, avisoSensor = false, avisoT = 0;
 
@@ -703,7 +703,7 @@ function objetoColgante(i, x, y, rad, ang) {
 }
 
 function jugarPendulo(pred) {
-  var OBJ = [1.4, 2.0, 2.6], TOLB = 0.05 * AJ_ACT.tol, TOL = r(TOLB, 3), din = AJUSTES.dinamicoInicial();
+  var OBJ = [1.4, 2.0, 2.6], TOLB = 0.05 * AJ_ACT.tol * PERF.margenTutor('pendulo'), TOL = r(TOLB, 3), din = AJUSTES.dinamicoInicial();
   var etapa = 0, fase = 'listo', est = { th: 0.35, w: 0 }, tSim = 0, cruces = [], L = 0.8, item = 2, intentos = [], tb = 0, medido = null, timer = 0, rastro = [], ultTic = -1;
 
   escena('⏱ El péndulo',
@@ -849,7 +849,7 @@ function jugarPendulo(pred) {
 
 // ---------- Nivel 3: La voz (micrófono) ----------
 function jugarVoz(pred) {
-  var RAT = [1.25, 1.5, 2.0], BANDAB = 0.04 * AJ_ACT.tol * AJ_ACT.bandaVoz, BANDA = r(BANDAB, 3), HOLD = 0.8 * AJ_ACT.hold, HOLD0 = 1.2 * AJ_ACT.hold, din = AJUSTES.dinamicoInicial();
+  var RAT = [1.25, 1.5, 2.0], BANDAB = 0.04 * AJ_ACT.tol * AJ_ACT.bandaVoz * PERF.margenTutor('voz'), BANDA = r(BANDAB, 3), HOLD = 0.8 * AJ_ACT.hold, HOLD0 = 1.2 * AJ_ACT.hold, din = AJUSTES.dinamicoInicial();
   var fase = 'abriendo', ref = null, hold = 0, base = null, g = 0, f = null, fT = 0, sinAcierto = 0, total = 0, aciertos = [], usaMic = false, tPitch = 0, timer = 0;
   var yv = null, estrellasFondo = [], anillos = [], tAnillo = 0, xg = 0.3;
   sfxOn = false; // el micrófono escucharía los sonidos del juego
@@ -1072,6 +1072,8 @@ function ordenNiveles() {
   if (AJ_ACT.voz) ['voz', 'globo'].forEach(function (id) {
     for (i = 0; i < l.length; i++) if (l[i].id === id) { l.unshift(l.splice(i, 1)[0]); break; }
   });
+  var reco = PERF.recomendado();
+  if (reco) for (i = 0; i < l.length; i++) if (l[i].id === reco) { l.unshift(l.splice(i, 1)[0]); break; }
   return l;
 }
 
@@ -1080,7 +1082,7 @@ function menu() {
   var tarjetas = ordenNiveles().map(function (n, i) {
     var e = progreso[n.id] || 0, p = progreso[n.id + '_pts'] || 0; total += e; puntosTotal += p;
     return '<a class="tarjeta" style="--c:' + n.color + ';--d:' + (0.15 + i * 0.12) + 's" href="#/n/' + n.id + '"><span class="ico" aria-hidden="true">' + n.icono +
-      '</span><span><b>' + esc(n.titulo) + '</b><small>' + esc(n.sub) + (p ? ' · récord ' + p + ' ⭐' : '') + '</small><span class="est" aria-label="' + e + ' de 3 estrellas">' + estrellas(e) + '</span></span></a>';
+      '</span><span><b>' + esc(n.titulo) + '</b>' + (n.id === PERF.recomendado() ? '<span class="insignia">⭐ Para ti</span>' : '') + '<small>' + esc(n.sub) + (p ? ' · récord ' + p + ' ⭐' : '') + '</small><span class="est" aria-label="' + e + ' de 3 estrellas">' + estrellas(e) + '</span></span></a>';
   }).join('');
   var bombillas = '';
   for (var b = 0; b < NIVELES.length * 3; b++) bombillas += '<span class="b' + (b < total ? ' on' : '') + '"></span>';
@@ -1118,7 +1120,11 @@ function resultado(n, pred, res) {
   if (res.estrellas > prev) progreso[n.id] = res.estrellas;
   if (record) progreso[n.id + '_pts'] = res.puntos;
   var jug = PERF.actual();
-  if (jug) PERFILES.registrarPartida(jug, n.id, { predOk: !!pred.ok, estrellas: res.estrellas, seg: (performance.now() - tInicioPartida) / 1000 });
+  if (jug) {
+    PERFILES.registrarPartida(jug, n.id, { predOk: !!pred.ok, estrellas: res.estrellas, seg: (performance.now() - tInicioPartida) / 1000 });
+    // el tutor aprende: la idea (¿predijo bien?) y la destreza (tercera estrella)
+    PERFILES.registrarMaestria(jug, n.id, { predOk: !!pred.ok, habil: res.estrellas - 1 - (pred.ok ? 1 : 0) >= 1 });
+  }
   guardar();
   var sig = NIVELES[NIVELES.indexOf(n) + 1], est = '', i;
   for (i = 0; i < 3; i++) {

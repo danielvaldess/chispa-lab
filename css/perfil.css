@@ -106,3 +106,8 @@ body.calma .juego button.sw .perilla { transition: none; }
 .juego ol.guia { flex: 1 0 100%; margin: 0; padding-left: 22px; font-weight: 500; line-height: 1.35; }
 .juego ol.guia li { margin: 8px 0; }
 .juego .previa p { background: none; box-shadow: none; padding: 4px 0; margin: 4px 0; }
+
+/* tutor: insignia en el menú y barra de dominio */
+.juego .insignia { display: inline-block; margin: 2px 0 4px; padding: 3px 10px; border-radius: 999px; background: #ffd23f; color: #1d2250; font-size: 13px; font-weight: 900; box-shadow: 0 2px 0 #c99a00; }
+.juego .barra { height: 12px; border-radius: 12px; background: #e3e6f7; overflow: hidden; margin: 6px 0 4px; }
+.juego .barra i { display: block; height: 100%; background: linear-gradient(90deg, #ff9f43, #2fd18b); border-radius: 12px; }
