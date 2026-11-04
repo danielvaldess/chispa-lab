@@ -37,31 +37,34 @@ export function boton(texto, alTocar, clase = '') {
 }
 
 /* ---------- Chispa, el robot tutor ---------- */
-const BOCAS = {
-  feliz: '<path d="M38 74q12 11 24 0" fill="none" stroke="#7df9ff" stroke-width="4" stroke-linecap="round"/>',
-  pensando: '<path d="M43 76h14" fill="none" stroke="#7df9ff" stroke-width="4" stroke-linecap="round"/>',
-  asombro: '<ellipse cx="50" cy="76" rx="5" ry="6" fill="#7df9ff"/>',
-  triste: '<path d="M38 80q12-10 24 0" fill="none" stroke="#7df9ff" stroke-width="4" stroke-linecap="round"/>',
-};
 
-/** Robot Chispa (dibujo propio): cabeza con pantalla azul, antena amarilla y cuerpo naranja. */
+/** Robot Chispa (dibujo propio): cabeza ancha con pantalla azul oscuro, ojos cian, antena y cuerpo naranja. */
 export function chispa(estado = 'feliz') {
-  const ojoR = estado === 'asombro' ? 7 : 5.5;
-  const desvio = estado === 'pensando' ? -3 : 0;
+  const ojos = {
+    feliz: '<ellipse cx="38" cy="50" rx="6" ry="9"/><ellipse cx="62" cy="50" rx="6" ry="9"/>',
+    asombro: '<ellipse cx="38" cy="50" rx="7.5" ry="10.5"/><ellipse cx="62" cy="50" rx="7.5" ry="10.5"/>',
+    pensando: '<ellipse cx="35" cy="48" rx="6" ry="9"/><ellipse cx="59" cy="48" rx="6" ry="9"/>',
+    triste: '<ellipse cx="38" cy="51" rx="6" ry="8"/><ellipse cx="62" cy="51" rx="6" ry="8"/>',
+  };
+  const bocas = {
+    feliz: '<path d="M38 57q12 18 24 0" fill="none" stroke="#6df0ff" stroke-width="4.5" stroke-linecap="round"/>',
+    asombro: '<ellipse cx="50" cy="65" rx="5" ry="6" fill="#6df0ff"/>',
+    pensando: '<path d="M44 66h13" fill="none" stroke="#6df0ff" stroke-width="4.5" stroke-linecap="round"/>',
+    triste: '<path d="M38 68q12-12 24 0" fill="none" stroke="#6df0ff" stroke-width="4.5" stroke-linecap="round"/>',
+  };
   const contenedor = h('div', { class: 'chispa', 'aria-hidden': 'true' });
   contenedor.innerHTML = `
-    <svg viewBox="0 0 100 130">
-      <ellipse cx="50" cy="124" rx="26" ry="5" fill="rgba(29,34,80,.25)"/>
+    <svg viewBox="0 0 100 112">
+      <g fill="#1d2250" opacity=".2"><rect x="16" y="30" width="76" height="58" rx="22"/><rect x="36" y="92" width="36" height="20" rx="10"/><circle cx="54" cy="14" r="6"/></g>
       <line x1="50" y1="14" x2="50" y2="26" stroke="#1d2250" stroke-width="4" stroke-linecap="round"/>
-      <circle class="chispita" cx="50" cy="10" r="7" fill="#ffd23f" stroke="#1d2250" stroke-width="3"/>
-      <rect x="14" y="24" width="72" height="66" rx="30" fill="#eef3ff" stroke="#1d2250" stroke-width="5"/>
-      <rect x="22" y="34" width="56" height="46" rx="22" fill="#2f6df0"/>
-      <ellipse cx="${37 + desvio}" cy="${55 - (estado === 'pensando' ? 3 : 0)}" rx="${ojoR}" ry="${ojoR + 1.5}" fill="#eaffff"/>
-      <ellipse cx="${63 + desvio}" cy="${55 - (estado === 'pensando' ? 3 : 0)}" rx="${ojoR}" ry="${ojoR + 1.5}" fill="#eaffff"/>
-      <circle cx="30" cy="68" r="4" fill="#ff8fb0" opacity=".8"/><circle cx="70" cy="68" r="4" fill="#ff8fb0" opacity=".8"/>
-      ${BOCAS[estado] || BOCAS.feliz}
-      <rect x="30" y="92" width="40" height="24" rx="12" fill="#ff9f43" stroke="#1d2250" stroke-width="5"/>
-      <circle cx="50" cy="104" r="4.5" fill="#ffd23f"/>
+      <circle class="chispita" cx="50" cy="11" r="6.5" fill="#ffd23f" stroke="#1d2250" stroke-width="3.5"/>
+      <rect x="12" y="24" width="76" height="58" rx="22" fill="#eef0ff" stroke="#1d2250" stroke-width="5"/>
+      <rect x="22" y="33" width="56" height="40" rx="15" fill="#2b3a8c"/>
+      <g fill="#6df0ff">${ojos[estado] || ojos.feliz}</g>
+      ${bocas[estado] || bocas.feliz}
+      <circle cx="24" cy="64" r="4.5" fill="#ff8fb0" opacity=".85"/><circle cx="76" cy="64" r="4.5" fill="#ff8fb0" opacity=".85"/>
+      <rect x="32" y="86" width="36" height="20" rx="10" fill="#ff9f43" stroke="#1d2250" stroke-width="5"/>
+      <circle cx="50" cy="96" r="4" fill="#ffd23f"/>
     </svg>`;
   return contenedor;
 }

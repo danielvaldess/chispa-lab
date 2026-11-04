@@ -45,9 +45,9 @@ h1, h2, h3, p { margin: 0; }
 /* ---------- Chispa ---------- */
 .tarjeta-chispa { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 26px; background: #fff; border: 4px solid var(--tinta); box-shadow: 0 7px 0 rgba(29, 34, 80, 0.45); font-weight: 800; }
 .tarjeta-chispa p { flex: 1; }
-.chispa { width: 84px; height: 104px; flex: none; animation: flotar 3s ease-in-out infinite; }
+.chispa { width: 80px; height: 90px; flex: none; animation: flotar 3s ease-in-out infinite; }
 .chispa svg { width: 100%; height: 100%; overflow: visible; }
-.chispa .chispita { transform-origin: 50px 10px; animation: brillar 1.4s ease-in-out infinite; }
+.chispa .chispita { transform-origin: 50px 11px; animation: brillar 1.4s ease-in-out infinite; }
 @keyframes flotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 @keyframes brillar { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.25); } }
 
