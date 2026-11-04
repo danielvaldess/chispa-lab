@@ -1,0 +1,220 @@
+/* Chispa Lab · estilo del videojuego (solo index.html). Colores fijos de alto contraste: texto oscuro sobre tarjetas blancas. */
+body.juego{
+  background:linear-gradient(180deg,#5ec8ff 0%,#7aa2ff 45%,#8a6cff 100%) fixed;
+  color:#1d2250;min-height:100vh;overflow-x:hidden;position:relative;
+}
+.juego::before,.juego::after{content:"";position:fixed;left:-20%;right:-20%;top:-20%;bottom:-20%;pointer-events:none;z-index:0}
+.juego::before{
+  background-image:radial-gradient(circle,rgba(255,255,255,.8) 0 2px,transparent 3px),
+                   radial-gradient(circle,rgba(255,255,255,.5) 0 1.5px,transparent 2.5px);
+  background-size:90px 90px,140px 140px;background-position:0 0,40px 60px;animation:deriva 40s linear infinite;
+}
+.juego::after{
+  background-image:radial-gradient(circle at 20% 30%,rgba(255,255,255,.18) 0 60px,transparent 61px),
+                   radial-gradient(circle at 80% 70%,rgba(255,255,255,.14) 0 90px,transparent 91px);
+  animation:flota 12s ease-in-out infinite alternate;
+}
+@keyframes deriva{to{transform:translateY(90px)}}
+@keyframes flota{to{transform:translate(20px,-30px)}}
+.juego header,.juego main,.juego footer{position:relative;z-index:1}
+
+.juego header{border:0;padding-top:14px}
+.juego .marca{background:#1d2250;color:#fff;padding:6px 16px;border-radius:999px;box-shadow:0 4px 0 rgba(0,0,0,.25);font-size:20px}
+.juego #estado{background:#fff;color:#1d2250;padding:4px 10px;border-radius:999px;font-weight:700;font-size:13px}
+.juego footer{border:0;background:#fff;color:#1d2250;border-radius:20px;margin:24px auto 16px;box-shadow:0 6px 0 rgba(29,34,80,.35);opacity:1}
+.juego footer a{color:#1d4ed8;font-weight:700}
+
+.juego h2{display:inline-block;background:#1d2250;color:#fff;padding:8px 18px;border-radius:999px;box-shadow:0 5px 0 rgba(0,0,0,.25);font-size:22px;margin:10px 0}
+.juego h3{background:#fff;display:inline-block;padding:4px 14px;border-radius:999px;box-shadow:0 4px 0 rgba(29,34,80,.25)}
+.juego p,.juego li,.juego label{color:#1d2250}
+.juego main > p,.juego main > ul,.juego main > label,.juego main > section{background:#fff;border-radius:18px;padding:10px 14px;box-shadow:0 5px 0 rgba(29,34,80,.25)}
+.juego main > ul{padding-left:36px}
+.juego .volver{background:#fff;padding:6px 14px;border-radius:999px;font-weight:800;color:#1d4ed8;text-decoration:none;box-shadow:0 4px 0 rgba(29,34,80,.25)}
+
+/* entrada escalonada de cada pantalla */
+.juego main > *{animation:entra .5s cubic-bezier(.2,.9,.3,1.2) both}
+.juego main > *:nth-child(2){animation-delay:.06s}.juego main > *:nth-child(3){animation-delay:.12s}
+.juego main > *:nth-child(4){animation-delay:.18s}.juego main > *:nth-child(5){animation-delay:.24s}
+.juego main > *:nth-child(n+6){animation-delay:.3s}
+@keyframes entra{from{opacity:0;transform:translateY(22px) scale(.96)}to{opacity:1;transform:none}}
+
+/* botones gordos en 3D */
+.juego button,.juego a.btn{
+  font-weight:800;border:0;border-radius:18px;padding:12px 20px;min-height:52px;color:#fff;cursor:pointer;
+  background:linear-gradient(#34d399,#15803d);text-shadow:0 2px 0 rgba(0,0,0,.25);text-decoration:none;
+  box-shadow:0 6px 0 #0b5a2a,0 12px 16px rgba(0,0,0,.25);transition:transform .08s,box-shadow .08s,filter .2s;
+}
+.juego button:active,.juego a.btn:active{transform:translateY(5px);box-shadow:0 1px 0 #0b5a2a,0 3px 6px rgba(0,0,0,.25)}
+.juego button.sec{background:linear-gradient(#fff,#dfe6ff);color:#1d2250;text-shadow:none;box-shadow:0 6px 0 #8f9cd0,0 12px 16px rgba(0,0,0,.2)}
+.juego button.sec:active{box-shadow:0 1px 0 #8f9cd0}
+.juego button:disabled{filter:grayscale(.8);opacity:.65}
+#soltar:not(:disabled){animation:pulsa 1.6s ease-in-out infinite}
+@keyframes pulsa{50%{transform:scale(1.05)}}
+
+/* opciones de predicción */
+.juego button.op{display:flex;align-items:center;gap:12px;width:100%;text-align:left;margin:12px 0;min-height:60px;font-size:18px;
+  background:linear-gradient(#fff,#eef2ff);color:#1d2250;text-shadow:none;box-shadow:0 6px 0 #8f9cd0,0 12px 16px rgba(0,0,0,.2);
+  animation:entra .5s both}
+.juego button.op:nth-child(2){animation-delay:.1s}.juego button.op:nth-child(3){animation-delay:.2s}
+.juego button.op .letra{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#ff5c8a;color:#fff;font-weight:900;box-shadow:inset 0 -4px 0 rgba(0,0,0,.2)}
+.juego button.op:hover,.juego button.op:focus-visible{transform:translateY(-3px) scale(1.02)}
+.juego button.masa{padding:10px 14px}
+.juego button.masa[aria-pressed="true"]{background:linear-gradient(#ffd23f,#f59e0b);color:#1d2250;text-shadow:none;box-shadow:0 6px 0 #b45309}
+
+/* Chispa, el robot */
+.juego .chispa{position:relative;display:flex;align-items:center;gap:14px;background:#fff;border:3px solid #1d2250;border-radius:24px;
+  padding:12px 16px;margin:14px 0;box-shadow:0 6px 0 rgba(29,34,80,.35)}
+.juego .chispa p{margin:0;font-weight:600}
+.robot{width:76px;height:76px;flex:none;animation:flotar 2.4s ease-in-out infinite;filter:drop-shadow(0 6px 0 rgba(29,34,80,.25))}
+@keyframes flotar{50%{transform:translateY(-7px)}}
+.robot .ojo{transform-box:fill-box;transform-origin:center;animation:parpadea 4s infinite}
+@keyframes parpadea{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.robot .luz{animation:brilla 1.2s ease-in-out infinite}
+@keyframes brilla{50%{opacity:.45}}
+.chispa.habla .robot{animation:salta .55s ease-out}
+@keyframes salta{0%{transform:translateY(0)}35%{transform:translateY(-16px) rotate(-8deg)}70%{transform:translateY(0) rotate(6deg)}100%{transform:none}}
+.chispa.habla .boca{transform-box:fill-box;transform-origin:center;animation:habla .16s 8 alternate}
+@keyframes habla{to{transform:scaleY(1.7)}}
+.chispa .ceno{display:none}
+.chispa.triste .ceno{display:inline}.chispa.triste .sonrisa{display:none}
+
+/* canvas del juego */
+.juego canvas{border:4px solid #fff;border-radius:22px;box-shadow:0 8px 0 rgba(29,34,80,.35),0 14px 24px rgba(0,0,0,.25);background:#9ad8ff;margin:10px 0;display:block}
+.juego canvas.tiembla{animation:tiembla .4s}
+@keyframes tiembla{20%{transform:translateX(-9px)}40%{transform:translateX(9px)}60%{transform:translateX(-6px)}80%{transform:translateX(5px)}}
+.juego input[type=range]{accent-color:#ff5c8a;width:100%}
+.confeti{position:fixed;left:0;top:0;width:100vw;height:100vh;pointer-events:none;z-index:99}
+
+/* menú */
+.juego .tarjeta{display:flex;align-items:center;gap:14px;background:#fff;border:0;border-radius:26px;padding:14px 16px;margin:16px 0;
+  box-shadow:0 8px 0 var(--c),0 16px 24px rgba(0,0,0,.25);color:#1d2250;text-decoration:none;
+  animation:entra .55s cubic-bezier(.2,.9,.3,1.2) both;animation-delay:var(--d);transition:transform .15s}
+.juego .tarjeta:hover,.juego .tarjeta:focus-visible{transform:translateY(-5px) perspective(600px) rotateX(5deg) scale(1.02)}
+.juego .tarjeta:active{transform:translateY(4px)}
+.juego .tarjeta .ico{flex:none;width:80px;height:80px;border-radius:24px;display:grid;place-items:center;font-size:48px;background:var(--c);
+  box-shadow:inset 0 -7px 0 rgba(0,0,0,.2),inset 0 5px 0 rgba(255,255,255,.35);animation:bota 2.2s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes bota{50%{transform:translateY(-9px) rotate(-5deg)}}
+.juego .tarjeta b{font-size:21px}
+.juego .tarjeta small{display:block;font-size:15px;opacity:.85}
+.est{font-size:28px;letter-spacing:4px;color:#f59e0b;text-shadow:0 2px 0 rgba(0,0,0,.15)}
+.bombillas{display:flex;gap:7px;justify-content:center;margin:6px 0 2px}
+.bombillas .b{width:22px;height:30px;border-radius:12px 12px 9px 9px;background:#cbd2ea;box-shadow:inset 0 -4px 0 rgba(0,0,0,.15)}
+.bombillas .b.on{background:#ffd23f;box-shadow:0 0 14px 4px rgba(255,210,63,.85),inset 0 -4px 0 rgba(0,0,0,.12);animation:parpadeo 1.6s ease-in-out infinite}
+@keyframes parpadeo{50%{box-shadow:0 0 6px 1px rgba(255,210,63,.6),inset 0 -4px 0 rgba(0,0,0,.12)}}
+
+/* resultado */
+.estrellas{display:flex;justify-content:center;gap:10px;margin:6px 0}
+.estrellas .e{font-size:64px;line-height:1;color:#c7cde6;text-shadow:0 4px 0 rgba(29,34,80,.25)}
+.estrellas .e.on{color:#ffc61a;opacity:0;animation:pop .7s cubic-bezier(.2,1.7,.4,1) both;animation-delay:calc(.35s * var(--i) + .2s)}
+@keyframes pop{0%{opacity:0;transform:scale(0) rotate(-120deg)}70%{opacity:1;transform:scale(1.35) rotate(10deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+.juego table{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 5px 0 rgba(29,34,80,.25)}
+.juego th{background:#1d2250;color:#fff}
+.juego th,.juego td{padding:8px 10px;border-bottom:1px solid #e3e7f7}
+.juego .tutor{background:#fff7d6;border-left:8px solid #f59e0b;border-radius:14px;padding:10px 14px;margin:12px 0;box-shadow:0 5px 0 rgba(29,34,80,.2)}
+.juego [hidden]{display:none !important}
+
+@media (prefers-reduced-motion: reduce){
+  .juego *,.juego::before,.juego::after{animation:none !important;transition:none !important}
+  .estrellas .e.on{opacity:1}
+}
+/* el confeti es una capa transparente sobre toda la pantalla: no hereda el marco del canvas del juego */
+.juego canvas.confeti{background:transparent;border:0;border-radius:0;box-shadow:none;margin:0;display:block}
+.juego main > p:empty{display:none}
+.juego #manual{background:#fff;border-radius:18px;padding:10px 14px;box-shadow:0 5px 0 rgba(29,34,80,.25);margin:10px 0}
+
+/* ====== Escena de juego a pantalla completa (HUD estilo videojuego) ====== */
+body.en-juego{overflow:hidden;overscroll-behavior:none}
+body.en-juego header,body.en-juego footer,body.en-juego main{display:none}
+.juego .escena{position:fixed;left:0;top:0;right:0;bottom:0;height:100vh;height:100dvh;z-index:20;background:#10143a;touch-action:none;
+  -webkit-user-select:none;user-select:none;overflow:hidden}
+.juego .escena canvas{position:absolute;left:0;top:0;width:100%;height:100%;border:0;border-radius:0;box-shadow:none;margin:0;background:none;animation:none}
+.hud-top{position:absolute;left:0;right:0;top:0;display:flex;align-items:center;gap:8px;padding:calc(env(safe-area-inset-top,0px) + 10px) 12px 0}
+.hud-btn{flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:#fff;color:#1d2250;font-weight:900;font-size:20px;
+  text-decoration:none;box-shadow:0 4px 0 rgba(29,34,80,.4)}
+.hud-titulo{flex:1;min-width:0;background:rgba(29,34,80,.88);color:#fff;font-weight:800;padding:8px 14px;border-radius:999px;font-size:15px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:0 4px 0 rgba(0,0,0,.25)}
+.hud-pts{flex:none;background:#ffd23f;color:#1d2250;font-weight:900;padding:8px 14px;border-radius:999px;font-size:17px;box-shadow:0 4px 0 #b98700;transition:transform .15s}
+.hud-pts.bump{transform:scale(1.25)}
+.pedidos{position:absolute;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 66px);display:flex;justify-content:center;gap:8px;padding:0 12px}
+.ped{background:rgba(255,255,255,.92);color:#1d2250;font-weight:800;padding:6px 12px;border-radius:12px;font-size:14px;box-shadow:0 3px 0 rgba(29,34,80,.35)}
+.ped.act{background:#ffd23f;animation:pulsa 1.2s ease-in-out infinite}
+.ped.hecha{background:#2fd18b;color:#04371f}
+.combo{position:absolute;left:12px;top:calc(env(safe-area-inset-top,0px) + 106px);background:linear-gradient(#ff9f43,#ff5c8a);color:#fff;font-weight:900;
+  padding:6px 14px;border-radius:999px;font-size:16px;box-shadow:0 4px 0 rgba(0,0,0,.25);text-shadow:0 2px 0 rgba(0,0,0,.25)}
+.combo.bump{animation:combo .35s cubic-bezier(.2,1.8,.4,1)}
+@keyframes combo{from{transform:scale(.4) rotate(-10deg)}to{transform:none}}
+.hud-abajo{position:absolute;left:0;right:0;bottom:0;padding:34px 12px calc(env(safe-area-inset-bottom,0px) + 12px);
+  background:linear-gradient(rgba(16,20,58,0),rgba(16,20,58,.78) 34%)}
+.juego .chispa.compacta{margin:0 0 10px;padding:8px 12px;border-radius:18px;border-width:2px;gap:10px}
+.juego .chispa.compacta .robot{width:46px;height:46px}
+.juego .chispa.compacta p{font-size:14px;line-height:1.3}
+.ctl{color:#fff}
+.ctl .fila{display:flex;align-items:center;gap:10px}
+.ctl-caja{flex:1;min-width:0;background:rgba(255,255,255,.94);color:#1d2250;border-radius:16px;padding:8px 12px;font-weight:700;font-size:14px;box-shadow:0 4px 0 rgba(29,34,80,.35)}
+.ctl-caja label,.ctl .etq{color:#1d2250;font-size:13px}
+.ctl .etq{display:block;background:rgba(255,255,255,.94);border-radius:12px;padding:4px 10px;margin-bottom:6px}
+.ctl p#info{margin:8px 0 0;color:#fff;font-size:13px;text-shadow:0 1px 3px rgba(0,0,0,.6);background:none;box-shadow:none;padding:0}
+.juego .btn-go{flex:none;width:92px;height:92px;border-radius:50%;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;
+  font-size:13px;font-weight:900;line-height:1.1;background:radial-gradient(circle at 35% 30%,#7df0b0,#15a34a 70%);
+  box-shadow:0 7px 0 #0b5a2a,0 12px 20px rgba(0,0,0,.4),inset 0 3px 0 rgba(255,255,255,.4)}
+.juego .btn-go span{font-size:26px}
+.juego .btn-go:active{transform:translateY(6px);box-shadow:0 1px 0 #0b5a2a}
+#masas{flex:1;display:flex;gap:6px;min-width:0}
+#masas .masa{flex:1;padding:6px 2px;min-height:60px;margin:0;font-size:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:14px}
+#masas .masa span{font-size:24px;line-height:1}
+.ctl .ctl-caja.ancha{margin-bottom:8px}
+.juego button.chico{flex:none;min-height:52px;min-width:52px;padding:6px 12px;font-size:18px;border-radius:16px}
+.juego button.ancho{width:100%;margin-top:8px;font-size:14px;min-height:48px}
+.ctl-caja label b{color:#e11d5c;font-size:1.15em}
+
+/* ====== Barra deslizante con el estilo del juego (relleno de color + perilla de caramelo) ====== */
+.ctl input[type=range]{-webkit-appearance:none;appearance:none;display:block;width:100%;height:48px;margin:2px 0 0;padding:0;background:transparent;--f:.5;cursor:pointer}
+.ctl input[type=range]:focus{outline:none}
+.ctl input[type=range]::-webkit-slider-runnable-track{box-sizing:border-box;height:26px;border-radius:999px;border:3px solid #1d2250;
+  background:linear-gradient(#ffb36b,#ff5c8a) no-repeat 0 0/calc(var(--f) * (100% - 44px) + 22px) 100%,#dfe6ff;box-shadow:inset 0 4px 0 rgba(0,0,0,.18)}
+.ctl input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:44px;height:44px;margin-top:-10px;border-radius:50%;border:4px solid #fff;
+  background:radial-gradient(circle at 35% 30%,#ffa3c0,#ff3d77 70%);box-shadow:0 0 0 3px #1d2250,0 6px 0 3px #a0153e,0 10px 12px rgba(0,0,0,.35);transition:transform .1s}
+.ctl input[type=range]:active::-webkit-slider-thumb{transform:scale(1.12)}
+.ctl input[type=range]:focus-visible::-webkit-slider-thumb{outline:4px solid #ffd23f;outline-offset:4px}
+.ctl input[type=range]::-moz-range-track{box-sizing:border-box;height:26px;border-radius:999px;border:3px solid #1d2250;background:#dfe6ff;box-shadow:inset 0 4px 0 rgba(0,0,0,.18)}
+.ctl input[type=range]::-moz-range-progress{height:20px;border-radius:999px;background:linear-gradient(#ffb36b,#ff5c8a)}
+.ctl input[type=range]::-moz-range-thumb{box-sizing:border-box;width:44px;height:44px;border-radius:50%;border:4px solid #fff;
+  background:radial-gradient(circle at 35% 30%,#ffa3c0,#ff3d77 70%);box-shadow:0 0 0 3px #1d2250,0 6px 0 3px #a0153e,0 10px 12px rgba(0,0,0,.35)}
+.ctl input[type=range]:focus-visible::-moz-range-thumb{outline:4px solid #ffd23f;outline-offset:4px}
+#flotantes{position:absolute;left:0;top:0;right:0;bottom:0;pointer-events:none}
+.flot{position:absolute;transform:translate(-50%,-50%);font-weight:900;font-size:34px;color:#ffd23f;text-shadow:0 3px 0 #1d2250,0 0 12px rgba(255,210,63,.8);animation:sube 1.15s ease-out forwards}
+@keyframes sube{0%{opacity:0;transform:translate(-50%,0) scale(.4)}20%{opacity:1;transform:translate(-50%,-20px) scale(1.2)}100%{opacity:0;transform:translate(-50%,-110px) scale(1)}}
+#splash{position:absolute;left:0;right:0;top:34%;display:flex;justify-content:center;pointer-events:none}
+.splash-t{font-weight:900;font-size:clamp(34px,11vw,64px);color:var(--c);-webkit-text-stroke:3px #1d2250;paint-order:stroke fill;text-shadow:0 6px 0 #1d2250;
+  animation:splashPop 1.1s cubic-bezier(.2,1.6,.4,1) both;transform-origin:center}
+@keyframes splashPop{0%{opacity:0;transform:scale(.2) rotate(-12deg)}25%{opacity:1;transform:scale(1.25) rotate(4deg)}45%{transform:scale(1) rotate(0)}85%{opacity:1}100%{opacity:0;transform:scale(1.1) translateY(-20px)}}
+.destello{position:absolute;left:0;top:0;right:0;bottom:0;pointer-events:none;background:radial-gradient(circle,rgba(255,255,255,.85),rgba(255,230,120,.35) 45%,transparent 70%);animation:flash .55s ease-out forwards}
+@keyframes flash{from{opacity:1}to{opacity:0}}
+.puntaje{font-size:26px;font-weight:900;text-align:center;color:#1d2250}
+@media (prefers-reduced-motion: reduce){.splash-t,.flot,.destello{animation-duration:.01s !important}}
+
+/* ====== iPhone / Android: sin zoom accidental, sin menú de pulsación larga ====== */
+.juego,.juego *{-webkit-tap-highlight-color:transparent}
+.juego .escena,.juego .escena *{-webkit-touch-callout:none}
+.juego button,.juego a,.juego input{touch-action:manipulation}
+#error-juego{position:fixed;left:12px;right:12px;top:12px;z-index:200;background:#fff;color:#7a120c;border:4px solid #e0453a;border-radius:18px;padding:12px 16px;box-shadow:0 8px 0 rgba(0,0,0,.3);font-size:14px;word-break:break-word}
+#error-juego p{margin:6px 0;background:none;box-shadow:none;padding:0;color:#7a120c}
+
+/* ====== Horizontal en teléfono: el lienzo a la izquierda y el panel de controles a la derecha ====== */
+@media (orientation: landscape) and (max-height: 700px){
+  .juego .escena{--panel:min(42vw,340px)}
+  .juego .escena canvas{width:calc(100% - var(--panel))}
+  .hud-top{right:var(--panel);padding-left:calc(env(safe-area-inset-left,0px) + 10px)}
+  .pedidos{right:var(--panel);top:calc(env(safe-area-inset-top,0px) + 62px)}
+  .combo{top:calc(env(safe-area-inset-top,0px) + 100px)}
+  #splash,#flotantes{right:var(--panel)}
+  #splash{top:30%}
+  .hud-abajo{left:auto;width:var(--panel);top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;overflow-y:auto;
+    padding:10px calc(env(safe-area-inset-right,0px) + 12px) calc(env(safe-area-inset-bottom,0px) + 10px) 12px;
+    background:rgba(16,20,58,.92);border-left:3px solid rgba(255,255,255,.25)}
+  .juego .chispa.compacta{margin:0 0 8px}
+  .juego .btn-go{width:74px;height:74px}
+  .juego .btn-go span{font-size:20px}
+  #masas .masa{min-height:50px}
+  .hud-titulo{font-size:13px;padding:6px 10px}
+}
