@@ -8,10 +8,10 @@ const PIVOTE = { x: 150, y: 26 };
 const PX_POR_METRO = 200;
 const AMPLITUD = 0.35; // rad
 const OBJETOS = [
-  { id: 'moneda', emoji: '🪙', masa: '5 g' },
-  { id: 'llaves', emoji: '🔑', masa: '40 g' },
-  { id: 'manzana', emoji: '🍎', masa: '180 g' },
-  { id: 'lata', emoji: '🥫', masa: '400 g' },
+  { id: 'moneda', emoji: '🪙', masa: '5\u00a0g' },
+  { id: 'llaves', emoji: '🔑', masa: '40\u00a0g' },
+  { id: 'manzana', emoji: '🍎', masa: '180\u00a0g' },
+  { id: 'lata', emoji: '🥫', masa: '400\u00a0g' },
 ];
 const OBJETIVO = { min: 0.95, max: 1.05 };
 
