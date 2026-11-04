@@ -42,7 +42,7 @@
 
   /** Nombre o apodo: letras, espacios, guion y apóstrofo; máximo 20. Vacío si no queda nada. */
   function limpiarNombre(s) {
-    var t = String(s == null ? '' : s).replace(/[^\p{L}\s'’-]/gu, '').replace(/\s+/g, ' ').trim();
+    var t = String(s == null ? '' : s).replace(/[^A-Za-z\u00C0-\u024F\s'’-]/g, '').replace(/\s+/g, ' ').trim();
     return t.slice(0, 20).trim();
   }
 
