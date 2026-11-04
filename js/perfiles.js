@@ -15,7 +15,7 @@
   var MAX_SESIONES = 60;
   var MAX_INTENTOS = 30; // últimos intentos que se guardan por juego
   var NIVELES_IDS = ['rampa', 'pendulo', 'voz', 'globo', 'luz', 'burbujas']; // los seis juegos de la estación (cuentan para los finales)
-  var EXPERIMENTOS_IDS = ['hilo', 'col', 'libre'];                                   // experimentos con materiales (opcionales, no cuentan para los finales)
+  var EXPERIMENTOS_IDS = ['hilo', 'col', 'huevo', 'volcan', 'libre'];                                   // experimentos con materiales (opcionales, no cuentan para los finales)
   var TODOS_IDS = NIVELES_IDS.concat(EXPERIMENTOS_IDS);
 
   function almacenar(a) { return a || (typeof localStorage !== 'undefined' ? localStorage : null); }

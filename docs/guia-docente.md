@@ -28,7 +28,16 @@ contando 10 vueltas. Se aprende que el tiempo depende del largo (no del peso) y 
 Se le enseñan a Chispa tres vasos (agua, limón, bicarbonato) y después ella reconoce vasos misteriosos. *Seguridad:* no probar ni oler los vasos; solo cosas de cocina; **nunca** mezclar productos de limpieza como cloro o amoníaco.
 Chispa no mide el pH: dice a cuál de los vasos enseñados se parece. Con poca luz o poco jugo puede equivocarse, y lo dice.
 
-**Sin materiales:** los dos experimentos se pueden simular en la pantalla.
+**¿Flota o se hunde? (huevo y sal).** Materiales: un vaso grande con agua (unos 250 ml), sal, una cucharita y un huevo crudo o una uva. Se prueba con 0, 2, 4, 6 y 8 cucharaditas de sal y se anota si flota. Se aprende que el agua con sal es más densa y que un objeto flota si es menos denso que el líquido. *Seguridad:* bajar el huevo con la cuchara; no probar el agua; lavarse las manos.
+
+**El volcán de bicarbonato.** Materiales: un vaso o frasco **abierto**, una bandeja, bicarbonato (1 cucharadita siempre), vinagre (1, 4 y 8 cucharadas) y el cronómetro del teléfono. Se mide cuánto burbujea y se descubre que con más vinagre burbujea más, hasta un tope (se acaba el bicarbonato). *Seguridad:* **nunca cerrar una botella ni un frasco**, pocas cantidades, lejos de la cara.
+
+**Sin materiales:** los cuatro experimentos se pueden simular en la pantalla.
+
+## Mi laboratorio (juego libre)
+
+Es un espacio sin reglas, puntos ni tiempo: cuatro estaciones (mezclas, flota o se hunde, invernadero y caída libre) con 24 descubrimientos que aparecen solos. Todo es virtual y de cocina. Sirve para los niños que terminan antes o para empezar la sesión
+con curiosidad: «¿qué crees que pasará si…?». Cada descubrimiento trae «Pruébalo en casa» con los materiales y la advertencia. Los modelos de la planta y de las densidades son **simplificados**: sirven para conversar, no para medir.
 
 ## Cómo usar el panel «Para adultos y docentes»
 

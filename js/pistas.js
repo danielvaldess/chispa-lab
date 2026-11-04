@@ -210,6 +210,57 @@
           explicacion: 'Acertaste. Un dato más:'
         };
       }
+    },
+    huevo: {
+      'huevo-no-cambia': function (d) {
+        var c = num(d.umbral) && d.umbral >= 0;
+        return {
+          pregunta: c ? 'Pensaste que la sal no cambia nada. En tu prueba el objeto empezó a flotar con ' + fmt(d.umbral, 0) + ' cucharaditas. ¿Era igual el agua al principio que al final?' : 'Pensaste que la sal no cambia nada. ¿Qué crees que cambia en el agua cuando le disuelves sal, aunque no se vea?',
+          pista: 'Compara tu primera prueba, sin sal, con la última: el objeto es el mismo, así que lo que cambió fue el agua.',
+          explicacion: 'Es normal pensarlo: el agua con sal se ve igual de transparente. Pero tiene más masa en el mismo espacio, y eso la hace más densa.'
+        };
+      },
+      'huevo-hunde-mas': function () {
+        return {
+          pregunta: 'Pensaste que con más sal se hundiría más. ¿Qué pasó con el objeto cuando echaste más sal?',
+          pista: 'Fíjate en el orden de tus pruebas: con más sal, ¿el objeto se hundió más o se fue acercando a la superficie?',
+          explicacion: 'Tiene lógica pensar que la sal, que pesa, lo hunda. Pero la sal se disuelve y es el agua la que se vuelve más densa y lo empuja hacia arriba.'
+        };
+      },
+      ok: function (d) {
+        var c = num(d.umbral) && d.umbral > 0;
+        return {
+          pregunta: c ? '¡Bien! Empezó a flotar con ' + fmt(d.umbral, 0) + ' cucharaditas de sal. ¿Por qué crees que con sal flota? ¿Flotaría también una moneda?' : '¡Bien! Con más sal el objeto flota. ¿Por qué crees que pasa? ¿Flotaría también una moneda?',
+          pista: 'Piensa en la densidad: un objeto flota si es menos denso que el líquido en el que está.',
+          explicacion: 'Acertaste. Fíjate en la idea:'
+        };
+      }
+    },
+    volcan: {
+      'volcan-siempre-mas': function (d) {
+        var c = todos(d.t2, d.t3) && d.t2 > 0;
+        return {
+          pregunta: c ? 'Pensaste que dura siempre más. De 4 a 8 cucharadas, el tiempo pasó de ' + fmt(d.t2, 0) + ' s a ' + fmt(d.t3, 0) + ' s. ¿Se duplicó, como el vinagre?' : 'Pensaste que dura siempre más. Si duplicas el vinagre, ¿se duplica el tiempo?',
+          pista: c ? 'Divide ' + fmt(d.t3, 0) + ' entre ' + fmt(d.t2, 0) + ': da ' + fmt(d.t3 / d.t2, 2) + '. Si se duplicara, saldría 2.' : 'Divide el tiempo con 8 cucharadas entre el tiempo con 4. Si se duplicara, saldría 2.',
+          explicacion: 'Tiene sentido: más vinagre parece más reacción. Pero la reacción necesita los dos, y el bicarbonato se acaba.'
+        };
+      },
+      'volcan-no-cambia': function (d) {
+        var c = todos(d.t1, d.t2);
+        return {
+          pregunta: c ? 'Pensaste que el vinagre no cambia el burbujeo. Con 1 cucharada fueron ' + fmt(d.t1, 0) + ' s y con 4 fueron ' + fmt(d.t2, 0) + ' s. ¿Son iguales?' : 'Pensaste que el vinagre no cambia el burbujeo. ¿Qué pasa si no le echas casi vinagre?',
+          pista: c ? 'La diferencia entre ' + fmt(d.t2, 0) + ' s y ' + fmt(d.t1, 0) + ' s es de ' + fmt(Math.abs(d.t2 - d.t1), 0) + ' s. ¿Es poco o es mucho?' : 'Compara los tiempos con poco vinagre y con mucho.',
+          explicacion: 'Es fácil pensarlo, porque el bicarbonato es siempre el mismo. Pero con poco vinagre, el vinagre se acaba primero.'
+        };
+      },
+      ok: function (d) {
+        var c = todos(d.t1, d.t2, d.t3);
+        return {
+          pregunta: c ? '¡Bien! Con 1 cucharada burbujeó ' + fmt(d.t1, 0) + ' s, con 4 fueron ' + fmt(d.t2, 0) + ' s y con 8, ' + fmt(d.t3, 0) + ' s. ¿Por qué crees que de 4 a 8 casi no cambió?' : '¡Bien! Hay un tope. ¿Por qué crees que llega un momento en que ya no sube?',
+          pista: 'Piensa qué se acabó primero: el vinagre o el bicarbonato.',
+          explicacion: 'Acertaste. Fíjate en la idea:'
+        };
+      }
     }
   };
 
