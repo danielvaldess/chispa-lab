@@ -21,7 +21,7 @@ test('ningún texto está vacío y las {variables} coinciden entre idiomas', () 
 
 test('t() sustituye variables y cae a la clave si no existe', () => {
   fijarIdioma('en');
-  assert.equal(t('menu.total', { n: 4 }), '4 of 9 stars');
+  assert.equal(t('menu.energia', { n: 4, total: 9 }), 'Station energy: 4 of 9');
   assert.equal(t('no.existe'), 'no.existe');
   fijarIdioma('es');
 });
