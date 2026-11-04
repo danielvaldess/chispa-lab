@@ -76,7 +76,7 @@ var PANEL = (function () {
     }
   }
   function hablar(t) {
-    try { if (!window.speechSynthesis) return; window.speechSynthesis.cancel(); var u = new SpeechSynthesisUtterance(t); u.lang = 'es-ES'; u.rate = 0.95; window.speechSynthesis.speak(u); } catch (e) {}
+    VOZ.hablar(t);
   }
 
   // ---------- pantalla principal ----------
@@ -117,9 +117,10 @@ var PANEL = (function () {
     app.innerHTML = cabecera('Sonido y vibración', '🔊', COLORES.sonido, 'Sonido y vibración') +
       fila('Sonidos', 'Qué tan fuertes suenan los efectos del juego.', segmentado('volumen', SONIDOS, a.volumen)) +
       fila('Vibración', 'El teléfono vibra cuando aciertas.', interruptor('vibrar', a.vibrar)) +
-      fila('Leer en voz alta', 'Chispa te lee lo que dice. Funciona si tu teléfono tiene voz en español.', interruptor('leerVoz', a.leerVoz), '<button class="sec chico" id="probar" type="button">▶ Probar la voz</button>');
+      fila('Leer en voz alta', 'Chispa te lee lo que dice. Funciona si tu teléfono tiene voz en español.', interruptor('leerVoz', a.leerVoz), '<button class="sec chico" id="probar" type="button">▶ Probar la voz</button> <button class="sec chico" id="otra-voz" type="button">🔁 Otra voz</button>');
     ponerAtras(function () { abrir(); }); ligarInterruptores(); ligarSegmentos();
     $('probar').onclick = function () { hablar('Hola, soy Chispa. Así te leeré los mensajes.'); };
+    $('otra-voz').onclick = function () { VOZ.cambiar(); hablar('Hola, soy Chispa. ¿Te gusta cómo suena esta voz?'); };
   }
   function ayuda() {
     var p = perfil(), sel = p.apoyos.slice();
