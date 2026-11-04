@@ -102,7 +102,7 @@ function jugarHilo(pred) {
     pts.forEach(function (p) { my = Math.max(my, p.T * p.T); }); my = Math.max(my * 1.2, 0.1);
     c.clearRect(0, 0, w, h); c.fillStyle = '#fff'; c.fillRect(0, 0, w, h);
     c.strokeStyle = '#1d2250'; c.lineWidth = 2; c.beginPath(); c.moveTo(34, 8); c.lineTo(34, h - 26); c.lineTo(w - 8, h - 26); c.stroke();
-    c.fillStyle = '#1d2250'; c.font = '12px sans-serif'; c.fillText('T² (s²)', 4, 14); c.fillText('largo del hilo (cm)', w - 124, h - 8);
+    c.fillStyle = '#1d2250'; c.font = '12px sans-serif'; c.fillText('T² (s²)', 4, 14); c.fillText('largo del hilo (cm)', w - 124, h - 1);
     function X(L) { return 34 + (w - 46) * L / mx; } function Y(v) { return (h - 26) - (h - 40) * v / my; }
     if (g) { var k = 4 * Math.PI * Math.PI / g / 100; c.strokeStyle = '#3b82f6'; c.beginPath(); c.moveTo(X(0), Y(0)); c.lineTo(X(mx), Y(k * mx)); c.stroke(); } // T² = (4π²/g)·L, con L en cm → /100
     pts.forEach(function (p) { c.fillStyle = '#ff5c8a'; c.beginPath(); c.arc(X(p.L), Y(p.T * p.T), 6, 0, 7); c.fill(); c.fillStyle = '#1d2250'; c.fillText(p.L + '', X(p.L) - 8, h - 12); });
@@ -119,7 +119,7 @@ function jugarHilo(pred) {
       '<table><tr><th>Hilo</th><th>Medidas</th><th>Promedio</th><th>T²</th></tr>' + m.map(function (x, i) {
         return '<tr><td>' + x.L + ' cm</td><td>' + x.ts.map(function (t) { return String(r(t, 2)).replace('.', ','); }).join(' · ') + ' s</td><td>' + String(r(x.T, 2)).replace('.', ',') + ' s</td><td>' + String(T2[i]).replace('.', ',') + '</td></tr>';
       }).join('') + '</table>' +
-      '<canvas id="graf" width="320" height="200" role="img" aria-label="Gráfica del tiempo al cuadrado contra el largo del hilo: los puntos caen sobre una línea recta"></canvas>' +
+      '<canvas id="graf" width="320" height="214" role="img" aria-label="Gráfica del tiempo al cuadrado contra el largo del hilo: los puntos caen sobre una línea recta"></canvas>' +
       '<p>' + (justa ? '✔ Hiciste una <b>prueba justa</b>: solo cambiaste el largo del hilo.' : '⚠ En tus medidas cambió más de una cosa (objeto o separación), así que no es una prueba del todo justa.') + '</p>' +
       (parecidas ? '' : '<p>⚠ Tus dos medidas del mismo hilo se parecen poco. Repetir ayuda a ver cuánto te puedes fiar.</p>') +
       '<p><b>El hilo es ' + ultimo.L / primero.L + ' veces más largo y el tiempo fue ×' + String(r(razon, 1)).replace('.', ',') + '.</b> ' + (g ? 'Con tus datos, Chispa estima que la gravedad es de unos ' + String(r(g, 1)).replace('.', ',') + ' m/s² (el valor real ronda 9,8).' : '') + '</p>' +

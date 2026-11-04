@@ -23,7 +23,7 @@ Todas las cifras llevan su fuente en [`investigacion/articulo.md`](investigacion
 | Pero no todos tienen conexión | 72,8 % de la población usa internet (2024) [7] | Funcionar sin conexión es una ventaja, no un detalle |
 | El presupuesto se aprieta | Gasto público en educación: 2,47 % del PIB (2023) frente a 4,30 % (2020) [7] | Una solución de coste casi nulo es más fácil de adoptar |
 | Hay una red de docentes en Veraguas | ProFuturo con MEDUCA: 76 escuelas, 28 en Veraguas, más de 700 docentes [9] | Un canal de piloto y distribución ya existe |
-| Niñez con discapacidad | 17,1 % de los niños de 2 a 14 años (ENDIS-2) [6] | Un segmento que casi nadie atiende |
+| Niñez con discapacidad | 17,1 % de los niños de 2 a 14 años (ENDIS-2) [6] | Un segmento que conviene atender con herramientas pensadas para sus necesidades |
 
 ## Por qué convendría adoptarlo (propuesta de valor para Panamá)
 
@@ -38,6 +38,29 @@ Todas las cifras llevan su fuente en [`investigacion/articulo.md`](investigacion
 
 Un **videojuego que convierte el teléfono en un laboratorio**: el niño predice, juega con los sensores del teléfono y descubre qué pasó, con ayudas para cada
 persona y funcionando **sin internet**. El código es abierto y gratuito.
+
+## Bajo coste y conectividad limitada (lo que el reto valora especialmente)
+
+Medidas propias de la versión 1.0.0, hechas en un ordenador (no en un teléfono real):
+
+| Qué | Valor |
+|---|---|
+| Peso de la app para Android (APK) | ≈ 4,2 MB: cabe en un mensaje de WhatsApp o se pasa por Bluetooth |
+| Primera carga de la web | ≈ 121 KB comprimidos (312 KB sin comprimir), 0 librerías externas |
+| Android mínimo | 6.0 (nivel 23) |
+| Internet | No hace falta después de abrirla una vez (PWA con service worker); el APK no la usa |
+| Cuentas y servidores | Ninguno: los datos viven en el teléfono y se borran desde Ajustes |
+| Costo de la IA en el teléfono | ≈ 0,4 ms por partida con la CPU 6 veces más lenta (Chromium); solo corre al terminar un juego |
+| Materiales de los experimentos | Hilo, una moneda, vasos, limón, bicarbonato, vinagre y col morada; o simulados en pantalla |
+| Un teléfono por grupo | Sí: una sesión de 2 o 3 niños por teléfono (ver [`guia-docente.md`](guia-docente.md)) |
+
+**Pendiente de medir en un teléfono real de gama baja:** fluidez, calor, batería y funcionamiento de la cámara y el micrófono (lista en [`prueba-telefono.md`](prueba-telefono.md)).
+
+## Distribución sin conexión
+
+1. **APK compartible:** el docente descarga el APK una vez y lo pasa de teléfono en teléfono (WhatsApp, Bluetooth o cable).
+2. **PWA:** en un teléfono con internet se abre el enlace y «Añadir a pantalla de inicio»; después funciona sin conexión.
+3. **Escuelas sin ningún teléfono con internet:** una persona de la red (docente, universidad, ProFuturo) lleva el APK en una memoria o un teléfono. Es una hipótesis: no la hemos probado en una escuela.
 
 ## Quién paga (no los niños)
 
