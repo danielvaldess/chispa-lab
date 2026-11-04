@@ -69,10 +69,16 @@ penaliza el tiempo ni la estabilidad del tono.
 
 ## IA ligera y ética
 
-Chispa incluye un **tutor adaptativo** (seguimiento bayesiano del conocimiento, aprendizaje automático clásico, no generativo) que estima qué ideas domina cada
-niño, recomienda el siguiente juego y explica el porqué a un adulto. Funciona **en el teléfono, sin internet y sin enviar datos**; un adulto puede apagarlo o
-reiniciarlo, y **no penaliza** las dificultades motrices o de voz. Detalle, fórmulas y límites en [`docs/ia-etica.md`](docs/ia-etica.md); cómo puede sostenerse
-en [`docs/transferencia-al-mercado.md`](docs/transferencia-al-mercado.md).
+Chispa incluye una **IA ligera de tres piezas** que corre **en el teléfono, sin internet y sin enviar datos** (unos 23 KB de código, sin librerías):
+
+- **Tutor bayesiano:** estima qué ideas domina cada niño y recomienda el siguiente juego.
+- **Diagnóstico de ideas erróneas:** cada respuesta equivocada delata una idea concreta («si doblo el ángulo, el tiempo baja a la mitad») y se calcula su probabilidad con la regla de Bayes.
+- **Tutor socrático:** al terminar cada juego, Chispa hace una pregunta, da una pista y explica **con los números que midió el propio niño**; un bandido de Thompson aprende si a ese
+  niño le sirve más la pista de una vez o que Chispa pregunte primero.
+
+No es IA generativa: las frases son plantillas con huecos, no inventan texto. Un adulto puede apagarla («IA de Chispa: Sí/No») o reiniciarla, y no penaliza las dificultades motrices o de voz.
+En una **simulación** (no un piloto) el diagnóstico identifica la idea errónea en ≈ 68 % de los casos tras 5 respuestas y señala a ≈ 1 % de quienes sí entienden. Detalle, fórmulas, costo medido y límites en [`docs/ia-etica.md`](docs/ia-etica.md);
+cómo puede sostenerse en [`docs/transferencia-al-mercado.md`](docs/transferencia-al-mercado.md).
 
 ## Jugadores y apoyos
 
@@ -135,6 +141,10 @@ css/                style.css · juego.css
 js/juego.js         menú, niveles, puntos y resultados
 js/lab.js           medición con sensores
 js/dsp.js           procesamiento de señal (tono YIN, filtros)
+js/tutor.js         tutor bayesiano (dominio de cada idea)
+js/diagnostico.js   diagnóstico de ideas erróneas
+js/pistas.js        pregunta, pista y explicación con los datos del jugador
+js/bandido.js       aprendizaje por niño (bandido de Thompson)
 js/fisica.js        fórmulas de la rampa y el péndulo
 sw.js               modo sin conexión
 android/            proyecto nativo de Capacitor
