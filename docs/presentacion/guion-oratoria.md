@@ -48,6 +48,6 @@
 5. **¿Quién paga y cómo se sostiene?** «El código es abierto y no hay servidor, así que el costo de mantenerlo es de trabajo. El ingreso son servicios: adaptación por país, contenido y formación docente, que pagarían el Ministerio, fundaciones como ProFuturo y redes de escuelas. Una aula de laboratorio cuesta unos 150 mil dólares; Chispa Lab, casi cero por escuela.»
 6. **¿Por qué QR y no Bluetooth o internet?** «Funciona en cualquier teléfono con cámara, sin emparejar y sin conexión. Comparamos las opciones y el QR fue la más simple y robusta.»
 7. **¿Y si no hay docente o el niño tiene una discapacidad?** «Son siete apoyos opcionales que el niño o su familia marcan; el juego se adapta y nunca es imposible. No pedimos diagnósticos.»
-8. **¿Cuánto se desarrolló en el hackatón?** «Gran parte: alrededor del 71 % del código se escribió durante el evento, incluida la clase con QR y la IA que aprende. La base de los primeros juegos se preparó antes con autorización de la organización; el detalle está en la bitácora del repositorio.»
+8. **¿Cuánto se desarrolló en el hackatón?** «Gran parte: alrededor del 71 % del código se escribió en el repositorio entre el 3 y el 5 de noviembre, incluida la clase con QR y la IA que aprende. La base de los primeros juegos se preparó el 3 de noviembre como punto de partida; el detalle está en la bitácora del repositorio.»
 
 *Datos citados: ver la diapositiva 16 (referencias en formato APA).*

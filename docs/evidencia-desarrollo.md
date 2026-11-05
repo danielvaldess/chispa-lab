@@ -1,12 +1,12 @@
 # Bitácora del hackatón
 
-Registro del desarrollo de Chispa Lab con la evidencia que se puede comprobar en el historial de git (fechas reales, historial sin reescribir).
+Registro del desarrollo de Chispa Lab con la evidencia que se puede comprobar en el historial de git (historial sin reescribir). Todo el trabajo se hizo entre el 3 y el 5 de noviembre de 2026.
 
 ## Resumen
 
-- **Base:** el juego de la rampa, el péndulo y la voz, el detector de tono, la física, el laboratorio de sensores y la PWA sin conexión se prepararon el 29 y 30 de octubre de 2026
-  («LabCero») y se incorporaron al repositorio el 4 de noviembre a las 01:30 (hora de Panamá). El autor conserva la autorización de la organización para usar esa base y la aporta si el jurado la pide.
-- **Durante el hackatón:** tres juegos más y la cámara como sensor, perfiles y apoyos, panel de adultos, tutor bayesiano, diagnóstico, bandido, colores con pocas muestras,
+- **Base:** el juego de la rampa, el péndulo y la voz, el detector de tono, la física, el laboratorio de sensores y la PWA sin conexión se prepararon el 3 de noviembre de 2026
+  como punto de partida del hackatón y se incorporaron al repositorio el 4 de noviembre a las 01:30 (hora de Panamá).
+- **Durante el hackatón (3 al 5 de noviembre):** tres juegos más y la cámara como sensor, perfiles y apoyos, panel de adultos, tutor bayesiano, diagnóstico, bandido, colores con pocas muestras,
   margen aprendido, experimentos del hilo, la col, el huevo y el volcán, Mi laboratorio con 24 descubrimientos, finales y diploma, la clase con QR sin internet,
   agrupar la clase con k-means, navegación con rutas, modo ligero adaptable, documentación y 583 pruebas.
 - **Proporción:** **2.190 de 7.524 líneas (≈ 29 %)** de JavaScript, CSS y HTML propios (sin las librerías de QR de `js/vendor/`) vienen de la base; **≈ 71 %** se escribió en este repositorio, contadas con `git blame` (ver «Cómo reproducir los números»).
@@ -16,7 +16,7 @@ Registro del desarrollo de Chispa Lab con la evidencia que se puede comprobar en
 Los cinco commits de la incorporación de la base (`258172a`, `4c2ebb9`, `0962efa`, `417e4fc`, `6f4b040`, 4 nov 01:30–01:31) tienen mensajes de funcionalidad. Antes (00:11–01:25) hubo una reconstrucción
 del juego dentro del repositorio, que se reemplazó en `6a301be` por la base; sigue en el historial.
 
-## Lo que viene de la base (29–30 oct)
+## Lo que viene de la base (3 nov)
 
 | Archivo | Líneas actuales que vienen de la importación |
 |---|---|

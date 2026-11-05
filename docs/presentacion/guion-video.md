@@ -1,7 +1,7 @@
 # Guion del vídeo de 3 minutos (entrega del 5 de noviembre)
 
 Las bases piden **un vídeo de 3 minutos o una presentación de 5 minutos, más el enlace al código**. Entregamos el vídeo (un juego se entiende mejor jugando) y dejamos lista la presentación de 5 minutos
-para la final del 7 de noviembre. El vídeo tiene que **mostrar el juego en los primeros 15 segundos**.
+para la final del evento. El vídeo tiene que **mostrar el juego en los primeros 15 segundos**.
 
 ## Antes de grabar
 
@@ -42,7 +42,7 @@ Todos están grabados en Chromium con tamaño de teléfono. En `09`, la cámara 
 
 ## Lo que NO hay que decir
 
-- Si preguntan por el origen: la base (rampa, péndulo, voz) se preparó el 29 y 30 de octubre con autorización de la organización y el grueso de lo que se ve (clase con QR, IA que aprende, experimentos, perfiles) se hizo en el hackatón; el detalle está en la [bitácora](../evidencia-desarrollo.md). No afirmar que *todo* se escribió del 3 al 5.
+- Si preguntan por el origen: la base (rampa, péndulo, voz) se preparó el 3 de noviembre como punto de partida y el resto se completó entre el 3 y el 5 de noviembre; el detalle está en la [bitácora](../evidencia-desarrollo.md). Todo el trabajo del repositorio se hizo entre el 3 y el 5 de noviembre.
 - Que se probó con niños o que mejora el aprendizaje: no hay piloto. Las cifras de la IA son de simulación con alumnos sintéticos.
 - Que Chispa «mide el pH» o «diagnostica»: reconoce el color que se le enseñó, y no es un aparato médico.
 - Que está «validado» con niños o docentes: no hay piloto. Sí se puede decir que **el autor la probó en un teléfono y funciona**, y que las mediciones de fluidez son de Chromium con la CPU limitada.

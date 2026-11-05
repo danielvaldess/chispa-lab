@@ -2,7 +2,7 @@
 
 **Un videojuego educativo, inclusivo y sin conexión para llevar la experimentación científica a escuelas sin laboratorio. Contexto de Panamá y de la Región Educativa de Veraguas.**
 
-*Daniel Valdés · UTP, Centro Regional de Veraguas · #hack4edu 2026, reto 17 (Reto ProFuturo) · noviembre de 2026 · Licencia CC BY-NC-SA 3.0*
+*Daniel Valdés · UTP, Centro Regional de Veraguas · #hack4edu 2026, reto 17 (Reto ProFuturo) · 4 de noviembre de 2026 · Licencia CC BY-NC-SA 3.0*
 
 > **Regla de fuentes de este documento:** todas las fuentes externas están **publicadas en 2024 o después** y se consultaron el **4 de noviembre de 2026**. Lo que no tiene un dato reciente se dice como tal, no se sustituye por uno antiguo. La única excepción son las normas legales vigentes (referencia 25). Cada fuente lleva su nivel de verificación al final (sección 11).
 
