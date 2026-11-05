@@ -9,6 +9,7 @@ const EQUIPO = PART.length ? PART.join(' · ') : '[Nombres de los 3 integrantes:
 let _nota = 0; const notas = () => NOTAS[_nota++].replace('[NOMBRES DEL EQUIPO]', (typeof EQUIPO === 'string' && PART.length) ? PART.join(', ') : '[NOMBRES DEL EQUIPO]');
 const { applyTheme } = require(process.env.SKILL + '/scripts/apply_theme.js');
 const IMG = process.env.IMG;
+const MEDIA = path.resolve(__dirname, '../media'); // GIF animados (se reproducen en la presentación)
 const THEME = {
   name: 'Chispa Lab', headFontFace: 'Calibri', bodyFontFace: 'Calibri',
   colors: { dk1: '1D2250', lt1: 'FFFFFF', dk2: '3B4A9B', lt2: 'EEF3FF', accent1: '5EC8FF', accent2: 'FFD23F', accent3: 'FF5C8A', accent4: '2FD18B', accent5: 'FF9F43', accent6: '8A6CFF', hlink: '1D6FB8', folHlink: '8A6CFF' },
@@ -38,7 +39,7 @@ pres.defineSlideMaster({
 function telefono(slide, ruta, x, y, h, nombre) {
   const w = h * 390 / 844;
   slide.addShape(pres.ShapeType.roundRect, { x: x - 0.07, y: y - 0.07, w: w + 0.14, h: h + 0.14, rectRadius: 0.16, fill: { color: C.text1 }, line: { color: C.accent1, width: 1.5 }, objectName: 'Marco ' + nombre });
-  slide.addImage({ path: IMG + '/' + ruta, x, y, w, h, objectName: 'Captura ' + nombre, altText: 'Captura de pantalla del juego: ' + nombre });
+  slide.addImage({ path: (ruta.endsWith('.gif') ? MEDIA : IMG) + '/' + ruta, x, y, w, h, objectName: 'Captura ' + nombre, altText: 'Captura de pantalla del juego: ' + nombre });
   return w;
 }
 const nota = (slide, t, color) => slide.addText(t, { x: 0.5, y: 5.12, w: 8.6, h: 0.35, fontSize: 10, color: color || C.text2, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Fuente' });
@@ -59,7 +60,7 @@ s.addNotes(notas());
 // ---------- 1b. Demo ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Problema' });
 s.addText('Mira cómo se juega', { placeholder: 'title' });
-[['rampa.png', 'Predice y juega'], ['pistas.png', 'Chispa pregunta con tus datos'], ['lab-mezclas.png', 'Mi laboratorio: juega libre'], ['hilo.png', 'Experimentos con materiales']].forEach((t, i) => {
+[['rampa.gif', 'Predice y juega'], ['pistas.png', 'Chispa pregunta con tus datos'], ['laboratorio.gif', 'Mi laboratorio: juega libre'], ['hilo.png', 'Experimentos con materiales']].forEach((t, i) => {
   const x = 0.55 + i * 2.3;
   telefono(s, t[0], x, 1.3, 3.3, t[1]);
   s.addText(t[1], { x: x - 0.1, y: 4.78, w: 1.9, h: 0.5, fontSize: 12, bold: true, color: C.text1, align: 'center', valign: 'top', margin: 0, isTextBox: true, objectName: 'Pie ' + (i + 1) });
@@ -137,7 +138,7 @@ s.addText('Para docentes: el avance de la clase, sin internet', { placeholder: '
   s.addText([{ text: p[1], options: { fontSize: 18, bold: true, color: C.text1, breakLine: true } }, { text: p[2], options: { fontSize: 13, color: C.text1 } }], { x: 1.25, y: y - 0.08, w: 3.2, h: 0.85, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Paso docente ' + p[0] });
 });
 s.addText('No viajan la fecha de nacimiento, los apoyos ni la voz. QR y no Bluetooth: funciona en cualquier teléfono con cámara, sin emparejar.', { x: 0.5, y: 4.2, w: 3.95, h: 0.75, fontSize: 11.5, italic: true, color: C.text1, margin: 0, valign: 'top', isTextBox: true, objectName: 'Privacidad' });
-[['clase-qr.png', 'La alumna muestra su QR'], ['clase-escaneo.png', 'El docente lo escanea'], ['clase-lista.png', 'Su lista, en su teléfono']].forEach((t, i) => {
+[['ia-grupos.gif', 'Chispa agrupa su clase'], ['clase-escaneo.png', 'El docente escanea el QR'], ['clase-lista.png', 'Su lista, en su teléfono']].forEach((t, i) => {
   const x = 4.75 + i * 1.65;
   telefono(s, t[0], x, 1.4, 3.05, t[1]);
   s.addText(t[1], { x: x - 0.12, y: 4.6, w: 1.5, h: 0.45, fontSize: 11, bold: true, color: C.text1, align: 'center', valign: 'top', margin: 0, isTextBox: true, objectName: 'Pie docente ' + (i + 1) });
@@ -169,25 +170,25 @@ s.addNotes(notas());
 
 // ---------- 7. IA ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Solución' });
-s.addText('IA pequeña, ética y sin conexión', { placeholder: 'title' });
-['Tutor bayesiano: qué ideas domina', 'Diagnóstico: qué idea equivocada delata cada respuesta', 'Pistas con tus datos y bandido de Thompson'].forEach((t, i) => {
-  const x = 0.5 + i * 2.05;
-  s.addText(t, { x, y: 1.45, w: 1.75, h: 1.2, fontSize: 13, bold: true, color: i === 1 ? C.text1 : C.background1, fill: { color: i === 1 ? C.accent2 : C.text1 }, align: 'center', valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.12, margin: 0.08, isTextBox: true, objectName: 'Pieza ' + (i + 1) });
-  if (i < 2) s.addShape(pres.ShapeType.rightArrow, { x: x + 1.78, y: 1.9, w: 0.24, h: 0.3, fill: { color: C.accent1 }, line: { color: C.accent1 }, objectName: 'Flecha ' + (i + 1) });
+s.addText('IA que aprende dentro del teléfono, sin conexión', { placeholder: 'title' });
+['Tutor bayesiano: qué ideas domina', 'Naïve Bayes: qué idea errónea delata cada respuesta', 'Bandido de Thompson: la mejor pista para este niño', 'Centroide: colores con 2 o 3 muestras', 'Margen bayesiano: acierta 7 de cada 10', 'k-means++: agrupa la clase'].forEach((t, i) => {
+  const x = 0.5 + (i % 3) * 2.05, y = 1.4 + Math.floor(i / 3) * 1.0;
+  s.addText(t, { x, y, w: 1.9, h: 0.88, fontSize: 11.5, bold: true, color: i === 5 ? C.text1 : C.background1, fill: { color: i === 5 ? C.accent2 : C.text1 }, align: 'center', valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.12, margin: 0.06, isTextBox: true, objectName: 'Técnica ' + (i + 1) });
 });
-['Sin internet y sin enviar datos', 'No es IA generativa: no inventa texto', 'El adulto decide: puede apagarla o borrarla', 'No penaliza la voz ni la motricidad'].forEach((t, i) => {
-  const x = 0.5 + (i % 2) * 3.05, y = 3.0 + Math.floor(i / 2) * 0.85;
-  s.addText(t, { x, y, w: 2.9, h: 0.7, fontSize: 14, color: C.text1, fill: { color: C.background2 }, valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.1, margin: 0.12, isTextBox: true, objectName: 'Garantía ' + (i + 1) });
+s.addText('Cada decisión se reconstruye con una fórmula; no hay texto inventado.', { x: 0.5, y: 3.5, w: 6.1, h: 0.3, fontSize: 12, italic: true, color: C.text1, margin: 0, isTextBox: true, objectName: 'Nota técnica' });
+['Sin internet y sin enviar datos', 'Reglamento UE 2024/1689 y UNESCO 2024', 'El adulto decide: puede apagarla', 'Equidad: apoyos no penalizan'].forEach((t, i) => {
+  const x = 0.5 + (i % 2) * 3.05, y = 3.95 + Math.floor(i / 2) * 0.55;
+  s.addText(t, { x, y, w: 2.9, h: 0.48, fontSize: 12, color: C.text1, fill: { color: C.background2 }, valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.1, margin: 0.12, isTextBox: true, objectName: 'Garantía ' + (i + 1) });
 });
-telefono(s, 'adultos.png', 7.2, 1.4, 3.6, 'panel para adultos');
-nota(s, 'Simulación (no piloto): el diagnóstico acierta la idea errónea en ≈ 68 % tras 5 respuestas. Parámetros por defecto, aún sin validar con niños.');
+telefono(s, 'ia-grupos.gif', 7.2, 1.4, 3.6, 'agrupar la clase');
+nota(s, 'Simulación con alumnos sintéticos: el diagnóstico acierta la idea errónea en ≈ 68 % tras 5 respuestas; el piloto en Veraguas la calibra con niños.');
 s.addNotes(notas());
 
 // ---------- 8. Datos ----------
 pres.addSection({ title: 'Impacto y mercado' });
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Impacto y mercado' });
 s.addText('Datos del proyecto', { placeholder: 'title' });
-[['≈ 220 KB', 'primera carga comprimida (593 KB sin comprimir)', C.accent1], ['2', 'librerías pequeñas, solo para el QR de la clase', C.accent4], ['528', 'comprobaciones automáticas sin fallos', C.accent6], ['0,4 ms', 'la IA por partida, con la CPU 6× más lenta', C.accent5]].forEach((d, i) => {
+[['≈ 230 KB', 'primera carga comprimida (617 KB sin comprimir)', C.accent1], ['2', 'librerías pequeñas, solo para el QR de la clase', C.accent4], ['583', 'comprobaciones automáticas sin fallos, 0 violaciones de accesibilidad', C.accent6], ['0,4 ms', 'la IA por partida, con la CPU 6× más lenta', C.accent5]].forEach((d, i) => {
   const x = 0.5 + (i % 2) * 2.55, y = 1.4 + Math.floor(i / 2) * 1.75;
   s.addShape(pres.ShapeType.roundRect, { x, y, w: 2.4, h: 1.6, rectRadius: 0.12, fill: { color: C.background2 }, line: { color: C.background2 }, objectName: 'Tarjeta dato ' + (i + 1) });
   s.addText(d[0], { x: x + 0.15, y: y + 0.1, w: 2.1, h: 0.8, fontSize: 36, bold: true, color: C.text1, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Dato ' + (i + 1) });
@@ -199,7 +200,7 @@ s.addText([{ text: 'Lo que respalda la literatura (2024)', options: { bold: true
   { text: 'Laboratorios virtuales: g = 0,69 (46 estudios), sin sustituir del todo al práctico', options: { bullet: true } }],
   { x: 5.75, y: 1.4, w: 3.75, h: 2.5, fontSize: 13, color: C.text1, paraSpaceAfter: 6, margin: 0, valign: 'top', isTextBox: true, objectName: 'Literatura' });
 s.addText('Probada en un teléfono: funciona. Las mediciones de rendimiento son de Chromium con la CPU limitada.', { x: 5.75, y: 3.95, w: 3.75, h: 0.9, fontSize: 13, bold: true, color: C.text1, fill: { color: C.accent2 }, valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.1, margin: 0.12, isTextBox: true, objectName: 'Aviso teléfono' });
-nota(s, 'Medición propia del 4/11/2026 (versión 1.3.0). Fuentes: Koyunlu Ünlü (2024); Behnamnia et al. (2024); Li y Liang (2024).');
+nota(s, 'Medición propia del 4/11/2026 (versión 1.4.0). Fuentes: Koyunlu Ünlü (2024); Behnamnia et al. (2024); Li y Liang (2024).');
 s.addNotes(notas());
 
 // ---------- 9. ODS ----------
@@ -230,7 +231,7 @@ s.addText([
   { text: 'Señales', options: { bold: true, fontSize: 16, color: C.text1, breakLine: true } },
   { text: '44 M$ en internet escolar (2025) y 28,9 M$ en laboratorios (2026). Región Educativa de Veraguas: 54.708 estudiantes en el sistema oficial (2024)', options: { fontSize: 14, color: C.text1 } },
 ], { x: 4.9, y: 1.4, w: 4.6, h: 3.5, margin: 0, valign: 'top', isTextBox: true, objectName: 'Modelo de mercado' });
-nota(s, 'Fuentes: INEC/Contraloría, cuadro 19 (30/1/2026; 2024 preliminar); La Prensa (11/6/2025 y 2/4/2026); Meduca (2024). Son hipótesis, sin cifras de mercado.');
+nota(s, 'Fuentes: INEC/Contraloría, cuadro 19 (30/1/2026; 2024 preliminar); La Prensa (11/6/2025 y 2/4/2026); Meduca (2024). Modelo propuesto, a validar en el piloto.');
 s.addNotes(notas());
 
 // ---------- 11. Cierre ----------

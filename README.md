@@ -141,7 +141,7 @@ Referencias completas: [`docs/investigacion/articulo.md`](docs/investigacion/art
 - **Pruebas de extremo a extremo en teléfonos emulados** (Chromium con perfil móvil, cámara y micrófono virtuales): navegación completa con «atrás» (`npm run probar:navegacion`) y la clase de punta a punta, con un teléfono que muestra el QR y otro que lo escanea (`npm run probar:clase`).
 - **Rendimiento con la CPU limitada (Chromium con perfil móvil):** ≈ 20 a 28 fotogramas por segundo con la CPU 4 veces más lenta y ≈ 11 a 19 con 6 veces; el **modo ligero se activa solo** cuando la fluidez cae por debajo de 26 fps y sube a ≈ 22 a 28. La IA tarda ≈ 0,4 ms por partida.
 - **Probada también por el autor en un teléfono**, con resultado satisfactorio.
-- **Ligera:** APK de 4,3 MB; la web pesa ≈ 220 KB comprimidos y funciona sin conexión después de abrirla una vez.
+- **Ligera:** APK de 4,3 MB; la web pesa ≈ 230 KB comprimidos y funciona sin conexión después de abrirla una vez.
 
 Más detalle: [`docs/calidad-y-pruebas.md`](docs/calidad-y-pruebas.md).
 

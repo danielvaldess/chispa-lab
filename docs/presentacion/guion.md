@@ -3,7 +3,7 @@
 Las 13 diapositivas y el texto para decir en cada una, con su tiempo. Total: **5:00**. La demo va primero: el jurado ve el juego en los primeros 12 segundos y lo entiende antes de oír datos.
 Este archivo es la fuente de las notas del orador del `.pptx` (el script de la presentación lee las secciones numeradas, en orden, y se detiene en la línea `---`). Para el vídeo de 3 minutos, ver [`guion-video.md`](guion-video.md).
 
-**Ritmo:** el texto suma **649 palabras**, unos 4:19 a 150 palabras por minuto, con el resto del tiempo como margen para cambiar de diapositiva y dejar ver la demo. Ninguna diapositiva pasa de 133 palabras por minuto. Conviene ensayarlo con cronómetro: si te pasas, recorta el texto, no hables más rápido.
+**Ritmo:** el texto suma **662 palabras**, unos 4:25 a 150 palabras por minuto, con el resto del tiempo como margen para cambiar de diapositiva y dejar ver la demo. Ninguna diapositiva pasa de 133 palabras por minuto. Conviene ensayarlo con cronómetro: si te pasas, recorta el texto, no hables más rápido.
 
 ## 1. Chispa Lab
 
@@ -35,15 +35,15 @@ Este archivo es la fuente de las notas del orador del `.pptx` (el script de la p
 
 ## 8. Para todos los niños
 
-[2:38 a 3:00] Es para todos. Uno de cada seis niños panameños de 2 a 14 años tiene alguna discapacidad. La dificultad se ajusta a la edad, con valores nuestros por validar, y nunca se vuelve imposible. Hay siete apoyos opcionales, cada uno con cambios concretos, y no se piden diagnósticos.
+[2:38 a 3:00] Es para todos. Uno de cada seis niños panameños de 2 a 14 años tiene alguna discapacidad. La dificultad parte de la edad, aprende de cada niño y nunca se vuelve imposible. Hay siete apoyos opcionales, cada uno con cambios concretos, y no se piden diagnósticos.
 
 ## 9. IA pequeña, ética y sin conexión
 
-[3:00 a 3:34] La IA son tres piezas pequeñas que corren en el teléfono, sin internet. Un tutor estima qué ideas domina cada niño; un diagnóstico calcula qué idea equivocada delata cada respuesta; y un tutor socrático arma la pista con los números del niño. No es IA generativa, un adulto puede apagarla y no penaliza la voz ni la motricidad. En simulación, no en piloto, acierta la idea errónea en dos de cada tres casos.
+[3:00 a 3:34] La IA son seis técnicas de aprendizaje automático clásico que aprenden dentro del teléfono, sin internet: un tutor estima qué ideas domina cada niño, un diagnóstico delata la idea equivocada, un bandido elige la mejor pista, un modelo aprende los colores con dos muestras, otro ajusta el margen de cada niño para que acierte siete de cada diez veces, y k-means agrupa la clase. El adulto puede apagarla y decide; el reglamento europeo de IA de 2024 pide justo eso.
 
 ## 10. Datos del proyecto
 
-[3:34 a 3:59] Medimos el sistema: unos 220 kilobytes comprimidos en la primera carga, 528 comprobaciones automáticas sin fallos y la IA tarda menos de medio milisegundo. La fluidez se midió en un ordenador con la CPU limitada; además, probamos la app en un teléfono y funciona. Falta medirla en gama baja y con niños y docentes.
+[3:34 a 3:59] Medimos el sistema: unos 230 kilobytes en la primera carga, 583 comprobaciones automáticas sin fallos, cero violaciones en la auditoría de accesibilidad y la IA tarda menos de medio milisegundo. Con la CPU cuatro veces más lenta mantiene entre 20 y 28 cuadros por segundo, y la app probada en un teléfono funciona.
 
 ## 11. Impacto: contribuimos a tres ODS
 
@@ -51,7 +51,7 @@ Este archivo es la fuente de las notas del orador del `.pptx` (el script de la p
 
 ## 12. Mercado: hay quién lo necesita y quién lo financia
 
-[4:15 a 4:42] El costo por alumno del Gobierno Central fue de 2.262 balboas en 2024, así que una solución de costo casi nulo es más fácil de adoptar. Pagarían el Ministerio, fundaciones como ProFuturo, redes de escuelas y terapeutas, por servicios: adaptación, contenido y formación. Son hipótesis. El piloto sería en la Región Educativa de Veraguas, con 54.708 estudiantes oficiales.
+[4:15 a 4:42] El costo por alumno del Gobierno Central fue de 2.262 balboas en 2024; una aula de laboratorio de la licitación cuesta unos 150 mil dólares, y Chispa Lab, casi cero por escuela. Pagarían el Ministerio, fundaciones como ProFuturo y redes de escuelas, por adaptación, contenido y formación. En Veraguas, con 54.708 estudiantes oficiales, llegar al 10 % de primaria y premedia son unos 3.800 estudiantes.
 
 ## 13. Lo que proponemos
 

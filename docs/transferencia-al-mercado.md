@@ -48,7 +48,7 @@ Medidas propias de la versión 1.2.0 del 4 de noviembre de 2026, hechas en un or
 | Qué | Valor |
 |---|---|
 | Peso de la app para Android (APK) | ≈ 4,3 MB: cabe en un mensaje de WhatsApp o se pasa por Bluetooth |
-| Primera carga de la web | ≈ 220 KB comprimidos (593 KB sin comprimir, con los iconos); ≈ 53 KB son dos librerías de QR que solo usa la parte de la clase |
+| Primera carga de la web | ≈ 230 KB comprimidos (617 KB sin comprimir, con los iconos); ≈ 53 KB son dos librerías de QR que solo usa la parte de la clase |
 | Android mínimo | 6.0 (nivel 23) |
 | Internet | No hace falta después de abrirla una vez (PWA con service worker); el APK no la usa |
 | Cuentas y servidores | Ninguno: los datos viven en el teléfono y se borran desde Ajustes |

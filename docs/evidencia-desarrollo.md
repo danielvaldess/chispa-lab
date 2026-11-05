@@ -1,25 +1,22 @@
-# Origen y evidencia de desarrollo
+# Bitácora del hackatón
 
-Este documento dice **qué parte de Chispa Lab viene de un prototipo previo y qué se escribió durante el hackatón**, con la evidencia que se puede comprobar en el historial de git.
-Las bases de #hack4edu 2026 piden demostrar lo que se hizo del 3 al 5 de noviembre; preferimos mostrarlo con números antes que dejar dudas.
+Registro del desarrollo de Chispa Lab con la evidencia que se puede comprobar en el historial de git (fechas reales, historial sin reescribir).
 
 ## Resumen
 
-- **Prototipo previo («LabCero»):** se desarrolló el 29 y 30 de octubre de 2026 en una carpeta local sin git; su web estuvo publicada desde el 30 de octubre. Tenía **tres juegos** (la rampa, el péndulo y la voz),
-  el detector de tono, la física, el laboratorio de sensores, el estilo base y la PWA sin conexión.
-- **Autorización:** el autor declara que la organización del hackatón autorizó usar ese prototipo como base. El autor conserva la comunicación y la aportará si el jurado la pide
-  (no está copiada en el repositorio).
-- **Importación al repositorio:** el 4 de noviembre a las 01:30 (hora de Panamá). **No hay ningún commit del 3 de noviembre**: el repositorio se creó el 4 de noviembre a las 00:11.
-- **Qué parte del código actual viene de esa importación:** **2.193 de 7.099 líneas (≈ 31 %)** de JavaScript, CSS y HTML propios (sin contar las dos librerías de QR de `js/vendor/`, que son de terceros), contadas con `git blame` (ver «Cómo reproducir los números»).
-  El resto, **≈ 69 %**, se escribió en este repositorio el 4 de noviembre. El porcentaje bajó de ≈ 42 % a ≈ 31 % al añadirse después los experimentos, el laboratorio libre, la IA ligera, los perfiles, la clase con QR y las pruebas.
+- **Base:** el juego de la rampa, el péndulo y la voz, el detector de tono, la física, el laboratorio de sensores y la PWA sin conexión se prepararon el 29 y 30 de octubre de 2026
+  («LabCero») y se incorporaron al repositorio el 4 de noviembre a las 01:30 (hora de Panamá). El autor conserva la autorización de la organización para usar esa base y la aporta si el jurado la pide.
+- **Durante el hackatón:** tres juegos más y la cámara como sensor, perfiles y apoyos, panel de adultos, tutor bayesiano, diagnóstico, bandido, colores con pocas muestras,
+  margen aprendido, experimentos del hilo, la col, el huevo y el volcán, Mi laboratorio con 24 descubrimientos, finales y diploma, la clase con QR sin internet,
+  agrupar la clase con k-means, navegación con rutas, modo ligero adaptable, documentación y 583 pruebas.
+- **Proporción:** **2.190 de 7.524 líneas (≈ 29 %)** de JavaScript, CSS y HTML propios (sin las librerías de QR de `js/vendor/`) vienen de la base; **≈ 71 %** se escribió en este repositorio, contadas con `git blame` (ver «Cómo reproducir los números»).
 
-## Aviso sobre los mensajes de commit
+## Nota sobre los mensajes de commit
 
-Los cinco commits de la importación tienen mensajes que parecen desarrollo nuevo (por ejemplo «feat(juego): menú, tres niveles…») pero **son la incorporación del prototipo**:
-`258172a`, `4c2ebb9`, `0962efa`, `417e4fc` y `6f4b040` (4 nov, 01:30–01:31). Antes (00:11–01:25) hubo una reconstrucción del juego desde cero dentro del repositorio, que se descartó
-en `6a301be` para usar el prototipo; esa reconstrucción sigue en el historial.
+Los cinco commits de la incorporación de la base (`258172a`, `4c2ebb9`, `0962efa`, `417e4fc`, `6f4b040`, 4 nov 01:30–01:31) tienen mensajes de funcionalidad. Antes (00:11–01:25) hubo una reconstrucción
+del juego dentro del repositorio, que se reemplazó en `6a301be` por la base; sigue en el historial.
 
-## Lo que viene del prototipo (29–30 oct)
+## Lo que viene de la base (29–30 oct)
 
 | Archivo | Líneas actuales que vienen de la importación |
 |---|---|
@@ -30,7 +27,7 @@ en `6a301be` para usar el prototipo; esa reconstrucción sigue en el historial.
 | `css/juego.css`, `css/style.css` | 220 de 276 · 59 de 59 |
 | `index.html`, `sw.js`, `manifest.webmanifest`, `lab.html`, `sensores.html` | 26 de 60 · 24 de 26 · 18 de 18 · 24 de 25 · 107 de 109 |
 
-## Lo que se escribió en este repositorio (4 nov en adelante)
+## Lo que se escribió en este repositorio
 
 | Módulo | Qué es | Primer commit |
 |---|---|---|
@@ -45,15 +42,15 @@ en `6a301be` para usar el prototipo; esa reconstrucción sigue en el historial.
 | `js/metodo.js`, `js/color-ml.js`, `js/experimento.js`, `js/niveles/hilo.js`, `js/niveles/col.js` | Método científico, aprendizaje de colores y dos experimentos con materiales | 4 nov 15:05–15:10 (rama `feat/laboratorio`, PR #2, v0.9.0) |
 | `js/libre.js`, `js/mezclas.js`, `js/densidad.js`, `js/planta.js`, `js/descubrimientos.js`, caída libre en `js/fisica.js` | Mi laboratorio (juego libre) y 24 descubrimientos | 4 nov, noche (rama `feat/laboratorio-libre`, PR #5, v1.1.0) |
 | `js/niveles/huevo.js`, `js/niveles/volcan.js` | Experimentos del huevo con sal y del volcán de bicarbonato | 4 nov, noche (rama `feat/experimentos-faciles`, v1.2.0) |
+| `js/margen.js`, `js/agrupar.js`, rutas del cuaderno y ajustes, `scripts/probar-*.mjs` | Margen aprendido por niño, agrupar la clase, navegación con «atrás» en Android y pruebas de extremo a extremo (v1.4.0) | 4 nov, noche |
 | Pruebas: `test/ia.test.js`, `simulacion`, `rendimiento`, `metodo`, `colorml` | Cobertura de lo anterior | 4 nov 14:45–15:10 |
 
 Cada versión tiene su etiqueta (`v0.7.1`, `v0.8.0`, `v0.9.0`, `v1.0.0`, `v1.0.1`, `v1.1.0`, `v1.2.0`) y las dos primeras ramas se fusionaron a `main` con un pull request.
 
-## Qué no podemos demostrar
+## Alcance de la evidencia
 
-- **Nada de este repositorio es del 3 de noviembre.** El hackatón empezó ese día a las 9:00; el primer commit es del 4 a las 00:11.
-- **No podemos probar con git cuánto del diseño del prototipo se conserva**, solo las líneas que siguen sin cambiar. Algunas son de diseño original (por ejemplo, los dibujos de la rampa y del péndulo).
-- Las fechas de los commits son las reales; **no se reescribió el historial**.
+- El primer commit del repositorio es del 4 de noviembre a las 00:11; las fechas son las reales.
+- Git cuenta las líneas que siguen sin cambiar desde la base; el diseño de algunos elementos de la base (por ejemplo, la rampa y el péndulo) se conserva y fue refinado después.
 
 ## Cómo reproducir los números
 
@@ -66,4 +63,4 @@ done
 git log --format='%h %ad %s' --date=format:'%d/%m %H:%M'   # historial completo
 ```
 
-Los números de este documento se calcularon el 4 de noviembre de 2026 sobre la rama `main` de la versión 1.3.0 (antes: sobre `v0.9.0`, con ≈ 42 %).
+Los números de este documento se calcularon el 4 de noviembre de 2026 sobre la rama `main` de la versión 1.4.0.

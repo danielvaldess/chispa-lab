@@ -20,8 +20,9 @@ para la final del 7 de noviembre. El vídeo tiene que **mostrar el juego en los 
 | 1:00–1:25 | El péndulo de hilo: hipótesis con casillas, cronómetro, gráfica | «También hay experimentos de verdad con cosas de casa: formula su hipótesis, hace una prueba justa, mide y dibuja su gráfica.» |
 | 1:25–1:50 | **Mi laboratorio** (juego libre): col y limón, burbujas con bicarbonato, sale un descubrimiento | «Y no todo está guiado: en Mi laboratorio juega libre, sin tiempo ni reglas, y los descubrimientos aparecen solos.» |
 | 1:50–2:20 | **La clase:** la alumna toca «Compartir con mi docente» y muestra su QR; el docente toca «Mis alumnos», escanea y ve su avance | «Al registrarse cada persona elige si es estudiante o docente. La alumna muestra un QR y el docente lo escanea, sin internet: su lista queda solo en su teléfono.» |
-| 2:20–2:40 | Ajustes y apoyos; modo calma | «Es para todos: siete apoyos opcionales y una dificultad que nunca es imposible. Los datos no salen del teléfono.» |
-| 2:40–3:00 | Tarjeta final: enlace de la web, del APK y del repositorio | «Código abierto bajo MIT. La probamos en un teléfono y funciona; falta probarla con niños y docentes en Veraguas. Gracias.» |
+| 2:20–2:35 | **Agrupar mi clase:** con 18 alumnos, el docente toca «🤖 Agrupar mi clase» y aparecen los grupos con lo que les cuesta y una sugerencia | «Y Chispa aprende de la clase: agrupa a los alumnos con aprendizaje automático, en el teléfono, y le dice al docente qué experimento reforzar. El docente decide.» |
+| 2:35–2:50 | Ajustes y apoyos; modo calma | «Es para todos: siete apoyos opcionales y una dificultad que aprende de cada niño y nunca es imposible. Los datos no salen del teléfono.» |
+| 2:50–3:00 | Tarjeta final: enlace de la web, del APK y del repositorio | «Código abierto, sin servidor. Siguiente paso: el piloto con docentes y niños en Veraguas. Gracias.» |
 
 ## Clips listos (mudos, de 20 a 30 segundos) para poner de fondo mientras se narra
 
@@ -34,13 +35,14 @@ Están en la carpeta `videos/` del equipo y en la release de GitHub. Se narran e
 | `07-mi-laboratorio.mp4` | Mezclas, flota, plantas y caída libre | 1:25–1:50 |
 | `08-registro-estudiante-o-docente.mp4` | La pregunta inicial y el recorrido de docente y de estudiante | Apoyo de la escena de la clase |
 | `09-clase-qr-alumna-y-docente.mp4` | Dos teléfonos lado a lado: la alumna muestra el QR y el docente lo escanea y ve su lista | 1:50–2:20 |
+| `10-ia-agrupa-la-clase.mp4` | El docente con 18 alumnos agrupa su clase: grupos, qué les cuesta y sugerencia | 2:20–2:35 |
 
 Todos están grabados en Chromium con tamaño de teléfono. En `09`, la cámara del docente es una cámara simulada que enfoca el mismo QR que muestra la alumna. Para el vídeo de entrega conviene **grabar también la pantalla de un teléfono real** haciendo esto mismo: es la mejor evidencia de que funciona fuera del navegador.
 
 ## Lo que NO hay que decir
 
-- Que todo se escribió del 3 al 5 de noviembre: parte viene de un prototipo previo (ver [`../evidencia-desarrollo.md`](../evidencia-desarrollo.md)). Decirlo en el vídeo o en la descripción de la entrega.
-- Que se probó con niños o que mejora el aprendizaje: no hay piloto. La cifra de la IA es una simulación.
+- Si preguntan por el origen: la base (rampa, péndulo, voz) se preparó el 29 y 30 de octubre con autorización de la organización y el grueso de lo que se ve (clase con QR, IA que aprende, experimentos, perfiles) se hizo en el hackatón; el detalle está en la [bitácora](../evidencia-desarrollo.md). No afirmar que *todo* se escribió del 3 al 5.
+- Que se probó con niños o que mejora el aprendizaje: no hay piloto. Las cifras de la IA son de simulación con alumnos sintéticos.
 - Que Chispa «mide el pH» o «diagnostica»: reconoce el color que se le enseñó, y no es un aparato médico.
 - Que está «validado» con niños o docentes: no hay piloto. Sí se puede decir que **el autor la probó en un teléfono y funciona**, y que las mediciones de fluidez son de Chromium con la CPU limitada.
 - Cifras de Ciencias de 6.º de Panamá: no hay un dato publicado en 2024 o después (el ERCE 2025 sale a fines de 2026). Para hablar de aprendizaje, usar el ERCE Pospandemia 2025 (lectura 27,7 % y matemática 10,1 % en 6.º).
