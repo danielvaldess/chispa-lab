@@ -35,6 +35,7 @@ Están en la carpeta `videos/` del equipo y en la release de GitHub. Se narran e
 | `07-mi-laboratorio.mp4` | Mezclas, flota, plantas y caída libre | 1:25–1:50 |
 | `08-registro-estudiante-o-docente.mp4` | La pregunta inicial y el recorrido de docente y de estudiante | Apoyo de la escena de la clase |
 | `09-clase-qr-alumna-y-docente.mp4` | Dos teléfonos lado a lado: la alumna muestra el QR y el docente lo escanea y ve su lista | 1:50–2:20 |
+| `11-inclusion-apoyos.mp4` | Registro de un niño que marca sus apoyos, el resumen de lo que cambia en el juego y Ajustes | Apoyo de la escena de inclusión |
 | `10-ia-agrupa-la-clase.mp4` | El docente con 18 alumnos agrupa su clase: grupos, qué les cuesta y sugerencia | 2:20–2:35 |
 
 Todos están grabados en Chromium con tamaño de teléfono. En `09`, la cámara del docente es una cámara simulada que enfoca el mismo QR que muestra la alumna. Para el vídeo de entrega conviene **grabar también la pantalla de un teléfono real** haciendo esto mismo: es la mejor evidencia de que funciona fuera del navegador.

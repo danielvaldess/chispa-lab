@@ -10,25 +10,33 @@
 - **`construir-presentacion.js`:** genera el `.pptx` con `pptxgenjs`. Para regenerarlo: `npm install pptxgenjs@3.12.0` en una carpeta aparte y ejecutarlo con las variables
   `SKILL` (carpeta de la herramienta que aplica el tema), `IMG` (carpeta `img`, con los fondos) y `SALIDA` (archivo de salida), con `NODE_PATH` apuntando a esa carpeta.
 
-## Estructura (5:00)
+## Estructura (5:00) y método
 
 | N.º | Diapositiva | Tiempo | Minutos |
 |---|---|---|---|
-| 1 | Portada | 0:12 | 0:00–0:12 |
-| 2 | **Mira cómo se juega** (cuatro GIF de la app) | 0:28 | 0:12–0:40 |
-| 3 | 6 de cada 10 estudiantes panameños no alcanzan el nivel básico en ciencias (PISA 2022, frente a América Latina, la UE y la OCDE) | 0:33 | 0:40–1:13 |
-| 4 | Nacer en una comarca indígena marca lo que se aprende (brecha de ≈ 80 puntos, 5 frente a 9 años de escolaridad) | 0:19 | 1:13–1:32 |
-| 5 | Nuestra idea: predice, formula, juega, descubre | 0:18 | 1:32–1:50 |
-| 6 | Seis juegos, cuatro experimentos y un laboratorio libre | 0:14 | 1:50–2:04 |
-| 7 | **Para docentes:** «Mis alumnos» con QR, sin internet | 0:34 | 2:04–2:38 |
-| 8 | Para todos los niños (inclusión) | 0:22 | 2:38–3:00 |
-| 9 | IA que aprende dentro del teléfono | 0:34 | 3:00–3:34 |
-| 10 | Datos del proyecto | 0:25 | 3:34–3:59 |
-| 11 | Impacto: ODS 4, 10 y 9 | 0:16 | 3:59–4:15 |
-| 12 | Mercado: quién lo necesita y quién lo financia | 0:27 | 4:15–4:42 |
-| 13 | Lo que proponemos | 0:18 | 4:42–5:00 |
+| 1 | Portada (GIF del registro y de la rampa) | 0:12 | 0:00–0:12 |
+| 2 | **Gancho:** 6 de cada 10 estudiantes panameños no alcanzan el nivel básico en ciencias (PISA 2022 frente a América Latina, la UE y la OCDE) | 0:30 | 0:12–0:42 |
+| 3 | Nacer en una comarca indígena marca lo que se aprende (≈ 80 puntos, 5 frente a 9 años de escolaridad) | 0:20 | 0:42–1:02 |
+| 4 | El laboratorio no llega (193 aulas, ≈ 150.100 $ por aula), pero el teléfono ya está | 0:20 | 1:02–1:22 |
+| 5 | Nuestra idea: predice, formula, juega, descubre | 0:18 | 1:22–1:40 |
+| 6 | Seis juegos, cuatro experimentos y un laboratorio libre (tres pilares) | 0:18 | 1:40–1:58 |
+| 7 | **Para docentes:** «Mis alumnos» con QR y agrupar la clase | 0:32 | 1:58–2:30 |
+| 8 | **Para todos los niños:** siete apoyos (GIF de la elección de apoyos y del registro) | 0:26 | 2:30–2:56 |
+| 9 | IA que aprende dentro del teléfono (6 técnicas) | 0:34 | 2:56–3:30 |
+| 10 | Datos del proyecto | 0:22 | 3:30–3:52 |
+| 11 | Impacto esperado: escenarios del 1, 5 y 10 % de Veraguas, y ODS | 0:22 | 3:52–4:14 |
+| 12 | Mercado y sostenibilidad | 0:28 | 4:14–4:42 |
+| 13 | **Lo que proponemos + el juego en acción** (se queda en pantalla durante las preguntas) | 0:18 | 4:42–5:00 |
 
-El texto de cada diapositiva suma 675 palabras: unos 4:30 a 150 palabras por minuto, y el resto del tiempo es margen para cambiar de diapositiva y dejar ver la demo.
+**Método aplicado** (prácticas de oratoria y de presentación de producto; las fuentes son divulgativas, no estudios):
+- **Gancho con un dato, no con la demo:** el pitch corto abre con un gancho y sigue con qué es, por qué importa, los números y la petición (estructura de cinco pasos habitual en pitch decks). Por eso la diapositiva 2 es la cifra de PISA.
+- **De «lo que es» a «lo que podría ser» y llamada a la acción** (Nancy Duarte, *Resonate*): problema (2 a 4), solución (5 a 9), prueba e impacto (10 a 12) y petición (13).
+- **Regla de tres** (Carmine Gallo): tres pilares (experimentar, incluir, acompañar al docente), tres escenarios de adopción, tres peticiones.
+- **Títulos que afirman** (una frase completa con la idea) y una sola idea por diapositiva, con un GIF de la propia app en lugar de texto.
+- **Primacía y recencia:** lo que más se recuerda es el principio y el final; el principio es el dato y el final es la petición con el juego funcionando durante las preguntas.
+- Los clips de cámara (Luz y color, Burbujas) no se muestran en la presentación.
+
+El texto de cada diapositiva suma 663 palabras: unos 4:25 a 150 palabras por minuto, y el resto del tiempo es margen para cambiar de diapositiva.
 
 ## Qué cifras tienen fuente y cuáles son medidas propias
 
