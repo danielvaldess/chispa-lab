@@ -11,7 +11,7 @@ Este archivo es la fuente de las notas del orador del `.pptx` (el script de la p
 
 ## 2. Seis de cada diez estudiantes panameños no alcanzan el nivel básico en ciencias
 
-[0:12 a 0:42] Empecemos por un dato. En ciencias, seis de cada diez estudiantes panameños de 15 años no alcanzan el nivel básico. En PISA 2022, Panamá sacó 388 puntos; Colombia, 411; Uruguay, 435; Chile, 444; la Unión Europea, 480 y la OCDE, 485. Solo 38 por ciento llega al nivel básico, frente a 76 por ciento en la OCDE y en la Unión Europea.
+[0:12 a 0:42] Empecemos por un dato. En ciencias, seis de cada diez estudiantes panameños de 15 años no alcanzan el nivel básico. En PISA 2022, Panamá sacó 388 puntos; Colombia, 411; Uruguay, 435; Chile, 444; la Unión Europea, 480 y el promedio de la OCDE, la organización que aplica la prueba, 485. Solo 38 por ciento llega al nivel básico, frente a 76 por ciento en la OCDE y en la Unión Europea.
 
 ## 3. Nacer en una comarca indígena marca lo que se aprende
 

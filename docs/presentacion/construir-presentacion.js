@@ -65,14 +65,14 @@ s.addNotes(notas());
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Problema' });
 s.addText('6 de cada 10 estudiantes panameños no alcanzan el nivel básico en ciencias', { placeholder: 'title' });
 tarjeta(s, 0.4, 1.3, 6.55, 3.55, K.pink, 'Tarjeta gráfico');
-s.addChart(pres.charts.BAR, [{ name: 'Puntaje en ciencias, PISA 2022', labels: ['Panamá', 'México', 'Colombia', 'Uruguay', 'Chile', 'Unión Europea', 'OCDE'], values: [388, 410, 411, 435, 444, 480, 485] }], {
+s.addChart(pres.charts.BAR, [{ name: 'Puntaje en ciencias, PISA 2022', labels: ['Panamá', 'México', 'Colombia', 'Uruguay', 'Chile', 'Unión Europea', 'Promedio OCDE'], values: [388, 410, 411, 435, 444, 480, 485] }], {
   x: 0.5, y: 1.35, w: 6.35, h: 3.45, barDir: 'bar', chartColors: [K.pink, K.cyan, K.cyan, K.cyan, K.cyan, K.violet, K.violet], showValue: true, dataLabelPosition: 'outEnd', dataLabelColor: K.navy, dataLabelFontSize: 13, dataLabelFontBold: true,
   showTitle: true, title: 'Puntaje promedio en ciencias a los 15 años (PISA 2022)', titleFontSize: 13, titleColor: K.navy, catAxisLabelColor: K.navy, catAxisLabelFontSize: 13, catAxisOrientation: 'maxMin', valAxisHidden: true, valGridLine: { style: 'none' }, catGridLine: { style: 'none' }, showLegend: false, valAxisMinVal: 300, valAxisMaxVal: 540,
 });
 T(s, [{ text: '38 %', options: { bold: true, fontSize: 18, color: K.pink } }, { text: ' alcanza el nivel básico en Panamá; ', options: { fontSize: 12 } }, { text: '76 %', options: { bold: true, fontSize: 18, color: K.violet } }, { text: ' en la OCDE y ', options: { fontSize: 12 } }, { text: '76 %', options: { bold: true, fontSize: 18, color: K.violet } }, { text: ' en la UE', options: { fontSize: 12 } }], { x: 0.5, y: 4.9, w: 6.4, h: 0.4, valign: 'middle', objectName: 'Nivel básico' });
 telefono(s, '01.gif', 7.55, 1.15, 3.55, 'la rampa', K.pink);
 T(s, 'Ciencias que se descubren jugando', { x: 6.75, y: 4.9, w: 3.0, h: 0.35, fontSize: 11.5, bold: true, color: K.navy, align: 'center', objectName: 'Pie rampa' });
-nota(s, 'Nota. PISA 2022, puntaje en ciencias a los 15 años y porcentaje en nivel básico. Datos de Fundación Exe Colombia (2024), Cyprus Mail (2023), Comisión Europea (s. f.) y La Prensa (2026a).');
+nota(s, 'OCDE: Organización para la Cooperación y el Desarrollo Económicos, que aplica la prueba PISA. Datos de Fundación Exe Colombia (2024), Cyprus Mail (2023), Comisión Europea (s. f.) y La Prensa (2026a).');
 s.addNotes(notas());
 
 // ---------- 3. Pueblos originarios y comarcas ----------
