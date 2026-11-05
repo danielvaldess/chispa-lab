@@ -1,0 +1,39 @@
+# Publica la web de Chispa Lab en GitHub Pages cada vez que cambia main.
+# Usa el mismo empaquetado que el APK (scripts/empaquetar.mjs): index, manifest, iconos, sw.js, css y js.
+name: Publicar en GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Pruebas
+        run: npm test
+      - name: Empaquetar la web
+        run: node scripts/empaquetar.mjs
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: www
+      - id: despliegue
+        uses: actions/deploy-pages@v4
