@@ -15,7 +15,7 @@ function alumnoDemo(nombre, extra) {
   p.progreso = { rampa: 3, pendulo: 2, voz: 1, hilo: 3, finalVisto: 1 };
   p.aprendizaje = { rampa: { partidas: 4, predOk: 3, seg: 300, estrellas: 3 }, pendulo: { partidas: 5, predOk: 1, seg: 600, estrellas: 2 }, voz: { partidas: 2, predOk: 2, seg: 120, estrellas: 1 } };
   p.descubrimientos = [require('../js/descubrimientos.js').CATALOGO[0].id, require('../js/descubrimientos.js').CATALOGO[5].id];
-  p.sesionesVoz = [{ f: '2026-11-01', max: 3, hzMin: 100, hzMax: 200 }];
+  p.sesionesVoz = [{ f: '2026-11-03', max: 3, hzMin: 100, hzMax: 200 }];
   Object.assign(p, extra || {});
   return p;
 }

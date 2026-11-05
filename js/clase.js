@@ -5,7 +5,7 @@
 //   CL1|id|nombre|t|e|j|k|min|d|crc
 //   id      identificador aleatorio del jugador en su teléfono (no es su fecha de nacimiento ni su nombre real)
 //   nombre  nombre o apodo (se codifica como URL; el espacio es «+»)
-//   t       minuto del avance, contado desde el 1 de enero de 2026, en base 36
+//   t       minuto del avance, contado desde el origen técnico del formato, en base 36
 //   e       estrellas (0 a 3) de los 11 juegos y experimentos, una cifra cada uno
 //   j       partidas de los 6 juegos de la estación, dos cifras cada uno
 //   k       predicciones acertadas de esos 6 juegos, dos cifras cada uno
@@ -28,7 +28,7 @@
   };
   var MAX_ALUMNOS = 60;
   var MAX_LARGO = 300;
-  var EPOCA = Date.UTC(2026, 0, 1);
+  var EPOCA = Date.UTC(2026, 0, 1); // origen técnico del formato CL1; no es una fecha del proyecto
   var DESCUBRIMIENTOS = DS.CATALOGO.length;
 
   function rolValido(r) { return ROLES.indexOf(r) >= 0 ? r : 'estudiante'; }
