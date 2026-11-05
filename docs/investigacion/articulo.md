@@ -42,9 +42,24 @@ Otras cifras del mismo informe: en 3.º grado, el 49 % alcanza el nivel mínimo 
 
 **Ciencias.** La última medición de Ciencias de 6.º grado de Panamá es anterior a 2024 y por eso no la usamos. El ERCE 2025 se aplicó desde el 14 de octubre de 2025 a unos 11.000 estudiantes de 3.º y 6.º en todo el país; en 6.º también se evalúan las ciencias naturales y los resultados se esperaban «en aproximadamente un año» [5]. UNESCO anunció en enero de 2026 que los tendría «para finales» de 2026 [6]. **Hoy no existe un dato de Ciencias de 6.º grado de Panamá publicado en 2024 o después**, y la comparación latinoamericana en Ciencias está pendiente de ese estudio.
 
+### 2.1b Ciencias a los 15 años y pueblos originarios (PISA 2022)
+
+PISA 2022 es la medición internacional más reciente de Ciencias en la que participó Panamá (aplicada en 2022, resultados publicados por la OCDE; las fuentes de abajo son de 2024 a 2026, salvo la nota de prensa de la UE y la de Panamá, de diciembre de 2023, que se señalan).
+
+| Indicador en Ciencias (15 años, PISA 2022) | Valor | Fuente |
+|---|---|---|
+| Panamá, puntaje promedio | **388** (365 en 2018) | [27] [28] |
+| Chile · Uruguay · Colombia · México | 444 · 435 · 411 · 410 | [27] |
+| Unión Europea (promedio) | 480 | [30] |
+| OCDE (promedio) | 485 | [27] |
+| Alcanzan el nivel básico (nivel 2 o más) | **38 %** en Panamá; 76 % en la OCDE | [29] |
+| Estudiantes sin el nivel básico en la UE | 24 % (es decir, 76 % lo alcanza) | [31] |
+
+**Pueblos originarios y comarcas.** La diferencia de puntaje entre quienes hablan una lengua indígena en casa y quienes hablan otro idioma es de **alrededor de 80 puntos**, casi 3 años de escuela según la OCDE (PISA-Panamá 2019, citado en un informe de la OEI de 2024) [32]. Un niño de zona urbana alcanza en promedio **9 años de escolaridad** y uno de comarca indígena, **5**; en las comarcas el acceso a premedia y media es **menor al 20 %** (62 % en áreas urbanas), la sobreedad llega al 50 % y la repitencia al 12 % [29]. No encontramos una diferencia en puntos de Ciencias por pueblo originario de 2024 o posterior, así que no la citamos.
+
 ### 2.2 Sin medición internacional reciente
 
-Panamá notificó a la OCDE el 29 de julio de 2024 su retiro de PISA 2025, y el director de Educación de la OCDE lamentó la decisión [4]. Por eso no hay un dato nuevo de PISA para el país.
+Panamá notificó a la OCDE el 29 de julio de 2024 su retiro de PISA 2025, y el director de Educación de la OCDE lamentó la decisión [4]. Por eso no hay un dato nuevo de PISA para el país; el último en Ciencias es el de 2022 (sección 2.1b).
 
 ### 2.3 Acceso a laboratorios, a internet y a teléfonos
 
@@ -230,13 +245,21 @@ Fecha de consulta de todas las fuentes en línea: **4 de noviembre de 2026**. **
 24. Naciones Unidas, Departamento de Asuntos Económicos y Sociales. Objetivos 4, 9 y 10. https://sdgs.un.org/goals/goal4 · /goal9 · /goal10 **(página viva, consultada en 2026)**
 25. **Excepción (norma vigente):** República de Panamá. Ley 81 de 2019 sobre protección de datos personales. Se cita como norma y no como estudio; su texto no tiene una versión posterior que la sustituya en lo que usamos. https://vlex.com.pa/vid/ley-81-2019-proteccion-1049691931 **(B)**
 26. PhET Interactive Simulations, Universidad de Colorado en Boulder. Centro de ayuda: uso sin conexión. https://phet.colorado.edu/en/help-center/running-sims/tablet **(B; página viva)**
+27. Fundación Exe Colombia (marzo de 2024). *Reporte general de resultados PISA 2022* (puntajes en Ciencias 2018 y 2022 de Chile, Uruguay, Colombia, México, Perú, Argentina, Brasil, Panamá y República Dominicana; OCDE 485). https://fundacionexe.org.co/wp-content/uploads/2024/03/Reporte-general-de-resultados-PISA-2022.pdf **(B)**
+28. La Estrella de Panamá (5 de diciembre de 2023). *Panamá no alcanza los niveles exigidos por la OCDE en prueba PISA* (388 en ciencias, 357 en matemática, 392 en lectura; 6.544 estudiantes de 15 años en 215 escuelas). https://www.laestrella.com.pa/panama/nacional/panama-no-alcanza-los-niveles-exigidos-por-la-ocde-en-prueba-pisa-YG5459991 **(B)**
+29. La Prensa (3 de febrero de 2026). *La realidad que no podemos ignorar* (documento sobre la reforma educativa: PISA 2022, 38 % en nivel básico en ciencias frente a 76 % de la OCDE; escolaridad de 9 y 5 años; acceso a premedia y media en comarcas). https://cdn.corprensa.com/la-prensa/uploads/2026/02/03/La%20realidad%20que%20no%20podemos%20ignorar%20(1).pdf **(B)**
+30. Cyprus Mail (6 de diciembre de 2023). *Cypriot children perform well below average in maths, reading and science* (promedios de la UE en PISA 2022: 472 matemática, 480 ciencias, 468 lectura). https://cyprus-mail.com/2023/12/06/cypriot-children-perform-well-below-average-in-maths-reading-and-science **(B)**
+31. Comisión Europea, Plataforma Europea de Educación Escolar. *PISA 2022 and the EU: three thought-provoking trends* (en la UE, 24 % de bajo rendimiento en ciencias). https://school-education.ec.europa.eu/en/discover/expert-views/pisa-2022-and-eu-three-thought-provoking-trends **(B)**
+32. OEI y Meduca, Programa MECSE (enero de 2024). Informe sobre resultados de PISA-Panamá 2019 (brecha de ≈ 80 puntos por lengua indígena en casa). https://oei.int/wp-content/uploads/2024/01/oei-bidmecse-086-2023.pdf **(B)**
 
 Guías de diseño usadas en `../impacto-y-etica.md`: Xbox Accessibility Guideline 118, última actualización 4 de marzo de 2026 (D); Aspect Autism Friendly Design Guide, julio de 2025 (D); Game Accessibility Guidelines, sitio vivo consultado en 2026 (B).
 
 ### Qué retiramos por ser de 2023 o antes, o no verificable
-- ERCE 2019 (Ciencias de 6.º, 672 y 702 puntos), PISA 2022, el 45 % de escuelas sin internet de 2022, la pobreza multidimensional de 2017, las series del Banco Mundial hasta 2023 y el censo de 2023: **se retiraron** porque son de 2023 o antes. Donde un informe de 2025 los cita para comparar (por ejemplo, el ERCE 2019 dentro del ERCE Pospandemia), se usan como parte de esa fuente reciente.
+- ERCE 2019 (Ciencias de 6.º, 672 y 702 puntos), el 45 % de escuelas sin internet de 2022, la pobreza multidimensional de 2017, las series del Banco Mundial hasta 2023 y el censo de 2023: **se retiraron** porque son de 2023 o antes. Donde un informe de 2025 los cita para comparar (por ejemplo, el ERCE 2019 dentro del ERCE Pospandemia), se usan como parte de esa fuente reciente.
 - Referencias académicas de 2022 o antes (metaanálisis de juegos serios de 2013, laboratorios virtuales de 2022, phyphox de 2018, juegos de voz de 2018 y 2019, seguimiento del conocimiento de 1995 y 2022, la prevalencia de problemas de voz en EE. UU.): **se reemplazaron** por las referencias 17 a 23.
 - La cifra de escuelas de ProFuturo en Panamá (sin fecha) y las estadísticas de internet por escuela que circulan en prensa (se contradicen): **se quitaron**.
+
+**Excepción: PISA 2022.** Se usa porque es la única medición internacional de Ciencias en la que participó Panamá (Panamá no está en PISA 2025). Los datos vienen de fuentes de 2024 a 2026 y de dos notas de diciembre de 2023 (referencias 28 y 30); las cifras se contrastaron entre al menos dos fuentes.
 
 ### Qué no pudimos verificar
 - **Ciencias de 6.º grado de Panamá en 2024 o después:** no hay dato publicado; se espera el ERCE 2025 a finales de 2026.

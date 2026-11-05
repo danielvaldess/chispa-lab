@@ -3,7 +3,7 @@
 Las 13 diapositivas y el texto para decir en cada una, con su tiempo. Total: **5:00**. La demo va primero: el jurado ve el juego en los primeros 12 segundos y lo entiende antes de oír datos.
 Este archivo es la fuente de las notas del orador del `.pptx` (el script de la presentación lee las secciones numeradas, en orden, y se detiene en la línea `---`). Para el vídeo de 3 minutos, ver [`guion-video.md`](guion-video.md).
 
-**Ritmo:** el texto suma **644 palabras**, unos 4:18 a 150 palabras por minuto, con el resto del tiempo como margen para cambiar de diapositiva y dejar ver la demo. Ninguna diapositiva pasa de 133 palabras por minuto. Conviene ensayarlo con cronómetro: si te pasas, recorta el texto, no hables más rápido.
+**Ritmo:** el texto suma **675 palabras**, unos 4:30 a 150 palabras por minuto, con el resto del tiempo como margen para cambiar de diapositiva y dejar ver la demo. Ninguna diapositiva pasa de 133 palabras por minuto. Conviene ensayarlo con cronómetro: si te pasas, recorta el texto, no hables más rápido.
 
 ## 1. Chispa Lab
 
@@ -13,13 +13,13 @@ Este archivo es la fuente de las notas del orador del `.pptx` (el script de la p
 
 [0:12 a 0:40] Así se juega. El niño predice, inclina el teléfono y una canica rueda por una rampa de cartón. Si se equivoca, Chispa no le da la respuesta: le pregunta con sus propios números, «¿es la mitad?». En Mi laboratorio juega libre, y hay experimentos con cosas de casa, como medir un péndulo con un hilo. Todo en el teléfono, sin conexión.
 
-## 3. Un laboratorio de ciencias cuesta unos 150.000 dólares por aula
+## 3. Seis de cada diez estudiantes panameños no alcanzan el nivel básico en ciencias
 
-[0:40 a 1:13] El problema. En abril de 2026 el Estado licitó laboratorios científicos: 193 aulas para 73 centros de educación media, por 28,9 millones de dólares, unos 150 mil dólares por aula. Es una inversión grande que llega a pocos centros por vez. Y de Ciencias de sexto grado no hay medición reciente: el ERCE 2025 publica a fines de este año.
+[0:40 a 1:13] El problema. En ciencias, seis de cada diez estudiantes panameños de 15 años no alcanzan el nivel básico. Es la prueba PISA 2022: Panamá sacó 388 puntos; Chile, 444; Uruguay, 435; la Unión Europea, 480; la OCDE, 485. Solo 38 por ciento llega al nivel básico, frente a 76 por ciento en la OCDE y en la Unión Europea. Y el laboratorio no llega: el Estado licitó 193 aulas para 73 centros, unos 150 mil dólares cada una.
 
-## 4. La conexión también llega despacio, el teléfono ya está
+## 4. Nacer en una comarca indígena marca lo que se aprende
 
-[1:13 a 1:32] La conexión también llega despacio: 17 clientes de internet fijo por cada 100 habitantes, y en la comarca Ngäbe Buglé falta internet. Pero el teléfono ya está, y Chispa Lab funciona en modo avión.
+[1:13 a 1:32] Y no es igual para todos. Quien habla una lengua indígena en casa saca unos 80 puntos menos, casi tres años de escuela. Un niño de comarca indígena alcanza cinco años de escolaridad; uno de zona urbana, nueve. Allí falta internet. Chispa Lab funciona en modo avión.
 
 ## 5. Nuestra idea: predice, formula, juega, descubre
 

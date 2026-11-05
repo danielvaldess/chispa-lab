@@ -64,34 +64,33 @@ s.addText('Mira cómo se juega', { placeholder: 'title' });
 });
 s.addNotes(notas());
 
-// ---------- 3. Problema: el laboratorio ----------
+// ---------- 3. Problema: ciencias en Panamá frente a América Latina y Europa ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Problema' });
-s.addText('Un laboratorio de ciencias cuesta ≈ 150.000 dólares por aula', { placeholder: 'title' });
-[['193', 'aulas de laboratorio en la licitación de 2026', K.pink], ['73', 'centros de educación media: los únicos que alcanza', K.orange], ['28,9 M$', 'en total, unos 150.100 dólares por aula', K.violet]].forEach((c, i) => {
-  const y = 1.4 + i * 1.2;
-  tarjeta(s, 0.5, y, 5.6, 1.05, c[2], 'Tarjeta ' + (i + 1));
-  T(s, c[0], { x: 0.7, y, w: 1.9, h: 1.05, fontSize: 34, bold: true, color: c[2], valign: 'middle', objectName: 'Cifra ' + (i + 1) });
-  T(s, c[1], { x: 2.65, y, w: 3.3, h: 1.05, fontSize: 15, color: K.navy, valign: 'middle', objectName: 'Etiqueta ' + (i + 1) });
+s.addText('6 de cada 10 estudiantes panameños no alcanzan el nivel básico en ciencias', { placeholder: 'title' });
+tarjeta(s, 0.4, 1.3, 6.55, 3.55, K.pink, 'Tarjeta gráfico');
+s.addChart(pres.charts.BAR, [{ name: 'Puntaje en ciencias, PISA 2022', labels: ['Panamá', 'México', 'Colombia', 'Uruguay', 'Chile', 'Unión Europea', 'OCDE'], values: [388, 410, 411, 435, 444, 480, 485] }], {
+  x: 0.5, y: 1.35, w: 6.35, h: 3.45, barDir: 'bar', chartColors: [K.pink, K.cyan, K.cyan, K.cyan, K.cyan, K.violet, K.violet], showValue: true, dataLabelPosition: 'outEnd', dataLabelColor: K.navy, dataLabelFontSize: 13, dataLabelFontBold: true,
+  showTitle: true, title: 'Puntaje promedio en ciencias a los 15 años (PISA 2022)', titleFontSize: 13, titleColor: K.navy, catAxisLabelColor: K.navy, catAxisLabelFontSize: 13, catAxisOrientation: 'maxMin', valAxisHidden: true, valGridLine: { style: 'none' }, catGridLine: { style: 'none' }, showLegend: false, valAxisMinVal: 300, valAxisMaxVal: 540,
 });
-T(s, 'Ciencias de 6.º: sin medición reciente. Panamá se retiró de PISA 2025 y el ERCE 2025 publica a fines de 2026.', { x: 0.5, y: 5.0, w: 5.7, h: 0.4, fontSize: 11, italic: true, color: K.navy, objectName: 'Dato ciencias' });
-telefono(s, '07.gif', 7.0, 1.2, 3.55, 'Mi laboratorio', K.pink);
-T(s, 'Aquí el laboratorio cabe en el teléfono', { x: 6.3, y: 4.92, w: 3.1, h: 0.35, fontSize: 12, bold: true, color: K.navy, align: 'center', objectName: 'Pie laboratorio' });
-nota(s, 'Fuentes: La Prensa (2/4/2026), licitación de laboratorios científicos; UNESCO y La Prensa (2025) sobre PISA y ERCE 2025.');
+T(s, [{ text: '38 %', options: { bold: true, fontSize: 18, color: K.pink } }, { text: ' alcanza el nivel básico en Panamá; ', options: { fontSize: 12 } }, { text: '76 %', options: { bold: true, fontSize: 18, color: K.violet } }, { text: ' en la OCDE y ', options: { fontSize: 12 } }, { text: '76 %', options: { bold: true, fontSize: 18, color: K.violet } }, { text: ' en la UE', options: { fontSize: 12 } }], { x: 0.5, y: 4.9, w: 6.4, h: 0.4, valign: 'middle', objectName: 'Nivel básico' });
+telefono(s, '07.gif', 7.55, 1.15, 3.55, 'Mi laboratorio', K.pink);
+T(s, 'El laboratorio que no llega cabe en el teléfono', { x: 6.75, y: 4.9, w: 3.0, h: 0.35, fontSize: 11.5, bold: true, color: K.navy, align: 'center', objectName: 'Pie laboratorio' });
+nota(s, 'PISA 2022 (OCDE): Panamá, México, Colombia, Uruguay y Chile, Fundación Exe (2024); UE, Cyprus Mail (6/12/2023); nivel básico, La Prensa (3/2/2026) y Comisión Europea.');
 s.addNotes(notas());
 
-// ---------- 4. Conexión ----------
+// ---------- 4. Pueblos originarios y comarcas ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Problema' });
-s.addText('La conexión también llega despacio, el teléfono ya está', { placeholder: 'title' });
-[['44 M$', 'contrato de internet para 3.102 escuelas (junio de 2025)', K.pink], ['17,3', 'clientes de internet fijo por cada 100 habitantes (2024)', K.orange], ['73,2 %', 'pobreza multidimensional en la comarca Ngäbe Buglé, con «sin internet» entre sus carencias (2025)', K.violet]].forEach((c, i) => {
-  const y = 1.4 + i * 1.2;
-  tarjeta(s, 0.5, y, 5.6, 1.05, c[2], 'Tarjeta ' + (i + 1));
-  T(s, c[0], { x: 0.7, y, w: 1.9, h: 1.05, fontSize: 34, bold: true, color: c[2], valign: 'middle', objectName: 'Cifra ' + (i + 1) });
-  T(s, c[1], { x: 2.65, y, w: 3.3, h: 1.05, fontSize: 13, color: K.navy, valign: 'middle', objectName: 'Etiqueta ' + (i + 1) });
+s.addText('Nacer en una comarca indígena marca lo que se aprende', { placeholder: 'title' });
+[['≈ 80 pts', 'menos en PISA para quien habla una lengua indígena en casa: casi 3 años de escuela (PISA-Panamá 2019, citado por la OEI, 2024)', K.pink], ['5 vs 9', 'años de escolaridad: un niño de comarca indígena frente a uno de zona urbana', K.orange], ['< 20 %', 'accede a premedia y media en las comarcas, frente al 62 % en áreas urbanas', K.violet]].forEach((c, i) => {
+  const y = 1.3 + i * 1.15;
+  tarjeta(s, 0.5, y, 6.2, 1.02, c[2], 'Tarjeta ' + (i + 1));
+  T(s, c[0], { x: 0.65, y, w: 1.85, h: 1.02, fontSize: 28, bold: true, color: c[2], valign: 'middle', objectName: 'Cifra ' + (i + 1) });
+  T(s, c[1], { x: 2.55, y, w: 4.05, h: 1.02, fontSize: 12, color: K.navy, valign: 'middle', objectName: 'Etiqueta ' + (i + 1) });
 });
-T(s, 'Chispa Lab funciona en modo avión', { x: 0.5, y: 5.0, w: 5.7, h: 0.4, fontSize: 16, bold: true, color: K.violet, objectName: 'Mensaje' });
-telefono(s, '06.gif', 7.0, 1.2, 3.55, 'burbujas con la cámara', K.cyan);
-T(s, 'Sin conexión, con la cámara y el micrófono', { x: 6.3, y: 4.92, w: 3.1, h: 0.35, fontSize: 12, bold: true, color: K.navy, align: 'center', objectName: 'Pie cámara' });
-nota(s, 'Fuentes: La Prensa (11/6/2025); ASEP, internet fijo 2024; MEF e INEC, IPM 2025.');
+T(s, [{ text: 'En la comarca Ngäbe Buglé la pobreza multidimensional es de 73,2 % y falta internet; hay 17,3 conexiones fijas por cada 100 habitantes en el país. ', options: { fontSize: 11.5 } }, { text: 'Chispa Lab funciona en modo avión.', options: { fontSize: 11.5, bold: true, color: K.violet } }], { x: 0.5, y: 4.78, w: 6.3, h: 0.5, valign: 'top', objectName: 'Conexión' });
+telefono(s, '06.gif', 7.55, 1.15, 3.55, 'burbujas con la cámara', K.cyan);
+T(s, 'Sin conexión, con la cámara y el micrófono', { x: 6.75, y: 4.9, w: 3.0, h: 0.35, fontSize: 11.5, bold: true, color: K.navy, align: 'center', objectName: 'Pie cámara' });
+nota(s, 'Fuentes: OEI (1/2024); La Prensa (3/2/2026); MEF e INEC, IPM 2025; ASEP, 2024. Ciencias de 6.º: ERCE 2025, resultados a fines de 2026.');
 s.addNotes(notas());
 
 // ---------- 5. Idea ----------

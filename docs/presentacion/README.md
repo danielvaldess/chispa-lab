@@ -16,8 +16,8 @@
 |---|---|---|---|
 | 1 | Portada | 0:12 | 0:00–0:12 |
 | 2 | **Mira cómo se juega** (cuatro GIF de la app) | 0:28 | 0:12–0:40 |
-| 3 | Un laboratorio de ciencias cuesta ≈ 150.000 dólares por aula (licitación de 2026) | 0:33 | 0:40–1:13 |
-| 4 | La conexión también llega despacio, el teléfono ya está | 0:19 | 1:13–1:32 |
+| 3 | 6 de cada 10 estudiantes panameños no alcanzan el nivel básico en ciencias (PISA 2022, frente a América Latina, la UE y la OCDE) | 0:33 | 0:40–1:13 |
+| 4 | Nacer en una comarca indígena marca lo que se aprende (brecha de ≈ 80 puntos, 5 frente a 9 años de escolaridad) | 0:19 | 1:13–1:32 |
 | 5 | Nuestra idea: predice, formula, juega, descubre | 0:18 | 1:32–1:50 |
 | 6 | Seis juegos, cuatro experimentos y un laboratorio libre | 0:14 | 1:50–2:04 |
 | 7 | **Para docentes:** «Mis alumnos» con QR, sin internet | 0:34 | 2:04–2:38 |
@@ -28,7 +28,7 @@
 | 12 | Mercado: quién lo necesita y quién lo financia | 0:27 | 4:15–4:42 |
 | 13 | Lo que proponemos | 0:18 | 4:42–5:00 |
 
-El texto de cada diapositiva suma 644 palabras: unos 4:17 a 150 palabras por minuto, y el resto del tiempo es margen para cambiar de diapositiva y dejar ver la demo.
+El texto de cada diapositiva suma 675 palabras: unos 4:30 a 150 palabras por minuto, y el resto del tiempo es margen para cambiar de diapositiva y dejar ver la demo.
 
 ## Qué cifras tienen fuente y cuáles son medidas propias
 

@@ -73,7 +73,8 @@ Grabados en Chromium con tamaño de teléfono.
 
 ## Por qué importa
 
-- **El aprendizaje en sexto grado necesita apoyo.** En el último estudio regional (ERCE Pospandemia, UNESCO y Meduca, 2025), el **27,7 %** de los niños de Panamá alcanza el nivel mínimo en lectura y el **10,1 %** en matemática; en Argentina, el 34,5 % y el 17 %. El estudio que mide Ciencias de 6.º se aplicó en octubre de 2025 y se publica a fines de 2026.
+- **En ciencias, 6 de cada 10 estudiantes panameños de 15 años no alcanzan el nivel básico.** En PISA 2022 (OCDE) Panamá sacó **388 puntos** en ciencias; Chile, 444; Uruguay, 435; Colombia, 411; México, 410; la **Unión Europea, 480** y la **OCDE, 485**. Solo el **38 %** llega al nivel básico, frente al **76 %** en la OCDE y en la Unión Europea.
+- **Nacer en una comarca indígena marca lo que se aprende.** Quien habla una lengua indígena en casa saca unos **80 puntos menos** en PISA (casi 3 años de escuela; PISA-Panamá 2019, citado por la OEI en 2024); un niño de comarca indígena alcanza **5 años de escolaridad** y uno de zona urbana, **9**; el acceso a premedia y media es **menor al 20 %** en las comarcas frente al 62 % en áreas urbanas (La Prensa, febrero de 2026). El ERCE 2025 publicará Ciencias de 6.º a fines de 2026.
 - **El laboratorio físico llega despacio.** La licitación de 2026 equipa **73 centros de media** con 193 aulas de laboratorio por **28,9 millones de dólares** (≈ 150.100 USD por aula, con equipos, instalación y capacitación). Y hay 17 clientes de internet fijo por cada 100 habitantes.
 - **El teléfono ya está.** Chispa Lab convierte el que hay en el aula en un laboratorio: sin internet, sin cuentas y gratis.
 - **Un lugar concreto para empezar:** la Región Educativa de Veraguas, con **54.708 estudiantes** oficiales (38.250 en primaria y premedia), donde el IPM 2025 es de 12,2 % y, en la comarca vecina Ngäbe Buglé, de 73,2 %.
