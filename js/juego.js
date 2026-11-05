@@ -1105,7 +1105,7 @@ function menu() {
       '</span><span><b>' + esc(n.titulo) + '</b>' + (n.id === PERF.recomendado() ? '<span class="insignia">⭐ Para ti</span>' : '') + '<small>' + esc(n.sub) + (p ? ' · récord ' + p + ' ⭐' : '') + '</small><span class="est" aria-label="' + e + ' de 3 estrellas">' + estrellas(e) + '</span></span></a>';
   }).join('');
   var nDesc = (jug && jug.descubrimientos ? jug.descubrimientos.length : 0);
-  var tarjetaLibre = '<a class="tarjeta libre" style="--c:#0ea5e9;--d:0.1s" href="#/libre"><span class="ico" aria-hidden="true">🔬</span><span><b>Mi laboratorio</b><span class="insignia">Juego libre</span><small>Mezcla, suelta, riega y descubre. Sin reglas ni tiempo.</small><span class="est">🔎 ' + nDesc + ' de ' + DESCUBRIMIENTOS.CATALOGO.length + ' descubrimientos</span></span></a>';
+  var tarjetaLibre = '<a class="tarjeta libre" style="--c:#0ea5e9;--d:0.1s" href="#/libre"><span class="ico" aria-hidden="true">🔬</span><span><b>Mi laboratorio</b><span class="insignia">Juego libre</span><small>Mezcla, suelta, riega y descubre. Sin reglas ni tiempo.</small><span class="est-txt">🔎 ' + nDesc + ' de ' + DESCUBRIMIENTOS.CATALOGO.length + ' descubrimientos</span></span></a>';
   var tarjetasExp = EXPERIMENTOS.length ? '<h3 class="sala-exp">🔬 Experimentos con materiales</h3><p class="nota">Opcionales: se hacen con cosas de casa y no hacen falta para encender la estación. Tus descubrimientos quedan en tu cuaderno.</p>' +
     EXPERIMENTOS.map(function (n, i) {
       var e = progreso[n.id] || 0;
