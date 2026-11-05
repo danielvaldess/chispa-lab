@@ -11,7 +11,7 @@
   <img src="https://img.shields.io/badge/hack4edu-2026-005588" alt="hack4edu 2026" />
   <img src="https://img.shields.io/badge/Reto-17-e8590c" alt="Reto 17" />
   <img src="https://img.shields.io/badge/idioma-espa%C3%B1ol-blue" alt="Idioma" />
-  <img src="https://img.shields.io/badge/estado-en%20desarrollo-yellow" alt="En desarrollo" />
+  <img src="https://img.shields.io/badge/versi%C3%B3n-1.2.0-brightgreen" alt="Versión 1.2.0" />
 </p>
 
 ---
@@ -25,6 +25,17 @@ encender la estación científica: cada sala es un nivel.
 
 Cada nivel sigue el ciclo del método científico: **predices**, **juegas** y **descubres** qué pasó con tus
 propios datos.
+
+## Capturas
+
+Capturas reales de la app (Chromium con tamaño de teléfono, 390×844; en Luz y color y Burbujas se usó la opción «sin cámara»). Todas están en [`docs/capturas/`](docs/capturas/).
+
+<table>
+<tr><td align="center"><img src="docs/capturas/01-menu.png" width="190" alt="Menú con Chispa y Mi laboratorio"/><br/><sub>Menú con Chispa y Mi laboratorio</sub></td><td align="center"><img src="docs/capturas/04-rampa-prediccion.png" width="190" alt="Predice antes de jugar"/><br/><sub>Predice antes de jugar</sub></td><td align="center"><img src="docs/capturas/05-rampa-canica.png" width="190" alt="La rampa de cartón"/><br/><sub>La rampa de cartón</sub></td><td align="center"><img src="docs/capturas/07-pendulo.png" width="190" alt="El péndulo del estante"/><br/><sub>El péndulo del estante</sub></td></tr>
+<tr><td align="center"><img src="docs/capturas/08-voz.png" width="190" alt="La voz y el globo"/><br/><sub>La voz y el globo</sub></td><td align="center"><img src="docs/capturas/09-globo.png" width="190" alt="El globo largo"/><br/><sub>El globo largo</sub></td><td align="center"><img src="docs/capturas/10-luz-y-color.png" width="190" alt="Luz y color"/><br/><sub>Luz y color</sub></td><td align="center"><img src="docs/capturas/11-burbujas.png" width="190" alt="Burbujas mágicas"/><br/><sub>Burbujas mágicas</sub></td></tr>
+<tr><td align="center"><img src="docs/capturas/12-mi-laboratorio-mezclas.png" width="190" alt="Mi laboratorio: mezclas"/><br/><sub>Mi laboratorio: mezclas</sub></td><td align="center"><img src="docs/capturas/13-mi-laboratorio-col-con-limon.png" width="190" alt="Un descubrimiento"/><br/><sub>Un descubrimiento</sub></td><td align="center"><img src="docs/capturas/14-mi-laboratorio-flota.png" width="190" alt="Flota o se hunde"/><br/><sub>Flota o se hunde</sub></td><td align="center"><img src="docs/capturas/16-mi-laboratorio-caida.png" width="190" alt="Caída libre"/><br/><sub>Caída libre</sub></td></tr>
+<tr><td align="center"><img src="docs/capturas/03-menu-experimentos.png" width="190" alt="Experimentos con materiales"/><br/><sub>Experimentos con materiales</sub></td><td align="center"><img src="docs/capturas/18-exp-hilo-siguiente.png" width="190" alt="Materiales de casa y seguridad"/><br/><sub>Materiales de casa y seguridad</sub></td><td align="center"><img src="docs/capturas/29-experimento-hipotesis.png" width="190" alt="Mi hipótesis"/><br/><sub>Mi hipótesis</sub></td><td align="center"><img src="docs/capturas/25-ajustes.png" width="190" alt="Ajustes y apoyos"/><br/><sub>Ajustes y apoyos</sub></td></tr>
+</table>
 
 ## Los niveles
 
@@ -94,7 +105,7 @@ penaliza el tiempo ni la estabilidad del tono.
 
 ## Investigación y presentación
 
-- **Artículo de investigación** con datos de Panamá, evidencia de la literatura, mediciones técnicas propias y ODS, con fuentes y una nota de qué se verificó: [`docs/investigacion/articulo.md`](docs/investigacion/articulo.md).
+- **Artículo de investigación** con datos de Panamá y de la Región Educativa de Veraguas, evidencia de la literatura, mediciones técnicas propias y ODS. **Todas las fuentes son de 2024 a 2026**, cada una con su nivel de verificación, y lo que no tiene dato reciente se dice: [`docs/investigacion/articulo.md`](docs/investigacion/articulo.md).
 - **Presentación de 5 minutos** (11 diapositivas, con notas y guion): [`docs/presentacion/`](docs/presentacion/).
 - **Transferencia al mercado:** [`docs/transferencia-al-mercado.md`](docs/transferencia-al-mercado.md).
 
@@ -137,6 +148,11 @@ ayuda a jugar?**» (casillas opcionales: voz, oír, ver, concentrarme, leer o lo
 - **Privacidad:** sin cuentas ni servidor. Nombre, mes y año de nacimiento, apoyos y progreso viven solo en el dispositivo; no se envía nada.
 - **Accesibilidad:** respeta `prefers-reduced-motion`, baja las partículas en móviles de pocos núcleos y cada
   nivel tiene alternativa sin sensor (barra) y sin micrófono.
+
+## Probarlo ahora
+
+- **Web (se instala como app y funciona sin internet):** https://danielvaldess.github.io/chispa-lab/
+- **App de Android (APK):** https://github.com/danielvaldess/chispa-lab/releases/latest
 
 ## Ejecutar
 
