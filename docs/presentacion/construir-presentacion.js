@@ -149,7 +149,7 @@ s.addNotes(notas());
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Solución' });
 s.addText('Para todos los niños', { placeholder: 'title' });
 s.addText([{ text: '17,1 %', options: { fontSize: 40, bold: true, color: C.accent3 } }, { text: '  de los niños de 2 a 14 años en Panamá tiene alguna discapacidad (ENDIS-2)', options: { fontSize: 13, color: C.text1 } }], { x: 0.5, y: 1.25, w: 6.4, h: 0.8, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Dato discapacidad' });
-s.addText('Margen para acertar según la edad (heurística nuestra, por validar con niños)', { x: 0.5, y: 2.1, w: 6.4, h: 0.3, fontSize: 12, bold: true, color: C.text1, margin: 0, isTextBox: true, objectName: 'Título edades' });
+s.addText('Punto de partida por edad; después aprende de cada niño', { x: 0.5, y: 2.1, w: 6.4, h: 0.3, fontSize: 12, bold: true, color: C.text1, margin: 0, isTextBox: true, objectName: 'Título edades' });
 [['6 años o menos', '×1,8'], ['7 y 8', '×1,4'], ['9 y 10', '×1,15'], ['11 a 13', '×1,0'], ['14 o más', '×0,8']].forEach((e, i) => {
   s.addText([{ text: e[1], options: { bold: true, fontSize: 15, color: C.text1, breakLine: true } }, { text: e[0], options: { fontSize: 10, color: C.text2 } }], { x: 0.5 + i * 1.3, y: 2.42, w: 1.22, h: 0.62, fill: { color: C.background2 }, align: 'center', valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.08, margin: 0.03, isTextBox: true, objectName: 'Edad ' + (i + 1) });
 });

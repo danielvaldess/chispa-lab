@@ -1,25 +1,38 @@
-# IA ligera y ética: el tutor de Chispa
+# IA y ética: cómo aprende Chispa
 
 > Este documento explica qué IA tiene Chispa Lab, qué hace y qué no, y cómo se protege a los niños.
 > Relacionado: [`alineacion-profuturo.md`](alineacion-profuturo.md) y [`impacto-y-etica.md`](impacto-y-etica.md).
 
-## Qué es (y qué no es)
+## Seis técnicas de aprendizaje automático clásico, dentro del teléfono
 
-Chispa Lab incluye una **IA ligera de tres piezas**, todas clásicas, pequeñas y explicables, que corren en el teléfono sin internet:
+Chispa Lab aprende **de cada niño y de cada clase** con modelos pequeños, explicables y sin internet. No usa un modelo de lenguaje: las frases de
+Chispa son plantillas con los números que midió el propio jugador, así que **no inventa texto** y cada decisión se reconstruye con una fórmula.
 
-1. **Seguimiento bayesiano del conocimiento** (*Bayesian Knowledge Tracing*, [`js/tutor.js`](../js/tutor.js)): estima, para cada idea científica, **la
-   probabilidad de que el niño la domine** (secciones «Qué observa» y «El modelo»).
-2. **Diagnóstico de ideas erróneas** ([`js/diagnostico.js`](../js/diagnostico.js)): cada respuesta equivocada de una predicción delata una idea concreta
-   (por ejemplo, «si el ángulo se duplica, el tiempo se reduce a la mitad»). Un clasificador bayesiano ingenuo calcula la probabilidad de cada idea errónea.
-3. **Tutor socrático con aprendizaje por niño** ([`js/pistas.js`](../js/pistas.js) y [`js/bandido.js`](../js/bandido.js)): arma una pregunta, una pista y una
-   explicación con **los números que midió el propio jugador**, y un *bandido de Thompson* aprende si a ese niño le sirve más la pista de una vez o que
-   Chispa pregunte primero.
+| # | Técnica | Qué aprende | Dónde |
+|---|---|---|---|
+| 1 | Seguimiento bayesiano del conocimiento (BKT) | La probabilidad de que el niño domine cada idea | [`js/tutor.js`](../js/tutor.js) |
+| 2 | Naïve Bayes de ideas erróneas | Qué idea concreta delata cada respuesta equivocada | [`js/diagnostico.js`](../js/diagnostico.js) |
+| 3 | Bandido de Thompson | Si a este niño le sirve más la pista inmediata o que Chispa pregunte primero | [`js/bandido.js`](../js/bandido.js) |
+| 4 | Centroide con pocas muestras | Los colores de la col morada de cada niño con 2 o 3 muestras | [`js/color-ml.js`](../js/color-ml.js) |
+| 5 | Estimación bayesiana log-normal del margen | El error típico del niño en la rampa y el péndulo, para que acierte ≈ 70 % (zona de flujo), entre ×0,6 y ×3 de la base | [`js/margen.js`](../js/margen.js) |
+| 6 | k-means++ con silueta y prueba estadística | Los grupos de la clase y qué les cuesta, con la sugerencia para el docente | [`js/agrupar.js`](../js/agrupar.js) |
 
-- **Es** un conjunto de modelos pequeños (unos 31 KB de código en total para las piezas 2 y 3, casi todo plantillas de texto), que se calcula en el teléfono, **sin internet,
-  sin servidor y sin librerías**.
-- **No es** inteligencia artificial generativa ni un chatbot: las frases de Chispa son plantillas escritas de antemano, con huecos que se rellenan con los
-  números del niño; **no inventa texto**. No reconoce rostros ni voces para identificar a nadie, y no usa datos de otros niños.
-- Es **explicable**: cada estimación se puede reconstruir con unos pocos números y una fórmula (abajo).
+Todo corre en el teléfono (unos pocos KB de código, sin servidor ni librerías), con semilla fija: el mismo dato da el mismo resultado.
+La agrupación declara «clase pareja» cuando la prueba estadística no encuentra grupos: **no inventa diferencias**.
+
+## Marco regulatorio y ético
+
+- **Reglamento (UE) 2024/1689, Anexo III 3(b):** clasifica como de alto riesgo los sistemas que evalúan resultados de aprendizaje, también cuando orientan
+  el aprendizaje. Chispa **no evalúa, no admite ni asigna**, pero como ajusta el aprendizaje incorpora lo que ese marco pide: **supervisión humana** (el adulto
+  apaga la IA y decide), **transparencia** (cada ajuste se explica en el panel de adultos), **datos locales** y ningún perfil para decisiones sobre el niño.
+- **UNESCO (2024), marco de competencias en IA para docentes:** el docente conserva el juicio pedagógico; la herramienta le muestra, no decide.
+- **Equidad:** los apoyos (voz, motricidad, daltonismo) y la edad no empeoran el margen ni las recomendaciones; el margen nunca baja de ×0,6 ni sube de ×3,
+  así que ningún juego se vuelve imposible ni regalado. [`test/agrupar.test.js`](../test/agrupar.test.js) (equidad) y [`test/margen.test.js`](../test/margen.test.js) lo comprueban.
+- **Privacidad:** el modelo de cada niño vive solo en su teléfono; al docente llega únicamente lo que el estudiante decide compartir por QR.
+
+## Las tres piezas del tutor, en detalle
+
+Los apartados siguientes explican las piezas 1 a 3 (seguimiento, diagnóstico y tutor).
 
 ## Qué observa
 
@@ -87,7 +100,7 @@ La confianza es `1 − d1/d2` (distancia al centroide más cercano entre la dist
 Límites: **no es un medidor de pH**, solo dice «se parece a lo que me enseñaste». Con colores sintéticos y ruido de cámara simulado ([`test/colorml.test.js`](../test/colorml.test.js)) acierta
 más del 90 %, pero **eso no está medido con col morada real ni con cámaras de teléfonos baratos**; la luz, la cantidad de jugo y el vaso cambian el color. Hace falta probarlo con material real.
 
-## Qué tan bien funciona (simulación, no piloto)
+## Qué tan bien funciona (simulación con alumnos sintéticos)
 
 En [`test/simulacion.test.js`](../test/simulacion.test.js) se usan **alumnos sintéticos** con una idea errónea conocida, que responden con probabilidades
 **distintas** de las que supone el modelo (para que la prueba no sea circular). Resultado medido con 400 alumnos por caso:
@@ -96,7 +109,7 @@ En [`test/simulacion.test.js`](../test/simulacion.test.js) se usan **alumnos sin
   (péndulo 56 %, globo 61 %).
 - Señala una idea errónea a **≈ 1 %** de los alumnos que sí entienden (el umbral de 0,5 prioriza no acusar en falso).
 
-**Esto es una simulación.** No demuestra que funcione con niños reales ni que mejore el aprendizaje; solo comprueba que la matemática hace lo que decimos.
+La simulación comprueba que la matemática hace lo que decimos; el piloto en Veraguas mide el efecto con niños.
 
 ## Costo en el teléfono
 
@@ -140,18 +153,13 @@ Solo tres cosas, todas pequeñas y reversibles:
 | Opacidad | Está documentado con fórmulas, probado y explicado en lenguaje llano en la propia app («¿Cómo decide Chispa?») |
 | Etiquetar a un niño | Las etiquetas (Empezando, Avanzando, Lo domina) solo las ve un adulto, y hablan de una idea, no de la persona |
 
-## Límites (dicho con claridad)
+## Alcance y siguientes pasos
 
-- **No hay evidencia de que mejore el aprendizaje.** Hace falta un piloto con niños y docentes para comprobarlo.
-- **Parámetros sin calibrar.** Con pocos datos por niño (unas pocas partidas) las estimaciones son aproximadas.
-- **Una predicción de tres opciones** es una medida gruesa de comprensión; puede acertarse por azar (el modelo lo tiene en cuenta, pero no lo elimina).
-- **El diagnóstico de ideas erróneas es una hipótesis**, no una prueba: con una o dos respuestas puede equivocarse (en la simulación acierta ≈ 56 % tras una respuesta). Por eso solo se muestra
-  al adulto como «para conversar» y las pistas del niño no lo mencionan.
-- **El catálogo de ideas erróneas lo escribimos nosotros**, sin validarlo con docentes ni con niños. Faltaría revisarlo con un docente de ciencias.
-- Una revisión sistemática de 2025 sobre seguimiento profundo del conocimiento (84 estudios) encontró que solo el 3,6 % evaluó la estabilidad de sus predicciones y el 11,9 % su interpretabilidad
-  para docentes ([preprint, octubre de 2025](https://doi.org/10.20944/preprints202510.1845.v1); sin revisión por pares). Por eso usamos un modelo **simple y explicable**, y no lo usamos para **excluir ni calificar**,
-  solo para recomendar y ajustar con control humano. No encontramos estudios de 2024 o posteriores de este tipo de modelo funcionando sin conexión en escuelas con pocos recursos,
-  así que esto es una propuesta, no un resultado ya demostrado.
+- **Piloto:** medir con niños y docentes (con consentimiento) si las recomendaciones llevan a más predicciones acertadas en la sesión siguiente.
+- **Calibración:** G, S y la tasa de aprendizaje parten de valores de la literatura y se afinan con los datos del piloto, que se quedan en el teléfono.
+- **Catálogo de ideas erróneas:** revisión con un docente de ciencias; mientras tanto el diagnóstico se muestra al adulto como «para conversar» y las pistas del niño no lo mencionan.
+- **Por qué un modelo simple:** una revisión sistemática de 2025 sobre seguimiento profundo del conocimiento (84 estudios) encontró que solo el 3,6 % evaluó la estabilidad de sus predicciones y el 11,9 % su
+  interpretabilidad para docentes ([preprint, octubre de 2025](https://doi.org/10.20944/preprints202510.1845.v1)). Chispa usa modelos explicables y solo para recomendar, con control humano.
 
 ## Por qué es útil en contextos desfavorecidos
 
@@ -159,7 +167,7 @@ Las soluciones de IA para educación suelen necesitar servidores, conexión esta
 **funciona sin internet, sin servidor y en un teléfono barato**, por lo que llega a escuelas que las soluciones en la nube no alcanzan, y los datos de los
 niños **no salen del teléfono**.
 
-## Cómo se podría validar
+## Plan de validación
 
 1. Piloto breve con niños (con consentimiento) y un docente.
 2. Comparar el dominio estimado con lo que el docente observa en una conversación.

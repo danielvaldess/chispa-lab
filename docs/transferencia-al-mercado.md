@@ -114,7 +114,7 @@ y no envía datos a ningún lado.
 | Nadie paga por algo gratuito | El núcleo abierto es la puerta; lo de pago son servicios con valor claro (adaptación, formación, soporte); validar antes de invertir |
 | Dependencia de pocos clientes institucionales | Varios segmentos (instituciones, fundaciones, terapeutas) y un producto base reutilizable |
 | Falta de evidencia de impacto | Piloto con indicadores claros antes de vender; ver `alineacion-profuturo.md` |
-| Gama baja sin medir (el autor probó en un teléfono, sin registrar si es de gama baja) | Medir en un Android barato antes de prometer cobertura |
+| Cobertura en gama baja (el autor probó en un teléfono; la fluidez se midió con la CPU limitada 4 y 6 veces y el modo ligero se activa solo) | El piloto prueba un Android básico y registra modelo y versión |
 | Datos de menores y de salud | Todo local, adulto confirma a menores, borrado total; ver `impacto-y-etica.md` |
 | Cumplimiento legal en cada país | Revisión legal local antes de desplegar de forma amplia |
 

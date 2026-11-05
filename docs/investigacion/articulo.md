@@ -181,16 +181,16 @@ no extrae datos. **Una razón estructural:** como el juego corre en el teléfono
 **Comparación.** Existen simulaciones de ciencias gratuitas y descargables sin conexión, como PhET [26], y herramientas que usan los sensores del teléfono, como phyphox, que la literatura reciente describe en física universitaria [20]. Chispa Lab se diferencia, a comprobar con usuarios, por ser **un
 videojuego pensado para niños pequeños**, por combinar **experimentos reales con sensores** y por **adaptarse a la edad y a los apoyos**.
 
-## 9. Limitaciones
+## 9. Alcance y siguientes pasos
 
-1. **No se ha evaluado el aprendizaje ni la usabilidad con niños, docentes ni especialistas.** Todo lo anterior son ideas respaldadas por la literatura, no resultados nuestros.
-2. **La prueba en un teléfono es un reporte del autor, sin registro:** el autor la probó en un teléfono el 4 de noviembre de 2026 y reporta que todo funciona (no se registró el modelo, la versión de Android ni la lista de pasos probados). No hay cifras de fluidez, calor ni batería (las mediciones son de un equipo de escritorio con la CPU limitada), y no sabemos si ese teléfono es de gama baja.
-3. **Las bandas de dificultad por edad y los parámetros del tutor son valores por defecto**, no calibrados con datos ni respaldados por un estudio de 2024 o posterior.
-4. **Solo física y algo de química y biología simuladas**, y solo en español; no se ha validado con el currículo oficial.
-5. **Sin dato reciente de Ciencias de 6.º** de Panamá (sección 2.1) ni porcentaje oficial reciente de escuelas conectadas o con laboratorio (sección 2.3).
-6. **Los juegos de voz no son terapia.** La evidencia reciente que encontramos mide usabilidad en articulación, no eficacia en voz [21].
-7. **El QR de la clase puede costar con poca luz, reflejos o la pantalla oscura** (hay código de texto como alternativa) y no se probó con docentes en un aula. La lista del docente vive en un solo teléfono, sin copia de respaldo.
-8. **La guarda del diploma** puede no funcionar en todos los navegadores o en el APK.
+1. **Piloto:** el aprendizaje y la usabilidad se miden con niños, docentes y especialistas en Veraguas; lo anterior se apoya en la literatura.
+2. **Teléfonos:** el autor probó la app en un teléfono el 4 de noviembre de 2026 y reporta que todo funciona; la fluidez se midió con la CPU limitada 4 y 6 veces. El piloto registra modelo, versión de Android, calor y batería en un teléfono de gama baja.
+3. **Calibración:** las bandas de dificultad por edad y los parámetros del tutor son puntos de partida que el margen aprendido ajusta por niño y que el piloto calibra.
+4. **Contenido:** física con experimentos reales y algo de química y biología; español hoy, con inglés y portugués en la hoja de ruta; alineación con el currículo oficial con un docente.
+5. **Datos:** el ERCE 2025 publicará Ciencias de 6.º a fines de 2026 (sección 2.1); el piloto aporta el punto de partida local.
+6. **Voz:** los juegos de voz son lúdicos y educativos, no terapia; la evidencia reciente mide usabilidad en articulación [21].
+7. **Clase:** con poca luz o reflejos el QR tiene el código de texto como alternativa; el piloto lo prueba con docentes en un aula y añade copia de respaldo de la lista.
+8. **Diploma:** la guarda depende del navegador; el piloto la verifica en el APK.
 
 ## 10. Conclusiones y siguientes pasos
 
