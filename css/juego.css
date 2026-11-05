@@ -274,3 +274,6 @@ body.en-juego header,body.en-juego footer,body.en-juego main{display:none}
 .juego .desc-in h3{background:none;box-shadow:none;padding:0;border-radius:0;color:#1d2250}
 .escena.es-lab .ctl-caja label{font-size:12px}
 .escena.es-lab .ctl .ctl-caja.ancha{margin-bottom:4px}
+
+/* Sin bloquear el zoom (accesibilidad): se evita solo el zoom accidental por doble toque. */
+html, body, button, a { touch-action: manipulation; }

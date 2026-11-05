@@ -46,6 +46,17 @@ var PERF = (function () {
     return p && aj().tutor ? TUTOR.margenInicial(p.maestria[id]) : 1;
   }
 
+  /** Multiplicador del margen que Chispa aprendió de este jugador en un juego (×1 si no hay datos o la IA está apagada). */
+  function margenAprendido(id) { return PERFILES.margenAprendido(actual(), id); }
+
+  /** Chispa aprende de un intento de un juego de precisión y guarda lo aprendido en este teléfono. */
+  function aprenderMargen(id, error, tolBase) {
+    var p = actual();
+    if (!p) return;
+    PERFILES.registrarMargen(p, id, error, tolBase);
+    guardar();
+  }
+
   /** Id del juego que Chispa recomienda hoy, o null (sin datos, apagado o todo dominado). */
   function recomendado() {
     var p = actual();
@@ -209,7 +220,7 @@ var PERF = (function () {
 
   return {
     actual: actual, aj: aj, progreso: progreso, guardar: guardar, aplicar: aplicar, leer: leer, entrar: entrar,
-    quien: quien, estado: function () { return estado; }, volver: irMenu, margenTutor: margenTutor, recomendado: recomendado,
+    quien: quien, estado: function () { return estado; }, volver: irMenu, margenTutor: margenTutor, margenAprendido: margenAprendido, aprenderMargen: aprenderMargen, recomendado: recomendado,
     ajustes: function (aviso) { PANEL.abrir(null, aviso); },
     fijarEstado: function (e) { estado = e; },
     nuevo: function () { reiniciarAsistente(); paso0(); }

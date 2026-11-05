@@ -241,9 +241,17 @@ var PANEL = (function () {
     var bloqueLibre = '<div class="fila-aj"><div class="txt"><b>Mi laboratorio (juego libre)</b><small>' + esc(p.nombre) + ' lleva ' + prog.tiene + ' de ' + prog.total + ' descubrimientos: ' +
       Object.keys(DESCUBRIMIENTOS.ESTACIONES).map(function (k) { return DESCUBRIMIENTOS.ESTACIONES[k].emoji + ' ' + DESCUBRIMIENTOS.ESTACIONES[k].nombre + ' ' + prog.porEstacion[k].tiene + '/' + prog.porEstacion[k].total; }).join(' · ') +
       '. Es juego sin notas ni tiempo: sirve para conversar sobre qué probó y por qué cree que pasó.</small></div></div>';
+    function bloqueMargen(pf) {
+      var ids = PERFILES.IDS_MARGEN, filas = ids.map(function (id) {
+        var t = { rampa: 'La rampa de cartón', pendulo: 'El péndulo del estante' }[id];
+        return '<li><b>' + esc(t) + ':</b> ' + esc(MARGEN.describir(pf.margen && pf.margen[id])) + '</li>';
+      }).join('');
+      return '<div class="fila-aj"><div class="txt"><b>Margen que aprende Chispa</b><small>En los juegos de precisión, Chispa estima el error típico de ' + esc(pf.nombre) + ' y ajusta el margen para que acierte cerca de 7 de cada 10 veces, nunca imposible. Se calcula en este teléfono y se borra con «Reiniciar».</small></div><ul class="lista-aprendizaje">' + filas + '</ul></div>';
+    }
     var bloqueTutor = '<div class="fila-aj"><div class="txt"><b>Dominio de ideas</b><small>Lo que Chispa estima de cada idea, con un cálculo de probabilidades que se hace solo en este teléfono. No es una nota ni un diagnóstico.</small></div>' +
       (dominio ? '<ul class="lista-aprendizaje">' + dominio + '</ul>' : '<p class="muestra">Todavía no hay datos. Aparecerán cuando termine algún juego.</p>') + '</div>' +
       bloqueLibre + bloqueIdeas +
+      bloqueMargen(p) +
       fila('IA de Chispa', 'Chispa sugiere el siguiente juego, ajusta el margen al empezar y arma preguntas y pistas con los datos de ' + esc(p.nombre) + '. Todo se calcula en este teléfono. Si la apagas, deja de recordar lo que aprende y usa mensajes fijos.', interruptor('tutor', tutorOn)) +
       '<p class="accion"><button class="sec" id="reiniciar-tutor" type="button">Reiniciar lo que Chispa sabe de ' + esc(p.nombre) + '</button></p><div id="confirmar"></div>' +
       '<div class="fila-aj"><div class="txt"><b>¿Cómo decide Chispa?</b><small>Cada vez que termina un juego, suma una pista: si ' + esc(p.nombre) + ' predijo bien y si logró el reto con soltura. Con esas pistas sube o baja su estimación de cada idea. Después recomienda el juego donde hay más por aprender y da un poco más de margen al empezar si le cuesta. ' +

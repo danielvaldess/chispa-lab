@@ -9,6 +9,22 @@ function recargarProgreso() { progreso = PERF.progreso(); }
 var REDUCIDO = false;
 try { REDUCIDO = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
 var LIGERO = REDUCIDO || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2);
+// Fluidez adaptable: si el teléfono va lento (menos de 26 cuadros por segundo) en dos ventanas seguidas de unos 2 segundos, Chispa baja sola los efectos (modo ligero) y lo recuerda en ese teléfono.
+try { if (localStorage.getItem('chispalab.ligero') === '1') LIGERO = true; } catch (e) {}
+var FLUIDEZ = { n: 0, suma: 0, lentas: 0 };
+function vigilarFluidez(crudo) {
+  if (LIGERO || document.hidden) return;
+  FLUIDEZ.n++; FLUIDEZ.suma += Math.min(crudo, 0.25);
+  if (FLUIDEZ.suma < 2 || FLUIDEZ.n < 20) return;   // ventanas de unos 2 segundos, sea cual sea la velocidad
+  var fps = FLUIDEZ.n / FLUIDEZ.suma;
+  FLUIDEZ.n = 0; FLUIDEZ.suma = 0;
+  FLUIDEZ.lentas = fps < 26 ? FLUIDEZ.lentas + 1 : 0;
+  if (FLUIDEZ.lentas >= 2) {
+    LIGERO = true;
+    try { localStorage.setItem('chispalab.ligero', '1'); } catch (e) {}
+    if ($('cv')) prepararCanvas();
+  }
+}
 var tt = 0; // reloj de animación
 var PAL = { tinta: '#1d2250', amarillo: '#ffd23f', rosa: '#ff5c8a', verde: '#2fd18b', azul: '#3b82f6', naranja: '#ff9f43', morado: '#8a6cff' };
 var CONF = ['#ffd23f', '#ff5c8a', '#2fd18b', '#3b82f6', '#ff9f43', '#8a6cff'];
@@ -341,8 +357,9 @@ function arrancar(n) { nivel = n; ultimo = performance.now(); raf = requestAnima
 function bucle(ts) {
   if (!nivel) return;
   if (pausado) { ultimo = ts; raf = requestAnimationFrame(bucle); return; }
-  var dt = Math.min(0.05, Math.max(0, (ts - ultimo) / 1000));
+  var crudo = Math.max(0, (ts - ultimo) / 1000), dt = Math.min(0.05, crudo);
   ultimo = ts; tt += dt; shake = Math.max(0, shake - dt * 40);
+  vigilarFluidez(crudo);
   try {
     nivel.actualizar(dt);
     if (nivel) {
@@ -498,7 +515,7 @@ function cronometro(x, y, R, t, obj, tol, activo) {
 
 // ---------- Nivel 1: La rampa de cartón (acelerómetro) ----------
 function jugarRampa(pred) {
-  var OBJ = [3.0, 2.0, 1.4], TOLB = 0.3 * AJ_ACT.tol * PERF.margenTutor('rampa'), TOL = r(TOLB, 2), D = 3, MU = 0.02, din = AJUSTES.dinamicoInicial();
+  var OBJ = [3.0, 2.0, 1.4], TOLB = 0.3 * AJ_ACT.tol * PERF.margenTutor('rampa'), TOL = r(TOLB * PERF.margenAprendido('rampa'), 2), D = 3, MU = 0.02, din = AJUSTES.dinamicoInicial();
   var etapa = 0, fase = 'apuntar', s = 0, v = 0, t = 0, thL = 0, quieta = 0, tr = 0, intentos = [], aciertos = [], timer = 0;
   var xm = 0, vm = 0, rotM = 0, golpe = 0, tTiempo = 0, enVaso = false, avisoSensor = false, avisoT = 0;
 
@@ -544,7 +561,8 @@ function jugarRampa(pred) {
     rodar(false);
     intentos.push({ th: r(thL, 1), t: r(tTiempo, 2), obj: obj });
     var error = Math.abs(tTiempo - obj), tolUsada = TOL;
-    din = AJUSTES.ajusteDinamico(din, error <= tolUsada); TOL = r(TOLB * din.mult, 2);
+    PERF.aprenderMargen('rampa', error, TOLB);
+    din = AJUSTES.ajusteDinamico(din, error <= tolUsada); TOL = r(TOLB * Math.max(PERF.margenAprendido('rampa'), din.mult), 2);
     fase = 'fin'; $('soltar').disabled = false;
     if (error <= tolUsada) {
       aciertos.push({ th: r(thL, 1), t: r(tTiempo, 2), obj: obj });
@@ -708,7 +726,7 @@ function objetoColgante(i, x, y, rad, ang) {
 }
 
 function jugarPendulo(pred) {
-  var OBJ = [1.4, 2.0, 2.6], TOLB = 0.05 * AJ_ACT.tol * PERF.margenTutor('pendulo'), TOL = r(TOLB, 3), din = AJUSTES.dinamicoInicial();
+  var OBJ = [1.4, 2.0, 2.6], TOLB = 0.05 * AJ_ACT.tol * PERF.margenTutor('pendulo'), TOL = r(TOLB * PERF.margenAprendido('pendulo'), 3), din = AJUSTES.dinamicoInicial();
   var etapa = 0, fase = 'listo', est = { th: 0.35, w: 0 }, tSim = 0, cruces = [], L = 0.8, item = 2, intentos = [], tb = 0, medido = null, timer = 0, rastro = [], ultTic = -1;
 
   escena('⏱ El péndulo',
@@ -737,7 +755,8 @@ function jugarPendulo(pred) {
     fase = 'medido'; medido = T;
     var obj = OBJ[etapa], error = Math.abs(T - obj) / obj, tolUsada = TOL;
     intentos.push({ L: r(L * 100, 0), m: ITEMS[item].g, T: r(T, 2), obj: obj });
-    din = AJUSTES.ajusteDinamico(din, error <= tolUsada); TOL = r(TOLB * din.mult, 3);
+    PERF.aprenderMargen('pendulo', error, TOLB);
+    din = AJUSTES.ajusteDinamico(din, error <= tolUsada); TOL = r(TOLB * Math.max(PERF.margenAprendido('pendulo'), din.mult), 3);
     if (error <= tolUsada) {
       var pa = puntosPorAcierto(error, tolUsada), el = elogio(pa.bonus);
       sonido('ok'); if (pa.mult >= 2) sonido('combo');
@@ -1123,15 +1142,11 @@ function menu() {
     chispa(saludo) +
     (pendiente ? '<p><button id="m-final" class="btn-final" type="button">🌟 ¡Mira la estación!</button></p>' : '') +
     tarjetaAlumnos + tarjetaLibre + tarjetas + '<p>Energía de la estación: <b>' + total + ' de ' + (NIVELES.length * 3) + '</b><span class="bombillas" role="img" aria-label="' + total + ' de ' + (NIVELES.length * 3) + ' bombillas encendidas">' + bombillas + '</span></p>' + (visto >= 1 ? '<p class="medalla">' + MEDALLAS[visto] + '</p>' : '') + tarjetasExp;
-  if ($('m-final')) $('m-final').onclick = function () { audio(); sonido('clic'); FINALES.mostrar(PERFILES.finalAlcanzado(progreso, idsNiveles)); };
+  if ($('m-final')) $('m-final').onclick = function () { audio(); sonido('clic'); location.hash = '#/final/' + PERFILES.finalAlcanzado(progreso, idsNiveles); };
   app.insertAdjacentHTML('beforeend', '<p class="fila-menu"><button class="sec chico" id="m-ajustes">⚙ Ajustes</button> <button class="sec chico" id="m-quien">👤 Cambiar de jugador</button>' + (PERFILES.esDocente(jug) ? '' : ' <button class="sec chico" id="m-compartir">📤 Compartir con mi docente</button>') + (EXPERIMENTOS.length ? ' <button class="sec chico" id="m-cuaderno">📓 Mi cuaderno</button>' : '') + '</p>');
-  if ($('m-cuaderno')) $('m-cuaderno').onclick = function () {
-    audio(); sonido('clic');
-    var t = { libre: '🔬 Mi laboratorio' }; EXPERIMENTOS.forEach(function (x) { t[x.id] = x.icono + ' ' + x.titulo; });
-    EXP.pantallaCuaderno(PERF.actual(), t);
-  };
-  $('m-ajustes').onclick = function () { audio(); sonido('clic'); PERF.ajustes(); };
-  $('m-quien').onclick = function () { audio(); sonido('clic'); PERF.quien(); };
+  if ($('m-cuaderno')) $('m-cuaderno').onclick = function () { audio(); sonido('clic'); location.hash = '#/cuaderno'; };
+  $('m-ajustes').onclick = function () { audio(); sonido('clic'); location.hash = '#/ajustes'; };
+  $('m-quien').onclick = function () { audio(); sonido('clic'); location.hash = '#/jugadores'; };
   if ($('m-compartir')) $('m-compartir').onclick = function () { audio(); sonido('clic'); location.hash = '#/compartir'; };
   var cc = document.querySelector('.chispa'); if (cc) cc.className = 'chispa habla';
 }
@@ -1194,17 +1209,28 @@ function resultado(n, pred, res) {
   if ($('pista')) $('pista').onclick = function () { $('pista-txt').hidden = false; this.hidden = true; sonido('clic'); };
   $('revelar').onclick = function () { $('revela').hidden = false; this.hidden = true; sonido('clic'); };
   $('otra').onclick = function () { intro(n); };
-  if ($('ver-final')) $('ver-final').onclick = function () { FINALES.mostrar(verFinal); };
+  if ($('ver-final')) $('ver-final').onclick = function () { location.hash = '#/final/' + verFinal; };
+}
+
+/** Títulos de los experimentos para el cuaderno. */
+function titulosCuaderno() {
+  var t = { libre: '🔬 Mi laboratorio' };
+  EXPERIMENTOS.forEach(function (x) { t[x.id] = x.icono + ' ' + x.titulo; });
+  return t;
 }
 
 function ruta() {
-  var h = location.hash || '#/', m = h.match(/^#\/n\/(\w+)/);
+  var h = location.hash || '#/', m = h.match(/^#\/n\/(\w+)/), mf = h.match(/^#\/final\/([123])$/);
   window.scrollTo(0, 0);
   detener();
   if (!PERF.actual()) { PERF.entrar(); return; }
   if (typeof ALUMNOS !== 'undefined') ALUMNOS.cerrarCamara();
   if (h === '#/compartir' || h.indexOf('#/alumnos') === 0) { ALUMNOS.ir(h); return; }
   if (h === '#/libre') { jugarLibre(); return; }
+  if (h === '#/cuaderno') { EXP.pantallaCuaderno(PERF.actual(), titulosCuaderno()); return; }
+  if (h === '#/ajustes') { PERF.ajustes(); return; }
+  if (h === '#/jugadores') { PERF.quien(); return; }
+  if (mf) { FINALES.mostrar(+mf[1]); return; }
   var n = m ? buscarNivel(m[1]) : null;
   if (n) intro(n); else menu();
 }

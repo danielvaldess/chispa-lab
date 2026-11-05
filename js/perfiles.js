@@ -9,6 +9,7 @@
   var DG = typeof require === 'function' && typeof module !== 'undefined' ? require('./diagnostico.js') : root.DIAGNOSTICO;
   var BD = typeof require === 'function' && typeof module !== 'undefined' ? require('./bandido.js') : root.BANDIDO;
   var CL = typeof require === 'function' && typeof module !== 'undefined' ? require('./clase.js') : root.CLASE;
+  var MG = typeof require === 'function' && typeof module !== 'undefined' ? require('./margen.js') : root.MARGEN;
 
   var CLAVE = 'chispalab.perfiles.v1';
   var LEGADO = 'chispalab.juego.v1';
@@ -61,6 +62,7 @@
       aprendizaje: normalizarAprendizaje(p.aprendizaje),
       maestria: normalizarMaestria(p.maestria),
       ia: normalizarIA(p.ia),
+      margen: normalizarMargen(p.margen),
       cuaderno: MT.normalizarCuaderno(p.cuaderno, TODOS_IDS),
       descubrimientos: DS.normalizar(p.descubrimientos),
       sesionesVoz: (Array.isArray(p.sesionesVoz) ? p.sesionesVoz : []).slice(-MAX_SESIONES).map(function (s) {
@@ -100,6 +102,14 @@
       var pn = Math.floor(n.pn), hn = Math.floor(n.hn || 0);
       out[id] = { p: Math.min(0.99, Math.max(0.01, Number(x.p) || 0.25)), h: Math.min(0.99, Math.max(0.01, Number(x.h) || 0.25)), pn: pn, pok: Math.min(Math.floor(n.pok || 0), pn), hn: hn, hok: Math.min(Math.floor(n.hok || 0), hn) };
     });
+    return out;
+  }
+
+  /** Margen aprendido por juego de precisión (rampa y péndulo): solo se conserva lo que tiene intentos y es válido. */
+  var IDS_MARGEN = ['rampa', 'pendulo'];
+  function normalizarMargen(m) {
+    var out = {}; m = objetoPlano(m);
+    IDS_MARGEN.forEach(function (id) { var e = MG.normalizar(m[id]); if (e.n > 0) out[id] = e; });
     return out;
   }
 
@@ -164,7 +174,7 @@
     var rol = CL.rolValido(datos.rol);
     var perfil = {
       id: idNuevo(), nombre: nombre, rol: rol, alumnos: [], nac: nac, apoyos: apoyos, extras: {},
-      progreso: primero ? leerLegado(almacen) : {}, aprendizaje: {}, maestria: {}, ia: normalizarIA({}), cuaderno: [], descubrimientos: [], sesionesVoz: [], creado: fechaISO(hoy)
+      progreso: primero ? leerLegado(almacen) : {}, aprendizaje: {}, maestria: {}, ia: normalizarIA({}), margen: {}, cuaderno: [], descubrimientos: [], sesionesVoz: [], creado: fechaISO(hoy)
     };
     return { ok: true, perfil: perfil, estado: { activo: perfil.id, perfiles: estado.perfiles.concat([perfil]) } };
   }
@@ -197,7 +207,7 @@
 
   /** Borra TODOS los datos de la app en este dispositivo. */
   function borrarTodo(almacen) {
-    try { almacenar(almacen).removeItem(CLAVE); almacenar(almacen).removeItem(LEGADO); return true; } catch (e) { return false; }
+    try { almacenar(almacen).removeItem(CLAVE); almacenar(almacen).removeItem(LEGADO); almacenar(almacen).removeItem('chispalab.ligero'); return true; } catch (e) { return false; }
   }
 
   /** Añade una sesión de voz (tiempo sostenido máximo y rango de tono) al perfil activo. */
@@ -245,7 +255,22 @@
   }
 
   /** El adulto puede borrar lo que el tutor sabe de este jugador (dominio, ideas erróneas, bandido e intentos). */
-  function reiniciarMaestria(perfil) { perfil.maestria = {}; perfil.ia = normalizarIA({}); return perfil; }
+  function reiniciarMaestria(perfil) { perfil.maestria = {}; perfil.ia = normalizarIA({}); perfil.margen = {}; return perfil; }
+
+  /** Multiplicador del margen que Chispa aprendió de este jugador en un juego (×1 si la IA está apagada o no hay datos). */
+  function margenAprendido(perfil, id) {
+    if (!perfil || IDS_MARGEN.indexOf(id) < 0 || (perfil.extras && perfil.extras.tutor === false)) return 1;
+    var m = perfil.margen && perfil.margen[id];
+    return m && m.n > 0 ? MG.mult(m) : 1;
+  }
+
+  /** Anota un intento de un juego de precisión (error y tolerancia base en las mismas unidades). No hace nada si la IA está apagada. */
+  function registrarMargen(perfil, id, error, tolBase) {
+    if (!perfil || IDS_MARGEN.indexOf(id) < 0 || (perfil.extras && perfil.extras.tutor === false)) return perfil;
+    perfil.margen = normalizarMargen(perfil.margen);
+    perfil.margen[id] = MG.registrar(perfil.margen[id], error, tolBase);
+    return perfil;
+  }
 
   /**
    * La IA de Chispa aprende de una partida terminada: guarda el intento, actualiza la probabilidad de cada idea errónea
@@ -334,6 +359,7 @@
     esDocente: esDocente, agregarAlumno: agregarAlumno, quitarAlumno: quitarAlumno,
     CLAVE: CLAVE, LEGADO: LEGADO, MAX: MAX, cargar: cargar, guardar: guardar, crear: crear, activar: activar, actual: actual,
     cambiarApoyos: cambiarApoyos, borrar: borrar, borrarTodo: borrarTodo, necesitaAdulto: necesitaAdulto,
+    margenAprendido: margenAprendido, registrarMargen: registrarMargen, IDS_MARGEN: IDS_MARGEN,
     registrarSesionVoz: registrarSesionVoz, resumenSesiones: resumenSesiones, finalAlcanzado: finalAlcanzado, registrarMaestria: registrarMaestria, reiniciarMaestria: reiniciarMaestria, agregarCuaderno: agregarCuaderno, desbloquear: desbloquear, EXPERIMENTOS_IDS: EXPERIMENTOS_IDS, TODOS_IDS: TODOS_IDS, registrarIA: registrarIA, ideasPorReforzar: ideasPorReforzar, normalizarIA: normalizarIA, registrarPartida: registrarPartida, resumenAprendizaje: resumenAprendizaje, NIVELES_IDS: NIVELES_IDS
   };
   if (typeof module !== 'undefined' && module.exports) module.exports = PERFILES;

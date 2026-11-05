@@ -120,6 +120,7 @@ var ALUMNOS = (function () {
     if (h === '#/compartir') compartir();
     else if (h === '#/alumnos/escanear') escanear();
     else if (h === '#/alumnos/pegar') pegar();
+    else if (h === '#/alumnos/grupos') grupos();
     else if (m) detalle(m[1]);
     else lista();
   }
@@ -141,10 +142,12 @@ var ALUMNOS = (function () {
       chispa(n ? 'Tienes ' + n + (n === 1 ? ' alumno' : ' alumnos') + '. Escanea su QR otra vez para ver cómo avanzan.' : 'Cada alumno te muestra su QR desde «Compartir con mi docente», y tú lo escaneas. No hace falta internet.') +
       (aviso ? '<p class="ok" role="status">' + esc(aviso) + '</p>' : '') +
       '<p class="accion"><button id="escanear">📷 Escanear el QR de un alumno</button> <button id="pegar" class="sec">⌨ Pegar un código</button></p>' +
-      (n ? p.alumnos.map(filaAlumno).join('') + '<p class="accion"><button id="copiar-clase" class="sec chico">📋 Copiar el resumen de la clase</button></p>' : '') +
+      (n ? p.alumnos.map(filaAlumno).join('') + '<p class="accion">' + (n >= AGRUPAR.MIN_ALUMNOS ? '<button id="agrupar">🤖 Agrupar mi clase</button> ' : '') + '<button id="copiar-clase" class="sec chico">📋 Copiar el resumen de la clase</button></p>' +
+        (n < AGRUPAR.MIN_ALUMNOS ? '<p class="nota">Con ' + AGRUPAR.MIN_ALUMNOS + ' alumnos o más, Chispa puede agruparlos según lo que les cuesta.</p>' : '') : '') +
       nota('La lista se guarda solo en este teléfono, con el avance del momento en que escaneaste cada código. Si borras la app, se pierde.');
     $('escanear').onclick = function () { sonar(); irA('#/alumnos/escanear'); };
     $('pegar').onclick = function () { sonar(); irA('#/alumnos/pegar'); };
+    if ($('agrupar')) $('agrupar').onclick = function () { sonar(); irA('#/alumnos/grupos'); };
     var bs = app.querySelectorAll('.alumno'), i;
     for (i = 0; i < bs.length; i++) bs[i].onclick = function () { sonar(); irA('#/alumnos/ver/' + this.getAttribute('data-id')); };
     if ($('copiar-clase')) $('copiar-clase').onclick = function () {
@@ -188,6 +191,32 @@ var ALUMNOS = (function () {
     var res = PERFILES.agregarAlumno(p, r.alumno);
     if (res.ok) PERF.guardar();
     return { ok: res.ok, texto: r.alumno.nombre + ': ' + (ESTADOS[res.estado] || res.estado), alumno: r.alumno };
+  }
+
+  // ---------- Agrupar la clase (aprendizaje automático en el teléfono del docente) ----------
+  var COLORES_GRUPO = ['#ef4444', '#f59e0b', '#22c55e'];
+  function grupos() {
+    var p = perfil();
+    if (!p || !PERFILES.esDocente(p)) { irA('#/alumnos'); return; }
+    var r = AGRUPAR.agrupar(p.alumnos);
+    var cab = '<a class="volver" href="#/alumnos">← Mis alumnos</a><h2>🤖 Agrupar mi clase</h2>';
+    if (!r.ok) {
+      app.innerHTML = cab + chispa('Necesito al menos ' + r.minimo + ' alumnos para compararlos. Escanea el QR de unos cuantos más.');
+      return;
+    }
+    var tarjetas = r.grupos.map(function (g, i) {
+      var color = r.claro ? COLORES_GRUPO[Math.min(i, 2)] : '#3b82f6';
+      return '<div class="grupo" style="--c:' + color + '"><h3>' + esc(g.etiqueta) + ' <small>(' + g.ids.length + ')</small></h3>' +
+        '<p class="nombres">' + g.nombres.map(esc).join(' · ') + '</p>' +
+        '<p>' + (g.acierto !== null ? 'Predicciones acertadas: <b>' + Math.round(100 * g.acierto) + ' %</b> · ' : '') + 'Estrellas: <b>' + Math.round(g.estrellas) + ' de ' + g.estrellasMax + '</b></p>' +
+        (g.juegoDificil ? '<p>Les cuesta más: <b>' + esc(CLASE.TITULOS[g.juegoDificil]) + '</b></p>' : '') +
+        '<p class="idea">💡 ' + esc(g.sugerencia) + '</p></div>';
+    }).join('');
+    app.innerHTML = cab +
+      chispa(r.claro ? 'Veo ' + r.k + ' grupos que se diferencian de verdad. Son sugerencias: tú decides cómo usarlas.' : 'Tu clase va pareja: no veo grupos claros, y prefiero no inventarlos. Aquí tienes un resumen de todos.') +
+      tarjetas +
+      '<details class="como"><summary>¿Cómo lo calculó Chispa?</summary><p>' + esc(r.explicacion) + '</p></details>' +
+      '<p class="nota">Esto se calcula en tu teléfono, en el momento, y no se guarda ni se envía. No es una calificación.</p>';
   }
 
   // ---------- Pegar un código ----------
@@ -276,5 +305,5 @@ var ALUMNOS = (function () {
     });
   }
 
-  return { ir: ir, compartir: compartir, lista: lista, detalle: detalle, escanear: escanear, pegar: pegar, cerrarCamara: cerrarCamara, recibir: recibir };
+  return { ir: ir, grupos: grupos, compartir: compartir, lista: lista, detalle: detalle, escanear: escanear, pegar: pegar, cerrarCamara: cerrarCamara, recibir: recibir };
 })();
