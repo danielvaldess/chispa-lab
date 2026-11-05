@@ -34,6 +34,7 @@ Todas las cifras llevan su fuente en [`investigacion/articulo.md`](investigacion
 4. **Es seguro con los datos de los niños:** todo se queda en el teléfono; un adulto decide; no envía nada.
 5. **Se puede probar rápido y con poco riesgo:** una clase, un par de semanas, indicadores definidos de antemano.
 6. **Es abierto:** una escuela, un ministerio o una universidad pueden revisarlo, adaptarlo y traducirlo.
+7. **El docente ve el avance de su clase sin internet:** cada alumno le muestra un QR y el docente lo escanea; la lista queda en su teléfono (ver [`clase-sincronizacion.md`](clase-sincronizacion.md)). Falta probarlo con docentes y con cámaras de teléfonos reales.
 
 ## La solución, en una frase
 
@@ -47,7 +48,7 @@ Medidas propias de la versión 1.2.0 del 4 de noviembre de 2026, hechas en un or
 | Qué | Valor |
 |---|---|
 | Peso de la app para Android (APK) | ≈ 4,2 MB: cabe en un mensaje de WhatsApp o se pasa por Bluetooth |
-| Primera carga de la web | ≈ 155 KB comprimidos (411 KB sin comprimir, con los iconos), 0 librerías externas |
+| Primera carga de la web | ≈ 220 KB comprimidos (593 KB sin comprimir, con los iconos); ≈ 53 KB son dos librerías de QR que solo usa la parte de la clase |
 | Android mínimo | 6.0 (nivel 23) |
 | Internet | No hace falta después de abrirla una vez (PWA con service worker); el APK no la usa |
 | Cuentas y servidores | Ninguno: los datos viven en el teléfono y se borran desde Ajustes |

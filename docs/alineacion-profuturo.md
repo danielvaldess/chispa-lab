@@ -31,7 +31,7 @@ ProFuturo es un programa de educación digital de Fundación Telefónica y Funda
 | Formular hipótesis | Cada nivel empieza con una **predicción** del niño | Cumple (opción múltiple, no libre) |
 | Experimentar y observar resultados | Se juega con sensores o simulaciones y el resultado muestra los datos del propio niño | Cumple |
 | Desarrollar pensamiento científico | Al final, una pregunta para razonar con sus datos y una explicación | Cumple, sin medir todavía el aprendizaje |
-| Dispositivos accesibles y de bajo coste | Solo el teléfono; sin librerías, ES5, modo ligero en móviles de pocos núcleos | Cumple; **falta probarlo en un Android barato** |
+| Dispositivos accesibles y de bajo coste | Solo el teléfono; ES5, modo ligero en móviles de pocos núcleos; solo dos librerías pequeñas para el QR de la clase | Cumple; **falta probarlo en un Android barato** |
 | Conectividad limitada | App instalable (PWA y APK) que funciona sin internet | Cumple |
 | Simulaciones, realidad aumentada, sensores | Simulaciones físicas, cámara con realidad aumentada ligera, micrófono e inclinación | Cumple |
 | Física, química, biología, matemáticas | **Física** (movimiento, oscilaciones, sonido, luz) en seis juegos, **química** (col morada, huevo con sal, volcán) y **biología** (invernadero) en experimentos y en «Mi laboratorio» | Cubre las tres, aunque química y biología son modelos simplificados; faltan matemáticas explícitas |

@@ -25,7 +25,7 @@ Este archivo es la fuente de las notas del orador del `.pptx` (el script de la p
 
 ## 6. Seis juegos, cuatro experimentos y un laboratorio libre
 
-[2:05 a 2:30] Son seis juegos con ideas de física reales, cuatro experimentos con materiales de casa, el péndulo de hilo, la col morada, el huevo con sal y el volcán de bicarbonato, y un laboratorio libre con 24 descubrimientos. Cada experimento se puede simular en la pantalla si no hay materiales: un laboratorio híbrido, virtual o real. Química, física, biología y matemáticas, todo en un teléfono.
+[2:05 a 2:30] Son seis juegos con ideas de física reales, cuatro experimentos con materiales de casa, el péndulo de hilo, la col morada, el huevo con sal y el volcán de bicarbonato, y un laboratorio libre con 24 descubrimientos. Cada experimento se puede simular en la pantalla si no hay materiales: un laboratorio híbrido, virtual o real. Química, física, biología y matemáticas, todo en un teléfono. Y para el docente hay una opción, «Mis alumnos»: cada alumno le muestra un código QR con su avance y el docente lo escanea, sin internet; la lista queda en el teléfono del docente.
 
 ## 7. Para todos los niños
 
@@ -37,7 +37,7 @@ Este archivo es la fuente de las notas del orador del `.pptx` (el script de la p
 
 ## 9. Datos del proyecto
 
-[3:30 a 3:50] Medimos el sistema: unos 156 kilobytes comprimidos en la primera carga, cero librerías externas y 469 comprobaciones automáticas sin fallos. La IA tarda menos de medio milisegundo por partida con la CPU seis veces más lenta. Todo eso se midió en un ordenador con la CPU limitada: no está validado en un teléfono real, y probarlo en teléfonos de gama baja es lo primero que haremos. La literatura de 2024 respalda las ideas, no el sistema: falta medir el aprendizaje con niños.
+[3:30 a 3:50] Medimos el sistema: unos 220 kilobytes comprimidos en la primera carga, de los cuales 53 son dos librerías pequeñas para el QR de la clase y el resto no usa librerías externas, y 528 comprobaciones automáticas sin fallos. La IA tarda menos de medio milisegundo por partida con la CPU seis veces más lenta. Todo eso se midió en un ordenador con la CPU limitada: no está validado en un teléfono real, y probarlo en teléfonos de gama baja es lo primero que haremos. La literatura de 2024 respalda las ideas, no el sistema: falta medir el aprendizaje con niños.
 
 ## 10. Impacto: contribuimos a tres ODS
 
@@ -58,7 +58,7 @@ Este archivo es la fuente de las notas del orador del `.pptx` (el script de la p
 Todo lo de esta sección es **propuesta**, no resultado. Los datos salen de `../transferencia-al-mercado.md`, `../guia-docente.md` y `../investigacion/articulo.md`.
 
 - **Cómo se sostiene y se mantiene.** El código es abierto con licencia MIT y no hay servidor ni costo por usuario: un mismo archivo sirve a todos los teléfonos. El costo real es de trabajo (contenidos, traducciones, validación con docentes y soporte), y se financiaría con servicios: adaptación curricular y de idioma, packs de experimentos nuevos y formación docente.
-- **Sostenibilidad a diez años.** Es una proyección, no un dato: mantener una aplicación sin dependencias externas reduce lo que puede quedar obsoleto, y los convenios institucionales (universidades, fundaciones y programas como ProFuturo, y el Ministerio) pagarían el mantenimiento y las nuevas versiones. Falta probarlo con un primer convenio.
-- **Revisión por cada docente.** Propuesta: un código QR por aula o por docente que abra el panel de adultos y el resumen de aprendizaje de sus estudiantes, sin servidor y con permiso del adulto. Hoy el panel existe dentro de la aplicación (Ajustes, «Para adultos y docentes»); el QR no está construido.
+- **Sostenibilidad a diez años.** Es una proyección, no un dato: mantener una aplicación con solo dos librerías pequeñas de código abierto reduce lo que puede quedar obsoleto, y los convenios institucionales (universidades, fundaciones y programas como ProFuturo, y el Ministerio) pagarían el mantenimiento y las nuevas versiones. Falta probarlo con un primer convenio.
+- **Revisión por cada docente.** Ya existe: al crear el jugador se elige «estudiante» o «docente», y el docente tiene «Mis alumnos»: cada alumno le muestra un código QR con su avance de ese momento y el docente lo escanea, sin internet y sin servidor; la lista queda solo en el teléfono del docente. Si el QR no se lee, hay un código de texto para pegar. Se eligió el QR y no Bluetooth porque funciona en cualquier teléfono con cámara, sin emparejar ni permisos nuevos (comparación en `../clase-sincronizacion.md`). **Se probó con una cámara simulada, no con la de un teléfono real ni con docentes.** Falta: copia de respaldo de la lista y sincronizar dos teléfonos de un mismo docente.
 - **Cómo se adaptan los juegos a cada persona (propuesta futura).** Hoy se adaptan por edad y por siete apoyos elegidos por el adulto, y el tutor ajusta un poco el margen inicial. A futuro: calibrar las bandas de edad con un piloto en la Región Educativa de Veraguas y revisar con docentes el catálogo de ideas erróneas. Para no malinterpretarlo: la adaptación es **estadística y local**, no genera texto ni diagnostica, y el adulto decide.
 - **Palabras que conviene usar:** «ajuste de dificultad», «tutor explicable», «apoyos opcionales», «estimación» y «heurística por validar». **Evitar:** «diagnóstico» (salvo «diagnóstico de ideas erróneas», aclarando que no es clínico), «inteligencia artificial generativa», «validado» y «terapia».

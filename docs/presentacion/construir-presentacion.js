@@ -125,7 +125,7 @@ juegos.forEach((j, i) => {
   s.addText([{ text: j[1], options: { bold: true, fontSize: 16, color: C.text1, breakLine: true } }, { text: j[2], options: { fontSize: 12, color: C.text2 } }], { x: x + 0.95, y: y + 0.15, w: 1.8, h: 0.7, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Nombre ' + j[1] });
   s.addText(j[3], { x: x + 0.15, y: y + 0.92, w: 2.55, h: 0.62, fontSize: 13, color: C.text1, margin: 0, valign: 'top', isTextBox: true, objectName: 'Idea ' + j[1] });
 });
-s.addText('+ Experimentos con materiales de casa (péndulo, col morada, huevo con sal, volcán) y Mi laboratorio, un juego libre con 24 descubrimientos.', { x: 0.5, y: 4.85, w: 9, h: 0.5, fontSize: 12, italic: true, color: C.text1, margin: 0, isTextBox: true, objectName: 'Aviso' });
+s.addText('+ Experimentos con materiales de casa (péndulo, col morada, huevo con sal, volcán), Mi laboratorio (juego libre con 24 descubrimientos) y, para docentes, «Mis alumnos»: el alumno muestra un QR y el docente lo escanea, sin internet.', { x: 0.5, y: 4.78, w: 9, h: 0.6, fontSize: 12, italic: true, color: C.text1, margin: 0, isTextBox: true, objectName: 'Aviso' });
 s.addNotes(notas());
 
 // ---------- 6. Inclusión ----------
@@ -170,7 +170,7 @@ s.addNotes(notas());
 pres.addSection({ title: 'Impacto y mercado' });
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Impacto y mercado' });
 s.addText('Datos del proyecto', { placeholder: 'title' });
-[['≈ 156 KB', 'primera carga comprimida (411 KB sin comprimir)', C.accent1], ['0', 'librerías externas', C.accent4], ['469', 'comprobaciones automáticas sin fallos', C.accent6], ['0,4 ms', 'la IA por partida, con la CPU 6× más lenta', C.accent5]].forEach((d, i) => {
+[['≈ 220 KB', 'primera carga comprimida (593 KB sin comprimir)', C.accent1], ['2', 'librerías pequeñas, solo para el QR de la clase', C.accent4], ['528', 'comprobaciones automáticas sin fallos', C.accent6], ['0,4 ms', 'la IA por partida, con la CPU 6× más lenta', C.accent5]].forEach((d, i) => {
   const x = 0.5 + (i % 2) * 2.55, y = 1.4 + Math.floor(i / 2) * 1.75;
   s.addShape(pres.ShapeType.roundRect, { x, y, w: 2.4, h: 1.6, rectRadius: 0.12, fill: { color: C.background2 }, line: { color: C.background2 }, objectName: 'Tarjeta dato ' + (i + 1) });
   s.addText(d[0], { x: x + 0.15, y: y + 0.1, w: 2.1, h: 0.8, fontSize: 36, bold: true, color: C.text1, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Dato ' + (i + 1) });
@@ -182,7 +182,7 @@ s.addText([{ text: 'Lo que respalda la literatura (2024)', options: { bold: true
   { text: 'Laboratorios virtuales: g = 0,69 (46 estudios), sin sustituir del todo al práctico', options: { bullet: true } }],
   { x: 5.75, y: 1.4, w: 3.75, h: 2.5, fontSize: 13, color: C.text1, paraSpaceAfter: 6, margin: 0, valign: 'top', isTextBox: true, objectName: 'Literatura' });
 s.addText('No está validado en un teléfono real: las mediciones son de Chromium con la CPU limitada.', { x: 5.75, y: 3.95, w: 3.75, h: 0.9, fontSize: 13, bold: true, color: C.text1, fill: { color: C.accent2 }, valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.1, margin: 0.12, isTextBox: true, objectName: 'Aviso teléfono' });
-nota(s, 'Medición propia del 4/11/2026 (versión 1.2.0). Fuentes: Koyunlu Ünlü (2024); Behnamnia et al. (2024); Li y Liang (2024).');
+nota(s, 'Medición propia del 4/11/2026 (versión 1.3.0). Fuentes: Koyunlu Ünlü (2024); Behnamnia et al. (2024); Li y Liang (2024).');
 s.addNotes(notas());
 
 // ---------- 9. ODS ----------

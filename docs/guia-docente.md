@@ -39,6 +39,17 @@ Chispa no mide el pH: dice a cuál de los vasos enseñados se parece. Con poca l
 Es un espacio sin reglas, puntos ni tiempo: cuatro estaciones (mezclas, flota o se hunde, invernadero y caída libre) con 24 descubrimientos que aparecen solos. Todo es virtual y de cocina. Sirve para los niños que terminan antes o para empezar la sesión
 con curiosidad: «¿qué crees que pasará si…?». Cada descubrimiento trae «Pruébalo en casa» con los materiales y la advertencia. Los modelos de la planta y de las densidades son **simplificados**: sirven para conversar, no para medir.
 
+## Ver el avance de tu clase: «Mis alumnos» (sin internet)
+
+1. **Tu teléfono:** al crear tu jugador elige **«Soy docente»**. En el menú aparece **«👩‍🏫 Mis alumnos»**.
+2. **Cada alumno:** en su teléfono, menú → **«📤 Compartir con mi docente»** → «Mostrar mi código QR». Pide que suban el brillo de la pantalla.
+3. **Tú:** «Mis alumnos» → **«📷 Escanear el QR de un alumno»** y apunta la cámara. Puedes escanear uno detrás de otro; cada lectura guarda o actualiza a ese alumno.
+4. Si el QR no se lee (poca luz, reflejos), el alumno toca **«Copiar el código»** o **«Enviar el código»** (WhatsApp, Bluetooth o Nearby Share) y tú lo pegas en **«⌨ Pegar un código»**.
+5. En la lista ves estrellas, aciertos y a qué juego le cuesta más cada uno, y puedes **copiar un resumen de la clase**. Cuando quieras actualizar a un alumno, que vuelva a mostrar su QR: se queda el avance más nuevo.
+
+La lista se guarda **solo en tu teléfono** (hasta 60 alumnos) y se pierde si borras la app o los datos. El QR no trae fecha de nacimiento, apoyos ni sesiones de voz, y el alumno ve antes lo que comparte. Es una ayuda para conversar, no una calificación.
+Más detalles y límites en [`clase-sincronizacion.md`](clase-sincronizacion.md).
+
 ## Cómo usar el panel «Para adultos y docentes»
 
 Ajustes → Para adultos y docentes. Se ve, por juego, cuántas veces predijo bien, el tiempo jugado y una estimación del dominio (Empezando, Avanzando, Lo domina), y **«Ideas por reforzar»**:

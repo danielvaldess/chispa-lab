@@ -11,7 +11,7 @@
   <img src="https://img.shields.io/badge/hack4edu-2026-005588" alt="hack4edu 2026" />
   <img src="https://img.shields.io/badge/Reto-17-e8590c" alt="Reto 17" />
   <img src="https://img.shields.io/badge/idioma-espa%C3%B1ol-blue" alt="Idioma" />
-  <img src="https://img.shields.io/badge/versi%C3%B3n-1.2.0-brightgreen" alt="Versión 1.2.0" />
+  <img src="https://img.shields.io/badge/versi%C3%B3n-1.3.0-brightgreen" alt="Versión 1.3.0" />
 </p>
 
 ---
@@ -28,13 +28,14 @@ propios datos.
 
 ## Capturas
 
-Capturas reales de la app (Chromium con tamaño de teléfono, 390×844; en Luz y color y Burbujas se usó la opción «sin cámara»). Todas están en [`docs/capturas/`](docs/capturas/).
+Capturas reales de la app (Chromium con tamaño de teléfono, 390×844; en Luz y color y Burbujas se usó la opción «sin cámara», y el QR de la última fila se escaneó con una cámara simulada, no con la de un teléfono real). Todas están en [`docs/capturas/`](docs/capturas/).
 
 <table>
 <tr><td align="center"><img src="docs/capturas/01-menu.png" width="190" alt="Menú con Chispa y Mi laboratorio"/><br/><sub>Menú con Chispa y Mi laboratorio</sub></td><td align="center"><img src="docs/capturas/04-rampa-prediccion.png" width="190" alt="Predice antes de jugar"/><br/><sub>Predice antes de jugar</sub></td><td align="center"><img src="docs/capturas/05-rampa-canica.png" width="190" alt="La rampa de cartón"/><br/><sub>La rampa de cartón</sub></td><td align="center"><img src="docs/capturas/07-pendulo.png" width="190" alt="El péndulo del estante"/><br/><sub>El péndulo del estante</sub></td></tr>
 <tr><td align="center"><img src="docs/capturas/08-voz.png" width="190" alt="La voz y el globo"/><br/><sub>La voz y el globo</sub></td><td align="center"><img src="docs/capturas/09-globo.png" width="190" alt="El globo largo"/><br/><sub>El globo largo</sub></td><td align="center"><img src="docs/capturas/10-luz-y-color.png" width="190" alt="Luz y color"/><br/><sub>Luz y color</sub></td><td align="center"><img src="docs/capturas/11-burbujas.png" width="190" alt="Burbujas mágicas"/><br/><sub>Burbujas mágicas</sub></td></tr>
 <tr><td align="center"><img src="docs/capturas/12-mi-laboratorio-mezclas.png" width="190" alt="Mi laboratorio: mezclas"/><br/><sub>Mi laboratorio: mezclas</sub></td><td align="center"><img src="docs/capturas/13-mi-laboratorio-col-con-limon.png" width="190" alt="Un descubrimiento"/><br/><sub>Un descubrimiento</sub></td><td align="center"><img src="docs/capturas/14-mi-laboratorio-flota.png" width="190" alt="Flota o se hunde"/><br/><sub>Flota o se hunde</sub></td><td align="center"><img src="docs/capturas/16-mi-laboratorio-caida.png" width="190" alt="Caída libre"/><br/><sub>Caída libre</sub></td></tr>
 <tr><td align="center"><img src="docs/capturas/03-menu-experimentos.png" width="190" alt="Experimentos con materiales"/><br/><sub>Experimentos con materiales</sub></td><td align="center"><img src="docs/capturas/18-exp-hilo-siguiente.png" width="190" alt="Materiales de casa y seguridad"/><br/><sub>Materiales de casa y seguridad</sub></td><td align="center"><img src="docs/capturas/29-experimento-hipotesis.png" width="190" alt="Mi hipótesis"/><br/><sub>Mi hipótesis</sub></td><td align="center"><img src="docs/capturas/25-ajustes.png" width="190" alt="Ajustes y apoyos"/><br/><sub>Ajustes y apoyos</sub></td></tr>
+<tr><td align="center"><img src="docs/capturas/30-rol-estudiante-o-docente.png" width="190" alt="Primera pregunta: estudiante o docente"/><br/><sub>Primera pregunta: estudiante o docente</sub></td><td align="center"><img src="docs/capturas/31-menu-docente-mis-alumnos.png" width="190" alt="El docente tiene «Mis alumnos»"/><br/><sub>El docente tiene «Mis alumnos»</sub></td><td align="center"><img src="docs/capturas/32-alumno-muestra-su-qr.png" width="190" alt="El alumno muestra su QR"/><br/><sub>El alumno muestra su QR</sub></td><td align="center"><img src="docs/capturas/33-docente-escanea-el-qr.png" width="190" alt="El docente lo escanea"/><br/><sub>El docente lo escanea</sub></td></tr>
 </table>
 
 ## Los niveles
@@ -122,6 +123,16 @@ No es IA generativa: las frases son plantillas con huecos, no inventan texto. Un
 En una **simulación** (no un piloto) el diagnóstico identifica la idea errónea en ≈ 68 % de los casos tras 5 respuestas y señala a ≈ 1 % de quienes sí entienden. Detalle, fórmulas, costo medido y límites en [`docs/ia-etica.md`](docs/ia-etica.md);
 cómo puede sostenerse en [`docs/transferencia-al-mercado.md`](docs/transferencia-al-mercado.md).
 
+## Docentes y alumnos, sin internet
+
+Al abrir la app por primera vez, la primera pregunta es **«¿Eres estudiante o docente?»** y luego sigue lo de siempre (nombre, mes y año de nacimiento y apoyos). No es una cuenta ni una clave: solo cambia lo que se ve en el menú.
+
+- **El docente** tiene una opción extra, **«👩‍🏫 Mis alumnos»**: guarda, en su propio teléfono, el avance de cada alumno **escaneando su código QR** (uno detrás de otro) o pegando un código de texto. Ve estrellas, partidas, predicciones acertadas, minutos, descubrimientos y a qué juego le cuesta más, y puede copiar un resumen de la clase.
+- **El estudiante** tiene **«📤 Compartir con mi docente»**: ve qué se comparte y muestra un QR con su avance de ese momento. Si el QR no se lee, copia o envía el código de texto.
+- **No viajan** la fecha de nacimiento, los apoyos, las sesiones de voz ni el cuaderno. Nada pasa por internet ni por un servidor.
+- **Por qué QR y no Bluetooth** (comparación con Wi-Fi, NFC, servidor y sonido), qué viaja, cómo está hecho y **qué se probó y qué no**: [`docs/clase-sincronizacion.md`](docs/clase-sincronizacion.md).
+- Usa dos librerías pequeñas de código abierto **solo para el QR** (`js/vendor/`, MIT y Apache-2.0), que se cargan únicamente en esas pantallas.
+
 ## Jugadores y apoyos
 
 Al abrir la app por primera vez, un asistente de una pantalla por paso pide el **nombre o apodo**, el **mes y año de nacimiento** y «**¿qué te
@@ -143,7 +154,7 @@ ayuda a jugar?**» (casillas opcionales: voz, oír, ver, concentrarme, leer o lo
 - **Física real:** las escenas usan las fórmulas del fenómeno, en [`js/fisica.js`](js/fisica.js), y el
   tono se detecta con el método YIN en [`js/dsp.js`](js/dsp.js). El audio no se graba ni sale del teléfono.
 - **Sin conexión:** es una PWA; un service worker guarda los archivos y el juego funciona sin internet.
-- **Sin dependencias:** HTML, CSS y JavaScript puros (ES5, para celulares viejos). Las escenas se dibujan en
+- **Casi sin dependencias:** HTML, CSS y JavaScript puros (ES5, para celulares viejos); solo los QR de la clase usan dos librerías pequeñas (`js/vendor/`). Las escenas se dibujan en
   canvas 2D con degradados y sombras para dar volumen sin motores 3D. La cámara y el micrófono se procesan en el teléfono y no se guardan.
 - **Privacidad:** sin cuentas ni servidor. Nombre, mes y año de nacimiento, apoyos y progreso viven solo en el dispositivo; no se envía nada.
 - **Accesibilidad:** respeta `prefers-reduced-motion`, baja las partículas en móviles de pocos núcleos y cada
@@ -206,6 +217,9 @@ js/diagnostico.js   diagnóstico de ideas erróneas
 js/pistas.js        pregunta, pista y explicación con los datos del jugador
 js/bandido.js       aprendizaje por niño (bandido de Thompson)
 js/fisica.js        fórmulas de la rampa y el péndulo
+js/clase.js         código del alumno, lectura, fusión de alumnos y resúmenes (puro)
+js/alumnos.js       pantallas de la clase: QR del alumno, «Mis alumnos» y escáner
+js/vendor/          dos librerías pequeñas solo para el QR (MIT y Apache-2.0)
 sw.js               modo sin conexión
 android/            proyecto nativo de Capacitor
 scripts/            servidor estático y empaquetado
@@ -217,7 +231,7 @@ test/               pruebas
 | Qué | Valor (medido en un ordenador) |
 |---|---|
 | APK de Android | ≈ 4,2 MB; Android 6.0 o más |
-| Primera carga de la web | ≈ 155 KB comprimidos (411 KB sin comprimir, con los iconos) y ninguna librería externa |
+| Primera carga de la web | ≈ 220 KB comprimidos (593 KB sin comprimir, 44 archivos con los iconos); **≈ 53 KB son las dos librerías de QR**, que solo usa la parte de la clase. Sin ellas: ≈ 168 KB |
 | Internet | No hace falta después de abrirla una vez; sin cuentas ni servidores |
 | Costo de la IA | ≈ 0,4 ms por partida con la CPU 6 veces más lenta (Chromium); solo corre al terminar un juego |
 | Materiales | Teléfono; los experimentos usan cosas de casa o se simulan en pantalla |
@@ -226,10 +240,10 @@ Para docentes: [`docs/guia-docente.md`](docs/guia-docente.md). Cómo probarlo en
 
 ## Estado
 
-- **Hecho:** seis juegos, cuatro experimentos con materiales, un laboratorio libre con 24 descubrimientos, perfiles con apoyos, IA ligera, panel para adultos, finales, PWA sin conexión y APK de Android. `npm test` ejecuta 469 comprobaciones.
+- **Hecho:** seis juegos, cuatro experimentos con materiales, un laboratorio libre con 24 descubrimientos, perfiles con apoyos, IA ligera, panel para adultos, finales, PWA sin conexión y APK de Android. roles de estudiante y docente, «Mis alumnos» con QR sin internet. `npm test` ejecuta 528 comprobaciones.
 - **Probado:** en Chromium de escritorio (tamaño de teléfono, CPU frenada, micrófono y cámara simulados) y con pruebas automáticas. El APK se compila y se instala en el emulador, pero **el emulador de WSL se cierra
   al abrir cualquier app con WebView, así que no se recorrió un nivel en Android**.
-- **Sin probar:** en un teléfono real (sensor de inclinación, micrófono, cámara, vibración, voz sintetizada, calor y batería), con niños, con un docente y con col morada real. La simulación de la IA **no es un piloto**.
+- **Sin probar:** el QR de la clase con la **cámara de un teléfono real** (solo con una cámara simulada en Chromium), en un teléfono real (sensor de inclinación, micrófono, cámara, vibración, voz sintetizada, calor y batería), con niños, con un docente y con col morada real. La simulación de la IA **no es un piloto**.
 - Las bandas de dificultad por edad y los parámetros de la IA son valores por defecto sin calibrar.
 
 ## Origen y evidencia de desarrollo

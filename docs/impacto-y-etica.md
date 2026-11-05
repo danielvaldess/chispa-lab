@@ -20,6 +20,9 @@ ruidos que molestan).
 | Sesiones de «El globo largo» | Solo en el teléfono | Fecha, segundos sostenidos y rango de tono. El adulto puede **copiar** el resumen; nada se envía solo |
 | Dominio de cada idea (tutor) | Solo en el teléfono | Dos estimaciones por idea que calcula el tutor; solo lo ve un adulto y se puede apagar o reiniciar. Ver [`ia-etica.md`](ia-etica.md) |
 | Registro de aprendizaje | Solo en el teléfono | Por nivel: partidas, predicciones acertadas, tiempo y estrellas. Se ve en Ajustes, «Para adultos y docentes» |
+| Rol (estudiante o docente) | Solo en el teléfono | Solo cambia lo que se ve en el menú; no es una cuenta ni una clave |
+| Lista de alumnos de un docente | Solo en el teléfono del docente | Nombre o apodo, estrellas, partidas, aciertos, minutos y descubrimientos que cada alumno le **mostró** con su QR o su código; hasta 60 por docente. Se puede quitar a un alumno o borrar todo desde Ajustes |
+| Código QR o de texto del alumno | Se muestra al docente cuando el alumno quiere | No incluye fecha de nacimiento, apoyos, voz ni cuaderno; no pasa por internet ni por ningún servidor. Detalle en [`clase-sincronizacion.md`](clase-sincronizacion.md) |
 | Audio del micrófono | No se guarda | Se analiza en el momento para calcular el tono |
 | Imagen de la cámara | No se guarda | Se reduce a 64×48 píxeles para calcular color, sombra o movimiento y se descarta |
 
@@ -41,6 +44,8 @@ almacenamiento, los datos se pierden. Con «Borrar todos los datos» (en Ajustes
    tercera estrella de los juegos de voz no depende del tiempo ni de la estabilidad del tono.
 7. **Nada depende de un solo sentido.** Los sonidos tienen equivalente visual, los colores van acompañados de símbolos, el texto puede
    agrandarse y leerse en voz alta, y los controles pueden ser grandes, con botones «+» y «−».
+
+8. **Compartir es decisión del alumno.** Antes de mostrar el QR, la pantalla dice con sus propias cifras qué verá el docente y qué no. El código no es una firma: sirve para acompañar y conversar, no para calificar. Si el alumno es menor, conviene que la escuela tenga el permiso de las familias antes de usarlo en clase (esto lo decide el centro, no la app).
 
 ## Qué cambia según el apoyo
 

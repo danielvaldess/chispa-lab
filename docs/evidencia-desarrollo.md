@@ -37,6 +37,7 @@ en `6a301be` para usar el prototipo; esa reconstrucción sigue en el historial.
 | `js/ajustes.js`, `js/perfiles.js`, `js/perfil.js` | Perfiles locales, edad y apoyos de accesibilidad | 4 nov 01:47–01:52 |
 | `js/niveles/globo.js`, `luz.js`, `burbujas.js`, `js/camara.js` | Tres juegos nuevos y la cámara como sensor | 4 nov 01:54–02:00 |
 | `js/panel.js` | Ajustes y panel «Para adultos y docentes» | 4 nov 02:22 |
+| `js/clase.js`, `js/alumnos.js`, `js/vendor/` (librerías de terceros, ver su licencia) | Rol de estudiante o docente, «Mis alumnos» y QR sin internet (v1.3.0) | 4 nov, noche (después de la v1.2.0) |
 | `js/tutor.js` | Tutor bayesiano del conocimiento | 4 nov 02:38 |
 | `js/finales.js` | Tres finales y diploma | 4 nov 02:58 |
 | `docs/`: artículo de investigación, presentación de 5 min, transferencia al mercado, impacto y ética | Documentación | 4 nov 02:00–03:28 |

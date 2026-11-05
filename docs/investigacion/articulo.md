@@ -10,7 +10,7 @@
 
 ## Resumen
 
-El último estudio regional de aprendizaje publicado en Panamá, el ERCE Pospandemia (UNESCO y Meduca, junio de 2025), muestra que en sexto grado solo el **27,7 %** de los estudiantes alcanza el nivel mínimo de competencia en Lectura y solo el **10,1 %** en Matemática; en Argentina, el único otro país con resultados publicados, son el 34,5 % y el 17 % [1] [2]. **Panamá no tiene una medición reciente de Ciencias**: se retiró de PISA 2025 [4] y los resultados de Ciencias de 6.º del ERCE 2025, aplicado en octubre de 2025, se esperan para finales de 2026 [5] [6]. En la Región Educativa de Veraguas, el 12,2 % de la población vive en pobreza multidimensional y en la comarca vecina Ngäbe Buglé es el 73,2 % (IPM 2025) [8]. El Estado contrató internet para 3.102 escuelas en junio de 2025 [11] y licitó en abril de 2026 laboratorios científicos para 73 centros [12]; ninguna de las dos obras ha llegado a todas las escuelas. Presentamos **Chispa Lab**, un videojuego educativo de código abierto que convierte el teléfono en un laboratorio: en seis juegos, el niño **predice**, **experimenta** con los sensores del teléfono (inclinación, micrófono, cámara) y **descubre** si acertó con sus propios datos. Funciona **sin internet**, pesa unos 156 KB comprimidos en la primera carga y no usa librerías externas; se adapta a la edad y a siete apoyos de accesibilidad; e incorpora un **tutor adaptativo ligero** que corre en el teléfono sin enviar datos. **No hemos evaluado todavía el aprendizaje con niños ni lo hemos probado en un teléfono real**: ambas validaciones son el siguiente paso.
+El último estudio regional de aprendizaje publicado en Panamá, el ERCE Pospandemia (UNESCO y Meduca, junio de 2025), muestra que en sexto grado solo el **27,7 %** de los estudiantes alcanza el nivel mínimo de competencia en Lectura y solo el **10,1 %** en Matemática; en Argentina, el único otro país con resultados publicados, son el 34,5 % y el 17 % [1] [2]. **Panamá no tiene una medición reciente de Ciencias**: se retiró de PISA 2025 [4] y los resultados de Ciencias de 6.º del ERCE 2025, aplicado en octubre de 2025, se esperan para finales de 2026 [5] [6]. En la Región Educativa de Veraguas, el 12,2 % de la población vive en pobreza multidimensional y en la comarca vecina Ngäbe Buglé es el 73,2 % (IPM 2025) [8]. El Estado contrató internet para 3.102 escuelas en junio de 2025 [11] y licitó en abril de 2026 laboratorios científicos para 73 centros [12]; ninguna de las dos obras ha llegado a todas las escuelas. Presentamos **Chispa Lab**, un videojuego educativo de código abierto que convierte el teléfono en un laboratorio: en seis juegos, el niño **predice**, **experimenta** con los sensores del teléfono (inclinación, micrófono, cámara) y **descubre** si acertó con sus propios datos. Funciona **sin internet**, pesa unos 220 KB comprimidos en la primera carga (53 KB son dos librerías pequeñas de QR que solo usa la función de clase) y el resto no usa librerías externas; permite que el docente reciba el avance de sus alumnos **sin internet**, con un código QR; se adapta a la edad y a siete apoyos de accesibilidad; e incorpora un **tutor adaptativo ligero** que corre en el teléfono sin enviar datos. **No hemos evaluado todavía el aprendizaje con niños ni lo hemos probado en un teléfono real**: ambas validaciones son el siguiente paso.
 
 **Palabras clave:** laboratorio de ciencias, educación sin conexión, aprendizaje basado en juegos, inclusión, tutor adaptativo, Panamá, Veraguas, ODS 4.
 
@@ -123,21 +123,27 @@ Un **tutor bayesiano** estima, por idea, la probabilidad de que el niño la domi
 teléfono sin internet y no envía datos. Recomienda el siguiente juego, ajusta un poco el margen inicial y explica a un adulto cómo va cada idea. El adulto puede apagarlo o reiniciarlo, y el
 dominio de una idea no depende de la destreza, para no penalizar dificultades motrices o de voz. Elegimos un modelo simple y explicable porque las revisiones recientes advierten que los modelos profundos rara vez evalúan su estabilidad o su interpretabilidad [23]. Fórmulas, salvaguardas y límites en [`../ia-etica.md`](../ia-etica.md).
 
-### 4.4 Estructura de recompensas
+### 4.4 Clase: del alumno al docente, sin internet
+Al crear un jugador, la app pregunta si es **estudiante o docente** (no es una cuenta: solo cambia el menú). El docente tiene **«Mis alumnos»**: escanea con la cámara el **código QR** que muestra cada alumno y guarda su avance
+(estrellas, partidas, predicciones acertadas, minutos y descubrimientos) **en su propio teléfono**, sin internet ni servidor; si el QR no se lee, el alumno envía un código de texto. No viajan la fecha de nacimiento, los apoyos
+ni las sesiones de voz, y el alumno ve antes lo que se comparte. Elegimos el QR frente a Bluetooth, NFC o un servidor porque funciona en cualquier teléfono con cámara, sin permisos nuevos ni emparejar; la comparación y los
+límites están en [`../clase-sincronizacion.md`](../clase-sincronizacion.md). En las pruebas, un navegador mostró el QR y otro, con una cámara simulada, lo escaneó; **no se probó con la cámara de un teléfono real ni con docentes**.
+
+### 4.5 Estructura de recompensas
 La estación científica se enciende por tramos: con una estrella en cada juego se enciende; con dos, un final mejorado con diploma; con tres, Chispa se pone la bata de científico. Las recompensas son
 cosméticas y no bloquean nada.
 
 ## 5. Evaluación técnica propia
 
-Mediciones del 4 de noviembre de 2026 sobre la versión 1.2.0 del repositorio. **No sustituyen una prueba en teléfonos reales.**
+Mediciones del 4 de noviembre de 2026 sobre la versión 1.3.0 del repositorio. **No sustituyen una prueba en teléfonos reales.**
 
 | Medida | Resultado |
 |---|---|
-| Archivos que guarda la aplicación para funcionar sin conexión (HTML, CSS, JS, iconos) | 40 archivos; **411 KB** sin comprimir; **≈ 156 KB** comprimidos (gzip, los iconos PNG no se comprimen) |
-| Dependencias de ejecución / librerías externas | **0** |
+| Archivos que guarda la aplicación para funcionar sin conexión (HTML, CSS, JS, iconos) | 44 archivos; **593 KB** sin comprimir; **≈ 220 KB** comprimidos (gzip, los iconos PNG no se comprimen). Sin las librerías de QR: 445 KB y ≈ 168 KB |
+| Dependencias de ejecución / librerías externas | **2**, solo para el QR de la clase (`qrcode-generator`, MIT; `jsQR`, Apache-2.0): 148 KB sin comprimir y ≈ 53 KB comprimidos; se cargan únicamente en esas pantallas. El resto de la app, **0** |
 | APK de Android (Capacitor, versión de depuración) | 4,2 MB (4.214.353 bytes) |
-| Pruebas automáticas (`npm test`) | **469** comprobaciones, 0 fallos (señal, física, ajustes, perfiles, cámara, tutor, IA, textos, experimentos) |
-| Historial de desarrollo | **111** commits, todos del 4 de noviembre de 2026 (ver [`../evidencia-desarrollo.md`](../evidencia-desarrollo.md)) |
+| Pruebas automáticas (`npm test`) | **528** comprobaciones, 0 fallos (señal, física, ajustes, perfiles, cámara, tutor, IA, textos, experimentos, clase y QR) |
+| Historial de desarrollo | **116** commits antes de añadir la función de clase, todos del 4 de noviembre de 2026 (ver [`../evidencia-desarrollo.md`](../evidencia-desarrollo.md)) |
 | Funcionamiento sin internet (service worker) | Verificado en el navegador: recargar sin red muestra el menú y deja jugar |
 | Fotogramas por segundo, rampa y péndulo; tiempo de carga con CPU ×4 y ×6 más lenta | Medidos en Chromium de escritorio con la CPU limitada, en la versión 1.0.0 (rampa: 56 sin límite, 31 con CPU ×4, 20 con CPU ×6; péndulo: 61, 36 y 22; carga 0,87 s y 1,01 s). **No se repitieron en la 1.2.0** |
 | Costo de la IA en el teléfono | ≈ 0,4 ms por partida con la CPU 6 veces más lenta (`scripts/medir-navegador.mjs`) |
@@ -183,7 +189,8 @@ videojuego pensado para niños pequeños**, por combinar **experimentos reales c
 4. **Solo física y algo de química y biología simuladas**, y solo en español; no se ha validado con el currículo oficial.
 5. **Sin dato reciente de Ciencias de 6.º** de Panamá (sección 2.1) ni porcentaje oficial reciente de escuelas conectadas o con laboratorio (sección 2.3).
 6. **Los juegos de voz no son terapia.** La evidencia reciente que encontramos mide usabilidad en articulación, no eficacia en voz [21].
-7. **La guarda del diploma** puede no funcionar en todos los navegadores o en el APK.
+7. **El QR de la clase no se probó con la cámara de un teléfono real**: con poca luz, reflejos o la pantalla oscura puede costar leerlo (hay código de texto como alternativa). La lista del docente vive en un solo teléfono, sin copia de respaldo.
+8. **La guarda del diploma** puede no funcionar en todos los navegadores o en el APK.
 
 ## 10. Conclusiones y siguientes pasos
 
