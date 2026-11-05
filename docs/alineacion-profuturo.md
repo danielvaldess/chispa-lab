@@ -5,24 +5,18 @@ escrito para ser honesto: dice dónde encaja bien, dónde hay brechas y qué fal
 
 ## Qué es ProFuturo y qué busca
 
-ProFuturo es un programa de educación digital creado en 2016 por Fundación Telefónica y Fundación «la Caixa». Según sus propios
-materiales:
+ProFuturo es un programa de educación digital de Fundación Telefónica y Fundación «la Caixa». Solo citamos fuentes de 2024 o posteriores:
 
-- **Misión:** reducir la brecha educativa con educación digital de calidad y **equitativa** para niños en contextos vulnerables, incluidos
-  estudiantes con discapacidad ([Telefónica, 2016](https://www.telefonica.com/es/sala-comunicacion/prensa/telefonica-y-la-caixa-se-alian-para-impulsar-la-educacion-digital-de-ninos-en-paises-emergentes/)).
-- **Cómo lo hace:** contenido que **funciona sin internet** en aulas digitales móviles, dispositivos accesibles, **formación docente** como
-  foco principal y metodologías innovadoras para desarrollar competencias del siglo XXI.
-- **Alcance reportado en 2024:** 3.609 escuelas en 30 países, 262.000 docentes y 941.785 niños, según
-  [su memoria de actividad](https://profuturo.education/wp-content/uploads/2025/07/memoriadeactividad_2024.pdf) y el
-  [comunicado de sus nueve años](https://www.elindependiente.com/economia/empresas/2025/07/17/profuturo-nueve-anos-mayor-proyecto-educativo-espanol-africa-latinoamerica/).
-- **Para 2026:** integrar la inteligencia artificial en su ecosistema y reforzar la medición de impacto
-  ([plan de actuación 2026 de Fundación Telefónica](https://www.fundaciontelefonica.com/wp-content/uploads/2026/01/Documento-2-Doc-3_Plan-de-actuacion-2026.pdf)).
-- **hack4edu:** hackatón organizado por ProFuturo y la UPSA para encontrar soluciones tecnológicas a retos de educación digital
-  ([Corresponsables](https://www.corresponsables.com/social/ods4-profuturo-upsa-hack4edu-hackaton-virtual-educacion-digital/)).
+- **Alcance reportado en 2024:** 3.609 escuelas en 30 países (18 de África y Asia y 12 de Latinoamérica), más de 262.980 docentes y 941.785 niños, según el
+  [comunicado de sus nueve años](https://www.elindependiente.com/economia/empresas/2025/07/17/profuturo-nueve-anos-mayor-proyecto-educativo-espanol-africa-latinoamerica/)
+  de El Independiente (17 de julio de 2025). Son cifras autorreportadas.
+- **Para 2026:** el [plan de actuación 2026 de Fundación Telefónica](https://www.fundaciontelefonica.com/wp-content/uploads/2026/01/Documento-2-Doc-3_Plan-de-actuacion-2026.pdf) incluye un
+  eje «Educación-ProFuturo», el refuerzo de la medición de impacto y la incorporación de la inteligencia artificial.
+- **Misión, funcionamiento sin conexión y foco en docentes:** las descripciones que teníamos venían de materiales de 2016 y de una página que no pudimos abrir; **las retiramos**
+  y no las citamos como hechos hasta contrastarlas con una fuente de 2024 o posterior (por ejemplo, la memoria de actividad 2024 de ProFuturo, cuyo PDF no se pudo abrir en esta revisión).
+- **ProFuturo en Panamá:** no encontramos una fuente de 2024 o posterior que dé el número de escuelas o docentes en Veraguas; **no citamos esa cifra**. Hay que confirmarlo con ProFuturo y con la sede.
 
-*Límites de esta información:* las cifras son autorreportadas, la mayoría de 2016 a 2024, y no pude leer la página de objetivos 2026
-de ProFuturo (devolvió error); lo de 2026 viene del plan de actuación y de resúmenes. Conviene contrastarlo con ProFuturo antes de citarlo
-como definitivo.
+*Límites de esta información:* todo lo de ProFuturo es autorreportado y de segunda mano (prensa); conviene contrastarlo con la organización antes de citarlo como definitivo.
 
 ## Lo que pide el reto 17
 
@@ -40,7 +34,7 @@ como definitivo.
 | Dispositivos accesibles y de bajo coste | Solo el teléfono; sin librerías, ES5, modo ligero en móviles de pocos núcleos | Cumple; **falta probarlo en un Android barato** |
 | Conectividad limitada | App instalable (PWA y APK) que funciona sin internet | Cumple |
 | Simulaciones, realidad aumentada, sensores | Simulaciones físicas, cámara con realidad aumentada ligera, micrófono e inclinación | Cumple |
-| Física, química, biología, matemáticas | Solo **física** (movimiento, oscilaciones, sonido, luz) y algo de color | Parcial: no hay química ni biología |
+| Física, química, biología, matemáticas | **Física** (movimiento, oscilaciones, sonido, luz) en seis juegos, **química** (col morada, huevo con sal, volcán) y **biología** (invernadero) en experimentos y en «Mi laboratorio» | Cubre las tres, aunque química y biología son modelos simplificados; faltan matemáticas explícitas |
 
 ## Los cuatro criterios del Premio Retos ProFuturo
 

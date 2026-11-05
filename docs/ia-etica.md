@@ -148,9 +148,10 @@ Solo tres cosas, todas pequeñas y reversibles:
 - **El diagnóstico de ideas erróneas es una hipótesis**, no una prueba: con una o dos respuestas puede equivocarse (en la simulación acierta ≈ 56 % tras una respuesta). Por eso solo se muestra
   al adulto como «para conversar» y las pistas del niño no lo mencionan.
 - **El catálogo de ideas erróneas lo escribimos nosotros**, sin validarlo con docentes ni con niños. Faltaría revisarlo con un docente de ciencias.
-- La investigación sobre este tipo de modelos muestra que pueden tratar distinto a distintos grupos de alumnos; por eso no se usan para **excluir ni calificar**,
-  solo para recomendar y ajustar con control humano ([estudio sobre equidad en BKT](https://arxiv.org/abs/2205.02333)). No encontré estudios de BKT funcionando
-  sin conexión en escuelas con pocos recursos, así que esto es una propuesta, no un resultado ya demostrado.
+- Una revisión sistemática de 2025 sobre seguimiento profundo del conocimiento (84 estudios) encontró que solo el 3,6 % evaluó la estabilidad de sus predicciones y el 11,9 % su interpretabilidad
+  para docentes ([preprint, octubre de 2025](https://doi.org/10.20944/preprints202510.1845.v1); sin revisión por pares). Por eso usamos un modelo **simple y explicable**, y no lo usamos para **excluir ni calificar**,
+  solo para recomendar y ajustar con control humano. No encontramos estudios de 2024 o posteriores de este tipo de modelo funcionando sin conexión en escuelas con pocos recursos,
+  así que esto es una propuesta, no un resultado ya demostrado.
 
 ## Por qué es útil en contextos desfavorecidos
 

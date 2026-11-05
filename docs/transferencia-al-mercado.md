@@ -10,20 +10,21 @@ Muchas escuelas no tienen laboratorio, instrumentos ni materiales para que los n
 formular hipótesis y probarlas, pero no tienen con qué. Los niños con dificultades (de voz, de audición, de visión, de atención, motrices) lo tienen aún más
 difícil, porque no todas las herramientas están pensadas para sus necesidades.
 
-## Por qué Panamá y por qué ahora (datos verificables)
+## Por qué Panamá y por qué ahora (datos de 2024 a 2026)
 
-Todas las cifras llevan su fuente en [`investigacion/articulo.md`](investigacion/articulo.md) (referencias entre corchetes).
+Todas las cifras llevan su fuente en [`investigacion/articulo.md`](investigacion/articulo.md), sección 11 (referencias entre corchetes): son fuentes de 2024 o posteriores, y donde no hay dato reciente se dice.
 
 | Señal | Dato | Qué significa para el producto |
 |---|---|---|
-| Aprendizaje en ciencias | ERCE 2019: 672 puntos frente a 702 de la región; 48,1 % en el nivel más bajo frente a 37,7 % [1] | Hay una necesidad medida y reconocida por la UNESCO |
-| El Estado ya compra tecnología escolar | 44 millones de dólares en internet para 3.102 escuelas (2025) [4]; 28,9 millones en laboratorios para 73 centros (2026) [5] | Existe presupuesto y un comprador para esta categoría |
-| Pero llega a pocos y despacio | 73 centros en la licitación de laboratorios; cerca del 45 % de los centros sin internet en 2022 [3] | Un laboratorio en el teléfono llega antes y complementa |
-| El teléfono ya está | 156,6 líneas móviles por cada 100 personas (2023) [7] | No hay que comprar equipos |
-| Pero no todos tienen conexión | 72,8 % de la población usa internet (2024) [7] | Funcionar sin conexión es una ventaja, no un detalle |
-| El presupuesto se aprieta | Gasto público en educación: 2,47 % del PIB (2023) frente a 4,30 % (2020) [7] | Una solución de coste casi nulo es más fácil de adoptar |
-| Hay una red de docentes en Veraguas | ProFuturo con MEDUCA: 76 escuelas, 28 en Veraguas, más de 700 docentes [9] | Un canal de piloto y distribución ya existe |
-| Niñez con discapacidad | 17,1 % de los niños de 2 a 14 años (ENDIS-2) [6] | Un segmento que conviene atender con herramientas pensadas para sus necesidades |
+| Aprendizaje en 6.º grado | ERCE Pospandemia 2025: solo 27,7 % alcanza el nivel mínimo en Lectura y 10,1 % en Matemática (Argentina: 34,5 % y 17 %) [1] [2] | Hay una necesidad medida y reconocida por UNESCO y Meduca |
+| Ciencias sin medición reciente | Panamá se retiró de PISA 2025 [4]; el ERCE 2025 (aplicado en octubre de 2025) publicará Ciencias de 6.º a finales de 2026 [5] [6] | Un piloto propio puede aportar un punto de partida antes de esos resultados |
+| El Estado ya compra tecnología escolar | 44 millones de dólares en internet para 3.102 escuelas (junio de 2025) [11]; 28,9 millones en laboratorios para 73 centros de media (abril de 2026) [12] | Existe presupuesto y un comprador para esta categoría |
+| Pero llega a pocos y despacio | 73 centros en la licitación de laboratorios, de educación media; 17,3 clientes de internet fijo por cada 100 habitantes en 2024 [12] [14] | Un laboratorio en el teléfono llega antes y complementa |
+| El teléfono ya está | Unos 6,12 millones de abonados móviles al cierre de 2024, con 75,5 % con internet (nivel B) [15] | No hay que comprar equipos |
+| Pero no todos tienen conexión | 72,8 % de la población usa internet (2024) [13]; en la comarca Ngäbe Buglé el IPM 2025 es 73,2 % y entre sus carencias está «sin acceso a internet» [8] | Funcionar sin conexión es una ventaja, no un detalle |
+| El gasto por alumno no sube | Costo por alumno del Gobierno Central: 2.261,56 balboas en 2024 (preliminar) frente a 2.344,39 en 2023 [9] | Una solución de coste casi nulo es más fácil de adoptar |
+| Una región con matrícula concreta | Región Educativa de Veraguas, 2024: 54.708 estudiantes y 3.360 docentes en el sistema oficial (suma nuestra); IPM 2025 de 12,2 % [10] [8] | Un territorio donde hacer el piloto, con la sede de la UTP |
+| Niñez con discapacidad | 17,1 % de los niños de 2 a 14 años (ENDIS-2, septiembre de 2026) [16] | Un segmento que conviene atender con herramientas pensadas para sus necesidades |
 
 ## Por qué convendría adoptarlo (propuesta de valor para Panamá)
 
@@ -41,7 +42,7 @@ persona y funcionando **sin internet**. El código es abierto y gratuito.
 
 ## Bajo coste y conectividad limitada (lo que el reto valora especialmente)
 
-Medidas propias de la versión 1.0.0, hechas en un ordenador (no en un teléfono real):
+Medidas propias de la versión 1.2.0 del 4 de noviembre de 2026, hechas en un ordenador (no en un teléfono real):
 
 | Qué | Valor |
 |---|---|

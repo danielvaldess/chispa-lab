@@ -31,8 +31,7 @@ almacenamiento, los datos se pierden. Con «Borrar todos los datos» (en Ajustes
 1. **Apoyos, no diagnósticos.** La pantalla pregunta «¿Qué te ayuda a jugar?», con casillas opcionales y sin nombrar enfermedades. No
    etiqueta a nadie.
 2. **Un adulto confirma en menores.** Si la persona tiene menos de 18 años y elige algún apoyo, hace falta que un adulto (madre, padre,
-   tutor o docente) lo confirme antes de guardarlo. Es un criterio conservador (en España el consentimiento propio llega a los 14 años;
-   en Panamá los datos de salud son sensibles y el consentimiento debe ser explícito).
+   tutor o docente) lo confirme antes de guardarlo. Es un criterio conservador: en Panamá los datos de salud son sensibles y el consentimiento debe ser explícito (Ley 81 de 2019, norma vigente citada como excepción; ver Fuentes).
 3. **Mínimo de datos.** Solo se pide lo que cambia el juego. El día de nacimiento no se guarda.
 4. **Todo se puede cambiar o borrar.** En Ajustes, en cualquier momento.
 5. **Sin presión.** No hay anuncios, cuentas regresivas que apuren ni culpa por no volver. Con el modo calma no hay destellos, sacudidas
@@ -58,8 +57,7 @@ almacenamiento, los datos se pierden. Con «Borrar todos los datos» (en Ajustes
 ## Límites (dicho con claridad)
 
 - **Chispa Lab no es un aparato médico ni un tratamiento y no da diagnósticos.** «El globo largo» es un juego de práctica que puede
-  acompañar ejercicios que indique un especialista. La literatura que lo motiva son estudios piloto pequeños (juegos de voz para niños con
-  trastornos de voz, práctica en casa con juegos de habla), sin ensayos controlados grandes.
+  acompañar ejercicios que indique un especialista. La evidencia reciente que encontramos mide usabilidad de un videojuego de articulación del habla en niños (Saeedi et al., 2024), no eficacia clínica ni en voz.
 - **Las bandas de dificultad por edad son heurísticas** y no se han validado con niños. Se ajustan solas durante el juego (tras tres fallos
   seguidos ayudan más; tras dos aciertos seguidos exigen un poco más), pero necesitan un piloto.
 - **No se ha probado con niños, terapeutas ni docentes**, ni en teléfonos reales.
@@ -68,12 +66,47 @@ almacenamiento, los datos se pierden. Con «Borrar todos los datos» (en Ajustes
 - **La cámara ajusta sola la exposición**, por eso se mide color y sombra dentro de la misma imagen y no el brillo absoluto. En poca luz
   la detección de color puede fallar; hay una alternativa con tarjetas.
 
+## En qué guía se apoya cada cambio
+
+Fuentes de 2024 o posteriores, consultadas el 4 de noviembre de 2026. Las guías de diseño son documentos vivos: se anota cuándo se actualizó cada una cuando la página lo dice.
+
+| Cambio en Chispa Lab | Respaldo | Nivel |
+|---|---|---|
+| Botones grandes y bien separados, con «+» y «−» | Game Accessibility Guidelines, nivel básico: «controles virtuales grandes y bien espaciados, sobre todo en pantallas táctiles pequeñas» | D |
+| Alternativa sin micrófono (barra) y sin cámara (tarjetas) | Game Accessibility Guidelines: el habla y el gesto no deben ser obligatorios, solo una entrada complementaria o alternativa | D |
+| Ajustar la dificultad durante la partida; nunca volverla imposible | Game Accessibility Guidelines: nivel básico «ofrecer varios niveles de dificultad»; nivel intermedio «cambiar la dificultad durante el juego, por ajustes o dificultad adaptativa» | D |
+| Evidencia de que la dificultad adaptativa converge a niveles adecuados en niños | Pasqualotto et al., con datos de 148 niños (juego de memoria de trabajo; no es un juego de ciencias) | D |
+| Sin tiempos exactos obligatorios; con apoyo de voz se quita el tiempo | Game Accessibility Guidelines: «no hacer esencial la precisión de tiempos; ofrecer alternativas» | D |
+| Equivalente visual de cada sonido; símbolos además de colores | Game Accessibility Guidelines: ninguna información esencial solo por color ni solo por texto | D |
+| Texto grande, alto contraste, lectura en voz alta | Game Accessibility Guidelines: «tamaño de letra legible por defecto», «alto contraste entre texto e interfaz» | D |
+| Modo calma sin destellos ni sacudidas | Xbox Accessibility Guideline 118 (fotosensibilidad; aproximadamente 1 de cada 4.000 personas puede sufrir una convulsión por imágenes con destellos; página actualizada el 4 de marzo de 2026) y Game Accessibility Guidelines («evitar imágenes parpadeantes y patrones repetitivos») | D |
+| Colores apagados, pasos visibles y estructura predecible | Aspect Autism Friendly Design Guide (julio de 2025): tonos neutros y apagados, flujo paso a paso, previsibilidad | D |
+| Práctica sin fallar (laboratorio libre sin reglas ni tiempo) | Game Accessibility Guidelines, nivel intermedio: «un modo de práctica sin fallar, como un nivel de práctica o un modo libre» | D |
+| Juego de vocal sostenida con retroalimentación visual | Saeedi et al., *Scientific Reports*, 2024: un videojuego para niños de 3 a 6 años con trastornos de los sonidos del habla tuvo usabilidad satisfactoria; **mide usabilidad, no eficacia** | D |
+| Datos de un menor solo en el teléfono, con confirmación de un adulto | Ley 81 de 2019 de Panamá, protección de datos personales (**excepción de norma vigente**, anterior a 2024) | B |
+
+## Por qué estas bandas de edad
+
+Las bandas de dificultad por edad (más margen para los más pequeños, menos para los mayores) son **una heurística nuestra**. No encontramos un estudio de 2024 o posterior que mida el tiempo de reacción o la destreza táctil infantil por edad, así que **no tenemos una fuente que respalde los números concretos**. Lo que sí respaldan las fuentes recientes es el principio: que la dificultad se pueda ajustar durante el juego y que un ajuste adaptativo converja a niveles individuales (cuadro anterior). Por eso los márgenes se corrigen solos durante la partida y quedan pendientes de calibrar con un piloto.
+
+Los valores que usa hoy el juego (`js/ajustes.js`, `BANDAS`), tal cual están en el código:
+
+| Edad | Margen para acertar (×) | Tiempo que se mantiene una nota (×) |
+|---|---|---|
+| 6 años o menos | 1,8 | 0,7 |
+| 7 y 8 | 1,4 | 0,85 |
+| 9 y 10 | 1,15 | 1,0 |
+| 11 a 13 | 1,0 | 1,0 |
+| 14 o más | 0,8 | 1,15 |
+
+Un multiplicador mayor significa más margen. Son números nuestros, no de un estudio.
+
 ## Fuentes consultadas
 
-- [Game Accessibility Guidelines](https://gameaccessibilityguidelines.com/): ajustes recordados, ritmo propio, dificultad ajustable, texto claro.
-- [Lopes et al., Interspeech 2019](https://www.isca-archive.org/interspeech_2019/lopes19_interspeech.pdf): juego de fonación sostenida para niños con trastornos de voz.
-- [Apraxia World y juegos de voz de la Universidad Texas A&M](https://psi.engr.tamu.edu/publications/?tgid=25): práctica en casa con retroalimentación automática.
-- [Xbox Accessibility Guideline 118: fotosensibilidad](https://learn.microsoft.com/de-de/gaming/accessibility/xbox-accessibility-guidelines/118): evitar destellos repetitivos.
-- [Aspect Autism Friendly Design Guide (2025)](https://www.aspect.org.au/uploads/documents/Aspect-Autism-Friendly-Design-Guide-July-2025.pdf): colores apagados, diseño predecible, pasos visibles.
-- [Recomendaciones de juegos para discalculia (Estudos em Design)](https://estudosemdesign.emnuvens.com.br/design/en/article/view/1272) y [Dislexia: interfaces de juegos accesibles (SBC)](https://sol.sbc.org.br/index.php/ihc_estendido/article/view/8393).
-- [Infografía de la AEPD sobre consentimiento de menores](https://www.aepd.es/infografias/infografia-consentimiento-menores.pdf) y [Ley 81 de 2019 de Panamá](https://vlex.com.pa/vid/ley-81-2019-proteccion-1049691931).
+- [Game Accessibility Guidelines, lista completa](https://gameaccessibilityguidelines.com/full-list/) (sitio vivo, consultado el 4 de noviembre de 2026).
+- [Xbox Accessibility Guideline 118: fotosensibilidad](https://learn.microsoft.com/en-us/gaming/accessibility/xbox-accessibility-guidelines/118) (actualizada el 4 de marzo de 2026).
+- [Aspect Autism Friendly Design Guide (julio de 2025)](https://www.aspect.org.au/uploads/documents/Aspect-Autism-Friendly-Design-Guide-July-2025.pdf).
+- [Saeedi et al. (2024), *Scientific Reports* 14, 17299](https://doi.org/10.1038/s41598-024-68119-x): videojuego para niños con trastornos de los sonidos del habla.
+- [Pasqualotto et al., dificultad dinámica probabilística en niños](https://cris.huji.ac.il/en/publications/modeling-skill-progression-in-children-through-novel-multidimensi/).
+- [Ley 81 de 2019 de Panamá](https://vlex.com.pa/vid/ley-81-2019-proteccion-1049691931) (norma vigente; excepción a la regla de fechas).
+- Referencias del contexto de Panamá y de la evidencia educativa: [`investigacion/articulo.md`](investigacion/articulo.md), sección 11.
