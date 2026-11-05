@@ -24,9 +24,9 @@
 | 8 | **Para todos los niños:** siete apoyos (GIF de la elección de apoyos y del registro) | 0:19 | 2:37–2:56 |
 | 9 | IA que aprende dentro del teléfono (6 técnicas) | 0:32 | 2:56–3:28 |
 | 10 | Funciona, y funciona liviano (583 pruebas; 230 KB la web, 4,3 MB el APK) | 0:14 | 3:28–3:42 |
-| 11 | Meta: 3.800 estudiantes de Veraguas en 3 años (10 %) | 0:14 | 3:42–3:56 |
+| 11 | **Mercado:** 3.102 centros educativos; solo 73 en la licitación de 2026 | 0:14 | 3:42–3:56 |
 | 12 | **Tres ODS** (4, 10 y 9, los logos oficiales en grande) | 0:08 | 3:56–4:04 |
-| 13 | Un laboratorio por casi cero, financiado por quien ya invierte en educación | 0:18 | 4:04–4:22 |
+| 13 | **Modelo de negocio:** ministerios, terapias y regiones | 0:18 | 4:04–4:22 |
 | 14 | **Conclusión** (problema, solución y petición, con GIF de Mi laboratorio y la rampa) | 0:23 | 4:22–4:45 |
 | 15 | **¿Preguntas? ¡Muchas gracias!** con cinco GIF del juego en acción (se queda en pantalla) | 0:06 | 4:45–4:51 |
 
@@ -42,11 +42,11 @@
 - **Primacía y recencia:** lo que más se recuerda es el principio y el final; el principio es el dato y el final es la petición con el juego funcionando durante las preguntas.
 - Los clips de cámara (Luz y color, Burbujas) no se muestran en la presentación.
 
-El texto de cada diapositiva suma **703 palabras**: 4:41 a 150 palabras por minuto y 5:01 a 140; el objetivo es 4:51, así que conviene ensayar a 145–150 (versión con entonación, reparto y preguntas: [`guion-oratoria.md`](guion-oratoria.md)).
+El texto de cada diapositiva suma **698 palabras**: 4:39 a 150 palabras por minuto y 4:59 a 140; el objetivo es 4:49, así que conviene ensayar a 145–150 (versión con entonación, reparto y preguntas: [`guion-oratoria.md`](guion-oratoria.md)).
 
 ## Qué cifras tienen fuente y cuáles son medidas propias
 
-- **Con fuente en la propia diapositiva** (pie de página), **todas de 2024 a 2026**: ERCE Pospandemia (UNESCO y Meduca, 2025), retiro de PISA 2025 y ERCE 2025 (La Prensa), contrato de internet y licitación de laboratorios (La Prensa, 2025 y 2026), internet fijo (ASEP, 2024), ENDIS-2 (UNICEF, 2026), costo por alumno (INEC y Contraloría, 2026), matrícula de la Región Educativa de Veraguas (Meduca, 2024) y los metaanálisis de 2024. Detalle, nivel de verificación y lo que **no** tiene dato reciente en [`../investigacion/articulo.md`](../investigacion/articulo.md), sección 11.
+- **Con fuente en la propia diapositiva** (pie de página), **todas de 2024 a 2026**: ERCE Pospandemia (UNESCO y Meduca, 2025), retiro de PISA 2025 y ERCE 2025 (La Prensa), contrato de internet y licitación de laboratorios (La Prensa, 2025 y 2026), internet fijo (ASEP, 2024), ENDIS-2 (UNICEF, 2026), costo por alumno (INEC y Contraloría, 2026), matrícula de la Región Educativa de Veraguas (Meduca, 2024), centros educativos (Meduca, reportado por TVN-2, 2025), red de ProFuturo (2024), mercado de tecnología educativa de América Latina (Grand View Research, 2025) y los metaanálisis de 2024. Detalle, nivel de verificación y lo que **no** tiene dato reciente en [`../investigacion/articulo.md`](../investigacion/articulo.md), sección 11. El estudio de mercado, con TAM/SAM/SOM, competencia y modelo de ingresos, está en [`../estudio-mercado.md`](../estudio-mercado.md).
 - **Medidas propias (no son de una fuente externa), del 4 de noviembre de 2026:** ≈ 230 KB comprimidos / 617 KB sin comprimir en la primera carga **de la web** (los 46 archivos únicos del service worker; ≈ 53 KB son las dos librerías de QR de la clase) y **4,3 MB el APK de Android**; 583 comprobaciones automáticas (`npm test`), 0,4 ms de la IA por partida con la CPU 6 veces más lenta (`scripts/medir-navegador.mjs`) y el ≈ 68 % de acierto del diagnóstico, que es **una simulación**. La diapositiva 9 dice que son mediciones en un ordenador y que la app también se probó en un teléfono y funciona (reporte del autor).
 - **Ajuste que aprende de cada niño:** el punto de partida por edad (diapositiva 7, `js/ajustes.js`, `BANDAS`) se calibra en el piloto; los márgenes de dificultad por edad de la diapositiva 7 (`js/ajustes.js`, `BANDAS`).
 - **Nombres del equipo:** la portada lee los nombres de `participantes.txt` (uno por línea); las notas de la diapositiva 1 están en `guion.md`. Si el archivo no existe, la portada muestra un aviso en lugar de inventar nombres.

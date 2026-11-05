@@ -1,6 +1,6 @@
 # Guion de la presentación (5 minutos)
 
-**Versión definitiva.** 15 diapositivas de contenido y la de referencias como anexo. Total previsto: **4:41 a 4:51** a 145–150 palabras por minuto. Cada bloque indica cuándo hacer clic y qué decir mientras esa diapositiva está en pantalla. Este archivo es la fuente de las notas del `.pptx`.
+**Versión definitiva.** 15 diapositivas de contenido y la de referencias como anexo. Total previsto: **4:39 a 4:59** a 140–150 palabras por minuto (objetivo 4:49). Cada bloque indica cuándo hacer clic y qué decir mientras esa diapositiva está en pantalla. Este archivo es la fuente de las notas del `.pptx`.
 
 **Daniel presenta solo.** Whaldo figura como coautor y puede responder preguntas si el jurado lo pide.
 
@@ -46,17 +46,17 @@
 
 [3:28–3:42] A nivel técnico es sólido y liviano: 583 comprobaciones automáticas sin fallos. La primera carga de la versión web pesa 230 KB comprimida; el APK completo de Android, 4,3 MB. Los dos caben en un teléfono modesto.
 
-## 11. Meta: 3.800 estudiantes de Veraguas en tres años
+## 11. Mercado: 3.102 centros educativos, solo 73 en la licitación de 2026
 
-[3:42–3:56] Nuestra meta a tres años es llegar a 3.800 estudiantes, el 10 % de la matrícula de primaria y premedia de Veraguas, sin comprar un solo equipo nuevo: aprovechando los teléfonos que ya existen.
+[3:42–3:56] Panamá tiene 3.102 centros educativos y 596.372 estudiantes oficiales de primaria y premedia. La licitación de 2026 solo llega a 73 centros de media. Ahí está el mercado; nuestra meta es 3.800 estudiantes en Veraguas en tres años.
 
 ## 12. Impacto en los ODS
 
 [3:56–4:04] Esta iniciativa contribuye directamente a tres Objetivos de Desarrollo Sostenible: educación de calidad pertinente, reducción de las desigualdades mediante la inclusión, y fomento a la industria e innovación aumentando el acceso a las TIC sin exigir conexión.
 
-## 13. Modelo de financiamiento
+## 13. Modelo de negocio: ministerios, terapias y regiones
 
-[4:04–4:22] El modelo es sostenible: mientras un aula de laboratorio cuesta 150.100 dólares, el costo de equipos de Chispa Lab por escuela es cercano a cero. El sostenimiento se paga con servicios de adaptación, contenido extra y formación docente; proponemos que lo financien el Ministerio, fundaciones como ProFuturo y redes de escuelas.
+[4:04–4:22] Un aula de laboratorio cuesta 150.100 dólares; Chispa Lab, casi cero en equipos. El modelo es de servicios: ministerios pagan adaptación y formación; clínicas de terapia, licencia por centro; regiones, idioma y currículo. El canal es ProFuturo: 3.609 escuelas y 941.785 niños.
 
 ## 14. Conclusión
 

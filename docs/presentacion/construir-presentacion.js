@@ -176,11 +176,11 @@ s.addNotes(notas());
 
 // ---------- 11. Meta ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Impacto y mercado' });
-s.addText('Meta: 3.800 estudiantes de Veraguas haciendo ciencia en 3 años', { placeholder: 'title' });
-heroDato(s, '3.800', 'estudiantes: el 10 % de los 38.250 de primaria y premedia de Veraguas', K.pink);
-T(s, 'Sin comprar equipos: solo teléfonos que ya existen.', { x: 0.5, y: 4.1, w: 6.3, h: 0.8, fontSize: 16, bold: true, color: K.violet, valign: 'top', objectName: 'Apoyo' });
+s.addText('3.102 centros educativos; solo 73 en la licitación de 2026', { placeholder: 'title' });
+heroDato(s, '3.102', 'centros educativos en Panamá; solo 73 de media en la licitación de laboratorios 2026 (193 aulas)', K.pink);
+T(s, '596.372 estudiantes oficiales de primaria y premedia; 38.250 en Veraguas; meta: 3.800. Chispa Lab llega sin comprar equipos.', { x: 0.5, y: 4.1, w: 6.3, h: 0.8, fontSize: 15, bold: true, color: K.violet, valign: 'top', objectName: 'Apoyo' });
 telefono(s, '01.gif', 7.55, 1.15, 3.55, 'la rampa', K.orange);
-nota(s, 'Nota. Cálculo propio: 10 % de los 38.250 estudiantes de primaria y premedia (Ministerio de Educación de Panamá, Oficina de Estadística, 2025).');
+nota(s, 'Nota. 73 centros y 193 aulas: La Prensa (2026b). 3.102 centros: Meduca, reportado por TVN-2 (2025). 596.372 y 38.250: Meduca, Oficina de Estadística (2024).');
 s.addNotes(notas());
 
 // ---------- 12. ODS ----------
@@ -196,16 +196,16 @@ s.addNotes(notas());
 
 // ---------- 12. Mercado ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Impacto y mercado' });
-s.addText('Un laboratorio por casi cero, financiado por quien ya invierte en educación', { placeholder: 'title' });
-[['≈ 150.100 $', 'una aula de laboratorio', K.pink], ['≈ 0 $', 'en equipos por escuela', K.green]].forEach((c, i) => {
+s.addText('Modelo de negocio: ministerios, terapias y regiones', { placeholder: 'title' });
+[['≈ 150.100 $', 'un aula de laboratorio', K.pink], ['≈ 0 $', 'en equipos por escuela', K.green]].forEach((c, i) => {
   const x = 0.5 + i * 3.2;
   tarjeta(s, x, 1.35, 3.05, 2.3, c[2], 'Tarjeta ' + (i + 1));
   T(s, c[0], { x: x + 0.1, y: 1.45, w: 2.85, h: 1.2, fontSize: 34, bold: true, color: c[2] === K.green ? '0E9F6E' : c[2], align: 'center', valign: 'middle', objectName: 'Cifra ' + (i + 1) });
   T(s, c[1], { x: x + 0.15, y: 2.65, w: 2.75, h: 0.8, fontSize: 15, color: K.navy, align: 'center', valign: 'top', objectName: 'Etiqueta ' + (i + 1) });
 });
-T(s, [{ text: 'Proponemos que paguen: ', options: { bold: true, color: K.violet } }, { text: 'el Ministerio, fundaciones como ProFuturo y redes de escuelas, por adaptación, contenido y formación.' }], { x: 0.5, y: 3.9, w: 6.3, h: 1.0, fontSize: 16, color: K.navy, valign: 'top', objectName: 'Quién paga' });
+T(s, [{ text: 'Ingresos: ', options: { bold: true, color: K.violet } }, { text: 'ministerios (adaptación y formación), clínicas de terapia (licencia por centro) y regiones (idioma y currículo).' }], { x: 0.5, y: 3.9, w: 6.3, h: 1.0, fontSize: 15, color: K.navy, valign: 'top', objectName: 'Quién paga' });
 telefono(s, '02.gif', 7.55, 1.15, 3.55, 'el péndulo', K.violet);
-nota(s, 'Nota. Costo por aula: cálculo propio con La Prensa (2026b). Código abierto y sin servidor: el ingreso son los servicios.');
+nota(s, 'Nota. Mercado LatAm: USD 10.152,9 M en 2024, CAGR 14 % (Grand View Research, 2025). Canal: ProFuturo, 3.609 escuelas y 941.785 niños en 30 países (2024). Costo por aula: La Prensa (2026b).');
 s.addNotes(notas());
 
 // ---------- 13. Conclusión ----------

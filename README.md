@@ -151,7 +151,7 @@ Más detalle: [`docs/calidad-y-pruebas.md`](docs/calidad-y-pruebas.md).
 
 - **Impacto:** teoría de cambio, línea base con datos reales y escenarios de alcance en Veraguas (por ejemplo, el 5 % de la matrícula de primaria y premedia son 1.913 niños) con sus indicadores de medición: [`docs/impacto-esperado.md`](docs/impacto-esperado.md).
 - **Sostenibilidad a 10 años:** código abierto sin servidor ni costo por usuario, mantenimiento con pruebas y publicación automática, convenios institucionales y hoja de ruta: [`docs/sostenibilidad-y-escalabilidad.md`](docs/sostenibilidad-y-escalabilidad.md).
-- **Transferencia al mercado:** [`docs/transferencia-al-mercado.md`](docs/transferencia-al-mercado.md). **Alineación con ProFuturo:** [`docs/alineacion-profuturo.md`](docs/alineacion-profuturo.md).
+- **Transferencia al mercado:** [`docs/transferencia-al-mercado.md`](docs/transferencia-al-mercado.md). **Estudio de mercado y modelo de ingresos:** [`docs/estudio-mercado.md`](docs/estudio-mercado.md). **Alineación con ProFuturo:** [`docs/alineacion-profuturo.md`](docs/alineacion-profuturo.md).
 
 ## Galería
 
@@ -187,7 +187,7 @@ El juego está pensado para el móvil en vertical; en el ordenador, abre las her
 
 ## Documentación
 
-[Juegos y experimentos](docs/juegos-y-experimentos.md) · [IA y ética](docs/ia-etica.md) · [Clase y QR](docs/clase-sincronizacion.md) · [Impacto esperado](docs/impacto-esperado.md) · [Sostenibilidad y escalabilidad](docs/sostenibilidad-y-escalabilidad.md) · [Calidad y pruebas](docs/calidad-y-pruebas.md) · [Transferencia al mercado](docs/transferencia-al-mercado.md) · [Alineación con ProFuturo](docs/alineacion-profuturo.md) · [Impacto y ética (datos y privacidad)](docs/impacto-y-etica.md) · [Guía docente](docs/guia-docente.md) · [Presentación y vídeo](docs/presentacion/) · [Bitácora del hackatón](docs/evidencia-desarrollo.md)
+[Juegos y experimentos](docs/juegos-y-experimentos.md) · [IA y ética](docs/ia-etica.md) · [Clase y QR](docs/clase-sincronizacion.md) · [Impacto esperado](docs/impacto-esperado.md) · [Sostenibilidad y escalabilidad](docs/sostenibilidad-y-escalabilidad.md) · [Calidad y pruebas](docs/calidad-y-pruebas.md) · [Transferencia al mercado](docs/transferencia-al-mercado.md) · [Estudio de mercado](docs/estudio-mercado.md) · [Alineación con ProFuturo](docs/alineacion-profuturo.md) · [Impacto y ética (datos y privacidad)](docs/impacto-y-etica.md) · [Guía docente](docs/guia-docente.md) · [Presentación y vídeo](docs/presentacion/) · [Bitácora del hackatón](docs/evidencia-desarrollo.md)
 
 ## Estructura
 

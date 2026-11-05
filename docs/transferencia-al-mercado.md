@@ -1,5 +1,7 @@
 # Transferencia al mercado
 
+> Estudio de mercado completo, con TAM/SAM/SOM, competencia y modelo de ingresos: [`estudio-mercado.md`](estudio-mercado.md).
+
 > Las bases piden proyectos con «potencial comercial que puedan transformar el conocimiento generado en productos y servicios con valor en el
 > mercado» (Base 1). Este documento describe **hipótesis** de cómo Chispa Lab puede sostenerse y crecer, y qué habría que comprobar. **No contiene
 > cifras de mercado inventadas**: donde falta un dato, lo dice.

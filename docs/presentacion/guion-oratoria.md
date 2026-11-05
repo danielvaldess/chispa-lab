@@ -2,7 +2,7 @@
 
 > **Lo que piden las bases:** presentación de **5 minutos** (Bases 3, 5 y 6) y vídeo de **3 minutos**.
 
-**Texto canónico:** [`guion.md`](guion.md) (703 palabras; 4:51 a 145–150 palabras por minuto). Esta hoja añade pausas, gestos, reparto y respuestas. **Si te pasas, recorta, no hables más rápido.** Ensaya tres veces con cronómetro.
+**Texto canónico:** [`guion.md`](guion.md) (698 palabras; 4:39–4:59 según el ritmo; objetivo 4:49). Esta hoja añade pausas, gestos, reparto y respuestas. **Si te pasas, recorta, no hables más rápido.** Ensaya tres veces con cronómetro.
 
 ## Reparto
 - **Daniel presenta solo las 15 diapositivas.** Whaldo figura como coautor y puede responder preguntas si el jurado lo pide.
@@ -27,11 +27,11 @@
 | 8. Apoyos inclusivos | 2:37–2:56 | Diseñamos pensando en la inclusión: 1 de cada 6 niños panameños de 2 a 14 años tiene alguna discapacidad. El estudiante marca lo que le ayuda y el juego se adapta con letra grande, lectura en voz alta o modo calma, sin requerir nunca diagnósticos médicos. | Tono cálido. Señala el GIF de los apoyos y pausa en «sin diagnósticos». |
 | 9. Inteligencia artificial que aprende dentro del teléfono | 2:56–3:28 | Detrás hay seis técnicas de IA que corren dentro del teléfono. Un tutor bayesiano estima qué ideas domina cada niño; un clasificador Naïve Bayes detecta la idea errónea; un bandido elige la mejor pista; otro modelo aprende los colores con dos muestras; otro ajusta la dificultad para acertar siete de cada diez veces; y k-means agrupa la clase. Funciona sin internet, sin enviar datos a la nube, es explicable y deja la decisión final en manos del adulto. | Recórrelas con la mano, sin leer las cajas. El mensaje es «IA real, local y explicable». |
 | 10. Datos técnicos: funciona y es liviano | 3:28–3:42 | A nivel técnico es sólido y liviano: 583 comprobaciones automáticas sin fallos. La primera carga de la versión web pesa 230 KB comprimida; el APK completo de Android, 4,3 MB. Los dos caben en un teléfono modesto. | Dato corto y con orgullo. Distingue web (230 KB) y APK (4,3 MB); no los mezcles. |
-| 11. Meta: 3.800 estudiantes de Veraguas en tres años | 3:42–3:56 | Nuestra meta a tres años es llegar a 3.800 estudiantes, el 10 % de la matrícula de primaria y premedia de Veraguas, sin comprar un solo equipo nuevo: aprovechando los teléfonos que ya existen. | Di «3.800» despacio y mira al jurado. |
+| 11. Mercado: 3.102 centros educativos, solo 73 en la licitación de 2026 | 3:42–3:56 | Panamá tiene 3.102 centros educativos y 596.372 estudiantes oficiales de primaria y premedia. La licitación de 2026 solo llega a 73 centros de media. Ahí está el mercado; nuestra meta es 3.800 estudiantes en Veraguas en tres años. | Señala 3.102 y 73. Pausa en «73 centros de media»: deja que se vea el contraste. |
 | 12. Impacto en los ODS | 3:56–4:04 | Esta iniciativa contribuye directamente a tres Objetivos de Desarrollo Sostenible: educación de calidad pertinente, reducción de las desigualdades mediante la inclusión, y fomento a la industria e innovación aumentando el acceso a las TIC sin exigir conexión. | Señala los tres logos sin leerlos. Ocho segundos, no más. |
-| 13. Modelo de financiamiento | 4:04–4:22 | El modelo es sostenible: mientras un aula de laboratorio cuesta 150.100 dólares, el costo de equipos de Chispa Lab por escuela es cercano a cero. El sostenimiento se paga con servicios de adaptación, contenido extra y formación docente; proponemos que lo financien el Ministerio, fundaciones como ProFuturo y redes de escuelas. | Señala las dos tarjetas: 150.100 $ frente a casi cero en equipos. |
+| 13. Modelo de negocio: ministerios, terapias y regiones | 4:04–4:22 | Un aula de laboratorio cuesta 150.100 dólares; Chispa Lab, casi cero en equipos. El modelo es de servicios: ministerios pagan adaptación y formación; clínicas de terapia, licencia por centro; regiones, idioma y currículo. El canal es ProFuturo: 3.609 escuelas y 941.785 niños. | Señala las dos tarjetas y luego cuenta los tres segmentos con la mano: ministerios, terapias, regiones. |
 | 14. Conclusión | 4:22–4:45 | En conclusión: el problema es crítico, especialmente en nuestras comarcas. La solución ya funciona e integra inclusión e IA fuera de línea. Lo que proponemos hoy es un piloto en Veraguas junto a la UTP, ProFuturo y el Meduca. Construir laboratorios de concreto tomará años; con Chispa Lab, cada teléfono es un laboratorio, hoy. | Cierre lento. Pausa antes de «Cada teléfono, un laboratorio» y mira al jurado. |
-| 15. Cierre | 4:45–4:51 | Muchas gracias. | Sonríe, deja la diapositiva en pantalla e invita a preguntas con la mano. |
+| 15. Cierre | 4:45–4:50 | Muchas gracias. | Sonríe, deja la diapositiva en pantalla e invita a preguntas con la mano. |
 | 16. Referencias (anexo) | Anexo | Las fuentes de cada dato están en la nota al pie de cada diapositiva y, completas en formato APA, en este anexo. | Solo si preguntan por una fuente. No lo presentes. |
 
 ## Cómo se conecta con la rúbrica del jurado
@@ -41,7 +41,7 @@ No hace falta decirlo todo: la presentación ya lo demuestra. Pero conviene tene
 **Modalidad innovadora** (si concursan en ella):
 - **Creatividad e innovación (40 %):** un laboratorio de ciencias con los sensores del teléfono, IA local y QR sin internet; no es un videojuego de preguntas.
 - **Acabado y calidad (20 %):** 583 comprobaciones automáticas, APK de 4,3 MB, PWA offline, 16 diapositivas y documentación reproducible.
-- **Transferencia al mercado (20 %):** código MIT, sin servidor ni costo por usuario; ingresos por adaptación, contenido y formación.
+- **Transferencia al mercado (20 %):** mercado de tecnología educativa en América Latina de **USD 10.152,9 M en 2024 (CAGR 14 %)**; **596.372 estudiantes** de primaria y premedia en Panamá; **3.102 centros**; canal ProFuturo de **3.609 escuelas y 941.785 niños**. Ingresos por ministerios, terapias y regiones, no por licencia del núcleo (MIT).
 - **IA para países desfavorecidos (20 %):** funciona sin conexión, en teléfonos modestos, con datos que no salen del dispositivo.
 
 **Premio Retos ProFuturo** (transversal):
@@ -65,7 +65,7 @@ No hace falta decirlo todo: la presentación ya lo demuestra. Pero conviene tene
    «No salen del teléfono. Al docente solo llega lo que el estudiante decide mostrar con el QR, y no viajan la fecha de nacimiento, los apoyos, la voz ni el cuaderno. Un adulto confirma si el jugador es menor y todo se puede borrar desde Ajustes.»
 
 5. **¿Quién paga y cómo se sostiene?**
-   «El código es abierto y no hay servidor, así que el costo de mantenerlo es de trabajo. El ingreso son servicios: adaptación por país, contenido y formación docente. Proponemos que lo financien el Ministerio, fundaciones como ProFuturo y redes de escuelas. Un aula de laboratorio cuesta 150.100 $; Chispa Lab, casi cero en equipos por escuela.»
+   «El núcleo es abierto y no hay servidor: el costo marginal de un usuario es casi cero. El ingreso son servicios en tres frentes: ministerios (adaptación y formación), clínicas de terapia (licencia por centro) y regiones (idioma y currículo). El ancla es el aula de laboratorio: 150.100 $; una licencia de escuela a 1.000–5.000 $ es 0,7–3,3 % de ese costo. Panamá tiene 596.372 estudiantes de primaria y premedia y 3.102 centros; la licitación de 2026 solo llega a 73 centros de media. El canal es ProFuturo: 3.609 escuelas y 941.785 niños. No hay clientes pagando todavía: el piloto es la validación.»
 
 6. **¿Por qué QR y no Bluetooth o internet?**
    «Funciona en cualquier teléfono con cámara, sin emparejar, sin permisos nuevos y sin conexión. Comparamos las opciones y el QR fue la más simple y robusta; si no se lee, hay un código de texto para pegar.»
@@ -79,12 +79,17 @@ No hace falta decirlo todo: la presentación ya lo demuestra. Pero conviene tene
 9. **¿Qué falta?**
    «Un piloto con niños y docentes en Veraguas; calibrar la IA con esos datos; medir en un Android de gama baja; inglés y portugués; y copia de respaldo y sincronización de la lista del docente. No decimos que ya está validado.»
 
-10. **¿Por qué este proyecto cumple los criterios?**
+10. **¿Cuál es el mercado y por qué ahora?**
+   «América Latina: USD 10.152,9 millones en tecnología educativa en 2024, con un CAGR del 14 %. Panamá: 596.372 estudiantes de primaria y premedia y 3.102 centros; la licitación de 2026 solo llega a 73 centros de media. ProFuturo: 3.609 escuelas y 941.785 niños en 30 países. El piloto: 3.800 estudiantes en Veraguas.»
+
+11. **¿Por qué este proyecto cumple los criterios?**
    «Porque ataca un problema medido, con una solución que ya funciona sin internet, inclusiva, con IA ética y local, y con un modelo de sostenibilidad sin servidor. Y porque el piloto es concreto: Veraguas, la UTP, ProFuturo y el Meduca.»
 
 ## Lo que no hay que decir
 
 - **«La aplicación pesa 230 KB»** sin aclarar: son 230 KB de la primera carga web; el APK son 4,3 MB.
+- **«Ya tenemos clientes pagando»**: no; el piloto es la validación.
+- **«La licencia de 1.000–5.000 $ por escuela es un precio validado»**: es una hipótesis anclada al costo del laboratorio.
 - **«Validado con niños»**: no hay piloto. Se puede decir «el autor la probó en un teléfono y funciona».
 - **«Diagnóstico»** clínico: la app detecta ideas erróneas, no diagnostica a nadie.
 - **«Construir aulas cuesta 150.100 $»**: ese dinero es equipar (equipos, instalación y capacitación).
