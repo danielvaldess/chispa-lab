@@ -2,11 +2,11 @@
 
 **Descargas:** [presentación `.pptx`](https://github.com/danielvaldess/chispa-lab/raw/main/docs/presentacion/Chispa-Lab-hack4edu-2026.pptx) · [APK de Android](https://github.com/danielvaldess/chispa-lab/releases/latest/download/chispa-lab.apk) · [web](https://danielvaldess.github.io/chispa-lab/) · [vídeos mudos y capturas](https://github.com/danielvaldess/chispa-lab/releases/latest) · [código](https://github.com/danielvaldess/chispa-lab). La lista completa está en el [README del proyecto](../../README.md#descargas).
 
-- **`Chispa-Lab-hack4edu-2026.pptx`:** 13 diapositivas de 5 minutos, con notas del orador y el tiempo de cada una. Se abre en PowerPoint, Keynote o Google Slides.
+- **`Chispa-Lab-hack4edu-2026.pptx`:** 16 diapositivas (15 de contenido y la de referencias), de 5 minutos, con notas del orador y el tiempo de cada una. Se abre en PowerPoint, Keynote o Google Slides.
   *No pudimos renderizarla en esta máquina (no hay LibreOffice), así que conviene abrirla y revisar el diseño antes de presentar.*
 - **[`guion.md`](guion.md):** el texto de cada diapositiva. **Es la fuente de las notas del `.pptx`**: el script las lee de ahí.
 - **[`guion-video.md`](guion-video.md):** guion y lista de tomas del vídeo de 3 minutos (la entrega del 5 de noviembre).
-- **`gif/`:** un GIF por vídeo de la app (01–10), que se animan al presentar y están en todas las diapositivas; **`img/`:** fondos de color y capturas.
+- **`gif/`:** un GIF por vídeo de la app (01–04 y 07–11), que se animan al presentar y están en todas las diapositivas; **`img/`:** fondos de color y capturas.
 - **`construir-presentacion.js`:** genera el `.pptx` con `pptxgenjs`. Para regenerarlo: `npm install pptxgenjs@3.12.0` en una carpeta aparte y ejecutarlo con las variables
   `SKILL` (carpeta de la herramienta que aplica el tema), `IMG` (carpeta `img`, con los fondos) y `SALIDA` (archivo de salida), con `NODE_PATH` apuntando a esa carpeta.
 

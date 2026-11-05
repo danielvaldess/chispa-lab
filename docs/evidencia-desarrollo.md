@@ -45,7 +45,7 @@ del juego dentro del repositorio, que se reemplazó en `6a301be` por la base; si
 | `js/margen.js`, `js/agrupar.js`, rutas del cuaderno y ajustes, `scripts/probar-*.mjs` | Margen aprendido por niño, agrupar la clase, navegación con «atrás» en Android y pruebas de extremo a extremo (v1.4.0) | 4 nov, noche |
 | Pruebas: `test/ia.test.js`, `simulacion`, `rendimiento`, `metodo`, `colorml` | Cobertura de lo anterior | 4 nov 14:45–15:10 |
 
-Cada versión tiene su etiqueta (`v0.7.1`, `v0.8.0`, `v0.9.0`, `v1.0.0`, `v1.0.1`, `v1.1.0`, `v1.2.0`) y las dos primeras ramas se fusionaron a `main` con un pull request.
+Cada versión tiene su etiqueta (`v0.7.1`, `v0.8.0`, `v0.9.0`, `v1.0.0`, `v1.0.1`, `v1.1.0`, `v1.2.0`, `v1.3.0`, `v1.4.0`) y las dos primeras ramas se fusionaron a `main` con un pull request.
 
 ## Alcance de la evidencia
 

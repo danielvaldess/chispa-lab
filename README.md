@@ -53,7 +53,7 @@
 **iPhone:** abre la web en Safari y usa «Compartir → Añadir a pantalla de inicio». Es la misma app.
 
 <details>
-<summary>Los 10 vídeos de la demo (sin sonido, de 20 a 30 segundos)</summary>
+<summary>Los 11 vídeos de la demo (sin sonido, de 20 a 30 segundos)</summary>
 
 | Vídeo | Qué muestra |
 |---|---|
@@ -67,6 +67,7 @@
 | [08 · Registro](https://github.com/danielvaldess/chispa-lab/releases/latest/download/08-registro-estudiante-o-docente.mp4) | La pregunta «¿estudiante o docente?» y los dos recorridos |
 | [09 · La clase](https://github.com/danielvaldess/chispa-lab/releases/latest/download/09-clase-qr-alumna-y-docente.mp4) | Dos teléfonos lado a lado: la alumna muestra el QR y el docente lo escanea |
 | [10 · La IA agrupa la clase](https://github.com/danielvaldess/chispa-lab/releases/latest/download/10-ia-agrupa-la-clase.mp4) | El docente agrupa a sus alumnos según lo que les cuesta |
+| [11 · Inclusión y apoyos](https://github.com/danielvaldess/chispa-lab/releases/latest/download/11-inclusion-apoyos.mp4) | Los siete apoyos de accesibilidad en acción |
 
 Grabados en Chromium con tamaño de teléfono.
 </details>
