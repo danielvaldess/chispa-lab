@@ -42,7 +42,7 @@
 - **Primacía y recencia:** lo que más se recuerda es el principio y el final; el principio es el dato y el final es la petición con el juego funcionando durante las preguntas.
 - Los clips de cámara (Luz y color, Burbujas) no se muestran en la presentación.
 
-El texto de cada diapositiva suma 560 palabras: unos 3:44 a 150 palabras por minuto, y el resto del tiempo es margen para cambiar de diapositiva.
+El texto de cada diapositiva suma 666 palabras: 4:41 a 142 palabras por minuto, con ≈ 25 segundos de margen para cambiar de diapositiva (versión con entonación, reparto y preguntas: [`guion-oratoria.md`](guion-oratoria.md)).
 
 ## Qué cifras tienen fuente y cuáles son medidas propias
 
