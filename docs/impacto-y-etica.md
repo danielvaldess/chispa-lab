@@ -65,7 +65,7 @@ almacenamiento, los datos se pierden. Con «Borrar todos los datos» (en Ajustes
   acompañar ejercicios que indique un especialista. La evidencia reciente que encontramos mide usabilidad de un videojuego de articulación del habla en niños (Saeedi et al., 2024), no eficacia clínica ni en voz.
 - **Las bandas de dificultad por edad son heurísticas** y no se han validado con niños. Se ajustan solas durante el juego (tras tres fallos
   seguidos ayudan más; tras dos aciertos seguidos exigen un poco más), pero necesitan un piloto.
-- **No se ha probado con niños, terapeutas ni docentes**, ni en teléfonos reales.
+- **No se ha probado con niños, terapeutas ni docentes.** El autor la probó en un teléfono y reporta que funciona (sin registrar el modelo).
 - **No es asesoría legal.** El diseño evita enviar datos a terceros, que es la mejor manera de reducir el riesgo, pero conviene que una
   persona experta lo revise antes de usarlo con menores de forma amplia.
 - **La cámara ajusta sola la exposición**, por eso se mide color y sombra dentro de la misma imagen y no el brillo absoluto. En poca luz

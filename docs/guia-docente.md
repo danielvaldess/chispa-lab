@@ -5,7 +5,7 @@
 ## Antes de empezar
 
 - **Un teléfono por grupo de 2 o 3 niños.** Basta con Android 6.0 o más. La app funciona sin internet una vez instalada.
-- **Instalar:** abrir el enlace de la app y «Añadir a pantalla de inicio», o instalar el APK (4 MB) que le pase otro docente por WhatsApp o Bluetooth.
+- **Instalar:** abrir https://danielvaldess.github.io/chispa-lab/ y «Añadir a pantalla de inicio», o descargar el APK (https://github.com/danielvaldess/chispa-lab/releases/latest/download/chispa-lab.apk, unos 4,3 MB) e instalarlo; también se lo puede pasar otro docente por WhatsApp o Bluetooth. Todas las descargas: [README](https://github.com/danielvaldess/chispa-lab#descargas).
 - **Crear el jugador:** cada niño pone su nombre o apodo y su mes y año de nacimiento. Si es menor de 18 años y elige «qué le ayuda a jugar», **un adulto confirma**. No se piden diagnósticos.
 - **Los datos se quedan en el teléfono.** Se borran desde Ajustes → Mis datos.
 

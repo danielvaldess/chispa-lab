@@ -1,12 +1,12 @@
 # Prueba en un teléfono real (para quien ayude a probar)
 
-Hasta ahora Chispa Lab solo se probó en Chromium de escritorio con la CPU frenada y con una cámara y un micrófono simulados. **Nadie lo ha probado en un teléfono real todavía.** Si pruebas la app, anota lo que veas, aunque sea malo.
+**Resultado ya conocido (reporte del autor, 4 de noviembre de 2026):** Chispa Lab se probó en un teléfono y todo funciona. **No se registró** el modelo, la versión de Android, si es de gama baja ni la lista de pasos; por eso esta hoja sigue siendo útil: sirve para dejar un registro (y para probar en otros teléfonos, sobre todo de gama baja). Las mediciones de fluidez (fotogramas por segundo) siguen siendo de Chromium de escritorio con la CPU frenada. Si pruebas la app, anota lo que veas, aunque sea malo.
 
-**Teléfono:** modelo ______  · Android ______  · RAM ______  · ¿gama baja? Sí / No  · Versión de la app: 1.0.0
+**Teléfono:** modelo ______  · Android ______  · RAM ______  · ¿gama baja? Sí / No  · Versión de la app: 1.3.0
 
 ## Pasos (10 minutos)
 
-1. Instala el APK (Ajustes → permitir instalar desde esta fuente). ¿Se instaló? Sí / No. ¿Aviso de seguridad? ______
+1. Instala el APK (https://github.com/danielvaldess/chispa-lab/releases/latest/download/chispa-lab.apk; Ajustes → permitir instalar desde esta fuente), o abre la web https://danielvaldess.github.io/chispa-lab/. ¿Se instaló? Sí / No. ¿Aviso de seguridad? ______
 2. **Pon el teléfono en modo avión** y abre la app. ¿Abre y funciona? Sí / No
 3. Crea un jugador. ¿Se entiende la pantalla? Sí / No
 4. **La rampa:** inclina el teléfono. ¿La rampa se mueve al inclinar? Sí / No. ¿Va fluido (sin saltos)? Sí / No

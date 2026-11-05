@@ -10,8 +10,8 @@ Las bases de #hack4edu 2026 piden demostrar lo que se hizo del 3 al 5 de noviemb
 - **Autorización:** el autor declara que la organización del hackatón autorizó usar ese prototipo como base. El autor conserva la comunicación y la aportará si el jurado la pide
   (no está copiada en el repositorio).
 - **Importación al repositorio:** el 4 de noviembre a las 01:30 (hora de Panamá). **No hay ningún commit del 3 de noviembre**: el repositorio se creó el 4 de noviembre a las 00:11.
-- **Qué parte del código actual viene de esa importación:** **2.195 de 5.281 líneas (≈ 42 %)** de JavaScript, CSS y HTML, contadas con `git blame` (ver «Cómo reproducir los números»).
-  El resto, **≈ 58 %**, se escribió en este repositorio el 4 de noviembre.
+- **Qué parte del código actual viene de esa importación:** **2.193 de 7.099 líneas (≈ 31 %)** de JavaScript, CSS y HTML propios (sin contar las dos librerías de QR de `js/vendor/`, que son de terceros), contadas con `git blame` (ver «Cómo reproducir los números»).
+  El resto, **≈ 69 %**, se escribió en este repositorio el 4 de noviembre. El porcentaje bajó de ≈ 42 % a ≈ 31 % al añadirse después los experimentos, el laboratorio libre, la IA ligera, los perfiles, la clase con QR y las pruebas.
 
 ## Aviso sobre los mensajes de commit
 
@@ -23,12 +23,12 @@ en `6a301be` para usar el prototipo; esa reconstrucción sigue en el historial.
 
 | Archivo | Líneas actuales que vienen de la importación |
 |---|---|
-| `js/juego.js` (menú, rampa, péndulo, voz, puntos, escenas) | 1.049 de 1.201 |
+| `js/juego.js` (menú, rampa, péndulo, voz, puntos, escenas) | 1.049 de 1.210 |
 | `js/lab.js` (laboratorio con sensores, ya no está en el juego) | 440 de 440 |
 | `js/dsp.js` (detector de tono YIN, filtros, ajuste lineal) | 189 de 191 |
-| `js/fisica.js` | 38 de 38 |
-| `css/juego.css`, `css/style.css` | 220 de 232 · 59 de 59 |
-| `index.html`, `sw.js`, `manifest.webmanifest`, `lab.html`, `sensores.html` | 27 de 50 · 24 de 26 · 18 de 18 · 24 de 25 · 107 de 109 |
+| `js/fisica.js` | 37 de 71 |
+| `css/juego.css`, `css/style.css` | 220 de 276 · 59 de 59 |
+| `index.html`, `sw.js`, `manifest.webmanifest`, `lab.html`, `sensores.html` | 26 de 60 · 24 de 26 · 18 de 18 · 24 de 25 · 107 de 109 |
 
 ## Lo que se escribió en este repositorio (4 nov en adelante)
 
@@ -66,4 +66,4 @@ done
 git log --format='%h %ad %s' --date=format:'%d/%m %H:%M'   # historial completo
 ```
 
-Los números de este documento se calcularon el 4 de noviembre de 2026 sobre la rama `main` después de fusionar `v0.9.0`.
+Los números de este documento se calcularon el 4 de noviembre de 2026 sobre la rama `main` de la versión 1.3.0 (antes: sobre `v0.9.0`, con ≈ 42 %).

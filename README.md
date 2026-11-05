@@ -16,6 +16,40 @@
 
 ---
 
+## Descargas
+
+| Qué | Enlace |
+|---|---|
+| 🌐 **Web** (se instala como app y funciona sin internet) | https://danielvaldess.github.io/chispa-lab/ |
+| 📱 **App de Android (APK)**, descarga directa | [https://github.com/danielvaldess/chispa-lab/releases/latest/download/chispa-lab.apk](https://github.com/danielvaldess/chispa-lab/releases/latest/download/chispa-lab.apk) |
+| 📦 Todas las versiones y archivos | https://github.com/danielvaldess/chispa-lab/releases |
+| 💻 Código fuente (MIT) | https://github.com/danielvaldess/chispa-lab |
+| 📊 Presentación de 5 minutos (`.pptx`, 13 diapositivas) | [Chispa-Lab-hack4edu-2026.pptx](https://github.com/danielvaldess/chispa-lab/raw/main/docs/presentacion/Chispa-Lab-hack4edu-2026.pptx) |
+| 📄 Artículo de investigación | [`docs/investigacion/articulo.md`](https://github.com/danielvaldess/chispa-lab/blob/main/docs/investigacion/articulo.md) |
+| 🖼 Capturas de la app (35 imágenes, `.zip`) | [capturas-chispa-lab.zip](https://github.com/danielvaldess/chispa-lab/releases/latest/download/capturas-chispa-lab.zip) |
+| 🎬 Vídeos mudos de la demo (20 a 30 s cada uno) | ver la lista de abajo |
+
+**Instalar el APK en Android:** descárgalo, ábrelo y, si el teléfono lo pide, permite instalar desde esa fuente (es una versión de depuración, firmada con la llave de depuración, no viene de Google Play). Se puede pasar de un teléfono a otro por WhatsApp o Bluetooth.
+**En iPhone no hay APK:** abre la web en Safari y usa «Compartir → Añadir a pantalla de inicio».
+
+<details>
+<summary>Vídeos de la demo (sin sonido, para ver o para poner de fondo mientras se explica)</summary>
+
+| Vídeo | Qué muestra | Descarga |
+|---|---|---|
+| 01 · La rampa | Predice, inclina el teléfono, falla y acierta | [01-rampa.mp4](https://github.com/danielvaldess/chispa-lab/releases/latest/download/01-rampa.mp4) |
+| 02 · El péndulo | Sincroniza el ritmo con la lámpara | [02-pendulo.mp4](https://github.com/danielvaldess/chispa-lab/releases/latest/download/02-pendulo.mp4) |
+| 03 · La voz y el globo | Pasa los tres aros con el tono | [03-voz-y-globo.mp4](https://github.com/danielvaldess/chispa-lab/releases/latest/download/03-voz-y-globo.mp4) |
+| 04 · El globo largo | Sostiene la vocal para subir el globo | [04-globo-largo.mp4](https://github.com/danielvaldess/chispa-lab/releases/latest/download/04-globo-largo.mp4) |
+| 05 · Luz y color | Elige los colores con las tarjetas | [05-luz-y-color.mp4](https://github.com/danielvaldess/chispa-lab/releases/latest/download/05-luz-y-color.mp4) |
+| 06 · Burbujas mágicas | Revienta burbujas | [06-burbujas-magicas.mp4](https://github.com/danielvaldess/chispa-lab/releases/latest/download/06-burbujas-magicas.mp4) |
+| 07 · Mi laboratorio | Mezclas, flota, plantas y caída libre | [07-mi-laboratorio.mp4](https://github.com/danielvaldess/chispa-lab/releases/latest/download/07-mi-laboratorio.mp4) |
+| 08 · Registro | La pregunta «¿estudiante o docente?» y los dos recorridos | [08-registro-estudiante-o-docente.mp4](https://github.com/danielvaldess/chispa-lab/releases/latest/download/08-registro-estudiante-o-docente.mp4) |
+| 09 · La clase | Dos teléfonos lado a lado: la alumna muestra el QR y el docente lo escanea | [09-clase-qr-alumna-y-docente.mp4](https://github.com/danielvaldess/chispa-lab/releases/latest/download/09-clase-qr-alumna-y-docente.mp4) |
+
+Están grabados en Chromium con tamaño de teléfono. En el vídeo 09, la cámara del docente es una cámara simulada que enfoca el mismo QR que muestra la alumna.
+</details>
+
 ## ¿Qué es?
 
 **Reto 17 de #hack4edu 2026 (sede UTP Veraguas).** Muchas escuelas no tienen laboratorio.
@@ -107,7 +141,7 @@ penaliza el tiempo ni la estabilidad del tono.
 ## Investigación y presentación
 
 - **Artículo de investigación** con datos de Panamá y de la Región Educativa de Veraguas, evidencia de la literatura, mediciones técnicas propias y ODS. **Todas las fuentes son de 2024 a 2026**, cada una con su nivel de verificación, y lo que no tiene dato reciente se dice: [`docs/investigacion/articulo.md`](docs/investigacion/articulo.md).
-- **Presentación de 5 minutos** (11 diapositivas, con notas y guion): [`docs/presentacion/`](docs/presentacion/).
+- **Presentación de 5 minutos** (13 diapositivas, con notas y guion): [`docs/presentacion/`](docs/presentacion/).
 - **Transferencia al mercado:** [`docs/transferencia-al-mercado.md`](docs/transferencia-al-mercado.md).
 
 ## IA ligera y ética
@@ -162,8 +196,7 @@ ayuda a jugar?**» (casillas opcionales: voz, oír, ver, concentrarme, leer o lo
 
 ## Probarlo ahora
 
-- **Web (se instala como app y funciona sin internet):** https://danielvaldess.github.io/chispa-lab/
-- **App de Android (APK):** https://github.com/danielvaldess/chispa-lab/releases/latest
+Web y APK en la sección [Descargas](#descargas), arriba.
 
 ## Ejecutar
 
@@ -241,16 +274,16 @@ Para docentes: [`docs/guia-docente.md`](docs/guia-docente.md). Cómo probarlo en
 ## Estado
 
 - **Hecho:** seis juegos, cuatro experimentos con materiales, un laboratorio libre con 24 descubrimientos, perfiles con apoyos, IA ligera, panel para adultos, finales, PWA sin conexión y APK de Android. roles de estudiante y docente, «Mis alumnos» con QR sin internet. `npm test` ejecuta 528 comprobaciones.
-- **Probado:** en Chromium de escritorio (tamaño de teléfono, CPU frenada, micrófono y cámara simulados) y con pruebas automáticas. El APK se compila y se instala en el emulador, pero **el emulador de WSL se cierra
-  al abrir cualquier app con WebView, así que no se recorrió un nivel en Android**.
-- **Sin probar:** el QR de la clase con la **cámara de un teléfono real** (solo con una cámara simulada en Chromium), en un teléfono real (sensor de inclinación, micrófono, cámara, vibración, voz sintetizada, calor y batería), con niños, con un docente y con col morada real. La simulación de la IA **no es un piloto**.
+- **Probado:** en Chromium de escritorio (tamaño de teléfono, CPU frenada, micrófono y cámara simulados), con pruebas automáticas y con una prueba de extremo a extremo de la clase (un navegador muestra el QR y otro lo escanea con una cámara simulada, también contra la web publicada). **Además, el autor probó la app en un teléfono y reporta que todo funciona**; no se registró el modelo, la versión de Android ni los pasos probados.
+- **Sin medir ni probar:** fluidez, calor y batería en un teléfono (las cifras de rendimiento son de Chromium con la CPU frenada), un Android de gama baja concreto, la clase con docentes y alumnos en un aula, con niños, y con col morada real. La simulación de la IA **no es un piloto**.
 - Las bandas de dificultad por edad y los parámetros de la IA son valores por defecto sin calibrar.
 
 ## Origen y evidencia de desarrollo
 
 Chispa Lab parte de un **prototipo previo** (tres juegos, detector de tono, física y PWA, hecho el 29–30 de octubre) que se incorporó a este repositorio el 4 de noviembre con la autorización de la
-organización del hackatón, según declara el autor. Hoy ≈ 42 % de las líneas de JavaScript, CSS y HTML vienen de esa importación y ≈ 58 % se escribió aquí: perfiles y apoyos,
-tres juegos nuevos, la IA ligera, el método científico y los experimentos con materiales. No hay commits del 3 de noviembre y las fechas son las reales.
+organización del hackatón, según declara el autor. Hoy ≈ 31 % de las líneas de JavaScript, CSS y HTML vienen de esa importación y
+≈ 69 % se escribió aquí: perfiles y apoyos,
+tres juegos nuevos, la IA ligera, el método científico, los experimentos con materiales, el laboratorio libre y la clase con QR. No hay commits del 3 de noviembre y las fechas son las reales.
 Detalle, números y cómo comprobarlos en [`docs/evidencia-desarrollo.md`](docs/evidencia-desarrollo.md).
 
 ## Licencia

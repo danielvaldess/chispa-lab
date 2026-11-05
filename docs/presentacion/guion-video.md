@@ -14,18 +14,33 @@ para la final del 7 de noviembre. El vídeo tiene que **mostrar el juego en los 
 
 | Tiempo | Qué se ve | Qué se dice |
 |---|---|---|
-| 0:00–0:15 | Teléfono en modo avión; se abre Chispa Lab; Chispa saluda. Se oye la canica | «Esto es Chispa Lab: un laboratorio de ciencias en el teléfono de un niño. Y está en modo avión: no necesita internet.» |
-| 0:15–0:50 | La rampa: elige una predicción, inclina el teléfono, cae la canica en el vaso | «Antes de jugar, el niño predice. Después inclina el teléfono, que es la rampa, y descubre qué pasó con sus propios datos.» |
-| 0:50–1:15 | Resultado equivocado: Chispa pregunta con los números del niño y aparece la pista | «Si se equivoca, Chispa no le da la respuesta: le pregunta con sus números, “¿es la mitad?”. Es una IA pequeña, en el teléfono, que calcula qué idea equivocada delata su respuesta.» |
-| 1:15–1:55 | El péndulo de hilo: hipótesis con casillas, cronómetro, gráfica con g ≈ 9,8 | «También hay experimentos de verdad con cosas de casa: formula su hipótesis, hace una prueba justa, mide y dibuja su propia gráfica. Y todo queda en su cuaderno.» |
-| 1:55–2:20 | **Mi laboratorio** (juego libre): echar col y limón, burbujas con bicarbonato, el huevo que flota con sal, la planta sin luz; sale un descubrimiento | «Y no todo está guiado: en Mi laboratorio juega libre, sin tiempo ni reglas. Mezcla, suelta, riega, y los descubrimientos aparecen solos. Todo es virtual y seguro, y cada hallazgo dice cómo probarlo en casa con un adulto.» |
-| 2:20–2:40 | Ajustes y apoyos; modo calma; panel «Para adultos» con «Ideas por reforzar» | «Es para todos: siete apoyos opcionales, dificultad que nunca es imposible, y un panel para el docente. Los datos no salen del teléfono.» |
-| 2:40–3:00 | Tarjeta final: repositorio, licencias y «Cada teléfono, un laboratorio» | «Código abierto bajo MIT, documentación en Creative Commons. Falta probarlo con niños y docentes: ese es nuestro siguiente paso en Veraguas. Gracias.» |
+| 0:00–0:12 | Teléfono en modo avión; se abre Chispa Lab; Chispa saluda | «Esto es Chispa Lab: un laboratorio de ciencias en el teléfono de un niño. Y está en modo avión: no necesita internet.» |
+| 0:12–0:40 | La rampa: elige una predicción, inclina el teléfono, cae la canica en el vaso | «Antes de jugar, el niño predice. Después inclina el teléfono, que es la rampa, y descubre qué pasó con sus propios datos.» |
+| 0:40–1:00 | Resultado equivocado: Chispa pregunta con los números del niño y aparece la pista | «Si se equivoca, Chispa no le da la respuesta: le pregunta con sus números, “¿es la mitad?”. Es una IA pequeña, en el teléfono.» |
+| 1:00–1:25 | El péndulo de hilo: hipótesis con casillas, cronómetro, gráfica | «También hay experimentos de verdad con cosas de casa: formula su hipótesis, hace una prueba justa, mide y dibuja su gráfica.» |
+| 1:25–1:50 | **Mi laboratorio** (juego libre): col y limón, burbujas con bicarbonato, sale un descubrimiento | «Y no todo está guiado: en Mi laboratorio juega libre, sin tiempo ni reglas, y los descubrimientos aparecen solos.» |
+| 1:50–2:20 | **La clase:** la alumna toca «Compartir con mi docente» y muestra su QR; el docente toca «Mis alumnos», escanea y ve su avance | «Al registrarse cada persona elige si es estudiante o docente. La alumna muestra un QR y el docente lo escanea, sin internet: su lista queda solo en su teléfono.» |
+| 2:20–2:40 | Ajustes y apoyos; modo calma | «Es para todos: siete apoyos opcionales y una dificultad que nunca es imposible. Los datos no salen del teléfono.» |
+| 2:40–3:00 | Tarjeta final: enlace de la web, del APK y del repositorio | «Código abierto bajo MIT. La probamos en un teléfono y funciona; falta probarla con niños y docentes en Veraguas. Gracias.» |
+
+## Clips listos (mudos, de 20 a 30 segundos) para poner de fondo mientras se narra
+
+Están en la carpeta `videos/` del equipo y en la release de GitHub. Se narran en vivo; no llevan sonido ni efectos.
+
+| Clip | Qué muestra | Escena del guion |
+|---|---|---|
+| `01-rampa.mp4` | Predice, inclina, falla y acierta | 0:12–0:40 y 0:40–1:00 |
+| `02-pendulo.mp4`, `03-voz-y-globo.mp4`, `04-globo-largo.mp4`, `05-luz-y-color.mp4`, `06-burbujas-magicas.mp4` | Los demás juegos | Alternativa o apoyo |
+| `07-mi-laboratorio.mp4` | Mezclas, flota, plantas y caída libre | 1:25–1:50 |
+| `08-registro-estudiante-o-docente.mp4` | La pregunta inicial y el recorrido de docente y de estudiante | Apoyo de la escena de la clase |
+| `09-clase-qr-alumna-y-docente.mp4` | Dos teléfonos lado a lado: la alumna muestra el QR y el docente lo escanea y ve su lista | 1:50–2:20 |
+
+Todos están grabados en Chromium con tamaño de teléfono. En `09`, la cámara del docente es una cámara simulada que enfoca el mismo QR que muestra la alumna. Para el vídeo de entrega conviene **grabar también la pantalla de un teléfono real** haciendo esto mismo: es la mejor evidencia de que funciona fuera del navegador.
 
 ## Lo que NO hay que decir
 
 - Que todo se escribió del 3 al 5 de noviembre: parte viene de un prototipo previo (ver [`../evidencia-desarrollo.md`](../evidencia-desarrollo.md)). Decirlo en el vídeo o en la descripción de la entrega.
 - Que se probó con niños o que mejora el aprendizaje: no hay piloto. La cifra de la IA es una simulación.
 - Que Chispa «mide el pH» o «diagnostica»: reconoce el color que se le enseñó, y no es un aparato médico.
-- Que está **validado en un teléfono real**: todo se probó en Chromium con la CPU limitada y con pruebas automáticas. Decir qué se midió y que falta probarlo en un teléfono.
+- Que está «validado» con niños o docentes: no hay piloto. Sí se puede decir que **el autor la probó en un teléfono y funciona**, y que las mediciones de fluidez son de Chromium con la CPU limitada.
 - Cifras de Ciencias de 6.º de Panamá: no hay un dato publicado en 2024 o después (el ERCE 2025 sale a fines de 2026). Para hablar de aprendizaje, usar el ERCE Pospandemia 2025 (lectura 27,7 % y matemática 10,1 % en 6.º).

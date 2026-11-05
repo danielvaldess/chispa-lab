@@ -1,7 +1,7 @@
 const pptxgen = require('pptxgenjs');
 const fs = require('fs'), path = require('path');
 // Las notas del orador salen de guion.md (una sección «## n. Título» por diapositiva, en el mismo orden).
-const NOTAS = fs.readFileSync(path.join(__dirname, 'guion.md'), 'utf8').split(/^## \d+\. .*$/m).slice(1).map((t) => t.trim());
+const NOTAS = fs.readFileSync(path.join(__dirname, 'guion.md'), 'utf8').split(/^## \d+\. .*$/m).slice(1).map((t) => t.split(/\n---/)[0].trim());
 // Los nombres del equipo salen de participantes.txt (uno por línea). Si falta, la portada lo avisa en vez de inventar nombres.
 const _pf = path.join(__dirname, 'participantes.txt');
 const PART = fs.existsSync(_pf) ? fs.readFileSync(_pf, 'utf8').split('\n').map((t) => t.trim()).filter(Boolean) : [];
@@ -128,7 +128,24 @@ juegos.forEach((j, i) => {
 s.addText('+ Experimentos con materiales de casa (péndulo, col morada, huevo con sal, volcán), Mi laboratorio (juego libre con 24 descubrimientos) y, para docentes, «Mis alumnos»: el alumno muestra un QR y el docente lo escanea, sin internet.', { x: 0.5, y: 4.78, w: 9, h: 0.6, fontSize: 12, italic: true, color: C.text1, margin: 0, isTextBox: true, objectName: 'Aviso' });
 s.addNotes(notas());
 
-// ---------- 6. Inclusión ----------
+// ---------- 6b. Docentes ----------
+s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Solución' });
+s.addText('Para docentes: el avance de la clase, sin internet', { placeholder: 'title' });
+[['1', 'Alumno', 'Menú → «Compartir con mi docente» y muestra su código QR', C.accent3], ['2', 'Docente', 'Menú → «Mis alumnos» y escanea el QR; uno detrás de otro', C.accent2], ['3', 'Resultado', 'Estrellas, aciertos y qué juego le cuesta a cada alumno', C.accent4]].forEach((p, i) => {
+  const y = 1.35 + i * 0.95;
+  s.addText(p[0], { x: 0.5, y, w: 0.6, h: 0.6, fontSize: 22, bold: true, color: C.background1, fill: { color: p[3] }, align: 'center', valign: 'middle', shape: pres.ShapeType.ellipse, margin: 0, isTextBox: true, objectName: 'Número ' + p[0] });
+  s.addText([{ text: p[1], options: { fontSize: 18, bold: true, color: C.text1, breakLine: true } }, { text: p[2], options: { fontSize: 13, color: C.text1 } }], { x: 1.25, y: y - 0.08, w: 3.2, h: 0.85, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Paso docente ' + p[0] });
+});
+s.addText('No viajan la fecha de nacimiento, los apoyos ni la voz. QR y no Bluetooth: funciona en cualquier teléfono con cámara, sin emparejar.', { x: 0.5, y: 4.2, w: 3.95, h: 0.75, fontSize: 11.5, italic: true, color: C.text1, margin: 0, valign: 'top', isTextBox: true, objectName: 'Privacidad' });
+[['clase-qr.png', 'La alumna muestra su QR'], ['clase-escaneo.png', 'El docente lo escanea'], ['clase-lista.png', 'Su lista, en su teléfono']].forEach((t, i) => {
+  const x = 4.75 + i * 1.65;
+  telefono(s, t[0], x, 1.4, 3.05, t[1]);
+  s.addText(t[1], { x: x - 0.12, y: 4.6, w: 1.5, h: 0.45, fontSize: 11, bold: true, color: C.text1, align: 'center', valign: 'top', margin: 0, isTextBox: true, objectName: 'Pie docente ' + (i + 1) });
+});
+nota(s, 'Código de unos 100 caracteres, sin servidor ni cuentas; la lista vive solo en el teléfono del docente. Detalle y límites: docs/clase-sincronizacion.md.');
+s.addNotes(notas());
+
+// ---------- 7. Inclusión ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Solución' });
 s.addText('Para todos los niños', { placeholder: 'title' });
 s.addText([{ text: '17,1 %', options: { fontSize: 40, bold: true, color: C.accent3 } }, { text: '  de los niños de 2 a 14 años en Panamá tiene alguna discapacidad (ENDIS-2)', options: { fontSize: 13, color: C.text1 } }], { x: 0.5, y: 1.25, w: 6.4, h: 0.8, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Dato discapacidad' });
@@ -181,7 +198,7 @@ s.addText([{ text: 'Lo que respalda la literatura (2024)', options: { bold: true
   { text: 'Juegos digitales en STEM de primaria: efectos positivos (18 estudios)', options: { bullet: true, breakLine: true } },
   { text: 'Laboratorios virtuales: g = 0,69 (46 estudios), sin sustituir del todo al práctico', options: { bullet: true } }],
   { x: 5.75, y: 1.4, w: 3.75, h: 2.5, fontSize: 13, color: C.text1, paraSpaceAfter: 6, margin: 0, valign: 'top', isTextBox: true, objectName: 'Literatura' });
-s.addText('No está validado en un teléfono real: las mediciones son de Chromium con la CPU limitada.', { x: 5.75, y: 3.95, w: 3.75, h: 0.9, fontSize: 13, bold: true, color: C.text1, fill: { color: C.accent2 }, valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.1, margin: 0.12, isTextBox: true, objectName: 'Aviso teléfono' });
+s.addText('Probada en un teléfono: funciona. Las mediciones de rendimiento son de Chromium con la CPU limitada.', { x: 5.75, y: 3.95, w: 3.75, h: 0.9, fontSize: 13, bold: true, color: C.text1, fill: { color: C.accent2 }, valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.1, margin: 0.12, isTextBox: true, objectName: 'Aviso teléfono' });
 nota(s, 'Medición propia del 4/11/2026 (versión 1.3.0). Fuentes: Koyunlu Ünlü (2024); Behnamnia et al. (2024); Li y Liang (2024).');
 s.addNotes(notas());
 
@@ -225,7 +242,7 @@ s.addText('Lo que proponemos', { x: 0.6, y: 0.5, w: 6, h: 0.8, fontSize: 36, bol
   s.addText(t, { x: 1.4, y: y - 0.05, w: 5.2, h: 0.7, fontSize: 18, color: C.background1, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Propuesta ' + (i + 1) });
 });
 s.addText('Cada teléfono, un laboratorio', { x: 0.6, y: 4.1, w: 6.2, h: 0.6, fontSize: 28, bold: true, color: C.accent2, margin: 0, isTextBox: true, objectName: 'Lema' });
-s.addText('chispalab.sweetcode.studio · github.com/danielvaldess/chispa-lab', { x: 0.6, y: 4.75, w: 6.4, h: 0.4, fontSize: 14, color: C.accent1, margin: 0, isTextBox: true, objectName: 'Enlaces' });
+s.addText([{ text: 'Web: danielvaldess.github.io/chispa-lab', options: { breakLine: true } }, { text: 'APK y código: github.com/danielvaldess/chispa-lab' }], { x: 0.6, y: 4.7, w: 6.4, h: 0.65, fontSize: 13, color: C.accent1, margin: 0, valign: 'top', isTextBox: true, objectName: 'Enlaces' });
 telefono(s, 'final.png', 7.35, 0.55, 4.5, 'final de la estación');
 s.addNotes(notas());
 

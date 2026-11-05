@@ -5,6 +5,8 @@ El alumno muestra un **código QR** con su avance de ese momento; el docente lo 
 
 ## Cómo se hace en la práctica
 
+Para probarlo: [web](https://danielvaldess.github.io/chispa-lab/) o [APK](https://github.com/danielvaldess/chispa-lab/releases/latest/download/chispa-lab.apk), y el [vídeo 09, con los dos teléfonos lado a lado](https://github.com/danielvaldess/chispa-lab/releases/latest/download/09-clase-qr-alumna-y-docente.mp4).
+
 1. **Estudiante:** menú → «📤 Compartir con mi docente» → ve qué se comparte → «Mostrar mi código QR».
 2. **Docente:** menú → «👩‍🏫 Mis alumnos» → «📷 Escanear el QR de un alumno». Puede escanear uno detrás de otro; cada lectura guarda o actualiza a ese alumno.
 3. Cuando un alumno vuelva a mostrar su QR, el avance **se actualiza** (se queda el más nuevo); un código viejo no pisa uno más reciente.
@@ -55,7 +57,8 @@ Las filas de Bluetooth y NFC se apoyan en las páginas de MDN; el resto de la co
 
 - **Probado (automático, `npm test`):** el formato (ida y vuelta, nombres con tildes y eñe, 100 % de los cambios de un carácter detectados), los códigos dañados o ajenos, la fusión y el tope de 60, los roles en el almacén (incluido un perfil guardado antes de esta función), y que **el QR se genera y se lee de vuelta con el texto exacto**, también reducido a unos 2,8 píxeles por módulo para imitar una cámara de baja resolución.
 - **Probado (extremo a extremo, en Chromium):** un navegador hizo de alumno y mostró su QR; otro, con una **cámara simulada** enfocando ese QR, lo escaneó y guardó al alumno. También el registro de estudiante y de docente, el detalle, quitar un alumno y pegar un código.
-- **NO probado:** con la **cámara de un teléfono real** (enfoque, luz del aula, reflejos en la pantalla del alumno), en un Android barato, ni con el lector nativo `BarcodeDetector`. Tampoco se probó con niños ni con un docente. **No decimos que esté validado en teléfono.**
+- **Probado en un teléfono (reporte del autor):** el autor la probó en un teléfono el 4 de noviembre de 2026 y reporta que todo funciona (no se registró el modelo, la versión de Android ni la lista de pasos probados). No se documentó si esa prueba incluyó escanear el QR de un alumno con la cámara.
+- **NO probado:** con un docente y alumnos en un aula, con varios modelos de teléfono ni en un Android de gama baja, ni con el lector nativo `BarcodeDetector`. **No hay un registro (vídeo o formulario) de la prueba en teléfono.**
 - **Límites conocidos:** el QR puede costar con poca luz o con la pantalla muy oscura o con reflejos (por eso hay botón de copiar el código); la lista no se sincroniza entre dos teléfonos del mismo docente; no hay copia de respaldo.
 
 ## Fuentes de esta página

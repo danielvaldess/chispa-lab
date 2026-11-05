@@ -34,7 +34,7 @@ Todas las cifras llevan su fuente en [`investigacion/articulo.md`](investigacion
 4. **Es seguro con los datos de los niños:** todo se queda en el teléfono; un adulto decide; no envía nada.
 5. **Se puede probar rápido y con poco riesgo:** una clase, un par de semanas, indicadores definidos de antemano.
 6. **Es abierto:** una escuela, un ministerio o una universidad pueden revisarlo, adaptarlo y traducirlo.
-7. **El docente ve el avance de su clase sin internet:** cada alumno le muestra un QR y el docente lo escanea; la lista queda en su teléfono (ver [`clase-sincronizacion.md`](clase-sincronizacion.md)). Falta probarlo con docentes y con cámaras de teléfonos reales.
+7. **El docente ve el avance de su clase sin internet:** cada alumno le muestra un QR y el docente lo escanea; la lista queda en su teléfono (ver [`clase-sincronizacion.md`](clase-sincronizacion.md)). Falta probarlo con docentes en un aula.
 
 ## La solución, en una frase
 
@@ -43,7 +43,7 @@ persona y funcionando **sin internet**. El código es abierto y gratuito.
 
 ## Bajo coste y conectividad limitada (lo que el reto valora especialmente)
 
-Medidas propias de la versión 1.2.0 del 4 de noviembre de 2026, hechas en un ordenador (no en un teléfono real):
+Medidas propias de la versión 1.2.0 del 4 de noviembre de 2026, hechas en un ordenador (la prueba de funcionamiento en un teléfono la hizo el autor, sin cifras):
 
 | Qué | Valor |
 |---|---|
@@ -56,7 +56,7 @@ Medidas propias de la versión 1.2.0 del 4 de noviembre de 2026, hechas en un or
 | Materiales de los experimentos | Hilo, una moneda, vasos, limón, bicarbonato, vinagre y col morada; o simulados en pantalla |
 | Un teléfono por grupo | Sí: una sesión de 2 o 3 niños por teléfono (ver [`guia-docente.md`](guia-docente.md)) |
 
-**Pendiente de medir en un teléfono real de gama baja:** fluidez, calor, batería y funcionamiento de la cámara y el micrófono (lista en [`prueba-telefono.md`](prueba-telefono.md)).
+**Pendiente de medir en un teléfono de gama baja:** fluidez, calor y batería (el autor probó que la app funciona en un teléfono, sin cifras) (lista en [`prueba-telefono.md`](prueba-telefono.md)).
 
 ## Distribución sin conexión
 
@@ -114,7 +114,7 @@ y no envía datos a ningún lado.
 | Nadie paga por algo gratuito | El núcleo abierto es la puerta; lo de pago son servicios con valor claro (adaptación, formación, soporte); validar antes de invertir |
 | Dependencia de pocos clientes institucionales | Varios segmentos (instituciones, fundaciones, terapeutas) y un producto base reutilizable |
 | Falta de evidencia de impacto | Piloto con indicadores claros antes de vender; ver `alineacion-profuturo.md` |
-| Teléfonos de gama baja no probados | Medir en un Android barato antes de prometer cobertura |
+| Gama baja sin medir (el autor probó en un teléfono, sin registrar si es de gama baja) | Medir en un Android barato antes de prometer cobertura |
 | Datos de menores y de salud | Todo local, adulto confirma a menores, borrado total; ver `impacto-y-etica.md` |
 | Cumplimiento legal en cada país | Revisión legal local antes de desplegar de forma amplia |
 
