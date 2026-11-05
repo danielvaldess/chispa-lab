@@ -141,7 +141,7 @@ Mediciones del 4 de noviembre de 2026 sobre la versión 1.3.0 del repositorio. *
 |---|---|
 | Archivos que guarda la aplicación para funcionar sin conexión (HTML, CSS, JS, iconos) | 44 archivos; **593 KB** sin comprimir; **≈ 220 KB** comprimidos (gzip, los iconos PNG no se comprimen). Sin las librerías de QR: 445 KB y ≈ 168 KB |
 | Dependencias de ejecución / librerías externas | **2**, solo para el QR de la clase (`qrcode-generator`, MIT; `jsQR`, Apache-2.0): 148 KB sin comprimir y ≈ 53 KB comprimidos; se cargan únicamente en esas pantallas. El resto de la app, **0** |
-| APK de Android (Capacitor, versión de depuración) | 4,2 MB (4.214.353 bytes) |
+| APK de Android (Capacitor, versión de depuración) | 4,3 MB (4.292.548 bytes, versión 1.3.0) |
 | Pruebas automáticas (`npm test`) | **528** comprobaciones, 0 fallos (señal, física, ajustes, perfiles, cámara, tutor, IA, textos, experimentos, clase y QR) |
 | Historial de desarrollo | **116** commits antes de añadir la función de clase, todos del 4 de noviembre de 2026 (ver [`../evidencia-desarrollo.md`](../evidencia-desarrollo.md)) |
 | Funcionamiento sin internet (service worker) | Verificado en el navegador: recargar sin red muestra el menú y deja jugar |

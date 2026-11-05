@@ -230,7 +230,7 @@ test/               pruebas
 
 | Qué | Valor (medido en un ordenador) |
 |---|---|
-| APK de Android | ≈ 4,2 MB; Android 6.0 o más |
+| APK de Android | ≈ 4,3 MB; Android 6.0 o más |
 | Primera carga de la web | ≈ 220 KB comprimidos (593 KB sin comprimir, 44 archivos con los iconos); **≈ 53 KB son las dos librerías de QR**, que solo usa la parte de la clase. Sin ellas: ≈ 168 KB |
 | Internet | No hace falta después de abrirla una vez; sin cuentas ni servidores |
 | Costo de la IA | ≈ 0,4 ms por partida con la CPU 6 veces más lenta (Chromium); solo corre al terminar un juego |
