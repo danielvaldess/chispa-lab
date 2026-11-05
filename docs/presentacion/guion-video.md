@@ -27,3 +27,5 @@ para la final del 7 de noviembre. El vídeo tiene que **mostrar el juego en los 
 - Que todo se escribió del 3 al 5 de noviembre: parte viene de un prototipo previo (ver [`../evidencia-desarrollo.md`](../evidencia-desarrollo.md)). Decirlo en el vídeo o en la descripción de la entrega.
 - Que se probó con niños o que mejora el aprendizaje: no hay piloto. La cifra de la IA es una simulación.
 - Que Chispa «mide el pH» o «diagnostica»: reconoce el color que se le enseñó, y no es un aparato médico.
+- Que está **validado en un teléfono real**: todo se probó en Chromium con la CPU limitada y con pruebas automáticas. Decir qué se midió y que falta probarlo en un teléfono.
+- Cifras de Ciencias de 6.º de Panamá: no hay un dato publicado en 2024 o después (el ERCE 2025 sale a fines de 2026). Para hablar de aprendizaje, usar el ERCE Pospandemia 2025 (lectura 27,7 % y matemática 10,1 % en 6.º).

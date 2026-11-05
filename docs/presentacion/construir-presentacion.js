@@ -2,7 +2,11 @@ const pptxgen = require('pptxgenjs');
 const fs = require('fs'), path = require('path');
 // Las notas del orador salen de guion.md (una sección «## n. Título» por diapositiva, en el mismo orden).
 const NOTAS = fs.readFileSync(path.join(__dirname, 'guion.md'), 'utf8').split(/^## \d+\. .*$/m).slice(1).map((t) => t.trim());
-let _nota = 0; const notas = () => NOTAS[_nota++];
+// Los nombres del equipo salen de participantes.txt (uno por línea). Si falta, la portada lo avisa en vez de inventar nombres.
+const _pf = path.join(__dirname, 'participantes.txt');
+const PART = fs.existsSync(_pf) ? fs.readFileSync(_pf, 'utf8').split('\n').map((t) => t.trim()).filter(Boolean) : [];
+const EQUIPO = PART.length ? PART.join(' · ') : '[Nombres de los 3 integrantes: escribirlos en participantes.txt]';
+let _nota = 0; const notas = () => NOTAS[_nota++].replace('[NOMBRES DEL EQUIPO]', (typeof EQUIPO === 'string' && PART.length) ? PART.join(', ') : '[NOMBRES DEL EQUIPO]');
 const { applyTheme } = require(process.env.SKILL + '/scripts/apply_theme.js');
 const IMG = process.env.IMG;
 const THEME = {
@@ -44,7 +48,7 @@ pres.addSection({ title: 'Problema' });
 let s = pres.addSlide({ masterName: 'OSCURO', sectionTitle: 'Problema' });
 s.addText('Chispa Lab', { x: 0.6, y: 1.05, w: 5.7, h: 1.0, fontSize: 54, bold: true, color: C.background1, margin: 0, isTextBox: true, objectName: 'Título' });
 s.addText('Un laboratorio de ciencias en cada teléfono', { x: 0.6, y: 2.1, w: 5.6, h: 0.9, fontSize: 24, color: C.accent1, margin: 0, isTextBox: true, objectName: 'Subtítulo' });
-s.addText([{ text: 'Reto 17 · #hack4edu 2026', options: { breakLine: true } }, { text: 'Daniel Valdés · UTP, Centro Regional de Veraguas' }], { x: 0.6, y: 3.2, w: 5.6, h: 0.8, fontSize: 16, color: C.background1, margin: 0, isTextBox: true, objectName: 'Autoría' });
+s.addText([{ text: 'Reto 17 · #hack4edu 2026', options: { breakLine: true } }, { text: EQUIPO, options: { breakLine: true } }, { text: 'UTP, Centro Regional de Veraguas' }], { x: 0.6, y: 3.2, w: 5.8, h: 1.0, fontSize: 15, color: C.background1, margin: 0, isTextBox: true, objectName: 'Autoría' });
 ['Sin internet', 'Inclusivo', 'Código abierto'].forEach((t, i) => {
   s.addText(t, { x: 0.6 + i * 1.85, y: 4.35, w: 1.7, h: 0.42, fontSize: 14, bold: true, color: C.text1, fill: { color: C.accent2 }, align: 'center', valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.2, margin: 0, isTextBox: true, objectName: 'Etiqueta ' + t });
 });
@@ -65,27 +69,28 @@ s.addNotes(notas());
 // ---------- 2. Aprendizaje ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Problema' });
 s.addText('Panamá tiene un reto de aprendizaje en ciencias', { placeholder: 'title' });
-s.addChart(pres.charts.BAR, [{ name: 'Estudiantes en el nivel más bajo (%)', labels: ['Panamá', 'Resto de los países'], values: [48.1, 37.7] }], {
-  x: 0.5, y: 1.4, w: 4.7, h: 3.5, barDir: 'col', chartColors: [HEX.pink, HEX.sky], showValue: true, dataLabelPosition: 'outEnd', dataLabelFormatCode: '0.0"%"', dataLabelColor: HEX.navy, dataLabelFontSize: 16, dataLabelFontBold: true,
-  showTitle: true, title: 'Estudiantes en el nivel de desempeño más bajo (%)', titleFontSize: 14, titleColor: HEX.navy, catAxisLabelColor: HEX.navy, catAxisLabelFontSize: 14, valAxisHidden: true, valGridLine: { style: 'none' }, catGridLine: { style: 'none' }, showLegend: false, valAxisMaxVal: 60, valAxisMinVal: 0, varyColors: true,
+s.addChart(pres.charts.BAR, [{ name: 'Panamá', labels: ['Lectura 6.º', 'Matemática 6.º'], values: [27.7, 10.1] }, { name: 'Argentina', labels: ['Lectura 6.º', 'Matemática 6.º'], values: [34.5, 17] }], {
+  x: 0.5, y: 1.4, w: 4.9, h: 3.5, barDir: 'col', barGrouping: 'clustered', chartColors: [HEX.pink, HEX.sky], showValue: true, dataLabelPosition: 'outEnd', dataLabelFormatCode: '0.0"%"', dataLabelColor: HEX.navy, dataLabelFontSize: 14, dataLabelFontBold: true,
+  showTitle: true, title: '6.º grado que alcanza el nivel mínimo (%), ERCE Pospandemia 2025', titleFontSize: 13, titleColor: HEX.navy, catAxisLabelColor: HEX.navy, catAxisLabelFontSize: 13, valAxisHidden: true, valGridLine: { style: 'none' }, catGridLine: { style: 'none' }, showLegend: true, legendPos: 'b', legendFontSize: 12, legendColor: HEX.navy, valAxisMaxVal: 45, valAxisMinVal: 0,
 });
-s.addText([{ text: '672', options: { fontSize: 54, bold: true, color: C.accent3, breakLine: true } }, { text: 'puntos de Panamá en Ciencias de 6.º grado', options: { fontSize: 14, color: C.text1 } }], { x: 5.7, y: 1.4, w: 3.8, h: 1.5, margin: 0, isTextBox: true, objectName: 'Dato Panamá' });
-s.addText([{ text: '702', options: { fontSize: 54, bold: true, color: C.text2, breakLine: true } }, { text: 'es el promedio de la región', options: { fontSize: 14, color: C.text1 } }], { x: 5.7, y: 2.95, w: 3.8, h: 1.5, margin: 0, isTextBox: true, objectName: 'Dato región' });
-s.addText('Los estudiantes de pueblos originarios obtienen resultados más bajos.', { x: 5.7, y: 4.4, w: 3.8, h: 0.6, fontSize: 14, italic: true, color: C.text1, margin: 0, isTextBox: true, objectName: 'Nota' });
-nota(s, 'Fuente: UNESCO, ERCE 2019 (comunicado del 30 de noviembre de 2021). La diferencia de 30 puntos es estadísticamente significativa.');
+s.addText([{ text: '27,7 %  ·  10,1 %', options: { fontSize: 32, bold: true, color: C.accent3, breakLine: true } }, { text: 'de los niños de 6.º de Panamá alcanza el nivel mínimo en lectura y en matemática', options: { fontSize: 13, color: C.text1 } }], { x: 5.7, y: 1.35, w: 3.9, h: 1.3, margin: 0, isTextBox: true, objectName: 'Dato Panamá' });
+s.addText([{ text: 'Ciencias: sin dato reciente', options: { fontSize: 17, bold: true, color: C.text1, breakLine: true } }, { text: 'Panamá se retiró de PISA 2025; el ERCE 2025 (aplicado en octubre de 2025) publica Ciencias de 6.º a fines de 2026', options: { fontSize: 12, color: C.text1 } }], { x: 5.7, y: 2.7, w: 3.9, h: 1.1, margin: 0, isTextBox: true, objectName: 'Dato ciencias' });
+s.addText([{ text: 'Pueblos originarios: ', options: { bold: true, fontSize: 12, color: C.text1 } }, { text: 'pertenecer a un pueblo indígena se asocia a menores aprendizajes; en 2024, 1 de cada 5 alumnos de primaria oficial estaba en el área indígena (20,0 %)', options: { fontSize: 12, color: C.text1 } }], { x: 5.7, y: 3.9, w: 3.9, h: 1.1, margin: 0, isTextBox: true, objectName: 'Nota' });
+nota(s, 'Fuentes: UNESCO (2/7/2025) y Meduca (24/6/2025), ERCE Pospandemia, Panamá y Argentina; La Prensa (14/10/2024 y 15/10/2025); Meduca, cuadro 2-2 (2024).');
+
 s.addNotes(notas());
 
 // ---------- 3. Acceso ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Problema' });
 s.addText('El laboratorio y la conexión llegan despacio, el teléfono ya está', { placeholder: 'title' });
-[['45 %', 'de los centros públicos no tenía internet (informe del Meduca, 2022)', C.accent3], ['73', 'escuelas alcanza la licitación de laboratorios de 28,9 millones de dólares (2026)', C.accent5], ['156,6', 'líneas móviles por cada 100 personas (2023)', C.accent4]].forEach((c, i) => {
+[['44 M$', 'contrato de internet para 3.102 escuelas (junio de 2025)', C.accent3], ['73', 'centros de media alcanza la licitación de laboratorios de 28,9 millones de dólares (abril de 2026)', C.accent5], ['17,3', 'clientes de internet fijo por cada 100 habitantes (ASEP, 2024)', C.accent4]].forEach((c, i) => {
   const x = 0.5 + i * 3.1;
   s.addShape(pres.ShapeType.roundRect, { x, y: 1.5, w: 2.85, h: 2.55, rectRadius: 0.12, fill: { color: C.background2 }, line: { color: C.background2 }, objectName: 'Tarjeta ' + (i + 1) });
   s.addText(c[0], { x: x + 0.2, y: 1.65, w: 2.45, h: 1.0, fontSize: 44, bold: true, color: c[2], margin: 0, valign: 'middle', isTextBox: true, objectName: 'Cifra ' + (i + 1) });
   s.addText(c[1], { x: x + 0.2, y: 2.7, w: 2.45, h: 1.25, fontSize: 14, color: C.text1, margin: 0, valign: 'top', isTextBox: true, objectName: 'Etiqueta ' + (i + 1) });
 });
 s.addText('Un laboratorio en el teléfono llega antes y no necesita conexión', { x: 0.5, y: 4.25, w: 9, h: 0.6, fontSize: 20, bold: true, color: C.text1, margin: 0, isTextBox: true, objectName: 'Mensaje' });
-nota(s, 'Fuentes: La Estrella (26/11/2022, cita un informe del Meduca); La Prensa (2/4/2026); Banco Mundial (2023). Las cifras de conectividad son anteriores a los contratos recientes.');
+nota(s, 'Fuentes: La Prensa (11/6/2025 y 2/4/2026); ASEP, internet fijo 2024 (estimado). Sin porcentaje oficial reciente de escuelas conectadas o con laboratorio.');
 s.addNotes(notas());
 
 // ---------- 4. Idea ----------
@@ -126,15 +131,23 @@ s.addNotes(notas());
 // ---------- 6. Inclusión ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Solución' });
 s.addText('Para todos los niños', { placeholder: 'title' });
-s.addText([{ text: '17,1 %', options: { fontSize: 54, bold: true, color: C.accent3, breakLine: true } }, { text: 'de los niños de 2 a 14 años en Panamá tiene alguna discapacidad (ENDIS-2)', options: { fontSize: 14, color: C.text1 } }], { x: 0.5, y: 1.35, w: 5.6, h: 1.55, margin: 0, isTextBox: true, objectName: 'Dato discapacidad' });
+s.addText([{ text: '17,1 %', options: { fontSize: 40, bold: true, color: C.accent3 } }, { text: '  de los niños de 2 a 14 años en Panamá tiene alguna discapacidad (ENDIS-2)', options: { fontSize: 13, color: C.text1 } }], { x: 0.5, y: 1.25, w: 6.4, h: 0.8, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Dato discapacidad' });
+s.addText('Margen para acertar según la edad (heurística nuestra, por validar con niños)', { x: 0.5, y: 2.1, w: 6.4, h: 0.3, fontSize: 12, bold: true, color: C.text1, margin: 0, isTextBox: true, objectName: 'Título edades' });
+[['6 años o menos', '×1,8'], ['7 y 8', '×1,4'], ['9 y 10', '×1,15'], ['11 a 13', '×1,0'], ['14 o más', '×0,8']].forEach((e, i) => {
+  s.addText([{ text: e[1], options: { bold: true, fontSize: 15, color: C.text1, breakLine: true } }, { text: e[0], options: { fontSize: 10, color: C.text2 } }], { x: 0.5 + i * 1.3, y: 2.42, w: 1.22, h: 0.62, fill: { color: C.background2 }, align: 'center', valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.08, margin: 0.03, isTextBox: true, objectName: 'Edad ' + (i + 1) });
+});
 s.addText([
-  { text: '7 apoyos opcionales: voz, oír, ver, concentrarme, leer, mover las manos y sensibilidad a luces o ruidos', options: { bullet: true, breakLine: true } },
-  { text: 'La dificultad se adapta a la edad y nunca es imposible', options: { bullet: true, breakLine: true } },
-  { text: 'Modo calma, alto contraste, texto grande y lectura en voz alta', options: { bullet: true, breakLine: true } },
-  { text: 'No se piden diagnósticos; un adulto confirma y todo se queda en el teléfono', options: { bullet: true } },
-], { x: 0.5, y: 3.0, w: 5.7, h: 2.0, fontSize: 14, color: C.text1, paraSpaceAfter: 6, margin: 0, valign: 'top', isTextBox: true, objectName: 'Inclusión' });
-telefono(s, 'ajustes.png', 7.2, 1.4, 3.6, 'ajustes');
-nota(s, 'Fuente: UNICEF Panamá, 8 de septiembre de 2026 (ENDIS-2, SENADIS e INEC): 174.701 niñas y niños de 2 a 14 años con discapacidad.');
+  { text: 'Voz: micrófono más sensible, margen ancho y sin límite de tiempo', options: { bullet: true, breakLine: true } },
+  { text: 'Oír: cada tic y tac también se ve; la vibración sigue activa', options: { bullet: true, breakLine: true } },
+  { text: 'Ver: alto contraste, texto grande y símbolos además del color', options: { bullet: true, breakLine: true } },
+  { text: 'Concentrarme: modo calma, pausa para descansar y más margen', options: { bullet: true, breakLine: true } },
+  { text: 'Leer o los números: texto grande y lectura en voz alta', options: { bullet: true, breakLine: true } },
+  { text: 'Mover las manos: botones grandes, «+» y «−» y barra en vez de inclinar', options: { bullet: true, breakLine: true } },
+  { text: 'Luces o ruidos: sin destellos ni sacudidas, sonidos suaves y avisos', options: { bullet: true } },
+], { x: 0.5, y: 3.12, w: 6.4, h: 1.95, fontSize: 11.5, color: C.text1, paraSpaceAfter: 2, margin: 0, valign: 'top', isTextBox: true, objectName: 'Siete apoyos' });
+telefono(s, 'ajustes.png', 7.4, 1.4, 3.5, 'ajustes');
+nota(s, 'Fuentes: UNICEF Panamá (8/9/2026), ENDIS-2: 174.701 niñas y niños de 2 a 14 años. Apoyos según Game Accessibility Guidelines y Xbox 118 (2026). Nunca vuelve imposible un reto; sin diagnósticos.');
+
 s.addNotes(notas());
 
 // ---------- 7. IA ----------
@@ -157,18 +170,19 @@ s.addNotes(notas());
 pres.addSection({ title: 'Impacto y mercado' });
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Impacto y mercado' });
 s.addText('Datos del proyecto', { placeholder: 'title' });
-[['≈ 155 KB', 'primera carga comprimida (411 KB sin comprimir)', C.accent1], ['0', 'librerías externas', C.accent4], ['450+', 'comprobaciones automáticas sin fallos', C.accent6], ['0,4 ms', 'la IA por partida, con la CPU 6× más lenta', C.accent5]].forEach((d, i) => {
+[['≈ 156 KB', 'primera carga comprimida (411 KB sin comprimir)', C.accent1], ['0', 'librerías externas', C.accent4], ['469', 'comprobaciones automáticas sin fallos', C.accent6], ['0,4 ms', 'la IA por partida, con la CPU 6× más lenta', C.accent5]].forEach((d, i) => {
   const x = 0.5 + (i % 2) * 2.55, y = 1.4 + Math.floor(i / 2) * 1.75;
   s.addShape(pres.ShapeType.roundRect, { x, y, w: 2.4, h: 1.6, rectRadius: 0.12, fill: { color: C.background2 }, line: { color: C.background2 }, objectName: 'Tarjeta dato ' + (i + 1) });
   s.addText(d[0], { x: x + 0.15, y: y + 0.1, w: 2.1, h: 0.8, fontSize: 36, bold: true, color: C.text1, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Dato ' + (i + 1) });
   s.addText(d[1], { x: x + 0.15, y: y + 0.9, w: 2.1, h: 0.62, fontSize: 13, color: C.text1, margin: 0, valign: 'top', isTextBox: true, objectName: 'Dato etiqueta ' + (i + 1) });
 });
-s.addText([{ text: 'Lo que respalda la literatura', options: { bold: true, fontSize: 18, color: C.text1, breakLine: true } },
-  { text: 'Predecir, observar y explicar: efecto alto en ciencias (metaanálisis, 2024)', options: { bullet: true, breakLine: true } },
-  { text: 'Juegos serios frente a la enseñanza convencional: d = 0,29 (77 estudios)', options: { bullet: true, breakLine: true } },
-  { text: 'Laboratorios virtuales comparables a los reales, mejores si se combinan', options: { bullet: true } }],
-  { x: 5.75, y: 1.4, w: 3.75, h: 3.3, fontSize: 14, color: C.text1, paraSpaceAfter: 6, margin: 0, valign: 'top', isTextBox: true, objectName: 'Literatura' });
-nota(s, 'Medición propia en Chromium con la CPU limitada, no en un teléfono real. Fuentes: Koyunlu Ünlü (2024), Wouters et al. (2013), Fadda et al. (2022).');
+s.addText([{ text: 'Lo que respalda la literatura (2024)', options: { bold: true, fontSize: 18, color: C.text1, breakLine: true } },
+  { text: 'Predecir, observar y explicar: g = 0,98 en ciencias (35 estudios)', options: { bullet: true, breakLine: true } },
+  { text: 'Juegos digitales en STEM de primaria: efectos positivos (18 estudios)', options: { bullet: true, breakLine: true } },
+  { text: 'Laboratorios virtuales: g = 0,69 (46 estudios), sin sustituir del todo al práctico', options: { bullet: true } }],
+  { x: 5.75, y: 1.4, w: 3.75, h: 2.5, fontSize: 13, color: C.text1, paraSpaceAfter: 6, margin: 0, valign: 'top', isTextBox: true, objectName: 'Literatura' });
+s.addText('No está validado en un teléfono real: las mediciones son de Chromium con la CPU limitada.', { x: 5.75, y: 3.95, w: 3.75, h: 0.9, fontSize: 13, bold: true, color: C.text1, fill: { color: C.accent2 }, valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.1, margin: 0.12, isTextBox: true, objectName: 'Aviso teléfono' });
+nota(s, 'Medición propia del 4/11/2026 (versión 1.2.0). Fuentes: Koyunlu Ünlü (2024); Behnamnia et al. (2024); Li y Liang (2024).');
 s.addNotes(notas());
 
 // ---------- 9. ODS ----------
@@ -187,9 +201,9 @@ s.addNotes(notas());
 // ---------- 10. Mercado ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Impacto y mercado' });
 s.addText('Mercado: hay quién lo necesita y quién lo financia', { placeholder: 'title' });
-s.addChart(pres.charts.BAR, [{ name: 'Gasto público en educación (% del PIB)', labels: ['2019', '2020', '2021', '2022', '2023'], values: [3.28, 4.30, 3.71, 3.38, 2.47] }], {
-  x: 0.5, y: 1.4, w: 4.1, h: 3.5, barDir: 'col', chartColors: [HEX.sky], showValue: true, dataLabelPosition: 'outEnd', dataLabelFormatCode: '0.00', dataLabelColor: HEX.navy, dataLabelFontSize: 13, dataLabelFontBold: true,
-  showTitle: true, title: 'Gasto público en educación (% del PIB)', titleFontSize: 14, titleColor: HEX.navy, catAxisLabelColor: HEX.navy, catAxisLabelFontSize: 13, valAxisHidden: true, valGridLine: { style: 'none' }, catGridLine: { style: 'none' }, showLegend: false, valAxisMinVal: 0, valAxisMaxVal: 5,
+s.addChart(pres.charts.BAR, [{ name: 'Costo por alumno (balboas)', labels: ['2020', '2021', '2022', '2023', '2024'], values: [2286.94, 2234.42, 2222.75, 2344.39, 2261.56] }], {
+  x: 0.5, y: 1.4, w: 4.1, h: 3.5, barDir: 'col', chartColors: [HEX.sky], showValue: true, dataLabelPosition: 'outEnd', dataLabelFormatCode: '#,##0', dataLabelColor: HEX.navy, dataLabelFontSize: 12, dataLabelFontBold: true,
+  showTitle: true, title: 'Costo por alumno del Gobierno Central (balboas)', titleFontSize: 14, titleColor: HEX.navy, catAxisLabelColor: HEX.navy, catAxisLabelFontSize: 13, valAxisHidden: true, valGridLine: { style: 'none' }, catGridLine: { style: 'none' }, showLegend: false, valAxisMinVal: 0, valAxisMaxVal: 3000,
 });
 s.addText([
   { text: 'Quién paga: no los niños', options: { bold: true, fontSize: 16, color: C.text1, breakLine: true } },
@@ -197,9 +211,9 @@ s.addText([
   { text: 'Modelo', options: { bold: true, fontSize: 16, color: C.text1, breakLine: true } },
   { text: 'Núcleo abierto y gratuito, más servicios: adaptación por país, packs de experimentos, formación docente y edición para terapeutas', options: { fontSize: 14, color: C.text1, breakLine: true, paraSpaceAfter: 8 } },
   { text: 'Señales', options: { bold: true, fontSize: 16, color: C.text1, breakLine: true } },
-  { text: '44 M$ en internet escolar, 28,9 M$ en laboratorios; en una fase inicial ProFuturo y el Meduca llegaron a 28 escuelas de Veraguas', options: { fontSize: 14, color: C.text1 } },
+  { text: '44 M$ en internet escolar (2025) y 28,9 M$ en laboratorios (2026). Región Educativa de Veraguas: 54.708 estudiantes en el sistema oficial (2024)', options: { fontSize: 14, color: C.text1 } },
 ], { x: 4.9, y: 1.4, w: 4.6, h: 3.5, margin: 0, valign: 'top', isTextBox: true, objectName: 'Modelo de mercado' });
-nota(s, 'Fuentes: Banco Mundial; La Prensa (2025, 2026); ProFuturo. El presupuesto baja, y una solución de coste casi nulo es más fácil de adoptar. Son hipótesis, sin cifras de mercado.');
+nota(s, 'Fuentes: INEC/Contraloría, cuadro 19 (30/1/2026; 2024 preliminar); La Prensa (11/6/2025 y 2/4/2026); Meduca (2024). Son hipótesis, sin cifras de mercado.');
 s.addNotes(notas());
 
 // ---------- 11. Cierre ----------

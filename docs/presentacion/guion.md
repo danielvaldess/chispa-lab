@@ -5,7 +5,7 @@ Este archivo es la fuente de las notas del orador del `.pptx` (el script de la p
 
 ## 1. Chispa Lab
 
-[0:00 a 0:12] Buenas. Soy Daniel Valdés, de la UTP de Veraguas. Chispa Lab convierte el teléfono de cualquier niño en un laboratorio de ciencias. Funciona sin internet, es inclusivo y es de código abierto.
+[0:00 a 0:12] Buenas. Somos [NOMBRES DEL EQUIPO], de la UTP, Centro Regional de Veraguas. Chispa Lab convierte el teléfono de cualquier niño en un laboratorio de ciencias. Funciona sin internet, es inclusivo y es de código abierto.
 
 ## 2. Mira cómo se juega
 
@@ -13,15 +13,15 @@ Este archivo es la fuente de las notas del orador del `.pptx` (el script de la p
 
 ## 3. Panamá tiene un reto de aprendizaje en ciencias
 
-[0:55 a 1:20] El problema. En el estudio regional de la UNESCO, los niños de sexto grado de Panamá sacaron 672 puntos en ciencias, frente a 702 de la región. Casi la mitad, el 48 por ciento, está en el nivel más bajo. Y los estudiantes de pueblos originarios obtienen resultados más bajos.
+[0:55 a 1:20] El problema. En el estudio regional de la UNESCO más reciente, publicado en 2025, en sexto grado solo el 27,7 por ciento de los niños de Panamá alcanza el nivel mínimo en lectura y apenas el 10,1 por ciento en matemática. Argentina, el otro país con resultados publicados, tiene 34,5 y 17. Los estudiantes de pueblos originarios obtienen resultados más bajos, y en 2024 uno de cada cinco alumnos de primaria oficial estaba en el área indígena. De ciencias no hay dato reciente: Panamá se retiró de PISA 2025, y el estudio regional que mide ciencias en sexto se aplicó en octubre de 2025 y publica a fines de este año.
 
 ## 4. El laboratorio y la conexión llegan despacio, el teléfono ya está
 
-[1:20 a 1:40] El Estado invierte, pero llega a pocos y despacio: la licitación de laboratorios alcanza 73 escuelas, y en 2022 cerca del 45 por ciento de los centros no tenía internet. Sin embargo, hay más de 156 líneas móviles por cada 100 personas. El teléfono ya está.
+[1:20 a 1:40] El Estado invierte, pero llega a pocos y despacio: en 2025 contrató internet para 3.102 escuelas por 44 millones de dólares, y en abril de este año licitó laboratorios para 73 centros de educación media por 28,9 millones. Hay 17 clientes de internet fijo por cada 100 habitantes, y la telefonía móvil supera una línea por habitante, según la ASEP citada por la prensa. El teléfono ya está.
 
 ## 5. Nuestra idea: predice, formula, juega, descubre
 
-[1:40 a 2:05] Es el método científico, jugando. El niño predice, formula su hipótesis, experimenta con el teléfono como instrumento y compara con sus propios datos. Esta estrategia, predecir, observar y explicar, tiene respaldo en un metaanálisis de 2024 de Koyunlu Ünlü; no verificamos el tamaño del efecto. Y todo queda en su cuaderno de laboratorio, en el teléfono.
+[1:40 a 2:05] Es el método científico, jugando. El niño predice, formula su hipótesis, experimenta con el teléfono como instrumento y compara con sus propios datos. Predecir, observar y explicar tiene respaldo en un metaanálisis de 2024 con 35 estudios, con un efecto alto de 0,98. Y todo queda en su cuaderno de laboratorio, en el teléfono.
 
 ## 6. Seis juegos, cuatro experimentos y un laboratorio libre
 
@@ -29,7 +29,7 @@ Este archivo es la fuente de las notas del orador del `.pptx` (el script de la p
 
 ## 7. Para todos los niños
 
-[2:30 a 2:55] Y es para todos. Uno de cada seis niños panameños de 2 a 14 años tiene alguna discapacidad. Chispa Lab se diseñó pensando en ellos: siete apoyos opcionales, dificultad por edad que nunca es imposible, modo calma, alto contraste. Sin pedir diagnósticos, y todo se queda en el teléfono.
+[2:30 a 2:55] Y es para todos. Uno de cada seis niños panameños de 2 a 14 años tiene alguna discapacidad. La dificultad se adapta a la edad: a los seis años o menos el margen para acertar es 1,8 veces el normal, a los siete y ocho 1,4, a los nueve y diez 1,15, de once a trece es el normal y a los catorce o más baja a 0,8; son valores nuestros, por validar con niños, y nunca vuelve imposible un reto. Y hay siete apoyos opcionales: la voz, con micrófono más sensible y sin límite de tiempo; oír, con cada tic y tac visible; ver, con alto contraste, texto grande y símbolos además del color; concentrarme, con modo calma y pausas; leer, con lectura en voz alta; mover las manos, con botones grandes y barra en vez de inclinar; y luces o ruidos, sin destellos ni sacudidas. Sin pedir diagnósticos, y todo se queda en el teléfono.
 
 ## 8. IA pequeña, ética y sin conexión
 
@@ -37,7 +37,7 @@ Este archivo es la fuente de las notas del orador del `.pptx` (el script de la p
 
 ## 9. Datos del proyecto
 
-[3:30 a 3:50] Medimos el sistema: unos 155 kilobytes comprimidos en la primera carga, cero librerías externas y más de 450 comprobaciones automáticas sin fallos. La IA tarda menos de medio milisegundo por partida con la CPU seis veces más lenta. Son mediciones en un ordenador; falta probarlo en teléfonos reales.
+[3:30 a 3:50] Medimos el sistema: unos 156 kilobytes comprimidos en la primera carga, cero librerías externas y 469 comprobaciones automáticas sin fallos. La IA tarda menos de medio milisegundo por partida con la CPU seis veces más lenta. Todo eso se midió en un ordenador con la CPU limitada: no está validado en un teléfono real, y probarlo en teléfonos de gama baja es lo primero que haremos. La literatura de 2024 respalda las ideas, no el sistema: falta medir el aprendizaje con niños.
 
 ## 10. Impacto: contribuimos a tres ODS
 
@@ -45,8 +45,20 @@ Este archivo es la fuente de las notas del orador del `.pptx` (el script de la p
 
 ## 11. Mercado: hay quién lo necesita y quién lo financia
 
-[4:05 a 4:35] El mercado. El presupuesto en educación bajó del 4,3 al 2,5 por ciento del PIB, así que una solución de coste casi nulo es más fácil de adoptar. Pagarían el Ministerio, fundaciones como ProFuturo, redes de escuelas y terapeutas, por servicios: adaptación, contenido nuevo y formación. Son hipótesis, sin cifras de mercado. En Veraguas, ProFuturo y el Ministerio llegaron en una fase inicial a 28 escuelas.
+[4:05 a 4:35] El mercado. El costo por alumno del Gobierno Central fue de 2.262 balboas en 2024, por debajo de los 2.344 de 2023, así que una solución de costo casi nulo es más fácil de adoptar. Pagarían el Ministerio, fundaciones como ProFuturo, redes de escuelas y terapeutas, por servicios: adaptación, contenido nuevo y formación. Son hipótesis, sin cifras de mercado. Y el piloto tiene un lugar concreto: la Región Educativa de Veraguas, con 54.708 estudiantes en el sistema oficial en 2024.
 
 ## 12. Lo que proponemos
 
-[4:35 a 5:00] Lo que proponemos: un piloto en Veraguas con la UTP, ProFuturo y el Ministerio; probarlo con niños y docentes en teléfonos de gama baja; y traducirlo al portugués y al inglés. Chispa Lab convierte el teléfono que ya existe en un laboratorio para todos. Cada teléfono, un laboratorio. Gracias.
+[4:35 a 5:00] Lo que proponemos: un piloto en la Región Educativa de Veraguas con la UTP, ProFuturo y el Ministerio; probarlo con niños y docentes en teléfonos de gama baja; y traducirlo al portugués y al inglés. Chispa Lab convierte el teléfono que ya existe en un laboratorio para todos. Cada teléfono, un laboratorio. Gracias.
+
+---
+
+## Respuestas preparadas para el jurado (no son diapositivas)
+
+Todo lo de esta sección es **propuesta**, no resultado. Los datos salen de `../transferencia-al-mercado.md`, `../guia-docente.md` y `../investigacion/articulo.md`.
+
+- **Cómo se sostiene y se mantiene.** El código es abierto con licencia MIT y no hay servidor ni costo por usuario: un mismo archivo sirve a todos los teléfonos. El costo real es de trabajo (contenidos, traducciones, validación con docentes y soporte), y se financiaría con servicios: adaptación curricular y de idioma, packs de experimentos nuevos y formación docente.
+- **Sostenibilidad a diez años.** Es una proyección, no un dato: mantener una aplicación sin dependencias externas reduce lo que puede quedar obsoleto, y los convenios institucionales (universidades, fundaciones y programas como ProFuturo, y el Ministerio) pagarían el mantenimiento y las nuevas versiones. Falta probarlo con un primer convenio.
+- **Revisión por cada docente.** Propuesta: un código QR por aula o por docente que abra el panel de adultos y el resumen de aprendizaje de sus estudiantes, sin servidor y con permiso del adulto. Hoy el panel existe dentro de la aplicación (Ajustes, «Para adultos y docentes»); el QR no está construido.
+- **Cómo se adaptan los juegos a cada persona (propuesta futura).** Hoy se adaptan por edad y por siete apoyos elegidos por el adulto, y el tutor ajusta un poco el margen inicial. A futuro: calibrar las bandas de edad con un piloto en la Región Educativa de Veraguas y revisar con docentes el catálogo de ideas erróneas. Para no malinterpretarlo: la adaptación es **estadística y local**, no genera texto ni diagnostica, y el adulto decide.
+- **Palabras que conviene usar:** «ajuste de dificultad», «tutor explicable», «apoyos opcionales», «estimación» y «heurística por validar». **Evitar:** «diagnóstico» (salvo «diagnóstico de ideas erróneas», aclarando que no es clínico), «inteligencia artificial generativa», «validado» y «terapia».
