@@ -178,9 +178,9 @@ s.addNotes(notas());
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Impacto y mercado' });
 s.addText('3.102 centros educativos; solo 73 en la licitación de 2026', { placeholder: 'title' });
 heroDato(s, '3.102', 'centros educativos en Panamá; solo 73 de media en la licitación de laboratorios 2026 (193 aulas)', K.pink);
-T(s, '596.372 estudiantes oficiales de primaria y premedia; 38.250 en Veraguas; meta: 3.800. Chispa Lab llega sin comprar equipos.', { x: 0.5, y: 4.1, w: 6.3, h: 0.8, fontSize: 15, bold: true, color: K.violet, valign: 'top', objectName: 'Apoyo' });
+T(s, 'Chispa Lab llega a los que no tienen laboratorio, sin comprar equipos.', { x: 0.5, y: 4.1, w: 6.3, h: 0.8, fontSize: 15, bold: true, color: K.violet, valign: 'top', objectName: 'Apoyo' });
 telefono(s, '01.gif', 7.55, 1.15, 3.55, 'la rampa', K.orange);
-nota(s, 'Nota. 73 centros y 193 aulas: La Prensa (2026b). 3.102 centros: Meduca, reportado por TVN-2 (2025). 596.372 y 38.250: Meduca, Oficina de Estadística (2024).');
+nota(s, 'Nota. 3.102 centros: Meduca, reportado por TVN-2 (2025). 73 centros y 193 aulas: La Prensa (2026b). Detalle: estudio de mercado.');
 s.addNotes(notas());
 
 // ---------- 12. ODS ----------
@@ -205,7 +205,7 @@ s.addText('Modelo de negocio: ministerios, terapias y regiones', { placeholder: 
 });
 T(s, [{ text: 'Ingresos: ', options: { bold: true, color: K.violet } }, { text: 'ministerios (adaptación y formación), clínicas de terapia (licencia por centro) y regiones (idioma y currículo).' }], { x: 0.5, y: 3.9, w: 6.3, h: 1.0, fontSize: 15, color: K.navy, valign: 'top', objectName: 'Quién paga' });
 telefono(s, '02.gif', 7.55, 1.15, 3.55, 'el péndulo', K.violet);
-nota(s, 'Nota. Mercado LatAm: USD 10.152,9 M en 2024, CAGR 14 % (Grand View Research, 2025). Canal: ProFuturo, 3.609 escuelas y 941.785 niños en 30 países (2024). Costo por aula: La Prensa (2026b).');
+nota(s, 'Nota. Costo por aula: La Prensa (2026b). Fuentes y supuestos: estudio de mercado.');
 s.addNotes(notas());
 
 // ---------- 13. Conclusión ----------

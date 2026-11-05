@@ -42,7 +42,7 @@
 - **Primacía y recencia:** lo que más se recuerda es el principio y el final; el principio es el dato y el final es la petición con el juego funcionando durante las preguntas.
 - Los clips de cámara (Luz y color, Burbujas) no se muestran en la presentación.
 
-El texto de cada diapositiva suma **698 palabras**: 4:39 a 150 palabras por minuto y 4:59 a 140; el objetivo es 4:49, así que conviene ensayar a 145–150 (versión con entonación, reparto y preguntas: [`guion-oratoria.md`](guion-oratoria.md)).
+El texto de cada diapositiva suma **685 palabras**: 4:34 a 150 palabras por minuto y 4:54 a 140; el objetivo es 4:43, así que conviene ensayar a 145–150 (versión con entonación, reparto y preguntas: [`guion-oratoria.md`](guion-oratoria.md)).
 
 ## Qué cifras tienen fuente y cuáles son medidas propias
 
