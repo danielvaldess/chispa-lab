@@ -1,6 +1,6 @@
 # Guion de la presentación (5 minutos)
 
-Las 15 diapositivas y el texto para decir en cada una, con su tiempo. Total: **5:00**. Estructura (ver el README): gancho con un dato, problema, solución, prueba, impacto y petición; **la última diapositiva (preguntas y gracias, con el juego en acción) se queda en pantalla durante las preguntas**.
+Las 15 diapositivas (más la 16, de referencias, como anexo) y el texto para decir en cada una, con su tiempo. Total: **5:00**. Estructura (ver el README): gancho con un dato, problema, solución, prueba, impacto y petición; **la última diapositiva (preguntas y gracias, con el juego en acción) se queda en pantalla durante las preguntas**.
 Este archivo es la fuente de las notas del orador del `.pptx` (el script de la presentación lee las secciones numeradas, en orden, y se detiene en la línea `---`). Para el vídeo de 3 minutos, ver [`guion-video.md`](guion-video.md).
 
 **Ritmo:** el texto suma **560 palabras**, unos 3:44 a 150 palabras por minuto, con el resto del tiempo como margen para cambiar de diapositiva. Conviene ensayarlo con cronómetro: si te pasas, recorta el texto, no hables más rápido.
@@ -15,7 +15,7 @@ Este archivo es la fuente de las notas del orador del `.pptx` (el script de la p
 
 ## 3. Nacer en una comarca indígena marca lo que se aprende
 
-[0:42 a 1:02] Y no es igual para todos. Quien habla una lengua indígena en casa saca unos 80 puntos menos, casi tres años de escuela. Un niño de comarca indígena alcanza cinco años de escolaridad; uno de zona urbana, nueve.
+[0:42 a 1:02] Y no es igual para todos. Un niño que nace en una comarca indígena alcanza cinco años de escolaridad; uno de zona urbana, nueve. Y el estudio regional ERCE Pospandemia 2025 asocia pertenecer a un pueblo indígena con menores aprendizajes.
 
 ## 4. El laboratorio no llega, pero el teléfono ya está
 
@@ -64,6 +64,10 @@ Este archivo es la fuente de las notas del orador del `.pptx` (el script de la p
 ## 15. Preguntas y gracias
 
 [5:00] Muchas gracias. Con gusto responderemos sus preguntas; mientras tanto, el juego sigue en pantalla.
+
+## 16. Referencias
+
+[Anexo] Las fuentes de cada dato están en la nota de cada diapositiva y completas, en formato APA, aquí. Las cifras propias se identifican como tales.
 
 ---
 

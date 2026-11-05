@@ -72,17 +72,17 @@ s.addChart(pres.charts.BAR, [{ name: 'Puntaje en ciencias, PISA 2022', labels: [
 T(s, [{ text: '38 %', options: { bold: true, fontSize: 18, color: K.pink } }, { text: ' alcanza el nivel básico en Panamá; ', options: { fontSize: 12 } }, { text: '76 %', options: { bold: true, fontSize: 18, color: K.violet } }, { text: ' en la OCDE y ', options: { fontSize: 12 } }, { text: '76 %', options: { bold: true, fontSize: 18, color: K.violet } }, { text: ' en la UE', options: { fontSize: 12 } }], { x: 0.5, y: 4.9, w: 6.4, h: 0.4, valign: 'middle', objectName: 'Nivel básico' });
 telefono(s, '01.gif', 7.55, 1.15, 3.55, 'la rampa', K.pink);
 T(s, 'Ciencias que se descubren jugando', { x: 6.75, y: 4.9, w: 3.0, h: 0.35, fontSize: 11.5, bold: true, color: K.navy, align: 'center', objectName: 'Pie rampa' });
-nota(s, 'PISA 2022 (OCDE): Panamá, México, Colombia, Uruguay y Chile, Fundación Exe (2024); UE, Cyprus Mail (6/12/2023); nivel básico, La Prensa (3/2/2026) y Comisión Europea.');
+nota(s, 'Nota. PISA 2022, puntaje en ciencias a los 15 años y porcentaje en nivel básico. Datos de Fundación Exe Colombia (2024), Cyprus Mail (2023), Comisión Europea (s. f.) y La Prensa (2026a).');
 s.addNotes(notas());
 
 // ---------- 3. Pueblos originarios y comarcas ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Problema' });
 s.addText('Nacer en una comarca indígena marca lo que se aprende', { placeholder: 'title' });
-heroDato(s, '≈ 80 puntos', 'menos en PISA para quien habla una lengua indígena en casa: casi 3 años de escuela', K.pink);
-T(s, 'Un niño de comarca indígena alcanza 5 años de escolaridad; uno de zona urbana, 9.', { x: 0.5, y: 4.1, w: 6.3, h: 0.8, fontSize: 16, bold: true, color: K.violet, valign: 'top', objectName: 'Apoyo' });
+heroDato(s, '5 vs 9 años', 'de escolaridad: un niño de comarca indígena frente a uno de zona urbana', K.pink);
+T(s, 'El ERCE Pospandemia 2025 asocia pertenecer a un pueblo indígena con menores aprendizajes.', { x: 0.5, y: 4.1, w: 6.3, h: 0.8, fontSize: 16, bold: true, color: K.violet, valign: 'top', objectName: 'Apoyo' });
 telefono(s, '04.gif', 7.55, 1.15, 3.55, 'el globo y la voz', K.orange);
 T(s, 'Sin conexión, con el micrófono', { x: 6.75, y: 4.9, w: 3.0, h: 0.35, fontSize: 11.5, bold: true, color: K.navy, align: 'center', objectName: 'Pie micrófono' });
-nota(s, 'Fuentes: OEI (2024), PISA-Panamá 2019; La Prensa (3/2/2026), escolaridad.');
+nota(s, 'Nota. Datos de La Prensa (2026a) y del Ministerio de Educación de Panamá (2025), resumen ejecutivo del ERCE Pospandemia.');
 s.addNotes(notas());
 
 // ---------- 4. El laboratorio no llega, el teléfono ya está ----------
@@ -92,7 +92,7 @@ heroDato(s, '≈ 150.100 $', 'cuesta cada aula de laboratorio; la licitación de
 T(s, 'El teléfono ya está en las manos de las familias. Chispa Lab lo convierte en laboratorio.', { x: 0.5, y: 4.1, w: 6.3, h: 0.8, fontSize: 16, bold: true, color: K.violet, valign: 'top', objectName: 'Mensaje' });
 telefono(s, '07.gif', 7.55, 1.15, 3.55, 'Mi laboratorio', K.green);
 T(s, 'Mi laboratorio: juego libre', { x: 6.75, y: 4.9, w: 3.0, h: 0.35, fontSize: 11.5, bold: true, color: K.navy, align: 'center', objectName: 'Pie laboratorio' });
-nota(s, 'Fuente: La Prensa (2/4/2026), licitación de laboratorios científicos: 28,9 millones de dólares, 193 aulas.');
+nota(s, 'Nota. Cálculo propio: precio de referencia de $28.969.463 ÷ 193 aulas (La Prensa, 2026b), con equipos, insumos, instalación y capacitación.');
 s.addNotes(notas());
 
 // ---------- 5. Idea ----------
@@ -105,7 +105,7 @@ s.addText('Nuestra idea: predice, formula, juega, descubre', { placeholder: 'tit
   T(s, [{ text: p[1], options: { fontSize: 22, bold: true, color: p[3] === K.green ? '0E9F6E' : p[3], breakLine: true } }, { text: p[2], options: { fontSize: 14, color: K.navy } }], { x: 1.4, y: y - 0.08, w: 5.2, h: 0.9, valign: 'middle', objectName: 'Paso ' + p[0] });
 });
 telefono(s, '02.gif', 7.3, 1.2, 3.6, 'el péndulo: hipótesis y prueba', K.violet);
-nota(s, 'Predecir, observar y explicar: metaanálisis de 2024 con 35 estudios, efecto alto en ciencias (Koyunlu Ünlü, 2024).');
+nota(s, 'Nota. Predecir-observar-explicar: metaanálisis de 35 estudios, efecto alto en ciencias (Koyunlu Ünlü, 2024).');
 s.addNotes(notas());
 
 // ---------- 6. Seis juegos ----------
@@ -131,7 +131,7 @@ T(s, 'No viajan la fecha de nacimiento, los apoyos ni la voz. QR y no Bluetooth:
 s.addImage({ path: GIF + '/09.gif', x: 4.65, y: 1.35, w: 3.0, h: 3.0 * 454 / 420, objectName: 'GIF clase con QR', altText: 'Vídeo de la app: la alumna muestra su QR y el docente lo escanea' });
 telefono(s, '10.gif', 8.2, 1.35, 3.1, 'agrupar la clase', K.pink);
 pie(s, 'QR sin internet', 4.65, 4.75, 3.0); pie(s, 'Agrupa la clase', 7.95, 4.75, 1.75);
-nota(s, 'Código de unos 100 caracteres, sin servidor ni cuentas; la lista vive solo en el teléfono del docente. Detalle: docs/clase-sincronizacion.md.');
+nota(s, 'Nota. Elaboración propia: código de unos 100 caracteres, sin servidor ni cuentas; la lista vive solo en el teléfono del docente.');
 s.addNotes(notas());
 
 // ---------- 8. Inclusión ----------
@@ -144,7 +144,7 @@ T(s, [{ text: 'El niño marca lo que le ayuda', options: { bullet: true, breakLi
 telefono(s, '11.gif', 5.95, 1.2, 3.5, 'elige lo que le ayuda', K.green);
 telefono(s, '08.gif', 8.05, 1.2, 3.5, 'registro: estudiante o docente', K.yellow);
 pie(s, 'Marca lo que le ayuda', 5.65, 4.8, 1.9, K.white); pie(s, 'Estudiante o docente', 7.7, 4.8, 1.9, K.white);
-nota(s, 'Fuente: UNICEF Panamá (2026), ENDIS-2.', K.white);
+nota(s, 'Nota. Datos de la ENDIS-2 (UNICEF Panamá, 2026).', K.white);
 s.addNotes(notas());
 
 // ---------- 9. IA ----------
@@ -157,7 +157,7 @@ s.addText('6 técnicas de IA que aprenden dentro del teléfono', { placeholder: 
 });
 ['Sin internet y sin enviar datos', 'El adulto decide'].forEach((t, i) => T(s, '✓ ' + t, { x: 0.5 + i * 3.15, y: 4.0, w: 3.05, h: 0.5, fontSize: 13, bold: true, color: K.navy, fill: { color: K.white }, valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.1, margin: 0.1, objectName: 'Garantía ' + (i + 1) }));
 telefono(s, '10.gif', 7.35, 1.2, 3.6, 'Chispa agrupa la clase', K.pink);
-nota(s, 'Cada técnica se reconstruye con una fórmula. Marco: Reglamento (UE) 2024/1689 y UNESCO (2024).');
+nota(s, 'Nota. Marco ético: Parlamento Europeo y Consejo de la Unión Europea (2024); Miao y Cukurova (2024).');
 s.addNotes(notas());
 
 // ---------- 10. Datos ----------
@@ -171,7 +171,7 @@ s.addText('Funciona, y funciona liviano', { placeholder: 'title' });
   T(s, d[1], { x: 3.5, y: y + 0.1, w: 3.1, h: 1.5, fontSize: 16, color: K.navy, valign: 'middle', objectName: 'Dato etiqueta ' + (i + 1) });
 });
 telefono(s, '03.gif', 7.4, 1.2, 3.6, 'la voz', K.green);
-nota(s, 'Medición propia (versión 1.4.0): npm test; primera carga comprimida.', K.white);
+nota(s, 'Nota. Elaboración propia, versión 1.4.0: conjunto de pruebas automáticas y primera carga comprimida.', K.white);
 s.addNotes(notas());
 
 // ---------- 11. Meta ----------
@@ -180,7 +180,7 @@ s.addText('Meta: 3.800 estudiantes de Veraguas haciendo ciencia en 3 años', { p
 heroDato(s, '3.800', 'estudiantes: el 10 % de los 38.250 de primaria y premedia de Veraguas', K.pink);
 T(s, 'Sin comprar equipos: solo teléfonos que ya existen.', { x: 0.5, y: 4.1, w: 6.3, h: 0.8, fontSize: 16, bold: true, color: K.violet, valign: 'top', objectName: 'Apoyo' });
 telefono(s, '01.gif', 7.55, 1.15, 3.55, 'la rampa', K.orange);
-nota(s, 'Base: Meduca (2024), 38.250 estudiantes de primaria y premedia en Veraguas (docs/impacto-esperado.md).');
+nota(s, 'Nota. Cálculo propio: 10 % de los 38.250 estudiantes de primaria y premedia (Ministerio de Educación de Panamá, Oficina de Estadística, 2025).');
 s.addNotes(notas());
 
 // ---------- 12. ODS ----------
@@ -191,7 +191,7 @@ s.addText('Contribuimos a tres Objetivos de Desarrollo Sostenible', { placeholde
   s.addImage({ path: IMG + '/ods-' + o[0] + '.png', x, y: 1.3, w: 2.8, h: 2.8, objectName: 'ODS ' + o[0], altText: 'Objetivo de Desarrollo Sostenible ' + o[0] });
   T(s, o[1], { x: x - 0.05, y: 4.2, w: 2.9, h: 0.7, fontSize: 14, bold: true, color: K.navy, align: 'center', valign: 'top', objectName: 'Frase ODS ' + o[0] });
 });
-nota(s, 'Objetivos de Desarrollo Sostenible: Naciones Unidas (sdgs.un.org), metas 4.1, 4.5, 4.a, 10.2 y 9.c.');
+nota(s, 'Nota. Metas 4.1, 4.5, 4.a, 10.2 y 9.c (Naciones Unidas, s. f.).');
 s.addNotes(notas());
 
 // ---------- 12. Mercado ----------
@@ -205,7 +205,7 @@ s.addText('Un laboratorio por casi cero, financiado por quien ya invierte en edu
 });
 T(s, [{ text: 'Pagan: ', options: { bold: true, color: K.violet } }, { text: 'el Ministerio, fundaciones como ProFuturo y redes de escuelas, por adaptación, contenido y formación.' }], { x: 0.5, y: 3.9, w: 6.3, h: 1.0, fontSize: 16, color: K.navy, valign: 'top', objectName: 'Quién paga' });
 telefono(s, '02.gif', 7.55, 1.15, 3.55, 'el péndulo', K.violet);
-nota(s, 'Fuente: La Prensa (2/4/2026). Código abierto, sin servidor: el ingreso son los servicios.');
+nota(s, 'Nota. Costo por aula: cálculo propio con La Prensa (2026b). Código abierto y sin servidor: el ingreso son los servicios.');
 s.addNotes(notas());
 
 // ---------- 13. Conclusión ----------
@@ -229,6 +229,32 @@ T(s, '¿Preguntas?', { x: 0.5, y: 0.25, w: 5.0, h: 0.8, fontSize: 40, bold: true
 T(s, '¡Muchas gracias!', { x: 5.2, y: 0.3, w: 4.4, h: 0.7, fontSize: 28, bold: true, color: K.white, align: 'right', objectName: 'Gracias' });
 [['01.gif', K.yellow], ['02.gif', K.pink], ['03.gif', K.green], ['10.gif', K.cyan], ['07.gif', K.orange]].forEach((t, i) => telefono(s, t[0], 0.75 + i * 1.82, 1.25, 3.0, 'el juego en acción ' + (i + 1), t[1]));
 T(s, 'danielvaldess.github.io/chispa-lab  ·  github.com/danielvaldess/chispa-lab', { x: 0.5, y: 4.85, w: 9, h: 0.4, fontSize: 14, bold: true, color: K.cyan, align: 'center', objectName: 'Enlaces' });
+s.addNotes(notas());
+
+// ---------- 16. Referencias (anexo) ----------
+pres.addSection({ title: 'Anexo' });
+s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Anexo' });
+s.addText('Referencias', { placeholder: 'title' });
+const REFS = [
+  ['Comisión Europea. (s. f.). ', 'PISA 2022 and the EU: Three thought-provoking trends', '. European School Education Platform. https://school-education.ec.europa.eu/en/discover/expert-views/pisa-2022-and-eu-three-thought-provoking-trends'],
+  ['Cyprus Mail. (2023, 6 de diciembre). ', 'Cypriot children perform well below average in maths, reading and science', '. https://cyprus-mail.com/2023/12/06/cypriot-children-perform-well-below-average-in-maths-reading-and-science'],
+  ['Fundación Exe Colombia. (2024, marzo). ', 'Reporte general de resultados PISA 2022', '. https://fundacionexe.org.co/wp-content/uploads/2024/03/Reporte-general-de-resultados-PISA-2022.pdf'],
+  ['Koyunlu Ünlü, Z. (2024). Effect of the predict-observe-explain (POE) strategy on achievement in science education: A meta-analysis study. ', 'Van Yüzüncü Yıl Üniversitesi Eğitim Fakültesi Dergisi, 21', '(3), 893–920. https://doi.org/10.33711/yyuefd.1570041'],
+  ['La Prensa. (2026a, 3 de febrero). ', 'La realidad que no podemos ignorar', ' [Presentación sobre la reforma educativa]. https://cdn.corprensa.com/la-prensa/uploads/2026/02/03/La%20realidad%20que%20no%20podemos%20ignorar%20(1).pdf'],
+  ['La Prensa. (2026b, 2 de abril). ', 'Meduca licita $28.9 millones para equipar laboratorios científicos en 73 escuelas', '. https://www.prensa.com/sociedad/meduca-licita-289-millones-para-equipar-laboratorios-cientificos-en-73-escuelas/'],
+  ['Miao, F. y Cukurova, M. (2024). ', 'AI competency framework for teachers', '. UNESCO. https://doi.org/10.54675/ZJTE2084'],
+  ['Ministerio de Educación de Panamá. (2025, 24 de junio). ', 'Informe de resultados de Panamá: Resumen ejecutivo ERCE Pospandemia', '. https://www.meduca.gob.pa/wp-content/uploads/2025/09/Resumen-ejecutivo-ERCE-Pospandemia-Panama-24062025.pdf'],
+  ['Ministerio de Educación de Panamá, Oficina de Estadística. (2025). ', 'Matrícula, docentes y aulas de la educación oficial según región educativa, año lectivo 2024', ' (Cuadros 2-2 y 3-2). https://www.meduca.gob.pa/wp-content/uploads/2025/07/04062025_cuadro_2-2_primaria_2024.pdf'],
+  ['Naciones Unidas, Departamento de Asuntos Económicos y Sociales. (s. f.). ', 'Objetivos de Desarrollo Sostenible 4, 9 y 10', '. https://sdgs.un.org/goals'],
+  ['Parlamento Europeo y Consejo de la Unión Europea. (2024). ', 'Reglamento (UE) 2024/1689 por el que se establecen normas armonizadas en materia de inteligencia artificial', '. Diario Oficial de la Unión Europea, L, 12.7.2024. https://eur-lex.europa.eu/eli/reg/2024/1689/oj'],
+  ['UNICEF Panamá. (2026, 8 de septiembre). ', 'Panamá presenta resultados del programa conjunto sobre cuidados y discapacidad', '. https://www.unicef.org/panama/comunicados-prensa/panam%C3%A1-presenta-resultados-del-programa-conjunto-sobre-cuidados-y-discapacidad'],
+];
+[REFS.slice(0, 6), REFS.slice(6)].forEach((col, c) => {
+  const runs = [];
+  col.forEach((r) => { runs.push({ text: r[0], options: { fontSize: 8, color: K.navy } }, { text: r[1], options: { fontSize: 8, italic: true, color: K.navy } }, { text: r[2], options: { fontSize: 8, color: K.navy, breakLine: true, paraSpaceAfter: 5 } }); });
+  T(s, runs, { x: 0.4 + c * 4.75, y: 1.2, w: 4.55, h: 3.7, valign: 'top', objectName: 'Referencias ' + (c + 1) });
+});
+T(s, 'Cálculos y cifras propias: ≈ 150.100 $ por aula (28.969.463 ÷ 193), 38.250 estudiantes (primaria más premedia, Veraguas), meta de 3.800 (10 %), 583 pruebas y 230 KB (versión 1.4.0). Fecha de consulta: 4 de noviembre de 2026.', { x: 0.4, y: 4.88, w: 9.2, h: 0.4, fontSize: 8, italic: true, color: K.navy, valign: 'top', objectName: 'Nota propia' });
 s.addNotes(notas());
 
 (async () => {

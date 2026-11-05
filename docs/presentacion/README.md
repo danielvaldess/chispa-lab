@@ -16,7 +16,7 @@
 |---|---|---|---|
 | 1 | Portada (GIF del registro y de la rampa) | 0:12 | 0:00–0:12 |
 | 2 | **Gancho:** 6 de cada 10 estudiantes panameños no alcanzan el nivel básico en ciencias (PISA 2022 frente a América Latina, la UE y la OCDE) | 0:30 | 0:12–0:42 |
-| 3 | Nacer en una comarca indígena marca lo que se aprende (≈ 80 puntos, 5 frente a 9 años de escolaridad) | 0:20 | 0:42–1:02 |
+| 3 | Nacer en una comarca indígena marca lo que se aprende (5 frente a 9 años de escolaridad; ERCE 2025) | 0:20 | 0:42–1:02 |
 | 4 | El laboratorio no llega (193 aulas, ≈ 150.100 $ por aula), pero el teléfono ya está | 0:20 | 1:02–1:22 |
 | 5 | Nuestra idea: predice, formula, juega, descubre | 0:18 | 1:22–1:40 |
 | 6 | Seis juegos, cuatro experimentos y un laboratorio libre (tres pilares) | 0:18 | 1:40–1:58 |
@@ -29,6 +29,8 @@
 | 13 | Un laboratorio por casi cero, financiado por quien ya invierte en educación | 0:20 | 4:26–4:46 |
 | 14 | **Conclusión** (problema, solución y petición, con GIF de Mi laboratorio y la rampa) | 0:14 | 4:46–5:00 |
 | 15 | **¿Preguntas? ¡Muchas gracias!** con cinco GIF del juego en acción (se queda en pantalla) | — | después de los 5:00 |
+
+**Referencias:** cada diapositiva cita su fuente en la nota al pie con el formato autor-año de APA 7, y la diapositiva 16 (anexo) reúne las 12 referencias completas; las cifras propias se rotulan como «elaboración propia» o «cálculo propio».
 
 **Regla de datos:** una cifra protagonista por diapositiva (la correcta, no muchas); el resto va en las notas del orador y en los documentos.
 
