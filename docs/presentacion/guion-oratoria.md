@@ -1,53 +1,90 @@
 # Guion de oratoria: Chispa Lab en 5 minutos
 
-**Duración:** 4:41 a 142 palabras por minuto (666 palabras), con ≈ 25 segundos de margen para cambiar de diapositiva y dejar ver los GIF. **Si te pasas, recorta, no hables más rápido.** Ensáyalo con cronómetro al menos tres veces.
+> **Lo que piden las bases:** presentación de **5 minutos** (Bases 3, 5 y 6) y vídeo de **3 minutos**.
 
-## Cómo está construido (por qué convence)
-1. **Gancho con un número** (diapositiva 2), no con la demo: «seis de cada diez». Es lo primero que debe recordar el jurado.
-2. **Problema → solución → prueba → petición** (Duarte: de «lo que es» a «lo que podría ser»): problema en las diapositivas 2 a 4, solución en 5 a 9, prueba e impacto en 10 a 13, petición en la 14.
-3. **Regla de tres:** tres pilares (experimentar, acompañar al docente, incluir), tres objetivos de desarrollo sostenible, tres peticiones (UTP, ProFuturo, Ministerio).
-4. **Cierra con una frase que se recuerde:** «Cada teléfono, un laboratorio», y deja el juego en pantalla durante las preguntas.
-5. **Cada criterio, una frase:** creatividad (IA que aprende en el teléfono, diapositivas 5 a 9), acabado (10), transferencia (4 y 13), IA para países desfavorecidos (3, 4 y 9) y ProFuturo: impacto social (2 y 3), inclusión (8), sostenibilidad (13) y ética de la IA (9).
+**Texto canónico:** [`guion.md`](guion.md) (703 palabras; 4:51 a 145–150 palabras por minuto). Esta hoja añade pausas, gestos, reparto y respuestas. **Si te pasas, recorta, no hables más rápido.** Ensaya tres veces con cronómetro.
 
-## Reparto sugerido entre los tres (ajústenlo a quién domina cada parte)
-- **Abigail:** diapositivas 1 a 4 (el problema). Entrega a Daniel con: «Y para eso, Daniel les cuenta qué hicimos».
-- **Daniel:** diapositivas 5 a 9 (la solución y la IA). Entrega a Whaldo con: «Veamos qué tan lejos puede llegar».
-- **Whaldo:** diapositivas 10 a 14 (datos, meta, mercado y conclusión). Cierra Whaldo, o los tres juntos en «Cada teléfono, un laboratorio».
+## Reparto
+- **Daniel presenta solo las 15 diapositivas.** Whaldo figura como coautor y puede responder preguntas si el jurado lo pide.
+- El cierre «Cada teléfono, un laboratorio» lo dice Daniel.
 
-## Guion
+## Las tres pausas que valen la presentación
+1. **Después de «El doble»** (diapositiva 2): dos segundos de silencio. Es el dato que el jurado debe recordar.
+2. **Después de «4,3 MB»** (diapositiva 10): una pausa breve. Deja que caiga la idea de que es liviano de verdad.
+3. **Antes de «Cada teléfono, un laboratorio»** (diapositiva 14): dos segundos. Es la frase de cierre.
 
-| Diap. | Tiempo | Qué decir | Cómo decirlo |
+## Guion con indicaciones
+
+| Diap. | Tiempo | Qué decir (texto exacto) | Cómo decirlo |
 |---|---|---|---|
-| 1. Chispa Lab | 0:00–0:17 | Buenas tardes, honorable jurado. Somos Daniel Valdés, Whaldo Ortega y Abigail Claroz, de la UTP de Veraguas. Les presentamos Chispa Lab: un laboratorio de ciencias que cabe en el teléfono de cualquier niño. Sin internet, inclusivo y de código abierto. | Sonríe, mira al jurado, sin leer. Deja ver el teléfono de la portada medio segundo antes de hablar. |
-| 2. 6 de cada 10 estudiantes panameños no alcanzan el nivel básico en ciencias | 0:17–0:49 | Empecemos por un número. Seis de cada diez estudiantes panameños de quince años no alcanzan el nivel básico en ciencias. Así lo midió PISA en 2022: Panamá, 388 puntos. Chile, el mejor de América Latina, 444. La Unión Europea, 480. Y el promedio de la OCDE, la organización que aplica la prueba, 485. Solo el 38 por ciento de nuestros estudiantes llega al nivel básico; en Europa y en la OCDE, el 76. El doble. | Señala la barra rosa de Panamá y luego la violeta. Pausa de dos segundos después de «El doble». Es el momento más importante: que quede clara la brecha. |
-| 3. Nacer en una comarca indígena marca lo que se aprende | 0:49–1:12 | Y esa brecha no es pareja. Un niño que nace en una comarca indígena alcanza cinco años de escolaridad; uno de zona urbana, nueve. Cuatro años de diferencia que no dependen del esfuerzo del niño, sino del lugar donde nació. Y el estudio regional ERCE 2025 asocia pertenecer a un pueblo indígena con menores aprendizajes. | Tono más grave, más lento. Señala «5 vs 9 años». |
-| 4. El laboratorio no llega, pero el teléfono ya está | 1:12–1:32 | ¿Y el laboratorio? Cada aula cuesta unos 150 mil dólares, y la licitación de este año alcanza 73 centros de educación media. Es una inversión valiosa, pero llega a pocos y despacio. Sin embargo, hay algo que ya está en las manos de las familias: el teléfono. | Aquí cambia el tono: de problema a esperanza. Levanta tu propio teléfono (o señálalo) en «el teléfono». |
-| 5. Nuestra idea: predice, formula, juega, descubre | 1:32–1:52 | Chispa Lab convierte ese teléfono en un laboratorio, con el método científico, jugando: el niño predice, formula su hipótesis, experimenta y descubre comparando con sus propios datos. Y funciona: un metaanálisis de 2024, con 35 estudios, encontró que predecir, observar y explicar tiene un efecto alto en ciencias. | Cuenta los cuatro pasos con los dedos. La frase del metaanálisis es tu respaldo: dila con seguridad. |
-| 6. Seis juegos, cuatro experimentos y un laboratorio libre | 1:52–2:12 | Chispa Lab descansa en tres pilares: experimentar, acompañar al docente e incluir a todos. Para experimentar, seis juegos con física real, cuatro experimentos con materiales de casa y un laboratorio libre con 24 descubrimientos. Miren la rampa: el niño predice, inclina el teléfono y la canica rueda. | Deja correr los GIF unos segundos en silencio mientras dices «Miren la rampa». Muestra los tres pilares con tres dedos. |
-| 7. Para docentes: el avance de la clase, sin internet | 2:12–2:35 | El docente no queda fuera. El alumno muestra un código QR con su avance y el docente lo escanea: sin internet, sin servidor y sin cuentas. La lista vive solo en el teléfono del docente. Y con esos datos, Chispa agrupa la clase con aprendizaje automático y le sugiere qué reforzar. El docente decide. | Señala el GIF de los dos teléfonos (QR). Subraya «sin internet» y «El docente decide». |
-| 8. Para todos los niños: siete apoyos opcionales | 2:35–2:54 | Es para todos. Uno de cada seis niños panameños de dos a catorce años tiene alguna discapacidad. Por eso el niño marca lo que le ayuda, y el juego se adapta: letra grande, lectura en voz alta, modo calma. Nunca es imposible, y no pedimos diagnósticos. | Señala el GIF donde se marcan los apoyos. Tono cálido; es la diapositiva de inclusión (criterio ProFuturo). |
-| 9. 6 técnicas de IA que aprenden dentro del teléfono | 2:54–3:26 | Detrás hay seis técnicas de aprendizaje automático clásico que aprenden dentro del teléfono, sin internet: un tutor estima qué ideas domina cada niño; un diagnóstico detecta la idea equivocada; un bandido elige la mejor pista; otro modelo aprende los colores con dos muestras; otro ajusta la dificultad para que el niño acierte siete de cada diez veces; y k-means agrupa la clase. Todo explicable, con supervisión humana, como pide el Reglamento europeo de IA de 2024. | Recórrelas con la mano, de izquierda a derecha, sin leer las cajas. No te detengas en ninguna: el mensaje es «IA real, local y explicable». |
-| 10. Funciona, y funciona liviano | 3:26–3:35 | Y funciona, y es liviano: 583 comprobaciones automáticas sin fallos y solo 230 kilobytes en la primera descarga, pensado para teléfonos modestos. | Dato corto, dicho con orgullo. Avanza rápido. |
-| 11. Meta: 3.800 estudiantes de Veraguas haciendo ciencia en 3 años | 3:35–3:49 | Nuestra meta: que 3.800 estudiantes de Veraguas hagan ciencia en tres años, el diez por ciento de los 38.250 de primaria y premedia. Sin comprar equipos: con los teléfonos que ya existen. | Di «3.800» despacio. Mira al jurado. |
-| 12. Contribuimos a tres Objetivos de Desarrollo Sostenible | 3:49–3:57 | Así contribuimos a tres Objetivos de Desarrollo Sostenible: educación de calidad, reducción de las desigualdades, e industria, innovación e infraestructura. | Señala los tres logos sin leerlos. Diez segundos, no más. |
-| 13. Un laboratorio por casi cero, financiado por quien ya invierte en educación | 3:57–4:15 | Un aula de laboratorio cuesta unos 150 mil dólares; Chispa Lab, casi cero por escuela. Es código abierto y sin servidor, así que se sostiene con servicios: adaptación, contenido y formación, que pagarían el Ministerio, fundaciones como ProFuturo y redes de escuelas. | Señala las dos tarjetas: 150.100 frente a casi cero. Es tu argumento de transferencia al mercado. |
-| 14. Conclusión | 4:15–4:41 | Concluimos: el problema es real, seis de cada diez estudiantes no alcanzan el nivel básico en ciencias. La solución ya funciona: un laboratorio en el teléfono, sin internet, inclusivo y con IA que aprende de cada niño. Y proponemos un piloto en Veraguas con la UTP, ProFuturo y el Ministerio. Porque cada niño merece su laboratorio. Cada teléfono, un laboratorio. Muchas gracias. | Cierre lento, mirando al jurado, sin diapositiva en la mano. Pausa antes de «Cada teléfono, un laboratorio». Pasa a la diapositiva 15 al decir «Muchas gracias». |
-| 15. Preguntas | después de 5:00 | «Con gusto respondemos sus preguntas.» | Deja la diapositiva con los GIF en pantalla; señala el juego cuando respondas. |
-| 16. Referencias | anexo | Solo si preguntan por una fuente. | Di: «Cada dato tiene su fuente en la nota al pie; aquí están completas, en formato APA». |
+| 1. Portada: Chispa Lab | 0:00–0:15 | Soy Daniel Valdés y les presento Chispa Lab: un laboratorio de ciencias en cada teléfono. Funciona sin internet una vez instalado, es inclusivo y es de código abierto. | Sonríe, mira al jurado y deja ver el teléfono de la portada. No leas la diapositiva. |
+| 2. 6 de cada 10 estudiantes panameños de 15 años no alcanzan el nivel básico en ciencias | 0:15–0:45 | Para entender por qué esto es vital, miremos PISA 2022: 6 de cada 10 estudiantes panameños de 15 años no alcanzan el nivel básico en ciencias. Solo un 38 % lo logra, mientras que en la OCDE y en la Unión Europea ese nivel llega al 76 %. El doble. | Señala la barra de Panamá y luego la de la OCDE/UE. Pausa de dos segundos después de «El doble». |
+| 3. Brecha indígena | 0:45–1:10 | Y esta realidad es aún más dura en nuestras comarcas. El ERCE Pospandemia 2025 asocia pertenecer a un pueblo indígena con menores aprendizajes. Además, la brecha de escolaridad es enorme: un niño de comarca indígena alcanza en promedio 5 años de escolaridad, frente a los 9 de un niño en zona urbana. | Baja el tono y ve más lento. Señala «5 vs 9 años». No corras esta diapositiva. |
+| 4. Costo del laboratorio frente al teléfono | 1:10–1:32 | El problema es que equipar un aula de laboratorio cuesta unos 150.100 dólares, y la licitación de 2026 apenas alcanza a 73 centros de nivel medio. El laboratorio físico no llega, pero el teléfono ya está en las manos de las familias. Chispa Lab convierte ese teléfono en un laboratorio. | Cambia de problema a esperanza. Levanta tu propio teléfono al decir «el teléfono». |
+| 5. Metodología pedagógica: predice, formula, juega, descubre | 1:32–1:54 | Pedagógicamente no es un juego pasivo. Seguimos un método con un efecto alto en ciencias: un metaanálisis de 2024, con 35 estudios, encontró un efecto de 0,98. Primero el niño predice qué pasará; luego formula una hipótesis causal; después experimenta usando su teléfono como instrumento para hacer una prueba justa; y finalmente descubre y compara con sus propios datos. | Cuenta los cuatro pasos con los dedos. Di «0,98» con seguridad, sin exagerar. |
+| 6. Seis juegos, cuatro experimentos y un laboratorio libre | 1:54–2:14 | Hay seis juegos interactivos, cuatro experimentos con materiales de casa y un laboratorio libre con 24 descubrimientos. Los estudiantes usan la inclinación para estudiar la física de una rampa, el micrófono para analizar el sonido con globos, o combinan materiales caseros como péndulos y col morada. | Deja correr el GIF y señala la rampa. Muestra los tres pilares con tres dedos. |
+| 7. Para docentes: el avance de la clase, sin internet | 2:14–2:37 | Para los docentes, facilitamos el seguimiento de la clase de manera totalmente offline. El estudiante muestra un código QR que genera la app y el docente lo escanea. Con cuatro alumnos o más, la aplicación agrupa la clase y sugiere áreas de refuerzo, manteniendo datos sensibles como la voz o los apoyos estrictamente privados en cada dispositivo. | Señala el GIF de los dos teléfonos. Subraya «sin internet» y «el docente decide». |
+| 8. Apoyos inclusivos | 2:37–2:56 | Diseñamos pensando en la inclusión: 1 de cada 6 niños panameños de 2 a 14 años tiene alguna discapacidad. El estudiante marca lo que le ayuda y el juego se adapta con letra grande, lectura en voz alta o modo calma, sin requerir nunca diagnósticos médicos. | Tono cálido. Señala el GIF de los apoyos y pausa en «sin diagnósticos». |
+| 9. Inteligencia artificial que aprende dentro del teléfono | 2:56–3:28 | Detrás hay seis técnicas de IA que corren dentro del teléfono. Un tutor bayesiano estima qué ideas domina cada niño; un clasificador Naïve Bayes detecta la idea errónea; un bandido elige la mejor pista; otro modelo aprende los colores con dos muestras; otro ajusta la dificultad para acertar siete de cada diez veces; y k-means agrupa la clase. Funciona sin internet, sin enviar datos a la nube, es explicable y deja la decisión final en manos del adulto. | Recórrelas con la mano, sin leer las cajas. El mensaje es «IA real, local y explicable». |
+| 10. Datos técnicos: funciona y es liviano | 3:28–3:42 | A nivel técnico es sólido y liviano: 583 comprobaciones automáticas sin fallos. La primera carga de la versión web pesa 230 KB comprimida; el APK completo de Android, 4,3 MB. Los dos caben en un teléfono modesto. | Dato corto y con orgullo. Distingue web (230 KB) y APK (4,3 MB); no los mezcles. |
+| 11. Meta: 3.800 estudiantes de Veraguas en tres años | 3:42–3:56 | Nuestra meta a tres años es llegar a 3.800 estudiantes, el 10 % de la matrícula de primaria y premedia de Veraguas, sin comprar un solo equipo nuevo: aprovechando los teléfonos que ya existen. | Di «3.800» despacio y mira al jurado. |
+| 12. Impacto en los ODS | 3:56–4:04 | Esta iniciativa contribuye directamente a tres Objetivos de Desarrollo Sostenible: educación de calidad pertinente, reducción de las desigualdades mediante la inclusión, y fomento a la industria e innovación aumentando el acceso a las TIC sin exigir conexión. | Señala los tres logos sin leerlos. Ocho segundos, no más. |
+| 13. Modelo de financiamiento | 4:04–4:22 | El modelo es sostenible: mientras un aula de laboratorio cuesta 150.100 dólares, el costo de equipos de Chispa Lab por escuela es cercano a cero. El sostenimiento se paga con servicios de adaptación, contenido extra y formación docente; proponemos que lo financien el Ministerio, fundaciones como ProFuturo y redes de escuelas. | Señala las dos tarjetas: 150.100 $ frente a casi cero en equipos. |
+| 14. Conclusión | 4:22–4:45 | En conclusión: el problema es crítico, especialmente en nuestras comarcas. La solución ya funciona e integra inclusión e IA fuera de línea. Lo que proponemos hoy es un piloto en Veraguas junto a la UTP, ProFuturo y el Meduca. Construir laboratorios de concreto tomará años; con Chispa Lab, cada teléfono es un laboratorio, hoy. | Cierre lento. Pausa antes de «Cada teléfono, un laboratorio» y mira al jurado. |
+| 15. Cierre | 4:45–4:51 | Muchas gracias. | Sonríe, deja la diapositiva en pantalla e invita a preguntas con la mano. |
+| 16. Referencias (anexo) | Anexo | Las fuentes de cada dato están en la nota al pie de cada diapositiva y, completas en formato APA, en este anexo. | Solo si preguntan por una fuente. No lo presentes. |
 
-## Tres técnicas para sonar seguros
-- **La pausa es tu mejor recurso:** dos segundos de silencio después de «El doble» (diapositiva 2) y antes de «Cada teléfono, un laboratorio» (14).
-- **Mira al jurado, no a la pantalla:** la diapositiva ya dice lo que dices; tú pones la voz.
-- **No leas los números de las gráficas:** di el número que importa y señálalo con la mano.
+## Cómo se conecta con la rúbrica del jurado
 
-## Preguntas probables y cómo responder (con lo que sí sabemos)
-1. **¿Funciona en un teléfono real?** «Sí: el autor la probó en un teléfono y funciona. Además la medimos con la CPU hasta seis veces más lenta, y el modo ligero se activa solo; pesa 230 kilobytes y corre en modo avión.»
-2. **¿Cómo saben que mejora el aprendizaje?** «Todavía no lo hemos medido con niños: es lo que haría el piloto en Veraguas. Lo que sí tenemos es la evidencia de la estrategia: un metaanálisis de 2024 con 35 estudios encontró un efecto alto de predecir, observar y explicar. El piloto mide antes y después.»
-3. **¿Es IA de verdad o solo reglas?** «Son seis técnicas de aprendizaje automático clásico que se entrenan con los datos de cada niño dentro del teléfono: un tutor bayesiano, un clasificador, un bandido de Thompson, un centroide, una estimación bayesiana del margen y k-means. No usamos un modelo de lenguaje: cada decisión se puede explicar con una fórmula, y el adulto puede apagarla.»
-4. **¿Qué pasa con los datos de los niños?** «No salen del teléfono. Al docente solo llega lo que el estudiante decide mostrar con el QR, y no viajan ni la fecha de nacimiento ni los apoyos.»
-5. **¿Quién paga y cómo se sostiene?** «El código es abierto y no hay servidor, así que el costo de mantenerlo es de trabajo. El ingreso son servicios: adaptación por país, contenido y formación docente, que pagarían el Ministerio, fundaciones como ProFuturo y redes de escuelas. Una aula de laboratorio cuesta unos 150 mil dólares; Chispa Lab, casi cero por escuela.»
-6. **¿Por qué QR y no Bluetooth o internet?** «Funciona en cualquier teléfono con cámara, sin emparejar y sin conexión. Comparamos las opciones y el QR fue la más simple y robusta.»
-7. **¿Y si no hay docente o el niño tiene una discapacidad?** «Son siete apoyos opcionales que el niño o su familia marcan; el juego se adapta y nunca es imposible. No pedimos diagnósticos.»
-8. **¿Cuánto se desarrolló en el hackatón?** «Gran parte: alrededor del 71 % del código se escribió en el repositorio entre el 3 y el 5 de noviembre, incluida la clase con QR y la IA que aprende. La base de los primeros juegos se preparó el 3 de noviembre como punto de partida; el detalle está en la bitácora del repositorio.»
+No hace falta decirlo todo: la presentación ya lo demuestra. Pero conviene tenerlo claro para las preguntas.
 
-*Datos citados: ver la diapositiva 16 (referencias en formato APA).*
+**Modalidad innovadora** (si concursan en ella):
+- **Creatividad e innovación (40 %):** un laboratorio de ciencias con los sensores del teléfono, IA local y QR sin internet; no es un videojuego de preguntas.
+- **Acabado y calidad (20 %):** 583 comprobaciones automáticas, APK de 4,3 MB, PWA offline, 16 diapositivas y documentación reproducible.
+- **Transferencia al mercado (20 %):** código MIT, sin servidor ni costo por usuario; ingresos por adaptación, contenido y formación.
+- **IA para países desfavorecidos (20 %):** funciona sin conexión, en teléfonos modestos, con datos que no salen del dispositivo.
+
+**Premio Retos ProFuturo** (transversal):
+- **Impacto social (25 %):** 38 % de nivel básico en ciencias, 5 vs 9 años de escolaridad, 73 centros en la licitación, meta de 3.800 estudiantes.
+- **Inclusión y equidad (25 %):** 7 apoyos opcionales, 1 de cada 6 niños con discapacidad, nunca imposible, sin diagnósticos.
+- **Sostenibilidad y escalabilidad (25 %):** MIT, sin servidor, 4,3 MB, un archivo sirve a miles de teléfonos, servicios como ingreso.
+- **Ética de la IA (25 %):** local, explicable, sin datos enviados, el adulto decide, marco del Reglamento (UE) 2024/1689 y UNESCO 2024.
+
+## Preguntas probables del jurado
+
+1. **¿Funciona en un teléfono real?**
+   «Sí: el autor la probó en un teléfono y funciona. Además la medimos con la CPU hasta seis veces más lenta y el modo ligero se activa solo. La web pesa 230 KB en la primera carga y el APK 4,3 MB; corre en modo avión.»
+
+2. **¿Cómo saben que mejora el aprendizaje?**
+   «Todavía no lo hemos medido con niños: eso es el piloto. Lo que sí tenemos es la evidencia de la estrategia: un metaanálisis de 2024 con 35 estudios encontró un efecto alto (0,98) de predecir, observar y explicar. El piloto mide antes y después.»
+
+3. **¿Es IA de verdad o son reglas?**
+   «Son seis técnicas de aprendizaje automático clásico que se entrenan con los datos de cada niño dentro del teléfono: un tutor bayesiano, un Naïve Bayes, un bandido de Thompson, un centroide, una estimación bayesiana del margen y k-means. No usamos un modelo de lenguaje: cada decisión se explica con una fórmula y el adulto puede apagarla.»
+
+4. **¿Qué pasa con los datos de los niños?**
+   «No salen del teléfono. Al docente solo llega lo que el estudiante decide mostrar con el QR, y no viajan la fecha de nacimiento, los apoyos, la voz ni el cuaderno. Un adulto confirma si el jugador es menor y todo se puede borrar desde Ajustes.»
+
+5. **¿Quién paga y cómo se sostiene?**
+   «El código es abierto y no hay servidor, así que el costo de mantenerlo es de trabajo. El ingreso son servicios: adaptación por país, contenido y formación docente. Proponemos que lo financien el Ministerio, fundaciones como ProFuturo y redes de escuelas. Un aula de laboratorio cuesta 150.100 $; Chispa Lab, casi cero en equipos por escuela.»
+
+6. **¿Por qué QR y no Bluetooth o internet?**
+   «Funciona en cualquier teléfono con cámara, sin emparejar, sin permisos nuevos y sin conexión. Comparamos las opciones y el QR fue la más simple y robusta; si no se lee, hay un código de texto para pegar.»
+
+7. **¿Y si no hay docente o el niño tiene una discapacidad?**
+   «Son siete apoyos opcionales que el niño o su familia marcan; el juego se adapta y nunca es imposible. No pedimos diagnósticos y el docente no es obligatorio para jugar.»
+
+8. **¿Cuánto se desarrolló en el hackatón?**
+   «Todo el proyecto se desarrolló entre el 3 y el 5 de noviembre, dentro del plazo. La primera versión se escribió el 3 de noviembre, ya iniciado el hackatón, y se incorporó al repositorio el 4 de noviembre; el resto se completó hasta el 5. No hay código previo al 3 de noviembre; el historial de git lo respalda.»
+
+9. **¿Qué falta?**
+   «Un piloto con niños y docentes en Veraguas; calibrar la IA con esos datos; medir en un Android de gama baja; inglés y portugués; y copia de respaldo y sincronización de la lista del docente. No decimos que ya está validado.»
+
+10. **¿Por qué este proyecto cumple los criterios?**
+   «Porque ataca un problema medido, con una solución que ya funciona sin internet, inclusiva, con IA ética y local, y con un modelo de sostenibilidad sin servidor. Y porque el piloto es concreto: Veraguas, la UTP, ProFuturo y el Meduca.»
+
+## Lo que no hay que decir
+
+- **«La aplicación pesa 230 KB»** sin aclarar: son 230 KB de la primera carga web; el APK son 4,3 MB.
+- **«Validado con niños»**: no hay piloto. Se puede decir «el autor la probó en un teléfono y funciona».
+- **«Diagnóstico»** clínico: la app detecta ideas erróneas, no diagnostica a nadie.
+- **«Construir aulas cuesta 150.100 $»**: ese dinero es equipar (equipos, instalación y capacitación).

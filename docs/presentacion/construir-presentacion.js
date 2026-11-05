@@ -63,7 +63,7 @@ s.addNotes(notas());
 
 // ---------- 2. Problema: ciencias en Panamá frente a América Latina y Europa ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Problema' });
-s.addText('6 de cada 10 estudiantes panameños no alcanzan el nivel básico en ciencias', { placeholder: 'title' });
+s.addText('6 de cada 10 estudiantes panameños de 15 años no alcanzan el nivel básico en ciencias', { placeholder: 'title', fontSize: 28 });
 tarjeta(s, 0.4, 1.3, 6.55, 3.55, K.pink, 'Tarjeta gráfico');
 s.addChart(pres.charts.BAR, [{ name: 'Puntaje en ciencias, PISA 2022', labels: ['Panamá', 'México', 'Colombia', 'Uruguay', 'Chile', 'Unión Europea', 'Promedio OCDE'], values: [388, 410, 411, 435, 444, 480, 485] }], {
   x: 0.5, y: 1.35, w: 6.35, h: 3.45, barDir: 'bar', chartColors: [K.pink, K.cyan, K.cyan, K.cyan, K.cyan, K.violet, K.violet], showValue: true, dataLabelPosition: 'outEnd', dataLabelColor: K.navy, dataLabelFontSize: 13, dataLabelFontBold: true,
@@ -72,7 +72,7 @@ s.addChart(pres.charts.BAR, [{ name: 'Puntaje en ciencias, PISA 2022', labels: [
 T(s, [{ text: '38 %', options: { bold: true, fontSize: 18, color: K.pink } }, { text: ' alcanza el nivel básico en Panamá; ', options: { fontSize: 12 } }, { text: '76 %', options: { bold: true, fontSize: 18, color: K.violet } }, { text: ' en la OCDE y ', options: { fontSize: 12 } }, { text: '76 %', options: { bold: true, fontSize: 18, color: K.violet } }, { text: ' en la UE', options: { fontSize: 12 } }], { x: 0.5, y: 4.9, w: 6.4, h: 0.4, valign: 'middle', objectName: 'Nivel básico' });
 telefono(s, '01.gif', 7.55, 1.15, 3.55, 'la rampa', K.pink);
 T(s, 'Ciencias que se descubren jugando', { x: 6.75, y: 4.9, w: 3.0, h: 0.35, fontSize: 11.5, bold: true, color: K.navy, align: 'center', objectName: 'Pie rampa' });
-nota(s, 'OCDE: Organización para la Cooperación y el Desarrollo Económicos, que aplica la prueba PISA. Datos de Fundación Exe Colombia (2024), Cyprus Mail (2023), Comisión Europea (s. f.) y La Prensa (2026a).');
+nota(s, 'OCDE: Organización para la Cooperación y el Desarrollo Económicos, que aplica la prueba PISA. Datos de Fundación Exe Colombia (2024), Cyprus Mail (2023), Comisión Europea (2024) y La Prensa (2026a).');
 s.addNotes(notas());
 
 // ---------- 3. Pueblos originarios y comarcas ----------
@@ -164,14 +164,14 @@ s.addNotes(notas());
 pres.addSection({ title: 'Impacto y mercado' });
 s = pres.addSlide({ masterName: 'AZUL', sectionTitle: 'Impacto y mercado' });
 s.addText('Funciona, y funciona liviano', { placeholder: 'title' });
-[['583', 'comprobaciones automáticas, sin fallos', K.green], ['230 KB', 'es todo lo que se descarga la primera vez', K.yellow]].forEach((d, i) => {
+[['583', 'comprobaciones automáticas, sin fallos', K.green], ['230 KB', 'pesa la primera carga de la web; el APK, 4,3 MB', K.yellow]].forEach((d, i) => {
   const y = 1.35 + i * 1.85;
   tarjeta(s, 0.5, y, 6.3, 1.7, d[2], 'Tarjeta dato ' + (i + 1));
   T(s, d[0], { x: 0.7, y: y + 0.1, w: 2.7, h: 1.5, fontSize: 48, bold: true, color: K.navy, align: 'center', valign: 'middle', objectName: 'Dato ' + (i + 1) });
   T(s, d[1], { x: 3.5, y: y + 0.1, w: 3.1, h: 1.5, fontSize: 16, color: K.navy, valign: 'middle', objectName: 'Dato etiqueta ' + (i + 1) });
 });
 telefono(s, '03.gif', 7.4, 1.2, 3.6, 'la voz', K.green);
-nota(s, 'Nota. Elaboración propia, versión 1.4.0: conjunto de pruebas automáticas y primera carga comprimida.', K.white);
+nota(s, 'Nota. Elaboración propia, versión 1.4.0: conjunto de pruebas automáticas, primera carga web comprimida y APK de 4,3 MB.', K.white);
 s.addNotes(notas());
 
 // ---------- 11. Meta ----------
@@ -197,13 +197,13 @@ s.addNotes(notas());
 // ---------- 12. Mercado ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Impacto y mercado' });
 s.addText('Un laboratorio por casi cero, financiado por quien ya invierte en educación', { placeholder: 'title' });
-[['≈ 150.100 $', 'una aula de laboratorio', K.pink], ['≈ 0 $', 'por escuela con Chispa Lab', K.green]].forEach((c, i) => {
+[['≈ 150.100 $', 'una aula de laboratorio', K.pink], ['≈ 0 $', 'en equipos por escuela', K.green]].forEach((c, i) => {
   const x = 0.5 + i * 3.2;
   tarjeta(s, x, 1.35, 3.05, 2.3, c[2], 'Tarjeta ' + (i + 1));
   T(s, c[0], { x: x + 0.1, y: 1.45, w: 2.85, h: 1.2, fontSize: 34, bold: true, color: c[2] === K.green ? '0E9F6E' : c[2], align: 'center', valign: 'middle', objectName: 'Cifra ' + (i + 1) });
   T(s, c[1], { x: x + 0.15, y: 2.65, w: 2.75, h: 0.8, fontSize: 15, color: K.navy, align: 'center', valign: 'top', objectName: 'Etiqueta ' + (i + 1) });
 });
-T(s, [{ text: 'Pagan: ', options: { bold: true, color: K.violet } }, { text: 'el Ministerio, fundaciones como ProFuturo y redes de escuelas, por adaptación, contenido y formación.' }], { x: 0.5, y: 3.9, w: 6.3, h: 1.0, fontSize: 16, color: K.navy, valign: 'top', objectName: 'Quién paga' });
+T(s, [{ text: 'Proponemos que paguen: ', options: { bold: true, color: K.violet } }, { text: 'el Ministerio, fundaciones como ProFuturo y redes de escuelas, por adaptación, contenido y formación.' }], { x: 0.5, y: 3.9, w: 6.3, h: 1.0, fontSize: 16, color: K.navy, valign: 'top', objectName: 'Quién paga' });
 telefono(s, '02.gif', 7.55, 1.15, 3.55, 'el péndulo', K.violet);
 nota(s, 'Nota. Costo por aula: cálculo propio con La Prensa (2026b). Código abierto y sin servidor: el ingreso son los servicios.');
 s.addNotes(notas());
@@ -212,7 +212,7 @@ s.addNotes(notas());
 s = pres.addSlide({ masterName: 'OSCURO', sectionTitle: 'Impacto y mercado' });
 burbuja(s, -0.8, -0.8, 2.6, K.yellow, 'Adorno 1'); burbuja(s, 4.6, 4.3, 2.4, K.cyan, 'Adorno 2');
 T(s, 'Conclusión', { x: 0.5, y: 0.35, w: 5.5, h: 0.7, fontSize: 34, bold: true, color: K.white, objectName: 'Título' });
-[['El problema es real', '6 de cada 10 estudiantes panameños no alcanzan el nivel básico en ciencias, y más en las comarcas.', K.pink], ['La solución ya funciona', 'Un laboratorio en el teléfono: sin internet, inclusivo y con IA que aprende de cada niño.', K.green], ['Lo que proponemos', 'Un piloto en Veraguas con la UTP, ProFuturo y el Meduca.', K.yellow]].forEach((c, i) => {
+[['El problema es real', '6 de cada 10 estudiantes panameños de 15 años no alcanzan el nivel básico en ciencias, y más en las comarcas.', K.pink], ['La solución ya funciona', 'Un laboratorio en el teléfono: sin internet, inclusivo y con IA que aprende de cada niño.', K.green], ['Lo que proponemos', 'Un piloto en Veraguas con la UTP, ProFuturo y el Meduca.', K.yellow]].forEach((c, i) => {
   const y = 1.25 + i * 1.05;
   s.addShape(pres.ShapeType.roundRect, { x: 0.5, y, w: 5.9, h: 0.92, rectRadius: 0.12, fill: { color: K.white, transparency: 10 }, line: { color: c[2], width: 3 }, objectName: 'Tarjeta ' + (i + 1) });
   T(s, [{ text: c[0], options: { bold: true, fontSize: 15, color: c[2] === K.yellow ? 'B8860B' : (c[2] === K.green ? '0E9F6E' : c[2]), breakLine: true } }, { text: c[1], options: { fontSize: 12, color: K.navy } }], { x: 0.7, y, w: 5.5, h: 0.92, valign: 'middle', objectName: 'Conclusión ' + (i + 1) });
@@ -236,7 +236,7 @@ pres.addSection({ title: 'Anexo' });
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Anexo' });
 s.addText('Referencias', { placeholder: 'title' });
 const REFS = [
-  ['Comisión Europea. (s. f.). ', 'PISA 2022 and the EU: Three thought-provoking trends', '. European School Education Platform. https://school-education.ec.europa.eu/en/discover/expert-views/pisa-2022-and-eu-three-thought-provoking-trends'],
+  ['Comisión Europea. (2024, 7 de marzo). ', 'PISA 2022 and the EU: Three thought-provoking trends', '. European School Education Platform. https://school-education.ec.europa.eu/en/discover/expert-views/pisa-2022-and-eu-three-thought-provoking-trends'],
   ['Cyprus Mail. (2023, 6 de diciembre). ', 'Cypriot children perform well below average in maths, reading and science', '. https://cyprus-mail.com/2023/12/06/cypriot-children-perform-well-below-average-in-maths-reading-and-science'],
   ['Fundación Exe Colombia. (2024, marzo). ', 'Reporte general de resultados PISA 2022', '. https://fundacionexe.org.co/wp-content/uploads/2024/03/Reporte-general-de-resultados-PISA-2022.pdf'],
   ['Koyunlu Ünlü, Z. (2024). Effect of the predict-observe-explain (POE) strategy on achievement in science education: A meta-analysis study. ', 'Van Yüzüncü Yıl Üniversitesi Eğitim Fakültesi Dergisi, 21', '(3), 893–920. https://doi.org/10.33711/yyuefd.1570041'],
@@ -254,7 +254,7 @@ const REFS = [
   col.forEach((r) => { runs.push({ text: r[0], options: { fontSize: 8, color: K.navy } }, { text: r[1], options: { fontSize: 8, italic: true, color: K.navy } }, { text: r[2], options: { fontSize: 8, color: K.navy, breakLine: true, paraSpaceAfter: 5 } }); });
   T(s, runs, { x: 0.4 + c * 4.75, y: 1.2, w: 4.55, h: 3.7, valign: 'top', objectName: 'Referencias ' + (c + 1) });
 });
-T(s, 'Cálculos y cifras propias: ≈ 150.100 $ por aula (28.969.463 ÷ 193), 38.250 estudiantes (primaria más premedia, Veraguas), meta de 3.800 (10 %), 583 pruebas y 230 KB (versión 1.4.0). Fecha de consulta: 4 de noviembre de 2026.', { x: 0.4, y: 4.88, w: 9.2, h: 0.4, fontSize: 8, italic: true, color: K.navy, valign: 'top', objectName: 'Nota propia' });
+T(s, 'Cálculos y cifras propias: ≈ 150.100 $ por aula (28.969.463 ÷ 193), 38.250 estudiantes (primaria más premedia, Veraguas), meta de 3.800 (10 %), 583 pruebas, 230 KB de primera carga web y 4,3 MB de APK (versión 1.4.0). Fecha de consulta: 4 de noviembre de 2026.', { x: 0.4, y: 4.88, w: 9.2, h: 0.4, fontSize: 8, italic: true, color: K.navy, valign: 'top', objectName: 'Nota propia' });
 s.addNotes(notas());
 
 (async () => {

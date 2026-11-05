@@ -1,6 +1,6 @@
 # Librerías de terceros (solo para los códigos QR de la clase)
 
-Se cargan únicamente cuando se abre «Mis alumnos» o «Compartir con mi docente»; el resto de la app no las usa.
+El service worker las descarga en la primera carga (≈ 53 KB) para que la clase funcione sin conexión, pero no se ejecutan hasta que se abre «Mis alumnos» o «Compartir con mi docente»; el resto de la app no las usa.
 
 | Archivo | Para qué | Licencia | Origen |
 |---|---|---|---|

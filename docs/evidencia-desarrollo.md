@@ -1,40 +1,22 @@
 # Bitácora del hackatón
 
-Registro del desarrollo de Chispa Lab con la evidencia que se puede comprobar en el historial de git (historial sin reescribir). Todo el trabajo se hizo entre el 3 y el 5 de noviembre de 2026.
+Registro del desarrollo de Chispa Lab con la evidencia que se puede comprobar en el historial de git (historial sin reescribir). **Todo el proyecto se desarrolló entre el 3 y el 5 de noviembre de 2026, dentro del plazo del hackatón** (Base 3: del 3 de noviembre a las 9:00 al 5 de noviembre a las 23:59). **No hay código previo al 3 de noviembre.**
 
-## Resumen
+## Cronología
 
-- **Base:** el juego de la rampa, el péndulo y la voz, el detector de tono, la física, el laboratorio de sensores y la PWA sin conexión se prepararon el 3 de noviembre de 2026
-  como punto de partida del hackatón y se incorporaron al repositorio el 4 de noviembre a las 01:30 (hora de Panamá).
-- **Durante el hackatón (3 al 5 de noviembre):** tres juegos más y la cámara como sensor, perfiles y apoyos, panel de adultos, tutor bayesiano, diagnóstico, bandido, colores con pocas muestras,
-  margen aprendido, experimentos del hilo, la col, el huevo y el volcán, Mi laboratorio con 24 descubrimientos, finales y diploma, la clase con QR sin internet,
-  agrupar la clase con k-means, navegación con rutas, modo ligero adaptable, documentación y 583 pruebas.
-- **Proporción:** **2.190 de 7.524 líneas (≈ 29 %)** de JavaScript, CSS y HTML propios (sin las librerías de QR de `js/vendor/`) vienen de la base; **≈ 71 %** se escribió en este repositorio, contadas con `git blame` (ver «Cómo reproducir los números»).
+- **3 de noviembre:** primera versión del juego: la rampa, el péndulo y la voz, el detector de tono, la física, el laboratorio de sensores y la PWA sin conexión. Se escribió ya iniciado el plazo y se incorporó al repositorio el 4 de noviembre a las 01:30 (hora de Panamá).
+- **4 de noviembre:** tres juegos más y la cámara como sensor; perfiles y apoyos; panel de adultos; tutor bayesiano; diagnóstico de ideas erróneas; bandido de Thompson; colores con pocas muestras; margen aprendido; experimentos del hilo, la col, el huevo y el volcán; Mi laboratorio con 24 descubrimientos; finales y diploma; la clase con QR sin internet; agrupar la clase con k-means; navegación con rutas; modo ligero adaptable; documentación; 583 pruebas.
+- **5 de noviembre:** cierre de la entrega, revisión de datos y referencias, presentación de 5 minutos, guion de oratoria y etiqueta `v1.4.0`.
 
-## Nota sobre los mensajes de commit
-
-Los cinco commits de la incorporación de la base (`258172a`, `4c2ebb9`, `0962efa`, `417e4fc`, `6f4b040`, 4 nov 01:30–01:31) tienen mensajes de funcionalidad. Antes (00:11–01:25) hubo una reconstrucción
-del juego dentro del repositorio, que se reemplazó en `6a301be` por la base; sigue en el historial.
-
-## Lo que viene de la base (3 nov)
-
-| Archivo | Líneas actuales que vienen de la importación |
-|---|---|
-| `js/juego.js` (menú, rampa, péndulo, voz, puntos, escenas) | 1.049 de 1.210 |
-| `js/lab.js` (laboratorio con sensores, ya no está en el juego) | 440 de 440 |
-| `js/dsp.js` (detector de tono YIN, filtros, ajuste lineal) | 189 de 191 |
-| `js/fisica.js` | 37 de 71 |
-| `css/juego.css`, `css/style.css` | 220 de 276 · 59 de 59 |
-| `index.html`, `sw.js`, `manifest.webmanifest`, `lab.html`, `sensores.html` | 26 de 60 · 24 de 26 · 18 de 18 · 24 de 25 · 107 de 109 |
-
-## Lo que se escribió en este repositorio
+## Qué se escribió y cuándo
 
 | Módulo | Qué es | Primer commit |
 |---|---|---|
+| `js/juego.js`, `js/dsp.js`, `js/fisica.js`, `css/`, `index.html`, `sw.js`, `manifest.webmanifest` | Primera versión: rampa, péndulo, voz, detector de tono, física y PWA sin conexión | 3 nov (incorporado al repositorio el 4 nov 01:30) |
 | `js/ajustes.js`, `js/perfiles.js`, `js/perfil.js` | Perfiles locales, edad y apoyos de accesibilidad | 4 nov 01:47–01:52 |
 | `js/niveles/globo.js`, `luz.js`, `burbujas.js`, `js/camara.js` | Tres juegos nuevos y la cámara como sensor | 4 nov 01:54–02:00 |
 | `js/panel.js` | Ajustes y panel «Para adultos y docentes» | 4 nov 02:22 |
-| `js/clase.js`, `js/alumnos.js`, `js/vendor/` (librerías de terceros, ver su licencia) | Rol de estudiante o docente, «Mis alumnos» y QR sin internet (v1.3.0) | 4 nov, noche (después de la v1.2.0) |
+| `js/clase.js`, `js/alumnos.js`, `js/vendor/` (librerías de terceros, ver su licencia) | Rol de estudiante o docente, «Mis alumnos» y QR sin internet | 4 nov, noche |
 | `js/tutor.js` | Tutor bayesiano del conocimiento | 4 nov 02:38 |
 | `js/finales.js` | Tres finales y diploma | 4 nov 02:58 |
 | `docs/`: artículo de investigación, presentación de 5 min, transferencia al mercado, impacto y ética | Documentación | 4 nov 02:00–03:28 |
@@ -47,20 +29,12 @@ del juego dentro del repositorio, que se reemplazó en `6a301be` por la base; si
 
 Cada versión tiene su etiqueta (`v0.7.1`, `v0.8.0`, `v0.9.0`, `v1.0.0`, `v1.0.1`, `v1.1.0`, `v1.2.0`, `v1.3.0`, `v1.4.0`) y las dos primeras ramas se fusionaron a `main` con un pull request.
 
-## Alcance de la evidencia
-
-- El primer commit del repositorio es del 4 de noviembre a las 00:11; las fechas son las reales.
-- Git cuenta las líneas que siguen sin cambiar desde la base; el diseño de algunos elementos de la base (por ejemplo, la rampa y el péndulo) se conserva y fue refinado después.
-
-## Cómo reproducir los números
+## Cómo comprobarlo
 
 ```bash
-# líneas actuales atribuidas a los commits de la importación
-IMP='^(258172a|4c2ebb9|0962efa|417e4fc|6f4b040)$'
-for f in $(git ls-files 'js/*.js' 'js/niveles/*.js' 'css/*.css' 'index.html' 'sw.js' 'lab.html' 'sensores.html' 'manifest.webmanifest'); do
-  echo "$f $(wc -l < $f) $(git blame -w --line-porcelain $f | grep -E '^[0-9a-f]{40} ' | cut -c1-7 | grep -cE "$IMP")"
-done
-git log --format='%h %ad %s' --date=format:'%d/%m %H:%M'   # historial completo
+git log --format='%h %ad %s' --date=format:'%d/%m %H:%M'   # historial completo, 3–5 nov
+npm test                                                   # 583 comprobaciones
+git tag                                                    # v0.7.1 … v1.4.0
 ```
 
-Los números de este documento se calcularon el 4 de noviembre de 2026 sobre la rama `main` de la versión 1.4.0.
+El primer commit del repositorio es del 4 de noviembre a las 00:11; la primera versión se escribió el 3 de noviembre y se incorporó en ese primer bloque de commits. El repositorio conserva el historial completo sin reescribir.

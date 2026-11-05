@@ -43,7 +43,7 @@ persona y funcionando **sin internet**. El código es abierto y gratuito.
 
 ## Bajo coste y conectividad limitada (lo que el reto valora especialmente)
 
-Medidas propias de la versión 1.2.0 del 4 de noviembre de 2026, hechas en un ordenador (la prueba de funcionamiento en un teléfono la hizo el autor, sin cifras):
+Medidas propias de la versión 1.4.0 del 4 de noviembre de 2026, hechas en un ordenador (la prueba de funcionamiento en un teléfono la hizo el autor, sin cifras):
 
 | Qué | Valor |
 |---|---|

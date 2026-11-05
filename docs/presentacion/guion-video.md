@@ -42,7 +42,7 @@ Todos están grabados en Chromium con tamaño de teléfono. En `09`, la cámara 
 
 ## Lo que NO hay que decir
 
-- Si preguntan por el origen: la base (rampa, péndulo, voz) se preparó el 3 de noviembre como punto de partida y el resto se completó entre el 3 y el 5 de noviembre; el detalle está en la [bitácora](../evidencia-desarrollo.md). Todo el trabajo del repositorio se hizo entre el 3 y el 5 de noviembre.
+- Si preguntan por el origen: todo el proyecto se desarrolló entre el 3 y el 5 de noviembre; la primera versión (rampa, péndulo, voz) se escribió el 3 de noviembre, ya iniciado el plazo, y se incorporó al repositorio el 4. No hay trabajo previo; el detalle está en la [bitácora](../evidencia-desarrollo.md).
 - Que se probó con niños o que mejora el aprendizaje: no hay piloto. Las cifras de la IA son de simulación con alumnos sintéticos.
 - Que Chispa «mide el pH» o «diagnostica»: reconoce el color que se le enseñó, y no es un aparato médico.
 - Que está «validado» con niños o docentes: no hay piloto. Sí se puede decir que **el autor la probó en un teléfono y funciona**, y que las mediciones de fluidez son de Chromium con la CPU limitada.

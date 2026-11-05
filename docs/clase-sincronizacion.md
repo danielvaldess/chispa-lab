@@ -20,7 +20,7 @@ El rol **no es una cuenta ni una clave**: solo cambia lo que se ve en el menú. 
 | Viaja en el código | No viaja |
 |---|---|
 | Identificador aleatorio del jugador, nombre o apodo, minuto del avance | Fecha de nacimiento ni edad |
-| Estrellas (0 a 3) de los 6 juegos y 5 experimentos | Los apoyos que eligió («qué te ayuda a jugar») |
+| Estrellas (0 a 3) de los 6 juegos, los 4 experimentos y el laboratorio libre | Los apoyos que eligió («qué te ayuda a jugar») |
 | Partidas y predicciones acertadas de los 6 juegos, minutos jugados | Sesiones de voz, cuaderno de laboratorio, lo que la IA sabe del niño |
 | Cuántos descubrimientos tiene de «Mi laboratorio» (máscara de bits) | Audio ni imágenes de la cámara |
 
@@ -48,7 +48,7 @@ Las filas de Bluetooth y NFC se apoyan en las páginas de MDN; el resto de la co
 
 - `js/clase.js`: formato, CRC, lectura con validación estricta, fusión de alumnos y resúmenes. Funciones puras, probadas en Node.
 - `js/alumnos.js`: las pantallas (QR del alumno, lista, detalle, escáner, pegar código).
-- `js/vendor/`: dos librerías pequeñas **solo para el QR**, que se cargan únicamente al abrir esas pantallas y se guardan para usarlas sin conexión:
+- `js/vendor/`: dos librerías pequeñas **solo para el QR**. El service worker las descarga en la primera carga (≈ 53 KB de los 230 KB) para que la clase funcione sin conexión, pero no se ejecutan hasta abrir esas pantallas:
   [`qrcode-generator`](https://github.com/kazuhikoarase/qrcode-generator) 1.4.4 (MIT) para dibujar el QR y [`jsQR`](https://github.com/cozmo/jsQR) 1.4.0 (Apache-2.0) para leerlo si el navegador no trae `BarcodeDetector`.
   Licencias y origen en [`../js/vendor/LICENCIAS.md`](../js/vendor/LICENCIAS.md). Esto cambia lo que decíamos antes («cero librerías»): ahora son **dos, solo para esta función**.
 - La lista de alumnos vive dentro del perfil del docente (hasta 4 jugadores por teléfono; hasta 60 alumnos por docente), en el almacenamiento del teléfono. Si se borra la app, se pierde.

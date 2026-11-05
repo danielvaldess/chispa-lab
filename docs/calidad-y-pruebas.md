@@ -1,6 +1,6 @@
 # Calidad y pruebas
 
-Chispa Lab se verifica en cuatro capas, todas reproducibles desde el repositorio.
+Chispa Lab se verifica en cuatro capas: tres reproducibles con los comandos de abajo y una auditoría de accesibilidad puntual.
 
 ## 1. Pruebas automáticas (`npm test`, 583 comprobaciones)
 Física de los juegos, procesamiento de señal (tono, pulso), ajustes por edad y apoyos, perfiles, cámara, tutor, las seis técnicas de IA
@@ -19,7 +19,7 @@ Chromium con perfil móvil (390×844, pantalla táctil), cámara y micrófono vi
 - Prueba en teléfono real, reportada por el autor: [`prueba-telefono.md`](prueba-telefono.md).
 
 ## 3. Accesibilidad (auditoría automática WCAG 2 A y AA)
-Se corrió **axe-core 4.10.2** sobre 10 pantallas (menú, cuaderno, ajustes, compartir, pregunta de la rampa, Mi laboratorio, y las del docente:
+Se corrió **axe-core 4.10.2** sobre 10 pantallas (auditoría puntual, no incluida como script en el repositorio: menú, cuaderno, ajustes, compartir, pregunta de la rampa, Mi laboratorio, y las del docente:
 menú, Mis alumnos, Agrupar y Pegar un código). Resultado final: **0 violaciones**. La auditoría encontró y se corrigió:
 - zoom bloqueado (`user-scalable=no`, crítico): se retiró y se evita solo el zoom accidental por doble toque con `touch-action: manipulation`;
 - contraste de la inicial en las tarjetas de alumnos (2,63:1): ahora blanco sobre morado, 5,7:1.
@@ -33,4 +33,4 @@ npm test
 npm run probar:navegacion
 npm run probar:clase
 ```
-Requieren Node 22 o más y Chromium (variable opcional `CHROME=/ruta/al/chromium`); no instalan dependencias.
+Requieren Node 20 o más (el mismo del CI) y Chromium (variable opcional `CHROME=/ruta/al/chromium`); no instalan dependencias.

@@ -2,7 +2,7 @@
 
 **Resultado ya conocido (reporte del autor, 4 de noviembre de 2026):** Chispa Lab se probó en un teléfono y todo funciona. **No se registró** el modelo, la versión de Android, si es de gama baja ni la lista de pasos; por eso esta hoja sigue siendo útil: sirve para dejar un registro (y para probar en otros teléfonos, sobre todo de gama baja). Las mediciones de fluidez (fotogramas por segundo) siguen siendo de Chromium de escritorio con la CPU frenada. Si pruebas la app, anota lo que veas, aunque sea malo.
 
-**Teléfono:** modelo ______  · Android ______  · RAM ______  · ¿gama baja? Sí / No  · Versión de la app: 1.3.0
+**Teléfono:** modelo ______  · Android ______  · RAM ______  · ¿gama baja? Sí / No  · Versión de la app: 1.4.0
 
 ## Pasos (10 minutos)
 

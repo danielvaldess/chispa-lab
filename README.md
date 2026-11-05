@@ -32,7 +32,7 @@
 
 <p align="center">
   <b>6</b> juegos · <b>4</b> experimentos con materiales de casa · <b>24</b> descubrimientos · <b>7</b> apoyos de accesibilidad<br/>
-  <b>6</b> modelos de aprendizaje automático dentro del teléfono · <b>0</b> datos enviados · <b>583</b> pruebas automáticas · APK de <b>4,3 MB</b>
+  <b>6</b> técnicas de aprendizaje automático dentro del teléfono · <b>0</b> datos enviados · <b>583</b> pruebas automáticas · APK de <b>4,3 MB</b>
 </p>
 
 ---

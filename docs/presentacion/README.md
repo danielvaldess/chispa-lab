@@ -14,21 +14,21 @@
 
 | N.º | Diapositiva | Tiempo | Minutos |
 |---|---|---|---|
-| 1 | Portada (GIF del registro y de la rampa) | 0:12 | 0:00–0:12 |
-| 2 | **Gancho:** 6 de cada 10 estudiantes panameños no alcanzan el nivel básico en ciencias (PISA 2022 frente a América Latina, la UE y la OCDE) | 0:30 | 0:12–0:42 |
-| 3 | Nacer en una comarca indígena marca lo que se aprende (5 frente a 9 años de escolaridad; ERCE 2025) | 0:20 | 0:42–1:02 |
-| 4 | El laboratorio no llega (193 aulas, ≈ 150.100 $ por aula), pero el teléfono ya está | 0:20 | 1:02–1:22 |
-| 5 | Nuestra idea: predice, formula, juega, descubre | 0:18 | 1:22–1:40 |
-| 6 | Seis juegos, cuatro experimentos y un laboratorio libre (tres pilares) | 0:18 | 1:40–1:58 |
-| 7 | **Para docentes:** «Mis alumnos» con QR y agrupar la clase | 0:32 | 1:58–2:30 |
-| 8 | **Para todos los niños:** siete apoyos (GIF de la elección de apoyos y del registro) | 0:26 | 2:30–2:56 |
-| 9 | IA que aprende dentro del teléfono (6 técnicas) | 0:34 | 2:56–3:30 |
-| 10 | Funciona, y funciona liviano (583 pruebas, 230 KB) | 0:22 | 3:30–3:52 |
-| 11 | Meta: 3.800 estudiantes de Veraguas en 3 años (10 %) | 0:20 | 3:52–4:12 |
-| 12 | **Tres ODS** (4, 10 y 9, los logos oficiales en grande) | 0:14 | 4:12–4:26 |
-| 13 | Un laboratorio por casi cero, financiado por quien ya invierte en educación | 0:20 | 4:26–4:46 |
-| 14 | **Conclusión** (problema, solución y petición, con GIF de Mi laboratorio y la rampa) | 0:14 | 4:46–5:00 |
-| 15 | **¿Preguntas? ¡Muchas gracias!** con cinco GIF del juego en acción (se queda en pantalla) | — | después de los 5:00 |
+| 1 | Portada (GIF del registro y de la rampa) | 0:15 | 0:00–0:15 |
+| 2 | **Gancho:** 6 de cada 10 estudiantes panameños de 15 años no alcanzan el nivel básico en ciencias (PISA 2022 frente a América Latina, la UE y la OCDE) | 0:30 | 0:15–0:45 |
+| 3 | Nacer en una comarca indígena marca lo que se aprende (5 frente a 9 años de escolaridad; ERCE 2025) | 0:25 | 0:45–1:10 |
+| 4 | El laboratorio no llega (193 aulas, ≈ 150.100 $ por aula), pero el teléfono ya está | 0:22 | 1:10–1:32 |
+| 5 | Nuestra idea: predice, formula, juega, descubre | 0:22 | 1:32–1:54 |
+| 6 | Seis juegos, cuatro experimentos y un laboratorio libre (tres pilares) | 0:20 | 1:54–2:14 |
+| 7 | **Para docentes:** «Mis alumnos» con QR y agrupar la clase | 0:23 | 2:14–2:37 |
+| 8 | **Para todos los niños:** siete apoyos (GIF de la elección de apoyos y del registro) | 0:19 | 2:37–2:56 |
+| 9 | IA que aprende dentro del teléfono (6 técnicas) | 0:32 | 2:56–3:28 |
+| 10 | Funciona, y funciona liviano (583 pruebas; 230 KB la web, 4,3 MB el APK) | 0:14 | 3:28–3:42 |
+| 11 | Meta: 3.800 estudiantes de Veraguas en 3 años (10 %) | 0:14 | 3:42–3:56 |
+| 12 | **Tres ODS** (4, 10 y 9, los logos oficiales en grande) | 0:08 | 3:56–4:04 |
+| 13 | Un laboratorio por casi cero, financiado por quien ya invierte en educación | 0:18 | 4:04–4:22 |
+| 14 | **Conclusión** (problema, solución y petición, con GIF de Mi laboratorio y la rampa) | 0:23 | 4:22–4:45 |
+| 15 | **¿Preguntas? ¡Muchas gracias!** con cinco GIF del juego en acción (se queda en pantalla) | 0:06 | 4:45–4:51 |
 
 **Referencias:** cada diapositiva cita su fuente en la nota al pie con el formato autor-año de APA 7, y la diapositiva 16 (anexo) reúne las 12 referencias completas; las cifras propias se rotulan como «elaboración propia» o «cálculo propio».
 
@@ -42,12 +42,12 @@
 - **Primacía y recencia:** lo que más se recuerda es el principio y el final; el principio es el dato y el final es la petición con el juego funcionando durante las preguntas.
 - Los clips de cámara (Luz y color, Burbujas) no se muestran en la presentación.
 
-El texto de cada diapositiva suma 666 palabras: 4:41 a 142 palabras por minuto, con ≈ 25 segundos de margen para cambiar de diapositiva (versión con entonación, reparto y preguntas: [`guion-oratoria.md`](guion-oratoria.md)).
+El texto de cada diapositiva suma **703 palabras**: 4:41 a 150 palabras por minuto y 5:01 a 140; el objetivo es 4:51, así que conviene ensayar a 145–150 (versión con entonación, reparto y preguntas: [`guion-oratoria.md`](guion-oratoria.md)).
 
 ## Qué cifras tienen fuente y cuáles son medidas propias
 
 - **Con fuente en la propia diapositiva** (pie de página), **todas de 2024 a 2026**: ERCE Pospandemia (UNESCO y Meduca, 2025), retiro de PISA 2025 y ERCE 2025 (La Prensa), contrato de internet y licitación de laboratorios (La Prensa, 2025 y 2026), internet fijo (ASEP, 2024), ENDIS-2 (UNICEF, 2026), costo por alumno (INEC y Contraloría, 2026), matrícula de la Región Educativa de Veraguas (Meduca, 2024) y los metaanálisis de 2024. Detalle, nivel de verificación y lo que **no** tiene dato reciente en [`../investigacion/articulo.md`](../investigacion/articulo.md), sección 11.
-- **Medidas propias (no son de una fuente externa), del 4 de noviembre de 2026:** ≈ 230 KB comprimidos / 617 KB sin comprimir en la primera carga (los 46 archivos del service worker; ≈ 53 KB son las dos librerías de QR de la clase), 583 comprobaciones automáticas (`npm test`), 0,4 ms de la IA por partida con la CPU 6 veces más lenta (`scripts/medir-navegador.mjs`) y el ≈ 68 % de acierto del diagnóstico, que es **una simulación**. La diapositiva 9 dice que son mediciones en un ordenador y que la app también se probó en un teléfono y funciona (reporte del autor).
+- **Medidas propias (no son de una fuente externa), del 4 de noviembre de 2026:** ≈ 230 KB comprimidos / 617 KB sin comprimir en la primera carga **de la web** (los 46 archivos únicos del service worker; ≈ 53 KB son las dos librerías de QR de la clase) y **4,3 MB el APK de Android**; 583 comprobaciones automáticas (`npm test`), 0,4 ms de la IA por partida con la CPU 6 veces más lenta (`scripts/medir-navegador.mjs`) y el ≈ 68 % de acierto del diagnóstico, que es **una simulación**. La diapositiva 9 dice que son mediciones en un ordenador y que la app también se probó en un teléfono y funciona (reporte del autor).
 - **Ajuste que aprende de cada niño:** el punto de partida por edad (diapositiva 7, `js/ajustes.js`, `BANDAS`) se calibra en el piloto; los márgenes de dificultad por edad de la diapositiva 7 (`js/ajustes.js`, `BANDAS`).
-- **Nombres del equipo:** la portada y las notas de la diapositiva 1 los leen de `participantes.txt` (uno por línea). Si el archivo no existe, la portada muestra un aviso en lugar de inventar nombres.
+- **Nombres del equipo:** la portada lee los nombres de `participantes.txt` (uno por línea); las notas de la diapositiva 1 están en `guion.md`. Si el archivo no existe, la portada muestra un aviso en lugar de inventar nombres.
 - **Regenerar el `.pptx`:** `npm install pptxgenjs@3.12.0` en una carpeta aparte y ejecutar `construir-presentacion.js` con `SKILL`, `IMG` y `SALIDA`, y `NODE_PATH` apuntando a esa carpeta.
