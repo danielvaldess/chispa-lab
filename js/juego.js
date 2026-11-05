@@ -1105,6 +1105,9 @@ function menu() {
       '</span><span><b>' + esc(n.titulo) + '</b>' + (n.id === PERF.recomendado() ? '<span class="insignia">⭐ Para ti</span>' : '') + '<small>' + esc(n.sub) + (p ? ' · récord ' + p + ' ⭐' : '') + '</small><span class="est" aria-label="' + e + ' de 3 estrellas">' + estrellas(e) + '</span></span></a>';
   }).join('');
   var nDesc = (jug && jug.descubrimientos ? jug.descubrimientos.length : 0);
+  var nAl = jug && jug.alumnos ? jug.alumnos.length : 0;
+  var tarjetaAlumnos = PERFILES.esDocente(jug) ? '<a class="tarjeta" style="--c:#7c3aed;--d:0.05s" href="#/alumnos"><span class="ico" aria-hidden="true">👩‍🏫</span><span><b>Mis alumnos</b><span class="insignia">Para docentes</span><small>' +
+    (nAl ? nAl + (nAl === 1 ? ' alumno' : ' alumnos') + ' · escanea su QR para actualizar su avance' : 'Escanea el QR de tus alumnos y mira su avance, sin internet') + '</small></span></span></a>' : '';
   var tarjetaLibre = '<a class="tarjeta libre" style="--c:#0ea5e9;--d:0.1s" href="#/libre"><span class="ico" aria-hidden="true">🔬</span><span><b>Mi laboratorio</b><span class="insignia">Juego libre</span><small>Mezcla, suelta, riega y descubre. Sin reglas ni tiempo.</small><span class="est-txt">🔎 ' + nDesc + ' de ' + DESCUBRIMIENTOS.CATALOGO.length + ' descubrimientos</span></span></a>';
   var tarjetasExp = EXPERIMENTOS.length ? '<h3 class="sala-exp">🔬 Experimentos con materiales</h3><p class="nota">Opcionales: se hacen con cosas de casa y no hacen falta para encender la estación. Tus descubrimientos quedan en tu cuaderno.</p>' +
     EXPERIMENTOS.map(function (n, i) {
@@ -1119,9 +1122,9 @@ function menu() {
   app.innerHTML = '<h2>Chispa y la estación ' + ESTADOS_ESTACION[visto] + '</h2>' +
     chispa(saludo) +
     (pendiente ? '<p><button id="m-final" class="btn-final" type="button">🌟 ¡Mira la estación!</button></p>' : '') +
-    tarjetaLibre + tarjetas + '<p>Energía de la estación: <b>' + total + ' de ' + (NIVELES.length * 3) + '</b><span class="bombillas" role="img" aria-label="' + total + ' de ' + (NIVELES.length * 3) + ' bombillas encendidas">' + bombillas + '</span></p>' + (visto >= 1 ? '<p class="medalla">' + MEDALLAS[visto] + '</p>' : '') + tarjetasExp;
+    tarjetaAlumnos + tarjetaLibre + tarjetas + '<p>Energía de la estación: <b>' + total + ' de ' + (NIVELES.length * 3) + '</b><span class="bombillas" role="img" aria-label="' + total + ' de ' + (NIVELES.length * 3) + ' bombillas encendidas">' + bombillas + '</span></p>' + (visto >= 1 ? '<p class="medalla">' + MEDALLAS[visto] + '</p>' : '') + tarjetasExp;
   if ($('m-final')) $('m-final').onclick = function () { audio(); sonido('clic'); FINALES.mostrar(PERFILES.finalAlcanzado(progreso, idsNiveles)); };
-  app.insertAdjacentHTML('beforeend', '<p class="fila-menu"><button class="sec chico" id="m-ajustes">⚙ Ajustes</button> <button class="sec chico" id="m-quien">👤 Cambiar de jugador</button>' + (EXPERIMENTOS.length ? ' <button class="sec chico" id="m-cuaderno">📓 Mi cuaderno</button>' : '') + '</p>');
+  app.insertAdjacentHTML('beforeend', '<p class="fila-menu"><button class="sec chico" id="m-ajustes">⚙ Ajustes</button> <button class="sec chico" id="m-quien">👤 Cambiar de jugador</button>' + (PERFILES.esDocente(jug) ? '' : ' <button class="sec chico" id="m-compartir">📤 Compartir con mi docente</button>') + (EXPERIMENTOS.length ? ' <button class="sec chico" id="m-cuaderno">📓 Mi cuaderno</button>' : '') + '</p>');
   if ($('m-cuaderno')) $('m-cuaderno').onclick = function () {
     audio(); sonido('clic');
     var t = { libre: '🔬 Mi laboratorio' }; EXPERIMENTOS.forEach(function (x) { t[x.id] = x.icono + ' ' + x.titulo; });
@@ -1129,6 +1132,7 @@ function menu() {
   };
   $('m-ajustes').onclick = function () { audio(); sonido('clic'); PERF.ajustes(); };
   $('m-quien').onclick = function () { audio(); sonido('clic'); PERF.quien(); };
+  if ($('m-compartir')) $('m-compartir').onclick = function () { audio(); sonido('clic'); location.hash = '#/compartir'; };
   var cc = document.querySelector('.chispa'); if (cc) cc.className = 'chispa habla';
 }
 
@@ -1198,6 +1202,8 @@ function ruta() {
   window.scrollTo(0, 0);
   detener();
   if (!PERF.actual()) { PERF.entrar(); return; }
+  if (typeof ALUMNOS !== 'undefined') ALUMNOS.cerrarCamara();
+  if (h === '#/compartir' || h.indexOf('#/alumnos') === 0) { ALUMNOS.ir(h); return; }
   if (h === '#/libre') { jugarLibre(); return; }
   var n = m ? buscarNivel(m[1]) : null;
   if (n) intro(n); else menu();

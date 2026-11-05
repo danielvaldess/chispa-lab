@@ -8,6 +8,7 @@
   var DS = typeof require === 'function' && typeof module !== 'undefined' ? require('./descubrimientos.js') : root.DESCUBRIMIENTOS;
   var DG = typeof require === 'function' && typeof module !== 'undefined' ? require('./diagnostico.js') : root.DIAGNOSTICO;
   var BD = typeof require === 'function' && typeof module !== 'undefined' ? require('./bandido.js') : root.BANDIDO;
+  var CL = typeof require === 'function' && typeof module !== 'undefined' ? require('./clase.js') : root.CLASE;
 
   var CLAVE = 'chispalab.perfiles.v1';
   var LEGADO = 'chispalab.juego.v1';
@@ -38,9 +39,12 @@
     var nac = m ? AJ.validarNac(m[1], m[2], hoy) : null;
     if (!nombre || !nac || typeof p.id !== 'string' || !p.id) return null;
     var ex = objetoPlano(p.extras);
+    var rol = CL.rolValido(p.rol);
     return {
       id: p.id.slice(0, 24),
       nombre: nombre,
+      rol: rol,
+      alumnos: rol === 'docente' ? CL.normalizarAlumnos(p.alumnos) : [],
       nac: nac,
       apoyos: AJ.apoyosValidos(p.apoyos),
       extras: {
@@ -157,8 +161,9 @@
     var apoyos = AJ.apoyosValidos(datos.apoyos);
     if (necesitaAdulto(nac, apoyos, hoy) && !datos.adulto) return { ok: false, error: 'adulto' };
     var primero = estado.perfiles.length === 0;
+    var rol = CL.rolValido(datos.rol);
     var perfil = {
-      id: idNuevo(), nombre: nombre, nac: nac, apoyos: apoyos, extras: {},
+      id: idNuevo(), nombre: nombre, rol: rol, alumnos: [], nac: nac, apoyos: apoyos, extras: {},
       progreso: primero ? leerLegado(almacen) : {}, aprendizaje: {}, maestria: {}, ia: normalizarIA({}), cuaderno: [], descubrimientos: [], sesionesVoz: [], creado: fechaISO(hoy)
     };
     return { ok: true, perfil: perfil, estado: { activo: perfil.id, perfiles: estado.perfiles.concat([perfil]) } };
@@ -309,7 +314,24 @@
     return l.join('\n');
   }
 
+  function esDocente(perfil) { return !!perfil && perfil.rol === 'docente'; }
+
+  /** Añade o actualiza un alumno en la lista del docente (solo si el perfil es de docente). Devuelve { ok, estado } con el estado de CLASE.fundir. */
+  function agregarAlumno(perfil, alumno) {
+    if (!esDocente(perfil)) return { ok: false, estado: 'no es docente' };
+    var r = CL.fundir(perfil.alumnos, alumno);
+    perfil.alumnos = r.alumnos;
+    return { ok: r.estado !== 'invalido' && r.estado !== 'lleno', estado: r.estado };
+  }
+
+  function quitarAlumno(perfil, id) {
+    if (!esDocente(perfil)) return perfil;
+    perfil.alumnos = CL.quitar(perfil.alumnos, id);
+    return perfil;
+  }
+
   var PERFILES = {
+    esDocente: esDocente, agregarAlumno: agregarAlumno, quitarAlumno: quitarAlumno,
     CLAVE: CLAVE, LEGADO: LEGADO, MAX: MAX, cargar: cargar, guardar: guardar, crear: crear, activar: activar, actual: actual,
     cambiarApoyos: cambiarApoyos, borrar: borrar, borrarTodo: borrarTodo, necesitaAdulto: necesitaAdulto,
     registrarSesionVoz: registrarSesionVoz, resumenSesiones: resumenSesiones, finalAlcanzado: finalAlcanzado, registrarMaestria: registrarMaestria, reiniciarMaestria: reiniciarMaestria, agregarCuaderno: agregarCuaderno, desbloquear: desbloquear, EXPERIMENTOS_IDS: EXPERIMENTOS_IDS, TODOS_IDS: TODOS_IDS, registrarIA: registrarIA, ideasPorReforzar: ideasPorReforzar, normalizarIA: normalizarIA, registrarPartida: registrarPartida, resumenAprendizaje: resumenAprendizaje, NIVELES_IDS: NIVELES_IDS

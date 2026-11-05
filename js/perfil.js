@@ -10,7 +10,7 @@ var PERF = (function () {
   var elegido = false; // ¿ya se eligió jugador en esta sesión?
   var MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
   var COLORES = ['#ff9f43', '#3b82f6', '#ff5c8a', '#2fd18b'];
-  var W = { nombre: '', anio: 0, mes: 0, apoyos: [], adulto: false };
+  var W = { nombre: '', anio: 0, mes: 0, apoyos: [], adulto: false, rol: 'estudiante' };
   var temporal = {};
 
   function actual() { return PERFILES.actual(estado); }
@@ -80,7 +80,7 @@ var PERF = (function () {
     var tarjetas = estado.perfiles.map(function (p, i) {
       var e = AJUSTES.edadDe(p.nac);
       return '<button class="tarjeta jugador" data-id="' + esc(p.id) + '" style="--c:' + COLORES[i % COLORES.length] + '"><span class="ico" aria-hidden="true">' +
-        esc(p.nombre.charAt(0).toUpperCase()) + '</span><span><b>' + esc(p.nombre) + '</b><small>' + (e !== null ? e + ' años' : '') + '</small></span></button>';
+        esc(p.nombre.charAt(0).toUpperCase()) + '</span><span><b>' + esc(p.nombre) + '</b><small>' + (p.rol === 'docente' ? '👩‍🏫 Docente' : (e !== null ? e + ' años' : '')) + '</small></span></button>';
     }).join('');
     app.innerHTML = '<h2>¿Quién va a jugar?</h2>' + chispa('¡Hola! Elige quién juega hoy.') + tarjetas +
       (estado.perfiles.length < PERFILES.MAX ? '<p class="accion"><button id="nuevo" class="sec">➕ Nuevo jugador</button></p>' : nota('Ya hay cuatro jugadores en este teléfono.')) +
@@ -89,27 +89,40 @@ var PERF = (function () {
     for (i = 0; i < cs.length; i++) cs[i].onclick = function () {
       estado = PERFILES.activar(estado, this.getAttribute('data-id')); guardar(); elegido = true; aplicar(); irMenu();
     };
-    if ($('nuevo')) $('nuevo').onclick = function () { reiniciarAsistente(); paso1(); };
+    if ($('nuevo')) $('nuevo').onclick = function () { reiniciarAsistente(); paso0(); };
   }
 
   // ---------- Asistente de perfil nuevo (una cosa por pantalla) ----------
-  function reiniciarAsistente() { var a = new Date().getFullYear(); W = { nombre: '', anio: a - 9, mes: 1, apoyos: [], adulto: false }; }
+  function reiniciarAsistente() { var a = new Date().getFullYear(); W = { nombre: '', anio: a - 9, mes: 1, apoyos: [], adulto: false, rol: 'estudiante' }; }
 
   function atras(fn) { return '<p class="accion"><button class="sec chico" id="atras">← Atrás</button></p>'; }
 
+  /** Primera pregunta: ¿estudiante o docente? Solo cambia lo que se ve en el menú; no es una cuenta ni una clave. */
+  function paso0() {
+    app.innerHTML = '<h2>¡Bienvenido!</h2>' + chispa('¡Hola! Soy Chispa. Antes de empezar, cuéntame: ¿quién eres?') +
+      '<div class="roles" role="group" aria-label="¿Eres estudiante o docente?">' +
+      '<button class="tarjeta rol" data-r="estudiante" style="--c:#2fd18b"><span class="ico" aria-hidden="true">🎒</span><span><b>Soy estudiante</b><small>Voy a jugar y aprender ciencias.</small></span></button>' +
+      '<button class="tarjeta rol" data-r="docente" style="--c:#7c3aed"><span class="ico" aria-hidden="true">👩‍🏫</span><span><b>Soy docente</b><small>Quiero ver cómo avanzan mis alumnos.</small></span></button></div>' +
+      (estado.perfiles.length ? '<p class="accion"><button class="sec chico" id="cancelar">Cancelar</button></p>' : '') +
+      nota('Esto solo cambia lo que ves en el menú. No es una cuenta y no se envía a nadie.');
+    var bs = app.querySelectorAll('.rol'), i;
+    for (i = 0; i < bs.length; i++) bs[i].onclick = function () { W.rol = this.getAttribute('data-r') === 'docente' ? 'docente' : 'estudiante'; paso1(); };
+    if ($('cancelar')) $('cancelar').onclick = quien;
+  }
+
   function paso1() {
-    app.innerHTML = '<h2>Vamos a conocernos</h2>' + chispa('¡Hola! Soy Chispa. ¿Cómo te llamas? Puede ser tu apodo.') +
+    app.innerHTML = '<h2>Vamos a conocernos</h2>' + chispa(W.rol === 'docente' ? '¡Hola, profe! Soy Chispa. ¿Cómo te llamas?' : '¡Hola! Soy Chispa. ¿Cómo te llamas? Puede ser tu apodo.') +
       '<p><label class="campo" for="nombre">Tu nombre</label><input id="nombre" type="text" maxlength="20" autocomplete="off" autocapitalize="words" value="' + esc(W.nombre) + '"></p>' +
       '<p id="error" class="error" role="alert"></p><p class="accion"><button id="sigue">Seguir</button></p>' +
-      (estado.perfiles.length ? '<p class="accion"><button class="sec chico" id="cancelar">Cancelar</button></p>' : '') +
+      '<p class="accion"><button class="sec chico" id="atras">← Atrás</button></p>' +
       nota('Tu nombre se queda en este teléfono. No se envía a nadie.');
+    $('atras').onclick = paso0;
     $('sigue').onclick = function () {
       var n = AJUSTES.limpiarNombre($('nombre').value);
       if (!n) { $('error').textContent = 'Escribe tu nombre con letras.'; return; }
       W.nombre = n; paso2();
     };
     $('nombre').onkeydown = function (e) { if (e.key === 'Enter') $('sigue').onclick(); };
-    if ($('cancelar')) $('cancelar').onclick = quien;
     $('nombre').focus();
   }
 
@@ -170,24 +183,24 @@ var PERF = (function () {
   }
 
   function listo() {
-    var r = PERFILES.crear(estado, { nombre: W.nombre, anio: W.anio, mes: W.mes, apoyos: W.apoyos, adulto: W.adulto }, new Date(), localStorage);
+    var r = PERFILES.crear(estado, { nombre: W.nombre, anio: W.anio, mes: W.mes, apoyos: W.apoyos, adulto: W.adulto, rol: W.rol }, new Date(), localStorage);
     if (!r.ok) {
       app.innerHTML = '<h2>Ups</h2>' + chispa(r.error === 'lleno' ? 'Ya hay cuatro jugadores en este teléfono. Borra uno en Ajustes para añadir otro.' : 'Algo no salió bien. Vuelve a intentarlo.') +
         '<p class="accion"><button id="volver">Volver</button></p>';
-      $('volver').onclick = function () { estado.perfiles.length ? quien() : paso1(); };
+      $('volver').onclick = function () { estado.perfiles.length ? quien() : paso0(); };
       return;
     }
     estado = r.estado; guardar(); elegido = true;
     var a = aplicar();
     app.innerHTML = '<h2>¡Listo, ' + esc(W.nombre) + '!</h2>' + chispa('¡Todo listo! Así voy a ayudarte:') +
-      '<ul class="resumen">' + AJUSTES.resumen(a).map(function (f) { return '<li>' + esc(f) + '</li>'; }).join('') + '</ul>' +
+      '<ul class="resumen">' + AJUSTES.resumen(a).map(function (f) { return '<li>' + esc(f) + '</li>'; }).join('') + (W.rol === 'docente' ? '<li>👩‍🏫 En el menú tienes «Mis alumnos»: ahí guardas el avance de cada alumno escaneando su QR, sin internet.</li>' : '') + '</ul>' +
       '<p class="accion"><button id="jugar">¡A jugar!</button></p>' + nota('Puedes cambiar esto cuando quieras en ⚙ Ajustes.');
     $('jugar').onclick = irMenu;
   }
 
   /** Punto de entrada: asistente si no hay jugadores, selector si hay varios, menú si hay uno. */
   function entrar() {
-    if (!estado.perfiles.length) { reiniciarAsistente(); paso1(); return; }
+    if (!estado.perfiles.length) { reiniciarAsistente(); paso0(); return; }
     if (estado.perfiles.length > 1 && !elegido) { quien(); return; }
     elegido = true; aplicar(); ruta();
   }
@@ -199,6 +212,6 @@ var PERF = (function () {
     quien: quien, estado: function () { return estado; }, volver: irMenu, margenTutor: margenTutor, recomendado: recomendado,
     ajustes: function (aviso) { PANEL.abrir(null, aviso); },
     fijarEstado: function (e) { estado = e; },
-    nuevo: function () { reiniciarAsistente(); paso1(); }
+    nuevo: function () { reiniciarAsistente(); paso0(); }
   };
 })();
