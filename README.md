@@ -22,13 +22,12 @@
 
 <table align="center">
 <tr>
-<td align="center"><a href="https://github.com/danielvaldess/chispa-lab/releases/latest/download/01-rampa.mp4"><img src="docs/media/rampa.gif" width="200" alt="El niño predice, inclina el teléfono y suelta la canica"/></a><br/><sub><b>Predice, inclina y descubre</b></sub></td>
-<td align="center"><a href="https://github.com/danielvaldess/chispa-lab/releases/latest/download/07-mi-laboratorio.mp4"><img src="docs/media/laboratorio.gif" width="200" alt="Mi laboratorio: mezclas, descubrimientos"/></a><br/><sub><b>Mi laboratorio: mezcla y descubre</b></sub></td>
-<td align="center"><a href="https://github.com/danielvaldess/chispa-lab/releases/latest/download/09-clase-qr-alumna-y-docente.mp4"><img src="docs/media/clase-qr.gif" width="300" alt="La alumna muestra su QR y el docente lo escanea"/></a><br/><sub><b>La clase, sin internet: QR del alumno al docente</b></sub></td>
-<td align="center"><a href="https://github.com/danielvaldess/chispa-lab/releases/latest/download/10-ia-agrupa-la-clase.mp4"><img src="docs/media/ia-grupos.gif" width="200" alt="Chispa agrupa a la clase según lo que le cuesta"/></a><br/><sub><b>Chispa agrupa la clase</b></sub></td>
+<td align="center"><img src="docs/media/rampa.gif" width="200" alt="El niño predice, inclina el teléfono y suelta la canica"/><br/><sub><b>Predice, inclina y descubre</b></sub></td>
+<td align="center"><img src="docs/media/laboratorio.gif" width="200" alt="Mi laboratorio: mezclas, descubrimientos"/><br/><sub><b>Mi laboratorio: mezcla y descubre</b></sub></td>
+<td align="center"><img src="docs/media/clase-qr.gif" width="300" alt="La alumna muestra su QR y el docente lo escanea"/><br/><sub><b>La clase, sin internet: QR del alumno al docente</b></sub></td>
+<td align="center"><img src="docs/media/ia-grupos.gif" width="200" alt="Chispa agrupa a la clase según lo que le cuesta"/><br/><sub><b>Chispa agrupa la clase</b></sub></td>
 </tr>
 </table>
-<p align="center"><sub>Cada animación enlaza al vídeo completo (sin sonido, 20 a 30 s).</sub></p>
 
 <p align="center">
   <b>6</b> juegos · <b>4</b> experimentos con materiales de casa · <b>24</b> descubrimientos · <b>7</b> apoyos de accesibilidad<br/>
@@ -45,32 +44,10 @@
 | 📱 **App de Android (APK)**, descarga directa | [https://github.com/danielvaldess/chispa-lab/releases/latest/download/chispa-lab.apk](https://github.com/danielvaldess/chispa-lab/releases/latest/download/chispa-lab.apk) |
 | 📦 Todas las versiones y archivos | https://github.com/danielvaldess/chispa-lab/releases |
 | 💻 Código fuente (MIT) | https://github.com/danielvaldess/chispa-lab |
-| 📊 Presentación de 5 minutos (`.pptx`) | [Chispa-Lab-hack4edu-2026.pptx](https://github.com/danielvaldess/chispa-lab/raw/main/docs/presentacion/Chispa-Lab-hack4edu-2026.pptx) |
 | 📄 Artículo de investigación | [`docs/investigacion/articulo.md`](https://github.com/danielvaldess/chispa-lab/blob/main/docs/investigacion/articulo.md) |
-| 🖼 Capturas de la app (`.zip`) | [capturas-chispa-lab.zip](https://github.com/danielvaldess/chispa-lab/releases/latest/download/capturas-chispa-lab.zip) |
 
 **Android:** descarga el APK, ábrelo y permite instalar desde esa fuente (instalación directa, fuera de Google Play). Se puede pasar de un teléfono a otro por WhatsApp o Bluetooth.
 **iPhone:** abre la web en Safari y usa «Compartir → Añadir a pantalla de inicio». Es la misma app.
-
-<details>
-<summary>Los 11 vídeos de la demo (sin sonido, de 20 a 30 segundos)</summary>
-
-| Vídeo | Qué muestra |
-|---|---|
-| [01 · La rampa](https://github.com/danielvaldess/chispa-lab/releases/latest/download/01-rampa.mp4) | Predice, inclina el teléfono, falla y acierta |
-| [02 · El péndulo](https://github.com/danielvaldess/chispa-lab/releases/latest/download/02-pendulo.mp4) | Sincroniza el ritmo con la lámpara |
-| [03 · La voz y el globo](https://github.com/danielvaldess/chispa-lab/releases/latest/download/03-voz-y-globo.mp4) | Pasa los tres aros con el tono |
-| [04 · El globo largo](https://github.com/danielvaldess/chispa-lab/releases/latest/download/04-globo-largo.mp4) | Sostiene la vocal para subir el globo |
-| [05 · Luz y color](https://github.com/danielvaldess/chispa-lab/releases/latest/download/05-luz-y-color.mp4) | Elige los colores con las tarjetas |
-| [06 · Burbujas mágicas](https://github.com/danielvaldess/chispa-lab/releases/latest/download/06-burbujas-magicas.mp4) | Revienta burbujas |
-| [07 · Mi laboratorio](https://github.com/danielvaldess/chispa-lab/releases/latest/download/07-mi-laboratorio.mp4) | Mezclas, flota, plantas y caída libre |
-| [08 · Registro](https://github.com/danielvaldess/chispa-lab/releases/latest/download/08-registro-estudiante-o-docente.mp4) | La pregunta «¿estudiante o docente?» y los dos recorridos |
-| [09 · La clase](https://github.com/danielvaldess/chispa-lab/releases/latest/download/09-clase-qr-alumna-y-docente.mp4) | Dos teléfonos lado a lado: la alumna muestra el QR y el docente lo escanea |
-| [10 · La IA agrupa la clase](https://github.com/danielvaldess/chispa-lab/releases/latest/download/10-ia-agrupa-la-clase.mp4) | El docente agrupa a sus alumnos según lo que les cuesta |
-| [11 · Inclusión y apoyos](https://github.com/danielvaldess/chispa-lab/releases/latest/download/11-inclusion-apoyos.mp4) | Los siete apoyos de accesibilidad en acción |
-
-Grabados en Chromium con tamaño de teléfono.
-</details>
 
 ## Por qué importa
 
@@ -187,12 +164,12 @@ El juego está pensado para el móvil en vertical; en el ordenador, abre las her
 
 ## Documentación
 
-[Juegos y experimentos](docs/juegos-y-experimentos.md) · [IA y ética](docs/ia-etica.md) · [Clase y QR](docs/clase-sincronizacion.md) · [Impacto esperado](docs/impacto-esperado.md) · [Sostenibilidad y escalabilidad](docs/sostenibilidad-y-escalabilidad.md) · [Calidad y pruebas](docs/calidad-y-pruebas.md) · [Transferencia al mercado](docs/transferencia-al-mercado.md) · [Estudio de mercado](docs/estudio-mercado.md) · [Alineación con ProFuturo](docs/alineacion-profuturo.md) · [Impacto y ética (datos y privacidad)](docs/impacto-y-etica.md) · [Guía docente](docs/guia-docente.md) · [Presentación y vídeo](docs/presentacion/) · [Bitácora del hackatón](docs/evidencia-desarrollo.md)
+[Juegos y experimentos](docs/juegos-y-experimentos.md) · [IA y ética](docs/ia-etica.md) · [Clase y QR](docs/clase-sincronizacion.md) · [Impacto esperado](docs/impacto-esperado.md) · [Sostenibilidad y escalabilidad](docs/sostenibilidad-y-escalabilidad.md) · [Calidad y pruebas](docs/calidad-y-pruebas.md) · [Transferencia al mercado](docs/transferencia-al-mercado.md) · [Estudio de mercado](docs/estudio-mercado.md) · [Alineación con ProFuturo](docs/alineacion-profuturo.md) · [Impacto y ética (datos y privacidad)](docs/impacto-y-etica.md) · [Guía docente](docs/guia-docente.md) · [Bitácora del hackatón](docs/evidencia-desarrollo.md)
 
 ## Estructura
 
 ```
-index.html            el videojuego
+index.html            el videojuego (lab.html y sensores.html: prueba de sensores)
 css/                  estilos
 js/juego.js           menú, rutas, niveles, puntos y resultados
 js/dsp.js             procesamiento de señal (tono YIN, filtros)
@@ -219,7 +196,7 @@ docs/                 documentación, capturas (`capturas/`) y animaciones (`med
 
 ## Alcance y siguientes pasos
 
-Chispa Lab está listo para llevarse al aula. Esto es lo que sigue:
+Chispa Lab es un prototipo funcional y probado técnicamente, listo para un piloto en el aula. Esto es lo que sigue:
 
 - **Piloto en la Región Educativa de Veraguas** con la UTP, ProFuturo y el Meduca: es el paso que mide el aprendizaje con estudiantes y docentes (indicadores en [`docs/impacto-esperado.md`](docs/impacto-esperado.md)).
 - **Calibrar la IA con los datos del piloto:** hoy los modelos parten de valores de la literatura y sus cifras de evaluación son de simulación.

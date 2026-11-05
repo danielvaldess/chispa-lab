@@ -1,6 +1,6 @@
 # Estudio de mercado y modelo de ingresos
 
-> **Cómo usarlo:** la diapositiva 11 solo lleva **3.102 centros** y **73 en la licitación**; la 13, el modelo en tres segmentos y el ancla **150.100 $ vs ≈ 0 $ en equipos**. Este documento es para responder preguntas, no para recitarlo en el pitch.
+> **Cómo usarlo:** este documento sirve para responder preguntas sobre el mercado; no es un resumen.
 >
 > **Qué es real y qué es hipótesis.** Los tamaños de mercado, el número de estudiantes, centros, aulas y sesiones de terapia salen de fuentes publicadas (2024–2026). Los precios y los escenarios de ingresos son **hipótesis de trabajo** para el piloto, no promesas ni clientes firmados. Chispa Lab todavía no tiene clientes pagando.
 

@@ -5,7 +5,7 @@ El alumno muestra un **código QR** con su avance de ese momento; el docente lo 
 
 ## Cómo se hace en la práctica
 
-Para probarlo: [web](https://danielvaldess.github.io/chispa-lab/) o [APK](https://github.com/danielvaldess/chispa-lab/releases/latest/download/chispa-lab.apk), y el [vídeo 09, con los dos teléfonos lado a lado](https://github.com/danielvaldess/chispa-lab/releases/latest/download/09-clase-qr-alumna-y-docente.mp4).
+Para probarlo: [web](https://danielvaldess.github.io/chispa-lab/) o [APK](https://github.com/danielvaldess/chispa-lab/releases/latest/download/chispa-lab.apk).
 
 1. **Estudiante:** menú → «📤 Compartir con mi docente» → ve qué se comparte → «Mostrar mi código QR».
 2. **Docente:** menú → «👩‍🏫 Mis alumnos» → «📷 Escanear el QR de un alumno». Puede escanear uno detrás de otro; cada lectura guarda o actualiza a ese alumno.

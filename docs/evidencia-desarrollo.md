@@ -6,7 +6,7 @@ Registro del desarrollo de Chispa Lab con la evidencia que se puede comprobar en
 
 - **3 de noviembre:** primera versión del juego: la rampa, el péndulo y la voz, el detector de tono, la física, el laboratorio de sensores y la PWA sin conexión. Se escribió ya iniciado el plazo y se incorporó al repositorio el 4 de noviembre a las 01:30 (hora de Panamá).
 - **4 de noviembre:** tres juegos más y la cámara como sensor; perfiles y apoyos; panel de adultos; tutor bayesiano; diagnóstico de ideas erróneas; bandido de Thompson; colores con pocas muestras; margen aprendido; experimentos del hilo, la col, el huevo y el volcán; Mi laboratorio con 24 descubrimientos; finales y diploma; la clase con QR sin internet; agrupar la clase con k-means; navegación con rutas; modo ligero adaptable; documentación; 583 pruebas.
-- **5 de noviembre:** cierre de la entrega, revisión de datos y referencias, presentación de 5 minutos, guion de oratoria y etiqueta `v1.4.0`.
+- **5 de noviembre:** cierre de la entrega, revisión de datos y referencias y etiqueta `v1.4.0`.
 
 ## Qué se escribió y cuándo
 
@@ -19,7 +19,7 @@ Registro del desarrollo de Chispa Lab con la evidencia que se puede comprobar en
 | `js/clase.js`, `js/alumnos.js`, `js/vendor/` (librerías de terceros, ver su licencia) | Rol de estudiante o docente, «Mis alumnos» y QR sin internet | 4 nov, noche |
 | `js/tutor.js` | Tutor bayesiano del conocimiento | 4 nov 02:38 |
 | `js/finales.js` | Tres finales y diploma | 4 nov 02:58 |
-| `docs/`: artículo de investigación, presentación de 5 min, transferencia al mercado, impacto y ética | Documentación | 4 nov 02:00–03:28 |
+| `docs/`: artículo de investigación, transferencia al mercado, impacto y ética | Documentación | 4 nov 02:00–03:28 |
 | `js/diagnostico.js`, `js/bandido.js`, `js/pistas.js` | IA ligera: ideas erróneas, bandido de Thompson y tutor socrático | 4 nov 14:45 (rama `feat/tutor-ia`, PR #1, v0.8.0) |
 | `js/metodo.js`, `js/color-ml.js`, `js/experimento.js`, `js/niveles/hilo.js`, `js/niveles/col.js` | Método científico, aprendizaje de colores y dos experimentos con materiales | 4 nov 15:05–15:10 (rama `feat/laboratorio`, PR #2, v0.9.0) |
 | `js/libre.js`, `js/mezclas.js`, `js/densidad.js`, `js/planta.js`, `js/descubrimientos.js`, caída libre en `js/fisica.js` | Mi laboratorio (juego libre) y 24 descubrimientos | 4 nov, noche (rama `feat/laboratorio-libre`, PR #5, v1.1.0) |
