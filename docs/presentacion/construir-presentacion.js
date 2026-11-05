@@ -40,6 +40,13 @@ const nota = (s, t, color) => T(s, t, { x: 0.5, y: 5.22, w: 8.6, h: 0.3, fontSiz
 const tarjeta = (s, x, y, w, h, borde, nombre) => {
   s.addShape(pres.ShapeType.roundRect, { x, y, w, h, rectRadius: 0.14, fill: { color: K.white }, line: { color: borde, width: 3 }, shadow: { type: 'outer', color: '000000', opacity: 0.18, blur: 6, offset: 3, angle: 90 }, objectName: nombre });
 };
+
+// una cifra protagonista: número grande, una frase y una nota
+function heroDato(s, cifra, frase, color, y0) {
+  tarjeta(s, 0.5, y0 || 1.35, 6.3, 2.5, color, 'Tarjeta dato');
+  T(s, cifra, { x: 0.7, y: (y0 || 1.35) + 0.15, w: 5.9, h: 1.3, fontSize: 64, bold: true, color: color, align: 'center', valign: 'middle', objectName: 'Cifra' });
+  T(s, frase, { x: 0.8, y: (y0 || 1.35) + 1.45, w: 5.7, h: 0.95, fontSize: 17, color: K.navy, align: 'center', valign: 'top', objectName: 'Frase' });
+}
 const burbuja = (s, x, y, d, color, nombre) => s.addShape(pres.ShapeType.ellipse, { x, y, w: d, h: d, fill: { color, transparency: 55 }, line: { color, transparency: 100 }, objectName: nombre });
 
 // ---------- 1. Portada ----------
@@ -57,45 +64,34 @@ s.addNotes(notas());
 // ---------- 2. Problema: ciencias en Panamá frente a América Latina y Europa ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Problema' });
 s.addText('6 de cada 10 estudiantes panameños no alcanzan el nivel básico en ciencias', { placeholder: 'title' });
-tarjeta(s, 0.4, 1.3, 6.55, 3.55, K.pink, 'Tarjeta gráfico');
-s.addChart(pres.charts.BAR, [{ name: 'Puntaje en ciencias, PISA 2022', labels: ['Panamá', 'México', 'Colombia', 'Uruguay', 'Chile', 'Unión Europea', 'OCDE'], values: [388, 410, 411, 435, 444, 480, 485] }], {
-  x: 0.5, y: 1.35, w: 6.35, h: 3.45, barDir: 'bar', chartColors: [K.pink, K.cyan, K.cyan, K.cyan, K.cyan, K.violet, K.violet], showValue: true, dataLabelPosition: 'outEnd', dataLabelColor: K.navy, dataLabelFontSize: 13, dataLabelFontBold: true,
-  showTitle: true, title: 'Puntaje promedio en ciencias a los 15 años (PISA 2022)', titleFontSize: 13, titleColor: K.navy, catAxisLabelColor: K.navy, catAxisLabelFontSize: 13, catAxisOrientation: 'maxMin', valAxisHidden: true, valGridLine: { style: 'none' }, catGridLine: { style: 'none' }, showLegend: false, valAxisMinVal: 300, valAxisMaxVal: 540,
+tarjeta(s, 0.4, 1.3, 6.55, 3.6, K.pink, 'Tarjeta gráfico');
+s.addChart(pres.charts.BAR, [{ name: 'Puntaje en ciencias, PISA 2022', labels: ['Panamá', 'Chile (líder de América Latina)', 'Unión Europea'], values: [388, 444, 480] }], {
+  x: 0.5, y: 1.35, w: 6.35, h: 3.5, barDir: 'bar', chartColors: [K.pink, K.cyan, K.violet], showValue: true, dataLabelPosition: 'outEnd', dataLabelColor: K.navy, dataLabelFontSize: 18, dataLabelFontBold: true,
+  showTitle: true, title: 'Puntos en ciencias a los 15 años (PISA 2022)', titleFontSize: 14, titleColor: K.navy, catAxisLabelColor: K.navy, catAxisLabelFontSize: 14, catAxisOrientation: 'maxMin', valAxisHidden: true, valGridLine: { style: 'none' }, catGridLine: { style: 'none' }, showLegend: false, valAxisMinVal: 300, valAxisMaxVal: 540,
 });
-T(s, [{ text: '38 %', options: { bold: true, fontSize: 18, color: K.pink } }, { text: ' alcanza el nivel básico en Panamá; ', options: { fontSize: 12 } }, { text: '76 %', options: { bold: true, fontSize: 18, color: K.violet } }, { text: ' en la OCDE y ', options: { fontSize: 12 } }, { text: '76 %', options: { bold: true, fontSize: 18, color: K.violet } }, { text: ' en la UE', options: { fontSize: 12 } }], { x: 0.5, y: 4.9, w: 6.4, h: 0.4, valign: 'middle', objectName: 'Nivel básico' });
 telefono(s, '01.gif', 7.55, 1.15, 3.55, 'la rampa', K.pink);
 T(s, 'Ciencias que se descubren jugando', { x: 6.75, y: 4.9, w: 3.0, h: 0.35, fontSize: 11.5, bold: true, color: K.navy, align: 'center', objectName: 'Pie rampa' });
-nota(s, 'PISA 2022 (OCDE): Panamá, México, Colombia, Uruguay y Chile, Fundación Exe (2024); UE, Cyprus Mail (6/12/2023); nivel básico, La Prensa (3/2/2026) y Comisión Europea.');
+nota(s, 'Fuente: PISA 2022 (OCDE), vía Fundación Exe (2024) y Cyprus Mail (UE); nivel básico: 38 % en Panamá, La Prensa (2026).');
 s.addNotes(notas());
 
 // ---------- 3. Pueblos originarios y comarcas ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Problema' });
 s.addText('Nacer en una comarca indígena marca lo que se aprende', { placeholder: 'title' });
-[['≈ 80 pts', 'menos en PISA para quien habla una lengua indígena en casa: casi 3 años de escuela (PISA-Panamá 2019, citado por la OEI, 2024)', K.pink], ['5 vs 9', 'años de escolaridad: un niño de comarca indígena frente a uno de zona urbana', K.orange], ['< 20 %', 'accede a premedia y media en las comarcas, frente al 62 % en áreas urbanas', K.violet]].forEach((c, i) => {
-  const y = 1.3 + i * 1.15;
-  tarjeta(s, 0.5, y, 6.2, 1.02, c[2], 'Tarjeta ' + (i + 1));
-  T(s, c[0], { x: 0.65, y, w: 1.85, h: 1.02, fontSize: 28, bold: true, color: c[2], valign: 'middle', objectName: 'Cifra ' + (i + 1) });
-  T(s, c[1], { x: 2.55, y, w: 4.05, h: 1.02, fontSize: 12, color: K.navy, valign: 'middle', objectName: 'Etiqueta ' + (i + 1) });
-});
-T(s, 'En la comarca Ngäbe Buglé la pobreza multidimensional es de 73,2 % y falta internet.', { x: 0.5, y: 4.78, w: 6.3, h: 0.5, fontSize: 12, bold: true, color: K.navy, valign: 'top', objectName: 'Conexión' });
+heroDato(s, '≈ 80 puntos', 'menos en PISA para quien habla una lengua indígena en casa: casi 3 años de escuela', K.pink);
+T(s, 'Un niño de comarca indígena alcanza 5 años de escolaridad; uno de zona urbana, 9.', { x: 0.5, y: 4.1, w: 6.3, h: 0.8, fontSize: 16, bold: true, color: K.violet, valign: 'top', objectName: 'Apoyo' });
 telefono(s, '04.gif', 7.55, 1.15, 3.55, 'el globo y la voz', K.orange);
 T(s, 'Sin conexión, con el micrófono', { x: 6.75, y: 4.9, w: 3.0, h: 0.35, fontSize: 11.5, bold: true, color: K.navy, align: 'center', objectName: 'Pie micrófono' });
-nota(s, 'Fuentes: OEI (1/2024); La Prensa (3/2/2026); MEF e INEC, IPM 2025. Ciencias de 6.º: ERCE 2025, resultados a fines de 2026.');
+nota(s, 'Fuentes: OEI (2024), PISA-Panamá 2019; La Prensa (3/2/2026), escolaridad.');
 s.addNotes(notas());
 
 // ---------- 4. El laboratorio no llega, el teléfono ya está ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Problema' });
 s.addText('El laboratorio no llega, pero el teléfono ya está', { placeholder: 'title' });
-[['193', 'aulas de laboratorio licitadas en 2026 para 73 centros de media', K.pink], ['≈ 150.100 $', 'por aula de laboratorio (28,9 millones de dólares en total)', K.orange], ['17,3', 'clientes de internet fijo por cada 100 habitantes (2024)', K.violet]].forEach((c, i) => {
-  const y = 1.3 + i * 1.15;
-  tarjeta(s, 0.5, y, 6.2, 1.02, c[2], 'Tarjeta ' + (i + 1));
-  T(s, c[0], { x: 0.65, y, w: 2.2, h: 1.02, fontSize: 28, bold: true, color: c[2], valign: 'middle', objectName: 'Cifra ' + (i + 1) });
-  T(s, c[1], { x: 2.9, y, w: 3.7, h: 1.02, fontSize: 13, color: K.navy, valign: 'middle', objectName: 'Etiqueta ' + (i + 1) });
-});
-T(s, 'El teléfono ya está en las manos de las familias: Chispa Lab lo convierte en laboratorio, sin conexión.', { x: 0.5, y: 4.78, w: 6.3, h: 0.5, fontSize: 12.5, bold: true, color: K.violet, valign: 'top', objectName: 'Mensaje' });
+heroDato(s, '≈ 150.100 $', 'cuesta cada aula de laboratorio; la licitación de 2026 alcanza 73 centros de media', K.orange);
+T(s, 'El teléfono ya está en las manos de las familias. Chispa Lab lo convierte en laboratorio.', { x: 0.5, y: 4.1, w: 6.3, h: 0.8, fontSize: 16, bold: true, color: K.violet, valign: 'top', objectName: 'Mensaje' });
 telefono(s, '07.gif', 7.55, 1.15, 3.55, 'Mi laboratorio', K.green);
 T(s, 'Mi laboratorio: juego libre', { x: 6.75, y: 4.9, w: 3.0, h: 0.35, fontSize: 11.5, bold: true, color: K.navy, align: 'center', objectName: 'Pie laboratorio' });
-nota(s, 'Fuentes: La Prensa (2/4/2026), licitación de laboratorios científicos; ASEP, internet fijo 2024.');
+nota(s, 'Fuente: La Prensa (2/4/2026), licitación de laboratorios científicos: 28,9 millones de dólares, 193 aulas.');
 s.addNotes(notas());
 
 // ---------- 5. Idea ----------
@@ -140,88 +136,68 @@ s.addNotes(notas());
 // ---------- 8. Inclusión ----------
 s = pres.addSlide({ masterName: 'AZUL', sectionTitle: 'Solución' });
 s.addText('Para todos los niños: siete apoyos opcionales', { placeholder: 'title' });
-tarjeta(s, 0.5, 1.35, 5.0, 3.65, K.yellow, 'Tarjeta apoyos');
-T(s, [{ text: '1 de cada 6 niños panameños de 2 a 14 años tiene alguna discapacidad (ENDIS-2, UNICEF, 2026)', options: { bold: true, fontSize: 13, color: K.pink, breakLine: true, paraSpaceAfter: 6 } },
-  { text: 'Concentrarme: modo calma, pausa y más margen', options: { bullet: true, breakLine: true } },
-  { text: 'Leer: texto grande y lectura en voz alta', options: { bullet: true, breakLine: true } },
-  { text: 'Mover las manos: botones grandes y «+» y «−»', options: { bullet: true, breakLine: true } },
-  { text: 'Ver, oír o hablar: nada depende solo del color, del sonido ni de la voz', options: { bullet: true, breakLine: true } },
-  { text: 'Luces y ruidos: sin destellos, sonidos suaves', options: { bullet: true, breakLine: true, paraSpaceAfter: 6 } },
-  { text: 'La dificultad parte de la edad, aprende de cada niño y nunca es imposible. No se piden diagnósticos.', options: { bold: true, fontSize: 12, color: K.violet } }],
-  { x: 0.7, y: 1.5, w: 4.6, h: 3.4, fontSize: 12, color: K.navy, paraSpaceAfter: 3, valign: 'top', objectName: 'Siete apoyos' });
+tarjeta(s, 0.5, 1.35, 5.0, 3.5, K.yellow, 'Tarjeta apoyos');
+T(s, '1 de cada 6', { x: 0.7, y: 1.45, w: 4.6, h: 0.9, fontSize: 44, bold: true, color: K.pink, align: 'center', valign: 'middle', objectName: 'Cifra' });
+T(s, 'niños panameños de 2 a 14 años tiene alguna discapacidad', { x: 0.8, y: 2.35, w: 4.4, h: 0.6, fontSize: 13, color: K.navy, align: 'center', valign: 'top', objectName: 'Frase' });
+T(s, [{ text: 'El niño marca lo que le ayuda', options: { bullet: true, breakLine: true } }, { text: 'El juego se adapta: letra grande, voz, calma', options: { bullet: true, breakLine: true } }, { text: 'Nunca es imposible; sin diagnósticos', options: { bullet: true } }], { x: 0.8, y: 3.1, w: 4.4, h: 1.6, fontSize: 14, bold: true, color: K.navy, paraSpaceAfter: 4, valign: 'top', objectName: 'Apoyos' });
 telefono(s, '11.gif', 5.95, 1.2, 3.5, 'elige lo que le ayuda', K.green);
 telefono(s, '08.gif', 8.05, 1.2, 3.5, 'registro: estudiante o docente', K.yellow);
 pie(s, 'Marca lo que le ayuda', 5.65, 4.8, 1.9, K.white); pie(s, 'Estudiante o docente', 7.7, 4.8, 1.9, K.white);
-nota(s, 'Fuentes: UNICEF Panamá (8/9/2026), ENDIS-2, 174.701 niñas y niños. Apoyos según Game Accessibility Guidelines y Xbox 118 (2026).', K.white);
+nota(s, 'Fuente: UNICEF Panamá (2026), ENDIS-2.', K.white);
 s.addNotes(notas());
 
 // ---------- 9. IA ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Solución' });
-s.addText('IA que aprende dentro del teléfono, sin conexión', { placeholder: 'title' });
-[['Tutor bayesiano', 'qué ideas domina', K.violet], ['Naïve Bayes', 'qué idea errónea delata cada respuesta', K.pink], ['Bandido de Thompson', 'la mejor pista para este niño', K.orange], ['Centroide', 'colores con 2 o 3 muestras', K.cyan], ['Margen bayesiano', 'acierta 7 de cada 10', K.green], ['k-means++', 'agrupa la clase', K.yellow]].forEach((t, i) => {
-  const x = 0.5 + (i % 3) * 2.1, y = 1.4 + Math.floor(i / 3) * 1.15;
-  s.addShape(pres.ShapeType.roundRect, { x, y, w: 1.95, h: 1.0, rectRadius: 0.12, fill: { color: t[2] }, line: { color: t[2] }, shadow: { type: 'outer', color: '000000', opacity: 0.15, blur: 4, offset: 2, angle: 90 }, objectName: 'Técnica ' + (i + 1) });
-  T(s, [{ text: t[0], options: { bold: true, fontSize: 13, breakLine: true } }, { text: t[1], options: { fontSize: 10.5 } }], { x: x + 0.07, y, w: 1.81, h: 1.0, color: (t[2] === K.yellow || t[2] === K.cyan || t[2] === K.green) ? K.navy : K.white, align: 'center', valign: 'middle', objectName: 'Texto técnica ' + (i + 1) });
+s.addText('6 técnicas de IA que aprenden dentro del teléfono', { placeholder: 'title' });
+[['Tutor bayesiano', 'qué ideas domina', K.violet], ['Naïve Bayes', 'qué idea errónea tiene', K.pink], ['Bandido de Thompson', 'la mejor pista', K.orange], ['Centroide', 'colores con pocas muestras', K.cyan], ['Margen bayesiano', 'acierta 7 de cada 10', K.green], ['k-means++', 'agrupa la clase', K.yellow]].forEach((t, i) => {
+  const x = 0.5 + (i % 3) * 2.1, y = 1.4 + Math.floor(i / 3) * 1.2;
+  s.addShape(pres.ShapeType.roundRect, { x, y, w: 1.95, h: 1.05, rectRadius: 0.12, fill: { color: t[2] }, line: { color: t[2] }, shadow: { type: 'outer', color: '000000', opacity: 0.15, blur: 4, offset: 2, angle: 90 }, objectName: 'Técnica ' + (i + 1) });
+  T(s, [{ text: t[0], options: { bold: true, fontSize: 14, breakLine: true } }, { text: t[1], options: { fontSize: 11 } }], { x: x + 0.07, y, w: 1.81, h: 1.05, color: (t[2] === K.yellow || t[2] === K.cyan || t[2] === K.green) ? K.navy : K.white, align: 'center', valign: 'middle', objectName: 'Texto técnica ' + (i + 1) });
 });
-T(s, 'Cada decisión se reconstruye con una fórmula; no hay texto inventado.', { x: 0.5, y: 3.78, w: 6.2, h: 0.3, fontSize: 12, italic: true, objectName: 'Nota técnica' });
-['Sin internet y sin enviar datos', 'Reglamento UE 2024/1689 y UNESCO 2024', 'El adulto decide: puede apagarla', 'Los apoyos no penalizan'].forEach((t, i) => {
-  const x = 0.5 + (i % 2) * 3.15, y = 4.2 + Math.floor(i / 2) * 0.5;
-  T(s, '✓ ' + t, { x, y, w: 3.05, h: 0.42, fontSize: 12, bold: true, color: K.navy, fill: { color: K.white }, valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.1, margin: 0.1, objectName: 'Garantía ' + (i + 1) });
-});
+['Sin internet y sin enviar datos', 'El adulto decide'].forEach((t, i) => T(s, '✓ ' + t, { x: 0.5 + i * 3.15, y: 4.0, w: 3.05, h: 0.5, fontSize: 13, bold: true, color: K.navy, fill: { color: K.white }, valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.1, margin: 0.1, objectName: 'Garantía ' + (i + 1) }));
 telefono(s, '10.gif', 7.35, 1.2, 3.6, 'Chispa agrupa la clase', K.pink);
-nota(s, 'Simulación con alumnos sintéticos: el diagnóstico acierta la idea errónea en ≈ 68 % tras 5 respuestas; el piloto en Veraguas la calibra con niños.');
+nota(s, 'Cada técnica se reconstruye con una fórmula. Marco: Reglamento (UE) 2024/1689 y UNESCO (2024).');
 s.addNotes(notas());
 
 // ---------- 10. Datos ----------
 pres.addSection({ title: 'Impacto y mercado' });
 s = pres.addSlide({ masterName: 'AZUL', sectionTitle: 'Impacto y mercado' });
-s.addText('Datos del proyecto', { placeholder: 'title' });
-[['≈ 230 KB', 'primera carga comprimida (617 KB sin comprimir)', K.yellow], ['2', 'librerías pequeñas, solo para el QR de la clase', K.cyan], ['583', 'comprobaciones automáticas sin fallos y 0 violaciones de accesibilidad', K.green], ['0,4 ms', 'la IA por partida, con la CPU 6 veces más lenta', K.orange]].forEach((d, i) => {
-  const x = 0.5 + (i % 2) * 3.3, y = 1.35 + Math.floor(i / 2) * 1.85;
-  tarjeta(s, x, y, 3.15, 1.7, d[2], 'Tarjeta dato ' + (i + 1));
-  T(s, d[0], { x: x + 0.15, y: y + 0.08, w: 2.85, h: 0.85, fontSize: 38, bold: true, color: K.navy, valign: 'middle', objectName: 'Dato ' + (i + 1) });
-  T(s, d[1], { x: x + 0.15, y: y + 0.95, w: 2.85, h: 0.7, fontSize: 12.5, color: K.navy, valign: 'top', objectName: 'Dato etiqueta ' + (i + 1) });
+s.addText('Funciona, y funciona liviano', { placeholder: 'title' });
+[['583', 'comprobaciones automáticas, sin fallos', K.green], ['230 KB', 'es todo lo que se descarga la primera vez', K.yellow]].forEach((d, i) => {
+  const y = 1.35 + i * 1.85;
+  tarjeta(s, 0.5, y, 6.3, 1.7, d[2], 'Tarjeta dato ' + (i + 1));
+  T(s, d[0], { x: 0.7, y: y + 0.1, w: 2.7, h: 1.5, fontSize: 48, bold: true, color: K.navy, align: 'center', valign: 'middle', objectName: 'Dato ' + (i + 1) });
+  T(s, d[1], { x: 3.5, y: y + 0.1, w: 3.1, h: 1.5, fontSize: 16, color: K.navy, valign: 'middle', objectName: 'Dato etiqueta ' + (i + 1) });
 });
 telefono(s, '03.gif', 7.4, 1.2, 3.6, 'la voz', K.green);
-nota(s, 'Medición propia del 4/11/2026 (versión 1.4.0): fluidez con la CPU limitada 4 y 6 veces; modo ligero automático.', K.white);
+nota(s, 'Medición propia (versión 1.4.0): npm test; primera carga comprimida.', K.white);
 s.addNotes(notas());
 
-// ---------- 11. Impacto esperado ----------
+// ---------- 11. Meta ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Impacto y mercado' });
 s.addText('Meta: 3.800 estudiantes de Veraguas haciendo ciencia en 3 años', { placeholder: 'title' });
-[['1 %', '380', 'año 1: piloto ampliado', K.cyan], ['5 %', '1.900', 'año 2: programa regional', K.orange], ['10 %', '3.800', 'año 3: meta', K.pink]].forEach((c, i) => {
-  const x = 0.5 + i * 2.1;
-  tarjeta(s, x, 1.35, 1.95, 1.95, c[3], 'Escenario ' + (i + 1));
-  T(s, c[0], { x: x + 0.05, y: 1.4, w: 1.85, h: 0.5, fontSize: 18, bold: true, color: K.navy, align: 'center', valign: 'middle', objectName: 'Adopción ' + (i + 1) });
-  T(s, c[1], { x: x + 0.05, y: 1.9, w: 1.85, h: 0.8, fontSize: 30, bold: true, color: c[3] === K.cyan ? '0B8FB0' : c[3], align: 'center', valign: 'middle', objectName: 'Estudiantes ' + (i + 1) });
-  T(s, c[2], { x: x + 0.05, y: 2.7, w: 1.85, h: 0.5, fontSize: 12, color: K.navy, align: 'center', valign: 'top', objectName: 'Escenario etiqueta ' + (i + 1) });
-});
-T(s, 'Ruta de adopción sobre los 38.250 estudiantes de primaria y premedia de Veraguas.', { x: 0.5, y: 3.4, w: 6.2, h: 0.4, fontSize: 11, italic: true, color: K.navy, objectName: 'Base del escenario' });
+heroDato(s, '3.800', 'estudiantes: el 10 % de los 38.250 de primaria y premedia de Veraguas', K.pink);
 [['4', 'C5192D', 'Educación de calidad'], ['10', 'DD1367', 'Menos desigualdades'], ['9', 'F36D25', 'Acceso a las TIC']].forEach((o, i) => {
-  const x = 0.5 + i * 2.1;
-  T(s, o[0], { x, y: 4.0, w: 0.6, h: 0.6, fontSize: 22, bold: true, color: K.white, fill: { color: o[1] }, align: 'center', valign: 'middle', objectName: 'ODS ' + o[0] });
-  T(s, 'ODS ' + o[0] + ': ' + o[2], { x: x + 0.68, y: 4.0, w: 1.35, h: 0.6, fontSize: 11, bold: true, color: K.navy, valign: 'middle', objectName: 'Nombre ODS ' + o[0] });
+  const x = 0.5 + i * 2.15;
+  T(s, o[0], { x, y: 4.2, w: 0.6, h: 0.6, fontSize: 22, bold: true, color: K.white, fill: { color: o[1] }, align: 'center', valign: 'middle', objectName: 'ODS ' + o[0] });
+  T(s, 'ODS ' + o[0] + ': ' + o[2], { x: x + 0.68, y: 4.2, w: 1.4, h: 0.6, fontSize: 11, bold: true, color: K.navy, valign: 'middle', objectName: 'Nombre ODS ' + o[0] });
 });
-telefono(s, '01.gif', 7.5, 1.2, 3.6, 'la rampa', K.orange);
-nota(s, 'Base: Meduca (2024), 38.250 estudiantes de primaria y premedia en Veraguas (docs/impacto-esperado.md). ODS: Naciones Unidas, metas 4.1, 4.5, 4.a, 10.2 y 9.c.');
+telefono(s, '01.gif', 7.55, 1.15, 3.55, 'la rampa', K.orange);
+nota(s, 'Base: Meduca (2024), 38.250 estudiantes en Veraguas (docs/impacto-esperado.md). ODS: Naciones Unidas.');
 s.addNotes(notas());
 
 // ---------- 12. Mercado ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Impacto y mercado' });
 s.addText('Un laboratorio por casi cero, financiado por quien ya invierte en educación', { placeholder: 'title' });
-[['2.262 B/.', 'costo por alumno del Gobierno Central en 2024', K.violet], ['≈ 150.100 $', 'una aula de laboratorio de la licitación', K.pink], ['≈ 0', 'costo de equipo por escuela con Chispa Lab', K.green]].forEach((c, i) => {
-  const x = 0.5 + i * 2.1;
-  tarjeta(s, x, 1.35, 1.95, 1.65, c[2], 'Tarjeta ' + (i + 1));
-  T(s, c[0], { x: x + 0.08, y: 1.4, w: 1.8, h: 0.8, fontSize: 22, bold: true, color: c[2] === K.green ? '0E9F6E' : c[2], align: 'center', valign: 'middle', objectName: 'Cifra ' + (i + 1) });
-  T(s, c[1], { x: x + 0.1, y: 2.2, w: 1.75, h: 0.75, fontSize: 11, color: K.navy, align: 'center', valign: 'top', objectName: 'Etiqueta ' + (i + 1) });
+[['≈ 150.100 $', 'una aula de laboratorio', K.pink], ['≈ 0 $', 'por escuela con Chispa Lab', K.green]].forEach((c, i) => {
+  const x = 0.5 + i * 3.2;
+  tarjeta(s, x, 1.35, 3.05, 2.3, c[2], 'Tarjeta ' + (i + 1));
+  T(s, c[0], { x: x + 0.1, y: 1.45, w: 2.85, h: 1.2, fontSize: 34, bold: true, color: c[2] === K.green ? '0E9F6E' : c[2], align: 'center', valign: 'middle', objectName: 'Cifra ' + (i + 1) });
+  T(s, c[1], { x: x + 0.15, y: 2.65, w: 2.75, h: 0.8, fontSize: 15, color: K.navy, align: 'center', valign: 'top', objectName: 'Etiqueta ' + (i + 1) });
 });
-T(s, [
-  { text: 'Quién paga: no los niños. ', options: { bold: true, color: K.violet } }, { text: 'El Ministerio, fundaciones como ProFuturo y redes de escuelas, por adaptación, contenido y formación.', options: { breakLine: true, paraSpaceAfter: 6 } },
-  { text: 'Modelo: ', options: { bold: true, color: K.violet } }, { text: 'núcleo abierto y gratuito, más servicios.', options: { breakLine: true, paraSpaceAfter: 6 } },
-  { text: 'Veraguas: ', options: { bold: true, color: K.violet } }, { text: '54.708 estudiantes oficiales; el 10 % de primaria y premedia son ≈ 3.800.' }],
-  { x: 0.5, y: 3.2, w: 6.2, h: 1.85, fontSize: 14, color: K.navy, valign: 'top', objectName: 'Modelo de mercado' });
-telefono(s, '02.gif', 7.4, 1.2, 3.6, 'el péndulo', K.violet);
-nota(s, 'Fuentes: INEC/Contraloría, cuadro 19 (2024 preliminar); La Prensa (2/4/2026); Meduca (2024). Modelo de ingresos: servicios sobre un núcleo abierto.');
+T(s, [{ text: 'Pagan: ', options: { bold: true, color: K.violet } }, { text: 'el Ministerio, fundaciones como ProFuturo y redes de escuelas, por adaptación, contenido y formación.' }], { x: 0.5, y: 3.9, w: 6.3, h: 1.0, fontSize: 16, color: K.navy, valign: 'top', objectName: 'Quién paga' });
+telefono(s, '02.gif', 7.55, 1.15, 3.55, 'el péndulo', K.violet);
+nota(s, 'Fuente: La Prensa (2/4/2026). Código abierto, sin servidor: el ingreso son los servicios.');
 s.addNotes(notas());
 
 // ---------- 13. Conclusión ----------

@@ -3,7 +3,7 @@
 Las 14 diapositivas y el texto para decir en cada una, con su tiempo. Total: **5:00**. Estructura (ver el README): gancho con un dato, problema, solución, prueba, impacto y petición; **la última diapositiva (preguntas y gracias, con el juego en acción) se queda en pantalla durante las preguntas**.
 Este archivo es la fuente de las notas del orador del `.pptx` (el script de la presentación lee las secciones numeradas, en orden, y se detiene en la línea `---`). Para el vídeo de 3 minutos, ver [`guion-video.md`](guion-video.md).
 
-**Ritmo:** el texto suma **676 palabras**, unos 4:30 a 150 palabras por minuto, con el resto del tiempo como margen para cambiar de diapositiva. Conviene ensayarlo con cronómetro: si te pasas, recorta el texto, no hables más rápido.
+**Ritmo:** el texto suma **548 palabras**, unos 3:39 a 150 palabras por minuto, con el resto del tiempo como margen para cambiar de diapositiva. Conviene ensayarlo con cronómetro: si te pasas, recorta el texto, no hables más rápido.
 
 ## 1. Chispa Lab
 
@@ -11,15 +11,15 @@ Este archivo es la fuente de las notas del orador del `.pptx` (el script de la p
 
 ## 2. Seis de cada diez estudiantes panameños no alcanzan el nivel básico en ciencias
 
-[0:12 a 0:42] Empecemos por un dato. En ciencias, seis de cada diez estudiantes panameños de 15 años no alcanzan el nivel básico. En PISA 2022, Panamá sacó 388 puntos; Colombia, 411; Uruguay, 435; Chile, 444; la Unión Europea, 480 y la OCDE, 485. Solo 38 por ciento llega al nivel básico, frente a 76 por ciento en la OCDE y en la Unión Europea.
+[0:12 a 0:42] Empecemos por un dato. En ciencias, seis de cada diez estudiantes panameños de 15 años no alcanzan el nivel básico. En PISA 2022, Panamá sacó 388 puntos; Chile, el mejor de América Latina, 444; y la Unión Europea, 480.
 
 ## 3. Nacer en una comarca indígena marca lo que se aprende
 
-[0:42 a 1:02] Y no es igual para todos. Quien habla una lengua indígena en casa saca unos 80 puntos menos, casi tres años de escuela. Un niño de comarca indígena alcanza cinco años de escolaridad; uno de zona urbana, nueve. Y en esas comarcas falta internet.
+[0:42 a 1:02] Y no es igual para todos. Quien habla una lengua indígena en casa saca unos 80 puntos menos, casi tres años de escuela. Un niño de comarca indígena alcanza cinco años de escolaridad; uno de zona urbana, nueve.
 
 ## 4. El laboratorio no llega, pero el teléfono ya está
 
-[1:02 a 1:22] El laboratorio tampoco llega: el Estado licitó 193 aulas para 73 centros de media, por 28,9 millones de dólares, unos 150 mil dólares cada una. Hay 17 clientes de internet fijo por cada 100 habitantes. Pero el teléfono ya está en las manos de las familias.
+[1:02 a 1:22] El laboratorio tampoco llega: cada aula cuesta unos 150 mil dólares y la licitación de este año alcanza 73 centros. Pero el teléfono ya está en las manos de las familias, y Chispa Lab lo convierte en laboratorio.
 
 ## 5. Nuestra idea: predice, formula, juega, descubre
 
@@ -35,23 +35,23 @@ Este archivo es la fuente de las notas del orador del `.pptx` (el script de la p
 
 ## 8. Para todos los niños: siete apoyos opcionales
 
-[2:30 a 2:56] Es para todos. Uno de cada seis niños panameños de 2 a 14 años tiene alguna discapacidad. Al registrarse, el niño marca lo que le ayuda: concentrarse, leer, mover las manos, ver, oír, hablar o las luces y los ruidos. Y el juego cambia: más contraste, letra grande, lectura en voz alta, botones grandes. La dificultad nunca es imposible y no se piden diagnósticos.
+[2:30 a 2:56] Es para todos: uno de cada seis niños panameños tiene alguna discapacidad. Al registrarse, el niño marca lo que le ayuda, y el juego se adapta: letra grande, lectura en voz alta, modo calma. Nunca es imposible y no se piden diagnósticos.
 
-## 9. IA que aprende dentro del teléfono, sin conexión
+## 9. 6 técnicas de IA que aprenden dentro del teléfono
 
-[2:56 a 3:30] La IA son seis técnicas de aprendizaje automático clásico que aprenden dentro del teléfono, sin internet: un tutor estima qué ideas domina cada niño, un diagnóstico delata la idea equivocada, un bandido elige la mejor pista, un modelo aprende los colores con dos muestras, otro ajusta el margen de cada niño para que acierte siete de cada diez veces, y k-means agrupa la clase. El adulto puede apagarla y decide; el reglamento europeo de IA de 2024 pide justo eso.
+[2:56 a 3:30] La IA son seis técnicas de aprendizaje automático clásico que aprenden dentro del teléfono, sin internet: un tutor estima qué ideas domina cada niño, un diagnóstico delata la idea equivocada, un bandido elige la mejor pista, otro modelo aprende los colores, uno más ajusta el margen para que acierte siete de cada diez veces, y k-means agrupa la clase. El adulto decide.
 
-## 10. Datos del proyecto
+## 10. Funciona, y funciona liviano
 
-[3:30 a 3:52] Medimos el sistema: unos 230 kilobytes en la primera carga, 583 comprobaciones automáticas sin fallos, cero violaciones en la auditoría de accesibilidad y la IA tarda menos de medio milisegundo. Con la CPU cuatro veces más lenta mantiene entre 20 y 28 cuadros por segundo.
+[3:30 a 3:52] Funciona y es liviano: 583 comprobaciones automáticas sin fallos y solo 230 kilobytes en la primera descarga.
 
 ## 11. Meta: 3.800 estudiantes de Veraguas haciendo ciencia en 3 años
 
-[3:52 a 4:14] En la Región Educativa de Veraguas hay 38.250 estudiantes de primaria y premedia. Nuestra meta: unos 380 en el primer año, casi 1.900 en el segundo y unos 3.800 al tercero, el diez por ciento. Y contribuimos a tres objetivos de desarrollo sostenible: educación de calidad, menos desigualdades y acceso a las TIC sin exigir conexión.
+[3:52 a 4:14] Nuestra meta: 3.800 estudiantes de Veraguas en tres años, el diez por ciento de los 38.250 de primaria y premedia. Contribuimos a tres objetivos de desarrollo sostenible: educación de calidad, menos desigualdades y acceso a las TIC.
 
 ## 12. Un laboratorio por casi cero, financiado por quien ya invierte en educación
 
-[4:14 a 4:42] Una aula de laboratorio de la licitación cuesta unos 150 mil dólares; Chispa Lab, casi cero por escuela. Es código abierto y no tiene servidor, así que se sostiene con servicios: adaptación, contenido y formación, que pagan el Ministerio, fundaciones como ProFuturo y redes de escuelas.
+[4:14 a 4:42] Una aula de laboratorio cuesta unos 150 mil dólares; Chispa Lab, casi cero por escuela. Es código abierto y sin servidor, así que se sostiene con servicios: adaptación, contenido y formación, que pagan el Ministerio, fundaciones como ProFuturo y redes de escuelas.
 
 ## 13. Conclusión
 
