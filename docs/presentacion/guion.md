@@ -1,9 +1,9 @@
 # Guion de la presentación (5 minutos)
 
-Las 14 diapositivas y el texto para decir en cada una, con su tiempo. Total: **5:00**. Estructura (ver el README): gancho con un dato, problema, solución, prueba, impacto y petición; **la última diapositiva (preguntas y gracias, con el juego en acción) se queda en pantalla durante las preguntas**.
+Las 15 diapositivas y el texto para decir en cada una, con su tiempo. Total: **5:00**. Estructura (ver el README): gancho con un dato, problema, solución, prueba, impacto y petición; **la última diapositiva (preguntas y gracias, con el juego en acción) se queda en pantalla durante las preguntas**.
 Este archivo es la fuente de las notas del orador del `.pptx` (el script de la presentación lee las secciones numeradas, en orden, y se detiene en la línea `---`). Para el vídeo de 3 minutos, ver [`guion-video.md`](guion-video.md).
 
-**Ritmo:** el texto suma **548 palabras**, unos 3:39 a 150 palabras por minuto, con el resto del tiempo como margen para cambiar de diapositiva. Conviene ensayarlo con cronómetro: si te pasas, recorta el texto, no hables más rápido.
+**Ritmo:** el texto suma **560 palabras**, unos 3:44 a 150 palabras por minuto, con el resto del tiempo como margen para cambiar de diapositiva. Conviene ensayarlo con cronómetro: si te pasas, recorta el texto, no hables más rápido.
 
 ## 1. Chispa Lab
 
@@ -47,17 +47,21 @@ Este archivo es la fuente de las notas del orador del `.pptx` (el script de la p
 
 ## 11. Meta: 3.800 estudiantes de Veraguas haciendo ciencia en 3 años
 
-[3:52 a 4:14] Nuestra meta: 3.800 estudiantes de Veraguas en tres años, el diez por ciento de los 38.250 de primaria y premedia. Contribuimos a tres objetivos de desarrollo sostenible: educación de calidad, menos desigualdades y acceso a las TIC.
+[3:52 a 4:12] Nuestra meta: 3.800 estudiantes de Veraguas en tres años, el diez por ciento de los 38.250 de primaria y premedia, sin comprar equipos: con los teléfonos que ya existen.
 
-## 12. Un laboratorio por casi cero, financiado por quien ya invierte en educación
+## 12. Contribuimos a tres Objetivos de Desarrollo Sostenible
 
-[4:14 a 4:42] Una aula de laboratorio cuesta unos 150 mil dólares; Chispa Lab, casi cero por escuela. Es código abierto y sin servidor, así que se sostiene con servicios: adaptación, contenido y formación, que pagan el Ministerio, fundaciones como ProFuturo y redes de escuelas.
+[4:12 a 4:26] Así contribuimos a tres Objetivos de Desarrollo Sostenible: educación de calidad, reducción de las desigualdades, e industria, innovación e infraestructura.
 
-## 13. Conclusión
+## 13. Un laboratorio por casi cero, financiado por quien ya invierte en educación
 
-[4:42 a 5:00] Para concluir: el problema es real, seis de cada diez estudiantes no alcanzan el nivel básico en ciencias. La solución ya funciona: un laboratorio en el teléfono, sin internet, inclusivo y con IA que aprende de cada niño. Proponemos un piloto en Veraguas con la UTP, ProFuturo y el Ministerio. Cada teléfono, un laboratorio.
+[4:26 a 4:46] Una aula de laboratorio cuesta unos 150 mil dólares; Chispa Lab, casi cero por escuela. Es código abierto y sin servidor, así que se sostiene con servicios: adaptación, contenido y formación, que pagan el Ministerio, fundaciones como ProFuturo y redes de escuelas.
 
-## 14. Preguntas y gracias
+## 14. Conclusión
+
+[4:46 a 5:00] Para concluir: el problema es real, seis de cada diez estudiantes no alcanzan el nivel básico en ciencias. La solución ya funciona: un laboratorio en el teléfono, sin internet, inclusivo y con IA que aprende de cada niño. Proponemos un piloto en Veraguas con la UTP, ProFuturo y el Ministerio. Cada teléfono, un laboratorio.
+
+## 15. Preguntas y gracias
 
 [5:00] Muchas gracias. Con gusto responderemos sus preguntas; mientras tanto, el juego sigue en pantalla.
 

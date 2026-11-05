@@ -177,13 +177,20 @@ s.addNotes(notas());
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Impacto y mercado' });
 s.addText('Meta: 3.800 estudiantes de Veraguas haciendo ciencia en 3 años', { placeholder: 'title' });
 heroDato(s, '3.800', 'estudiantes: el 10 % de los 38.250 de primaria y premedia de Veraguas', K.pink);
-[['4', 'C5192D', 'Educación de calidad'], ['10', 'DD1367', 'Menos desigualdades'], ['9', 'F36D25', 'Acceso a las TIC']].forEach((o, i) => {
-  const x = 0.5 + i * 2.15;
-  T(s, o[0], { x, y: 4.2, w: 0.6, h: 0.6, fontSize: 22, bold: true, color: K.white, fill: { color: o[1] }, align: 'center', valign: 'middle', objectName: 'ODS ' + o[0] });
-  T(s, 'ODS ' + o[0] + ': ' + o[2], { x: x + 0.68, y: 4.2, w: 1.4, h: 0.6, fontSize: 11, bold: true, color: K.navy, valign: 'middle', objectName: 'Nombre ODS ' + o[0] });
-});
+T(s, 'Sin comprar equipos: solo teléfonos que ya existen.', { x: 0.5, y: 4.1, w: 6.3, h: 0.8, fontSize: 16, bold: true, color: K.violet, valign: 'top', objectName: 'Apoyo' });
 telefono(s, '01.gif', 7.55, 1.15, 3.55, 'la rampa', K.orange);
-nota(s, 'Base: Meduca (2024), 38.250 estudiantes en Veraguas (docs/impacto-esperado.md). ODS: Naciones Unidas.');
+nota(s, 'Base: Meduca (2024), 38.250 estudiantes de primaria y premedia en Veraguas (docs/impacto-esperado.md).');
+s.addNotes(notas());
+
+// ---------- 12. ODS ----------
+s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Impacto y mercado' });
+s.addText('Contribuimos a tres Objetivos de Desarrollo Sostenible', { placeholder: 'title' });
+[['4', 'Aprendizaje pertinente para la niñez vulnerable'], ['10', 'Inclusión sin importar edad ni discapacidad'], ['9', 'Más acceso a las TIC, sin exigir conexión']].forEach((o, i) => {
+  const x = 0.55 + i * 3.1;
+  s.addImage({ path: IMG + '/ods-' + o[0] + '.png', x, y: 1.3, w: 2.8, h: 2.8, objectName: 'ODS ' + o[0], altText: 'Objetivo de Desarrollo Sostenible ' + o[0] });
+  T(s, o[1], { x: x - 0.05, y: 4.2, w: 2.9, h: 0.7, fontSize: 14, bold: true, color: K.navy, align: 'center', valign: 'top', objectName: 'Frase ODS ' + o[0] });
+});
+nota(s, 'Objetivos de Desarrollo Sostenible: Naciones Unidas (sdgs.un.org), metas 4.1, 4.5, 4.a, 10.2 y 9.c.');
 s.addNotes(notas());
 
 // ---------- 12. Mercado ----------

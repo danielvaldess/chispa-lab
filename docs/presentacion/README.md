@@ -24,10 +24,11 @@
 | 8 | **Para todos los niños:** siete apoyos (GIF de la elección de apoyos y del registro) | 0:26 | 2:30–2:56 |
 | 9 | IA que aprende dentro del teléfono (6 técnicas) | 0:34 | 2:56–3:30 |
 | 10 | Funciona, y funciona liviano (583 pruebas, 230 KB) | 0:22 | 3:30–3:52 |
-| 11 | Meta: 3.800 estudiantes de Veraguas en 3 años (10 %) y ODS | 0:22 | 3:52–4:14 |
-| 12 | Un laboratorio por casi cero, financiado por quien ya invierte en educación | 0:28 | 4:14–4:42 |
-| 13 | **Conclusión** (problema, solución y petición, con GIF de Mi laboratorio y la rampa) | 0:18 | 4:42–5:00 |
-| 14 | **¿Preguntas? ¡Muchas gracias!** con cinco GIF del juego en acción (se queda en pantalla) | — | después de los 5:00 |
+| 11 | Meta: 3.800 estudiantes de Veraguas en 3 años (10 %) | 0:20 | 3:52–4:12 |
+| 12 | **Tres ODS** (4, 10 y 9, los logos oficiales en grande) | 0:14 | 4:12–4:26 |
+| 13 | Un laboratorio por casi cero, financiado por quien ya invierte en educación | 0:20 | 4:26–4:46 |
+| 14 | **Conclusión** (problema, solución y petición, con GIF de Mi laboratorio y la rampa) | 0:14 | 4:46–5:00 |
+| 15 | **¿Preguntas? ¡Muchas gracias!** con cinco GIF del juego en acción (se queda en pantalla) | — | después de los 5:00 |
 
 **Regla de datos:** una cifra protagonista por diapositiva (la correcta, no muchas); el resto va en las notas del orador y en los documentos.
 
@@ -39,7 +40,7 @@
 - **Primacía y recencia:** lo que más se recuerda es el principio y el final; el principio es el dato y el final es la petición con el juego funcionando durante las preguntas.
 - Los clips de cámara (Luz y color, Burbujas) no se muestran en la presentación.
 
-El texto de cada diapositiva suma 548 palabras: unos 3:39 a 150 palabras por minuto, y el resto del tiempo es margen para cambiar de diapositiva.
+El texto de cada diapositiva suma 560 palabras: unos 3:44 a 150 palabras por minuto, y el resto del tiempo es margen para cambiar de diapositiva.
 
 ## Qué cifras tienen fuente y cuáles son medidas propias
 
