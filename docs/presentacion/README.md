@@ -6,18 +6,18 @@
   *No pudimos renderizarla en esta máquina (no hay LibreOffice), así que conviene abrirla y revisar el diseño antes de presentar.*
 - **[`guion.md`](guion.md):** el texto de cada diapositiva. **Es la fuente de las notas del `.pptx`**: el script las lee de ahí.
 - **[`guion-video.md`](guion-video.md):** guion y lista de tomas del vídeo de 3 minutos (la entrega del 5 de noviembre).
-- **`img/`:** capturas reales del juego (Chromium con tamaño de teléfono) usadas en las diapositivas.
+- **`gif/`:** un GIF por vídeo de la app (01–10), que se animan al presentar y están en todas las diapositivas; **`img/`:** fondos de color y capturas.
 - **`construir-presentacion.js`:** genera el `.pptx` con `pptxgenjs`. Para regenerarlo: `npm install pptxgenjs@3.12.0` en una carpeta aparte y ejecutarlo con las variables
-  `SKILL` (carpeta de la herramienta que aplica el tema), `IMG` (carpeta `img`) y `SALIDA` (archivo de salida), con `NODE_PATH` apuntando a esa carpeta.
+  `SKILL` (carpeta de la herramienta que aplica el tema), `IMG` (carpeta `img`, con los fondos) y `SALIDA` (archivo de salida), con `NODE_PATH` apuntando a esa carpeta.
 
 ## Estructura (5:00)
 
 | N.º | Diapositiva | Tiempo | Minutos |
 |---|---|---|---|
 | 1 | Portada | 0:12 | 0:00–0:12 |
-| 2 | **Mira cómo se juega** (demo con cuatro capturas) | 0:28 | 0:12–0:40 |
-| 3 | Panamá tiene un reto de aprendizaje (ERCE Pospandemia 2025, 6.º grado, frente a Argentina) | 0:33 | 0:40–1:13 |
-| 4 | El laboratorio y la conexión llegan despacio, el teléfono ya está | 0:19 | 1:13–1:32 |
+| 2 | **Mira cómo se juega** (cuatro GIF de la app) | 0:28 | 0:12–0:40 |
+| 3 | Un laboratorio de ciencias cuesta ≈ 150.000 dólares por aula (licitación de 2026) | 0:33 | 0:40–1:13 |
+| 4 | La conexión también llega despacio, el teléfono ya está | 0:19 | 1:13–1:32 |
 | 5 | Nuestra idea: predice, formula, juega, descubre | 0:18 | 1:32–1:50 |
 | 6 | Seis juegos, cuatro experimentos y un laboratorio libre | 0:14 | 1:50–2:04 |
 | 7 | **Para docentes:** «Mis alumnos» con QR, sin internet | 0:34 | 2:04–2:38 |
@@ -28,7 +28,7 @@
 | 12 | Mercado: quién lo necesita y quién lo financia | 0:27 | 4:15–4:42 |
 | 13 | Lo que proponemos | 0:18 | 4:42–5:00 |
 
-El texto de cada diapositiva suma 649 palabras: unos 4:20 a 150 palabras por minuto, y el resto del tiempo es margen para cambiar de diapositiva y dejar ver la demo.
+El texto de cada diapositiva suma 644 palabras: unos 4:17 a 150 palabras por minuto, y el resto del tiempo es margen para cambiar de diapositiva y dejar ver la demo.
 
 ## Qué cifras tienen fuente y cuáles son medidas propias
 

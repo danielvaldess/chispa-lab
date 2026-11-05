@@ -1,250 +1,230 @@
+// Presentación de Chispa Lab (13 diapositivas, fondos de color y GIF de la propia app en todas).
+// Las notas del orador salen de guion.md (una sección «## n. Título» por diapositiva, en el mismo orden).
+// Los nombres del equipo salen de participantes.txt (uno por línea).
+// Regenerar: npm install pptxgenjs@3.12.0 en una carpeta aparte y ejecutar con SKILL, IMG, SALIDA y NODE_PATH (ver README.md).
 const pptxgen = require('pptxgenjs');
 const fs = require('fs'), path = require('path');
-// Las notas del orador salen de guion.md (una sección «## n. Título» por diapositiva, en el mismo orden).
 const NOTAS = fs.readFileSync(path.join(__dirname, 'guion.md'), 'utf8').split(/^## \d+\. .*$/m).slice(1).map((t) => t.split(/\n---/)[0].trim());
-// Los nombres del equipo salen de participantes.txt (uno por línea). Si falta, la portada lo avisa en vez de inventar nombres.
 const _pf = path.join(__dirname, 'participantes.txt');
 const PART = fs.existsSync(_pf) ? fs.readFileSync(_pf, 'utf8').split('\n').map((t) => t.trim()).filter(Boolean) : [];
-const EQUIPO = PART.length ? PART.join(' · ') : '[Nombres de los 3 integrantes: escribirlos en participantes.txt]';
-let _nota = 0; const notas = () => NOTAS[_nota++].replace('[NOMBRES DEL EQUIPO]', (typeof EQUIPO === 'string' && PART.length) ? PART.join(', ') : '[NOMBRES DEL EQUIPO]');
+const EQUIPO = PART.length ? PART.join(' · ') : '[Nombres de los integrantes: escribirlos en participantes.txt]';
+let _nota = 0; const notas = () => NOTAS[_nota++].replace('[NOMBRES DEL EQUIPO]', PART.length ? PART.join(', ') : '[NOMBRES DEL EQUIPO]');
 const { applyTheme } = require(process.env.SKILL + '/scripts/apply_theme.js');
-const IMG = process.env.IMG;
-const MEDIA = path.resolve(__dirname, '../media'); // GIF animados (se reproducen en la presentación)
-const THEME = {
-  name: 'Chispa Lab', headFontFace: 'Calibri', bodyFontFace: 'Calibri',
-  colors: { dk1: '1D2250', lt1: 'FFFFFF', dk2: '3B4A9B', lt2: 'EEF3FF', accent1: '5EC8FF', accent2: 'FFD23F', accent3: 'FF5C8A', accent4: '2FD18B', accent5: 'FF9F43', accent6: '8A6CFF', hlink: '1D6FB8', folHlink: '8A6CFF' },
-};
-const HEX = { navy: '1D2250', sky: '5EC8FF', yellow: 'FFD23F', pink: 'FF5C8A', green: '2FD18B', orange: 'FF9F43', violet: '8A6CFF', light: 'EEF3FF', gris: '4A4F86' };
+const IMG = process.env.IMG;                       // fondos e imágenes
+const GIF = path.join(__dirname, 'gif');           // GIF de la app (uno por vídeo 01–10; se animan al presentar)
+
+const K = { navy: '1D2250', white: 'FFFFFF', yellow: 'FFD23F', pink: 'FF3D8B', cyan: '22D3EE', green: '2FE29B', orange: 'FF8A3D', violet: '7B4DFF', cream: 'FFF8E1' };
+const THEME = { name: 'Chispa Lab', headFontFace: 'Calibri', bodyFontFace: 'Calibri',
+  colors: { dk1: '1D2250', lt1: 'FFFFFF', dk2: '5B2EE6', lt2: 'FFF3C4', accent1: '22D3EE', accent2: 'FFD23F', accent3: 'FF3D8B', accent4: '2FE29B', accent5: 'FF8A3D', accent6: '7B4DFF', hlink: '5B2EE6', folHlink: '7B4DFF' } };
 const pres = new pptxgen();
 pres.layout = 'LAYOUT_16x9';
 pres.theme = { headFontFace: 'Calibri', bodyFontFace: 'Calibri' };
 pres.title = 'Chispa Lab: un laboratorio de ciencias en cada teléfono';
 pres.author = 'Daniel Valdés';
 pres.subject = '#hack4edu 2026, reto 17';
-const C = pres.SchemeColor;
 
-pres.defineSlideMaster({
-  title: 'OSCURO', background: { color: C.text1 },
-  objects: [],
-});
-pres.defineSlideMaster({
-  title: 'CLARO', background: { color: C.background1 },
-  slideNumber: { x: 9.2, y: 5.18, w: 0.5, h: 0.3, fontSize: 10, color: C.text2, align: 'right' },
-  objects: [
-    { placeholder: { options: { name: 'title', type: 'title', x: 0.5, y: 0.3, w: 9, h: 0.95, fontSize: 30, bold: true, color: C.text1, valign: 'middle', margin: 0 }, text: '' } },
-  ],
-});
+const master = (title, fondo, color) => pres.defineSlideMaster({ title, background: { path: IMG + '/fondo-' + fondo + '.jpg' },
+  slideNumber: { x: 9.2, y: 5.2, w: 0.5, h: 0.3, fontSize: 10, color: color, align: 'right' },
+  objects: [{ placeholder: { options: { name: 'title', type: 'title', x: 0.5, y: 0.25, w: 9, h: 0.95, fontSize: 30, bold: true, color: color, valign: 'middle', margin: 0 }, text: '' } }] });
+master('CLARO', 'B', K.navy); master('AZUL', 'C', K.white); master('OSCURO', 'A', K.white);
 
-// teléfono con una captura del juego
-function telefono(slide, ruta, x, y, h, nombre) {
-  const w = h * 390 / 844;
-  slide.addShape(pres.ShapeType.roundRect, { x: x - 0.07, y: y - 0.07, w: w + 0.14, h: h + 0.14, rectRadius: 0.16, fill: { color: C.text1 }, line: { color: C.accent1, width: 1.5 }, objectName: 'Marco ' + nombre });
-  slide.addImage({ path: (ruta.endsWith('.gif') ? MEDIA : IMG) + '/' + ruta, x, y, w, h, objectName: 'Captura ' + nombre, altText: 'Captura de pantalla del juego: ' + nombre });
+const T = (s, texto, o) => s.addText(texto, Object.assign({ margin: 0, isTextBox: true, color: K.navy }, o));
+function telefono(s, gif, x, y, h, nombre, borde) {
+  const w = h * 0.4617; // 780x1688
+  s.addShape(pres.ShapeType.roundRect, { x: x - 0.08, y: y - 0.08, w: w + 0.16, h: h + 0.16, rectRadius: 0.18, fill: { color: K.navy }, line: { color: borde || K.yellow, width: 3 }, objectName: 'Marco ' + nombre });
+  s.addImage({ path: GIF + '/' + gif, x, y, w, h, objectName: 'GIF ' + nombre, altText: 'Vídeo de la app: ' + nombre });
   return w;
 }
-const nota = (slide, t, color) => slide.addText(t, { x: 0.5, y: 5.12, w: 8.6, h: 0.35, fontSize: 10, color: color || C.text2, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Fuente' });
+const pie = (s, t, x, y, w, color) => T(s, t, { x, y, w, h: 0.4, fontSize: 12, bold: true, color: color || K.navy, align: 'center', valign: 'top', objectName: 'Pie ' + t });
+const nota = (s, t, color) => T(s, t, { x: 0.5, y: 5.22, w: 8.6, h: 0.3, fontSize: 9, color: color || '4A4F86', valign: 'middle', objectName: 'Fuente' });
+const tarjeta = (s, x, y, w, h, borde, nombre) => {
+  s.addShape(pres.ShapeType.roundRect, { x, y, w, h, rectRadius: 0.14, fill: { color: K.white }, line: { color: borde, width: 3 }, shadow: { type: 'outer', color: '000000', opacity: 0.18, blur: 6, offset: 3, angle: 90 }, objectName: nombre });
+};
+const burbuja = (s, x, y, d, color, nombre) => s.addShape(pres.ShapeType.ellipse, { x, y, w: d, h: d, fill: { color, transparency: 55 }, line: { color, transparency: 100 }, objectName: nombre });
 
 // ---------- 1. Portada ----------
 pres.addSection({ title: 'Problema' });
 let s = pres.addSlide({ masterName: 'OSCURO', sectionTitle: 'Problema' });
-s.addText('Chispa Lab', { x: 0.6, y: 1.05, w: 5.7, h: 1.0, fontSize: 54, bold: true, color: C.background1, margin: 0, isTextBox: true, objectName: 'Título' });
-s.addText('Un laboratorio de ciencias en cada teléfono', { x: 0.6, y: 2.1, w: 5.6, h: 0.9, fontSize: 24, color: C.accent1, margin: 0, isTextBox: true, objectName: 'Subtítulo' });
-s.addText([{ text: 'Reto 17 · #hack4edu 2026', options: { breakLine: true } }, { text: EQUIPO, options: { breakLine: true } }, { text: 'UTP, Centro Regional de Veraguas' }], { x: 0.6, y: 3.2, w: 5.8, h: 1.0, fontSize: 15, color: C.background1, margin: 0, isTextBox: true, objectName: 'Autoría' });
-['Sin internet', 'Inclusivo', 'Código abierto'].forEach((t, i) => {
-  s.addText(t, { x: 0.6 + i * 1.85, y: 4.35, w: 1.7, h: 0.42, fontSize: 14, bold: true, color: C.text1, fill: { color: C.accent2 }, align: 'center', valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.2, margin: 0, isTextBox: true, objectName: 'Etiqueta ' + t });
-});
-telefono(s, 'menu.png', 7.0, 0.55, 4.5, 'menú del juego');
+burbuja(s, 5.2, -0.8, 3.0, K.yellow, 'Adorno 1'); burbuja(s, -0.9, 3.9, 2.4, K.cyan, 'Adorno 2'); burbuja(s, 8.6, 3.8, 2.2, K.green, 'Adorno 3');
+T(s, 'Chispa Lab', { x: 0.6, y: 0.95, w: 5.8, h: 1.1, fontSize: 60, bold: true, color: K.white, objectName: 'Título' });
+T(s, 'Un laboratorio de ciencias en cada teléfono', { x: 0.6, y: 2.1, w: 5.4, h: 0.95, fontSize: 26, bold: true, color: K.yellow, objectName: 'Subtítulo' });
+T(s, [{ text: 'Reto 17 · #hack4edu 2026', options: { breakLine: true, bold: true } }, { text: EQUIPO, options: { breakLine: true } }, { text: 'UTP, Centro Regional de Veraguas' }], { x: 0.6, y: 3.2, w: 5.4, h: 0.95, fontSize: 15, color: K.white, objectName: 'Autoría' });
+[['Sin internet', K.yellow], ['Inclusivo', K.cyan], ['Código abierto', K.green]].forEach((t, i) => T(s, t[0], { x: 0.6 + i * 1.8, y: 4.4, w: 1.65, h: 0.45, fontSize: 14, bold: true, color: K.navy, fill: { color: t[1] }, align: 'center', valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.22, objectName: 'Etiqueta ' + t[0] }));
+telefono(s, '08.gif', 6.15, 0.55, 4.5, 'registro: estudiante o docente', K.yellow);
+telefono(s, '01.gif', 8.35, 1.5, 3.3, 'la rampa', K.cyan);
 s.addNotes(notas());
 
-
-// ---------- 1b. Demo ----------
-s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Problema' });
+// ---------- 2. Demo ----------
+s = pres.addSlide({ masterName: 'AZUL', sectionTitle: 'Problema' });
 s.addText('Mira cómo se juega', { placeholder: 'title' });
-[['rampa.gif', 'Predice y juega'], ['pistas.png', 'Chispa pregunta con tus datos'], ['laboratorio.gif', 'Mi laboratorio: juega libre'], ['hilo.png', 'Experimentos con materiales']].forEach((t, i) => {
-  const x = 0.55 + i * 2.3;
-  telefono(s, t[0], x, 1.3, 3.3, t[1]);
-  s.addText(t[1], { x: x - 0.1, y: 4.78, w: 1.9, h: 0.5, fontSize: 12, bold: true, color: C.text1, align: 'center', valign: 'top', margin: 0, isTextBox: true, objectName: 'Pie ' + (i + 1) });
+[['01.gif', 'Predice y juega', K.yellow], ['02.gif', 'El péndulo de hilo', K.pink], ['03.gif', 'Tu voz, el micrófono', K.green], ['05.gif', 'Luz y color con la cámara', K.orange]].forEach((t, i) => {
+  const x = 0.6 + i * 2.3;
+  telefono(s, t[0], x, 1.3, 3.35, t[1], t[2]);
+  pie(s, t[1], x - 0.2, 4.85, 1.95, K.white);
 });
 s.addNotes(notas());
 
-// ---------- 2. Aprendizaje ----------
+// ---------- 3. Problema: el laboratorio ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Problema' });
-s.addText('Panamá tiene un reto de aprendizaje en ciencias', { placeholder: 'title' });
-s.addChart(pres.charts.BAR, [{ name: 'Panamá', labels: ['Lectura 6.º', 'Matemática 6.º'], values: [27.7, 10.1] }, { name: 'Argentina', labels: ['Lectura 6.º', 'Matemática 6.º'], values: [34.5, 17] }], {
-  x: 0.5, y: 1.4, w: 4.9, h: 3.5, barDir: 'col', barGrouping: 'clustered', chartColors: [HEX.pink, HEX.sky], showValue: true, dataLabelPosition: 'outEnd', dataLabelFormatCode: '0.0"%"', dataLabelColor: HEX.navy, dataLabelFontSize: 14, dataLabelFontBold: true,
-  showTitle: true, title: '6.º grado que alcanza el nivel mínimo (%), ERCE Pospandemia 2025', titleFontSize: 13, titleColor: HEX.navy, catAxisLabelColor: HEX.navy, catAxisLabelFontSize: 13, valAxisHidden: true, valGridLine: { style: 'none' }, catGridLine: { style: 'none' }, showLegend: true, legendPos: 'b', legendFontSize: 12, legendColor: HEX.navy, valAxisMaxVal: 45, valAxisMinVal: 0,
+s.addText('Un laboratorio de ciencias cuesta ≈ 150.000 dólares por aula', { placeholder: 'title' });
+[['193', 'aulas de laboratorio en la licitación de 2026', K.pink], ['73', 'centros de educación media: los únicos que alcanza', K.orange], ['28,9 M$', 'en total, unos 150.100 dólares por aula', K.violet]].forEach((c, i) => {
+  const y = 1.4 + i * 1.2;
+  tarjeta(s, 0.5, y, 5.6, 1.05, c[2], 'Tarjeta ' + (i + 1));
+  T(s, c[0], { x: 0.7, y, w: 1.9, h: 1.05, fontSize: 34, bold: true, color: c[2], valign: 'middle', objectName: 'Cifra ' + (i + 1) });
+  T(s, c[1], { x: 2.65, y, w: 3.3, h: 1.05, fontSize: 15, color: K.navy, valign: 'middle', objectName: 'Etiqueta ' + (i + 1) });
 });
-s.addText([{ text: '27,7 %  ·  10,1 %', options: { fontSize: 32, bold: true, color: C.accent3, breakLine: true } }, { text: 'de los niños de 6.º de Panamá alcanza el nivel mínimo en lectura y en matemática', options: { fontSize: 13, color: C.text1 } }], { x: 5.7, y: 1.35, w: 3.9, h: 1.3, margin: 0, isTextBox: true, objectName: 'Dato Panamá' });
-s.addText([{ text: 'Ciencias: sin dato reciente', options: { fontSize: 17, bold: true, color: C.text1, breakLine: true } }, { text: 'Panamá se retiró de PISA 2025; el ERCE 2025 (aplicado en octubre de 2025) publica Ciencias de 6.º a fines de 2026', options: { fontSize: 12, color: C.text1 } }], { x: 5.7, y: 2.7, w: 3.9, h: 1.1, margin: 0, isTextBox: true, objectName: 'Dato ciencias' });
-s.addText([{ text: 'Pueblos originarios: ', options: { bold: true, fontSize: 12, color: C.text1 } }, { text: 'pertenecer a un pueblo indígena se asocia a menores aprendizajes; en 2024, 1 de cada 5 alumnos de primaria oficial estaba en el área indígena (20,0 %)', options: { fontSize: 12, color: C.text1 } }], { x: 5.7, y: 3.9, w: 3.9, h: 1.1, margin: 0, isTextBox: true, objectName: 'Nota' });
-nota(s, 'Fuentes: UNESCO (2/7/2025) y Meduca (24/6/2025), ERCE Pospandemia, Panamá y Argentina; La Prensa (14/10/2024 y 15/10/2025); Meduca, cuadro 2-2 (2024).');
-
+T(s, 'Ciencias de 6.º: sin medición reciente. Panamá se retiró de PISA 2025 y el ERCE 2025 publica a fines de 2026.', { x: 0.5, y: 5.0, w: 5.7, h: 0.4, fontSize: 11, italic: true, color: K.navy, objectName: 'Dato ciencias' });
+telefono(s, '07.gif', 7.0, 1.2, 3.55, 'Mi laboratorio', K.pink);
+T(s, 'Aquí el laboratorio cabe en el teléfono', { x: 6.3, y: 4.92, w: 3.1, h: 0.35, fontSize: 12, bold: true, color: K.navy, align: 'center', objectName: 'Pie laboratorio' });
+nota(s, 'Fuentes: La Prensa (2/4/2026), licitación de laboratorios científicos; UNESCO y La Prensa (2025) sobre PISA y ERCE 2025.');
 s.addNotes(notas());
 
-// ---------- 3. Acceso ----------
+// ---------- 4. Conexión ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Problema' });
-s.addText('El laboratorio y la conexión llegan despacio, el teléfono ya está', { placeholder: 'title' });
-[['44 M$', 'contrato de internet para 3.102 escuelas (junio de 2025)', C.accent3], ['73', 'centros de media alcanza la licitación de laboratorios de 28,9 millones de dólares (abril de 2026)', C.accent5], ['17,3', 'clientes de internet fijo por cada 100 habitantes (ASEP, 2024)', C.accent4]].forEach((c, i) => {
-  const x = 0.5 + i * 3.1;
-  s.addShape(pres.ShapeType.roundRect, { x, y: 1.5, w: 2.85, h: 2.55, rectRadius: 0.12, fill: { color: C.background2 }, line: { color: C.background2 }, objectName: 'Tarjeta ' + (i + 1) });
-  s.addText(c[0], { x: x + 0.2, y: 1.65, w: 2.45, h: 1.0, fontSize: 44, bold: true, color: c[2], margin: 0, valign: 'middle', isTextBox: true, objectName: 'Cifra ' + (i + 1) });
-  s.addText(c[1], { x: x + 0.2, y: 2.7, w: 2.45, h: 1.25, fontSize: 14, color: C.text1, margin: 0, valign: 'top', isTextBox: true, objectName: 'Etiqueta ' + (i + 1) });
+s.addText('La conexión también llega despacio, el teléfono ya está', { placeholder: 'title' });
+[['44 M$', 'contrato de internet para 3.102 escuelas (junio de 2025)', K.pink], ['17,3', 'clientes de internet fijo por cada 100 habitantes (2024)', K.orange], ['73,2 %', 'pobreza multidimensional en la comarca Ngäbe Buglé, con «sin internet» entre sus carencias (2025)', K.violet]].forEach((c, i) => {
+  const y = 1.4 + i * 1.2;
+  tarjeta(s, 0.5, y, 5.6, 1.05, c[2], 'Tarjeta ' + (i + 1));
+  T(s, c[0], { x: 0.7, y, w: 1.9, h: 1.05, fontSize: 34, bold: true, color: c[2], valign: 'middle', objectName: 'Cifra ' + (i + 1) });
+  T(s, c[1], { x: 2.65, y, w: 3.3, h: 1.05, fontSize: 13, color: K.navy, valign: 'middle', objectName: 'Etiqueta ' + (i + 1) });
 });
-s.addText('Un laboratorio en el teléfono llega antes y no necesita conexión', { x: 0.5, y: 4.25, w: 9, h: 0.6, fontSize: 20, bold: true, color: C.text1, margin: 0, isTextBox: true, objectName: 'Mensaje' });
-nota(s, 'Fuentes: La Prensa (11/6/2025 y 2/4/2026); ASEP, internet fijo 2024 (estimado). Sin porcentaje oficial reciente de escuelas conectadas o con laboratorio.');
+T(s, 'Chispa Lab funciona en modo avión', { x: 0.5, y: 5.0, w: 5.7, h: 0.4, fontSize: 16, bold: true, color: K.violet, objectName: 'Mensaje' });
+telefono(s, '06.gif', 7.0, 1.2, 3.55, 'burbujas con la cámara', K.cyan);
+T(s, 'Sin conexión, con la cámara y el micrófono', { x: 6.3, y: 4.92, w: 3.1, h: 0.35, fontSize: 12, bold: true, color: K.navy, align: 'center', objectName: 'Pie cámara' });
+nota(s, 'Fuentes: La Prensa (11/6/2025); ASEP, internet fijo 2024; MEF e INEC, IPM 2025.');
 s.addNotes(notas());
 
-// ---------- 4. Idea ----------
+// ---------- 5. Idea ----------
 pres.addSection({ title: 'Solución' });
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Solución' });
 s.addText('Nuestra idea: predice, formula, juega, descubre', { placeholder: 'title' });
-[['1', 'Predice', 'Antes de jugar, el niño dice qué cree que pasará', C.accent3], ['2', 'Formula', 'Arma su hipótesis: «si cambio ___, entonces ___ porque ___»', C.accent2], ['3', 'Experimenta', 'Usa el teléfono como instrumento y haz una prueba justa', C.accent5], ['4', 'Descubre', 'Compara con sus propios datos, concluye y lo anota en su cuaderno', C.accent4]].forEach((p, i) => {
-  const y = 1.35 + i * 0.9;
-  s.addText(p[0], { x: 0.5, y, w: 0.65, h: 0.65, fontSize: 24, bold: true, color: C.background1, fill: { color: p[3] }, align: 'center', valign: 'middle', shape: pres.ShapeType.ellipse, margin: 0, isTextBox: true, objectName: 'Número ' + p[0] });
-  s.addText([{ text: p[1], options: { fontSize: 20, bold: true, color: C.text1, breakLine: true } }, { text: p[2], options: { fontSize: 13, color: C.text1 } }], { x: 1.35, y: y - 0.08, w: 5.0, h: 0.85, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Paso ' + p[0] });
+[['1', 'Predice', 'Antes de jugar, el niño dice qué cree que pasará', K.pink], ['2', 'Formula', 'Arma su hipótesis: «si cambio ___, entonces ___ porque ___»', K.orange], ['3', 'Experimenta', 'Usa el teléfono como instrumento y hace una prueba justa', K.violet], ['4', 'Descubre', 'Compara con sus propios datos y lo anota en su cuaderno', K.green]].forEach((p, i) => {
+  const y = 1.35 + i * 0.95;
+  T(s, p[0], { x: 0.5, y, w: 0.7, h: 0.7, fontSize: 26, bold: true, color: K.white, fill: { color: p[3] }, align: 'center', valign: 'middle', shape: pres.ShapeType.ellipse, objectName: 'Número ' + p[0] });
+  T(s, [{ text: p[1], options: { fontSize: 22, bold: true, color: p[3] === K.green ? '0E9F6E' : p[3], breakLine: true } }, { text: p[2], options: { fontSize: 14, color: K.navy } }], { x: 1.4, y: y - 0.08, w: 5.2, h: 0.9, valign: 'middle', objectName: 'Paso ' + p[0] });
 });
-telefono(s, 'hilo-hipotesis.png', 7.2, 1.4, 3.6, 'hipótesis del experimento');
-nota(s, 'Predecir, observar y explicar: un metaanálisis de 2024 con 35 estudios encontró un efecto alto en el rendimiento en ciencias (Koyunlu Ünlü, 2024).');
+telefono(s, '02.gif', 7.3, 1.2, 3.6, 'el péndulo: hipótesis y prueba', K.violet);
+nota(s, 'Predecir, observar y explicar: metaanálisis de 2024 con 35 estudios, efecto alto en ciencias (Koyunlu Ünlü, 2024).');
 s.addNotes(notas());
 
-// ---------- 5. Seis juegos ----------
-s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Solución' });
+// ---------- 6. Seis juegos ----------
+s = pres.addSlide({ masterName: 'AZUL', sectionTitle: 'Solución' });
 s.addText('Seis juegos, cuatro experimentos y un laboratorio libre', { placeholder: 'title' });
-const juegos = [
-  ['🎢', 'La rampa', 'Inclinación', 'Doblar el ángulo no reduce el tiempo a la mitad', C.accent5],
-  ['⏱', 'El péndulo', 'Táctil', 'Solo importa el largo del hilo, no el peso', C.accent2],
-  ['🎤', 'La voz y el globo', 'Micrófono', 'Más agudo, más vibraciones por segundo', C.accent3],
-  ['🎈', 'El globo largo', 'Micrófono', 'Una vocal sostenida mantiene el tono casi plano', C.accent4],
-  ['🌈', 'Luz y color', 'Cámara', 'Los objetos devuelven su color; las sombras tapan la luz', C.accent6],
-  ['🫧', 'Burbujas mágicas', 'Cámara', 'Una cámara detecta movimiento comparando fotos', C.accent1],
-];
-juegos.forEach((j, i) => {
-  const x = 0.5 + (i % 3) * 3.05, y = 1.4 + Math.floor(i / 3) * 1.7;
-  s.addShape(pres.ShapeType.roundRect, { x, y, w: 2.85, h: 1.55, rectRadius: 0.12, fill: { color: C.background2 }, line: { color: C.background2 }, objectName: 'Tarjeta ' + j[1] });
-  s.addShape(pres.ShapeType.ellipse, { x: x + 0.15, y: y + 0.15, w: 0.7, h: 0.7, fill: { color: j[4] }, line: { color: j[4] }, objectName: 'Fondo icono ' + j[1] });
-  s.addImage({ path: IMG + '/icono-' + (i + 1) + '.png', x: x + 0.25, y: y + 0.25, w: 0.5, h: 0.5, objectName: 'Icono ' + j[1], altText: 'Icono del juego ' + j[1] });
-  s.addText([{ text: j[1], options: { bold: true, fontSize: 16, color: C.text1, breakLine: true } }, { text: j[2], options: { fontSize: 12, color: C.text2 } }], { x: x + 0.95, y: y + 0.15, w: 1.8, h: 0.7, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Nombre ' + j[1] });
-  s.addText(j[3], { x: x + 0.15, y: y + 0.92, w: 2.55, h: 0.62, fontSize: 13, color: C.text1, margin: 0, valign: 'top', isTextBox: true, objectName: 'Idea ' + j[1] });
+[['01.gif', 'La rampa', K.yellow], ['02.gif', 'El péndulo', K.pink], ['03.gif', 'La voz', K.green], ['04.gif', 'El globo', K.orange], ['05.gif', 'Luz y color', K.cyan], ['06.gif', 'Burbujas', K.yellow]].forEach((t, i) => {
+  const x = 0.6 + i * 1.5;
+  telefono(s, t[0], x, 1.35, 2.75, t[1], t[2]);
+  pie(s, t[1], x - 0.12, 4.28, 1.3, K.white);
 });
-s.addText('+ Experimentos con materiales de casa (péndulo, col morada, huevo con sal, volcán), Mi laboratorio (juego libre con 24 descubrimientos) y, para docentes, «Mis alumnos»: el alumno muestra un QR y el docente lo escanea, sin internet.', { x: 0.5, y: 4.78, w: 9, h: 0.6, fontSize: 12, italic: true, color: C.text1, margin: 0, isTextBox: true, objectName: 'Aviso' });
+T(s, 'Más: experimentos con materiales de casa (péndulo, col morada, huevo con sal, volcán), Mi laboratorio con 24 descubrimientos y «Mis alumnos» para docentes.', { x: 0.5, y: 4.7, w: 9, h: 0.55, fontSize: 13, bold: true, color: K.white, objectName: 'Aviso' });
 s.addNotes(notas());
 
-// ---------- 6b. Docentes ----------
+// ---------- 7. Docentes ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Solución' });
 s.addText('Para docentes: el avance de la clase, sin internet', { placeholder: 'title' });
-[['1', 'Alumno', 'Menú → «Compartir con mi docente» y muestra su código QR', C.accent3], ['2', 'Docente', 'Menú → «Mis alumnos» y escanea el QR; uno detrás de otro', C.accent2], ['3', 'Resultado', 'Estrellas, aciertos y qué juego le cuesta a cada alumno', C.accent4]].forEach((p, i) => {
-  const y = 1.35 + i * 0.95;
-  s.addText(p[0], { x: 0.5, y, w: 0.6, h: 0.6, fontSize: 22, bold: true, color: C.background1, fill: { color: p[3] }, align: 'center', valign: 'middle', shape: pres.ShapeType.ellipse, margin: 0, isTextBox: true, objectName: 'Número ' + p[0] });
-  s.addText([{ text: p[1], options: { fontSize: 18, bold: true, color: C.text1, breakLine: true } }, { text: p[2], options: { fontSize: 13, color: C.text1 } }], { x: 1.25, y: y - 0.08, w: 3.2, h: 0.85, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Paso docente ' + p[0] });
+[['1', 'Alumno', 'Menú → «Compartir con mi docente» y muestra su QR', K.pink], ['2', 'Docente', 'Menú → «Mis alumnos» y escanea el QR, uno tras otro', K.orange], ['3', 'Chispa', 'Agrupa la clase y sugiere qué reforzar; el docente decide', K.violet]].forEach((p, i) => {
+  const y = 1.35 + i * 1.0;
+  T(s, p[0], { x: 0.5, y, w: 0.65, h: 0.65, fontSize: 24, bold: true, color: K.white, fill: { color: p[3] }, align: 'center', valign: 'middle', shape: pres.ShapeType.ellipse, objectName: 'Número ' + p[0] });
+  T(s, [{ text: p[1], options: { fontSize: 19, bold: true, color: p[3], breakLine: true } }, { text: p[2], options: { fontSize: 13, color: K.navy } }], { x: 1.3, y: y - 0.08, w: 3.2, h: 0.85, valign: 'middle', objectName: 'Paso ' + p[0] });
 });
-s.addText('No viajan la fecha de nacimiento, los apoyos ni la voz. QR y no Bluetooth: funciona en cualquier teléfono con cámara, sin emparejar.', { x: 0.5, y: 4.2, w: 3.95, h: 0.75, fontSize: 11.5, italic: true, color: C.text1, margin: 0, valign: 'top', isTextBox: true, objectName: 'Privacidad' });
-[['ia-grupos.gif', 'Chispa agrupa su clase'], ['clase-escaneo.png', 'El docente escanea el QR'], ['clase-lista.png', 'Su lista, en su teléfono']].forEach((t, i) => {
-  const x = 4.75 + i * 1.65;
-  telefono(s, t[0], x, 1.4, 3.05, t[1]);
-  s.addText(t[1], { x: x - 0.12, y: 4.6, w: 1.5, h: 0.45, fontSize: 11, bold: true, color: C.text1, align: 'center', valign: 'top', margin: 0, isTextBox: true, objectName: 'Pie docente ' + (i + 1) });
-});
-nota(s, 'Código de unos 100 caracteres, sin servidor ni cuentas; la lista vive solo en el teléfono del docente. Detalle y límites: docs/clase-sincronizacion.md.');
+T(s, 'No viajan la fecha de nacimiento, los apoyos ni la voz. QR y no Bluetooth: sirve en cualquier teléfono con cámara.', { x: 0.5, y: 4.4, w: 3.9, h: 0.7, fontSize: 11.5, italic: true, color: K.navy, objectName: 'Privacidad' });
+s.addImage({ path: GIF + '/09.gif', x: 4.65, y: 1.35, w: 3.0, h: 3.0 * 454 / 420, objectName: 'GIF clase con QR', altText: 'Vídeo de la app: la alumna muestra su QR y el docente lo escanea' });
+telefono(s, '10.gif', 8.2, 1.35, 3.1, 'agrupar la clase', K.pink);
+pie(s, 'QR sin internet', 4.65, 4.75, 3.0); pie(s, 'Agrupa la clase', 7.95, 4.75, 1.75);
+nota(s, 'Código de unos 100 caracteres, sin servidor ni cuentas; la lista vive solo en el teléfono del docente. Detalle: docs/clase-sincronizacion.md.');
 s.addNotes(notas());
 
-// ---------- 7. Inclusión ----------
-s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Solución' });
-s.addText('Para todos los niños', { placeholder: 'title' });
-s.addText([{ text: '17,1 %', options: { fontSize: 40, bold: true, color: C.accent3 } }, { text: '  de los niños de 2 a 14 años en Panamá tiene alguna discapacidad (ENDIS-2)', options: { fontSize: 13, color: C.text1 } }], { x: 0.5, y: 1.25, w: 6.4, h: 0.8, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Dato discapacidad' });
-s.addText('Punto de partida por edad; después aprende de cada niño', { x: 0.5, y: 2.1, w: 6.4, h: 0.3, fontSize: 12, bold: true, color: C.text1, margin: 0, isTextBox: true, objectName: 'Título edades' });
-[['6 años o menos', '×1,8'], ['7 y 8', '×1,4'], ['9 y 10', '×1,15'], ['11 a 13', '×1,0'], ['14 o más', '×0,8']].forEach((e, i) => {
-  s.addText([{ text: e[1], options: { bold: true, fontSize: 15, color: C.text1, breakLine: true } }, { text: e[0], options: { fontSize: 10, color: C.text2 } }], { x: 0.5 + i * 1.3, y: 2.42, w: 1.22, h: 0.62, fill: { color: C.background2 }, align: 'center', valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.08, margin: 0.03, isTextBox: true, objectName: 'Edad ' + (i + 1) });
-});
-s.addText([
-  { text: 'Voz: micrófono más sensible, margen ancho y sin límite de tiempo', options: { bullet: true, breakLine: true } },
-  { text: 'Oír: cada tic y tac también se ve; la vibración sigue activa', options: { bullet: true, breakLine: true } },
-  { text: 'Ver: alto contraste, texto grande y símbolos además del color', options: { bullet: true, breakLine: true } },
-  { text: 'Concentrarme: modo calma, pausa para descansar y más margen', options: { bullet: true, breakLine: true } },
+// ---------- 8. Inclusión ----------
+s = pres.addSlide({ masterName: 'AZUL', sectionTitle: 'Solución' });
+s.addText('Para todos los niños: siete apoyos opcionales', { placeholder: 'title' });
+tarjeta(s, 0.5, 1.35, 6.2, 3.6, K.yellow, 'Tarjeta apoyos');
+T(s, [{ text: '1 de cada 6 niños panameños de 2 a 14 años tiene alguna discapacidad (ENDIS-2, UNICEF, 2026)', options: { bold: true, fontSize: 14, color: K.pink, breakLine: true, paraSpaceAfter: 8 } },
+  { text: 'Concentrarme: modo calma, pausa y más margen', options: { bullet: true, breakLine: true } },
   { text: 'Leer o los números: texto grande y lectura en voz alta', options: { bullet: true, breakLine: true } },
   { text: 'Mover las manos: botones grandes, «+» y «−» y barra en vez de inclinar', options: { bullet: true, breakLine: true } },
-  { text: 'Luces o ruidos: sin destellos ni sacudidas, sonidos suaves y avisos', options: { bullet: true } },
-], { x: 0.5, y: 3.12, w: 6.4, h: 1.95, fontSize: 11.5, color: C.text1, paraSpaceAfter: 2, margin: 0, valign: 'top', isTextBox: true, objectName: 'Siete apoyos' });
-telefono(s, 'ajustes.png', 7.4, 1.4, 3.5, 'ajustes');
-nota(s, 'Fuentes: UNICEF Panamá (8/9/2026), ENDIS-2: 174.701 niñas y niños de 2 a 14 años. Apoyos según Game Accessibility Guidelines y Xbox 118 (2026). Nunca vuelve imposible un reto; sin diagnósticos.');
-
+  { text: 'Luces o ruidos: sin destellos ni sacudidas, sonidos suaves', options: { bullet: true, breakLine: true } },
+  { text: 'Ver, oír o hablar: nada depende solo del color, del sonido ni de la voz', options: { bullet: true, breakLine: true, paraSpaceAfter: 8 } },
+  { text: 'La dificultad parte de la edad, aprende de cada niño y nunca es imposible. No se piden diagnósticos.', options: { bold: true, fontSize: 13, color: K.violet } }],
+  { x: 0.75, y: 1.5, w: 5.75, h: 3.3, fontSize: 13, color: K.navy, paraSpaceAfter: 3, valign: 'top', objectName: 'Siete apoyos' });
+telefono(s, '08.gif', 7.4, 1.2, 3.6, 'registro con edad y apoyos', K.green);
+nota(s, 'Fuentes: UNICEF Panamá (8/9/2026), ENDIS-2, 174.701 niñas y niños. Apoyos según Game Accessibility Guidelines y Xbox 118 (2026).', K.white);
 s.addNotes(notas());
 
-// ---------- 7. IA ----------
+// ---------- 9. IA ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Solución' });
 s.addText('IA que aprende dentro del teléfono, sin conexión', { placeholder: 'title' });
-['Tutor bayesiano: qué ideas domina', 'Naïve Bayes: qué idea errónea delata cada respuesta', 'Bandido de Thompson: la mejor pista para este niño', 'Centroide: colores con 2 o 3 muestras', 'Margen bayesiano: acierta 7 de cada 10', 'k-means++: agrupa la clase'].forEach((t, i) => {
-  const x = 0.5 + (i % 3) * 2.05, y = 1.4 + Math.floor(i / 3) * 1.0;
-  s.addText(t, { x, y, w: 1.9, h: 0.88, fontSize: 11.5, bold: true, color: i === 5 ? C.text1 : C.background1, fill: { color: i === 5 ? C.accent2 : C.text1 }, align: 'center', valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.12, margin: 0.06, isTextBox: true, objectName: 'Técnica ' + (i + 1) });
+[['Tutor bayesiano', 'qué ideas domina', K.violet], ['Naïve Bayes', 'qué idea errónea delata cada respuesta', K.pink], ['Bandido de Thompson', 'la mejor pista para este niño', K.orange], ['Centroide', 'colores con 2 o 3 muestras', K.cyan], ['Margen bayesiano', 'acierta 7 de cada 10', K.green], ['k-means++', 'agrupa la clase', K.yellow]].forEach((t, i) => {
+  const x = 0.5 + (i % 3) * 2.1, y = 1.4 + Math.floor(i / 3) * 1.15;
+  s.addShape(pres.ShapeType.roundRect, { x, y, w: 1.95, h: 1.0, rectRadius: 0.12, fill: { color: t[2] }, line: { color: t[2] }, shadow: { type: 'outer', color: '000000', opacity: 0.15, blur: 4, offset: 2, angle: 90 }, objectName: 'Técnica ' + (i + 1) });
+  T(s, [{ text: t[0], options: { bold: true, fontSize: 13, breakLine: true } }, { text: t[1], options: { fontSize: 10.5 } }], { x: x + 0.07, y, w: 1.81, h: 1.0, color: (t[2] === K.yellow || t[2] === K.cyan || t[2] === K.green) ? K.navy : K.white, align: 'center', valign: 'middle', objectName: 'Texto técnica ' + (i + 1) });
 });
-s.addText('Cada decisión se reconstruye con una fórmula; no hay texto inventado.', { x: 0.5, y: 3.5, w: 6.1, h: 0.3, fontSize: 12, italic: true, color: C.text1, margin: 0, isTextBox: true, objectName: 'Nota técnica' });
-['Sin internet y sin enviar datos', 'Reglamento UE 2024/1689 y UNESCO 2024', 'El adulto decide: puede apagarla', 'Equidad: apoyos no penalizan'].forEach((t, i) => {
-  const x = 0.5 + (i % 2) * 3.05, y = 3.95 + Math.floor(i / 2) * 0.55;
-  s.addText(t, { x, y, w: 2.9, h: 0.48, fontSize: 12, color: C.text1, fill: { color: C.background2 }, valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.1, margin: 0.12, isTextBox: true, objectName: 'Garantía ' + (i + 1) });
+T(s, 'Cada decisión se reconstruye con una fórmula; no hay texto inventado.', { x: 0.5, y: 3.78, w: 6.2, h: 0.3, fontSize: 12, italic: true, objectName: 'Nota técnica' });
+['Sin internet y sin enviar datos', 'Reglamento UE 2024/1689 y UNESCO 2024', 'El adulto decide: puede apagarla', 'Los apoyos no penalizan'].forEach((t, i) => {
+  const x = 0.5 + (i % 2) * 3.15, y = 4.2 + Math.floor(i / 2) * 0.5;
+  T(s, '✓ ' + t, { x, y, w: 3.05, h: 0.42, fontSize: 12, bold: true, color: K.navy, fill: { color: K.white }, valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.1, margin: 0.1, objectName: 'Garantía ' + (i + 1) });
 });
-telefono(s, 'ia-grupos.gif', 7.2, 1.4, 3.6, 'agrupar la clase');
+telefono(s, '10.gif', 7.35, 1.2, 3.6, 'Chispa agrupa la clase', K.pink);
 nota(s, 'Simulación con alumnos sintéticos: el diagnóstico acierta la idea errónea en ≈ 68 % tras 5 respuestas; el piloto en Veraguas la calibra con niños.');
 s.addNotes(notas());
 
-// ---------- 8. Datos ----------
+// ---------- 10. Datos ----------
 pres.addSection({ title: 'Impacto y mercado' });
-s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Impacto y mercado' });
+s = pres.addSlide({ masterName: 'AZUL', sectionTitle: 'Impacto y mercado' });
 s.addText('Datos del proyecto', { placeholder: 'title' });
-[['≈ 230 KB', 'primera carga comprimida (617 KB sin comprimir)', C.accent1], ['2', 'librerías pequeñas, solo para el QR de la clase', C.accent4], ['583', 'comprobaciones automáticas sin fallos, 0 violaciones de accesibilidad', C.accent6], ['0,4 ms', 'la IA por partida, con la CPU 6× más lenta', C.accent5]].forEach((d, i) => {
-  const x = 0.5 + (i % 2) * 2.55, y = 1.4 + Math.floor(i / 2) * 1.75;
-  s.addShape(pres.ShapeType.roundRect, { x, y, w: 2.4, h: 1.6, rectRadius: 0.12, fill: { color: C.background2 }, line: { color: C.background2 }, objectName: 'Tarjeta dato ' + (i + 1) });
-  s.addText(d[0], { x: x + 0.15, y: y + 0.1, w: 2.1, h: 0.8, fontSize: 36, bold: true, color: C.text1, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Dato ' + (i + 1) });
-  s.addText(d[1], { x: x + 0.15, y: y + 0.9, w: 2.1, h: 0.62, fontSize: 13, color: C.text1, margin: 0, valign: 'top', isTextBox: true, objectName: 'Dato etiqueta ' + (i + 1) });
+[['≈ 230 KB', 'primera carga comprimida (617 KB sin comprimir)', K.yellow], ['2', 'librerías pequeñas, solo para el QR de la clase', K.cyan], ['583', 'comprobaciones automáticas sin fallos y 0 violaciones de accesibilidad', K.green], ['0,4 ms', 'la IA por partida, con la CPU 6 veces más lenta', K.orange]].forEach((d, i) => {
+  const x = 0.5 + (i % 2) * 3.3, y = 1.35 + Math.floor(i / 2) * 1.85;
+  tarjeta(s, x, y, 3.15, 1.7, d[2], 'Tarjeta dato ' + (i + 1));
+  T(s, d[0], { x: x + 0.15, y: y + 0.08, w: 2.85, h: 0.85, fontSize: 38, bold: true, color: K.navy, valign: 'middle', objectName: 'Dato ' + (i + 1) });
+  T(s, d[1], { x: x + 0.15, y: y + 0.95, w: 2.85, h: 0.7, fontSize: 12.5, color: K.navy, valign: 'top', objectName: 'Dato etiqueta ' + (i + 1) });
 });
-s.addText([{ text: 'Lo que respalda la literatura (2024)', options: { bold: true, fontSize: 18, color: C.text1, breakLine: true } },
-  { text: 'Predecir, observar y explicar: g = 0,98 en ciencias (35 estudios)', options: { bullet: true, breakLine: true } },
-  { text: 'Juegos digitales en STEM de primaria: efectos positivos (18 estudios)', options: { bullet: true, breakLine: true } },
-  { text: 'Laboratorios virtuales: g = 0,69 (46 estudios), sin sustituir del todo al práctico', options: { bullet: true } }],
-  { x: 5.75, y: 1.4, w: 3.75, h: 2.5, fontSize: 13, color: C.text1, paraSpaceAfter: 6, margin: 0, valign: 'top', isTextBox: true, objectName: 'Literatura' });
-s.addText('Probada en un teléfono: funciona. Las mediciones de rendimiento son de Chromium con la CPU limitada.', { x: 5.75, y: 3.95, w: 3.75, h: 0.9, fontSize: 13, bold: true, color: C.text1, fill: { color: C.accent2 }, valign: 'middle', shape: pres.ShapeType.roundRect, rectRadius: 0.1, margin: 0.12, isTextBox: true, objectName: 'Aviso teléfono' });
-nota(s, 'Medición propia del 4/11/2026 (versión 1.4.0). Fuentes: Koyunlu Ünlü (2024); Behnamnia et al. (2024); Li y Liang (2024).');
+telefono(s, '04.gif', 7.4, 1.2, 3.6, 'el globo largo', K.orange);
+nota(s, 'Medición propia del 4/11/2026 (versión 1.4.0): fluidez con la CPU limitada 4 y 6 veces; modo ligero automático.', K.white);
 s.addNotes(notas());
 
-// ---------- 9. ODS ----------
+// ---------- 11. ODS ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Impacto y mercado' });
 s.addText('Impacto: contribuimos a tres ODS', { placeholder: 'title' });
-[['4', 'C5192D', 'Educación de calidad', 'Metas 4.1, 4.5 y 4.a: aprendizaje pertinente, acceso para la niñez vulnerable y entornos de aprendizaje inclusivos'], ['10', 'DD1367', 'Reducción de las desigualdades', 'Meta 10.2: promover la inclusión de todas las personas, sin importar la edad ni la discapacidad'], ['9', 'F36D25', 'Industria, innovación e infraestructura', 'Meta 9.c: aumentar el acceso a las TIC, aprovechando el acceso móvil sin exigir conexión']].forEach((o, i) => {
-  const x = 0.5 + i * 3.1;
-  s.addShape(pres.ShapeType.roundRect, { x, y: 1.45, w: 2.85, h: 3.35, rectRadius: 0.12, fill: { color: C.background2 }, line: { color: C.background2 }, objectName: 'Tarjeta ODS ' + o[0] });
-  s.addText(o[0], { x: x + 0.2, y: 1.65, w: 0.95, h: 0.95, fontSize: 40, bold: true, color: 'FFFFFF', fill: { color: o[1] }, align: 'center', valign: 'middle', margin: 0, isTextBox: true, objectName: 'Insignia ODS ' + o[0] });
-  s.addText(o[2], { x: x + 0.2, y: 2.75, w: 2.45, h: 0.75, fontSize: 17, bold: true, color: C.text1, margin: 0, valign: 'top', isTextBox: true, objectName: 'Nombre ODS ' + o[0] });
-  s.addText(o[3], { x: x + 0.2, y: 3.5, w: 2.45, h: 1.2, fontSize: 13, color: C.text1, margin: 0, valign: 'top', isTextBox: true, objectName: 'Meta ODS ' + o[0] });
+[['4', 'C5192D', 'Educación de calidad', 'Metas 4.1, 4.5 y 4.a: aprendizaje pertinente y entornos inclusivos'], ['10', 'DD1367', 'Menos desigualdades', 'Meta 10.2: inclusión de todas las personas, sin importar edad ni discapacidad'], ['9', 'F36D25', 'Industria, innovación e infraestructura', 'Meta 9.c: más acceso a las TIC, aprovechando el teléfono que ya existe']].forEach((o, i) => {
+  const x = 0.5 + i * 2.2;
+  tarjeta(s, x, 1.35, 2.05, 3.65, o[1], 'Tarjeta ODS ' + o[0]);
+  T(s, o[0], { x: x + 0.15, y: 1.5, w: 0.9, h: 0.9, fontSize: 38, bold: true, color: K.white, fill: { color: o[1] }, align: 'center', valign: 'middle', objectName: 'Insignia ODS ' + o[0] });
+  T(s, o[2], { x: x + 0.15, y: 2.55, w: 1.75, h: 0.85, fontSize: 14, bold: true, color: K.navy, valign: 'top', objectName: 'Nombre ODS ' + o[0] });
+  T(s, o[3], { x: x + 0.15, y: 3.4, w: 1.75, h: 1.5, fontSize: 11.5, color: K.navy, valign: 'top', objectName: 'Meta ODS ' + o[0] });
 });
-nota(s, 'Textos de las metas: Naciones Unidas (sdgs.un.org), traducción propia. También alineado con la misión de ProFuturo: contenido sin internet, inclusión y medición de impacto.');
+telefono(s, '07.gif', 7.5, 1.2, 3.6, 'Mi laboratorio', K.green);
+nota(s, 'Textos de las metas: Naciones Unidas (sdgs.un.org), traducción propia. Alineado con ProFuturo: contenido sin internet, inclusión y medición de impacto.');
 s.addNotes(notas());
 
-// ---------- 10. Mercado ----------
+// ---------- 12. Mercado ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Impacto y mercado' });
 s.addText('Mercado: hay quién lo necesita y quién lo financia', { placeholder: 'title' });
-s.addChart(pres.charts.BAR, [{ name: 'Costo por alumno (balboas)', labels: ['2020', '2021', '2022', '2023', '2024'], values: [2286.94, 2234.42, 2222.75, 2344.39, 2261.56] }], {
-  x: 0.5, y: 1.4, w: 4.1, h: 3.5, barDir: 'col', chartColors: [HEX.sky], showValue: true, dataLabelPosition: 'outEnd', dataLabelFormatCode: '#,##0', dataLabelColor: HEX.navy, dataLabelFontSize: 12, dataLabelFontBold: true,
-  showTitle: true, title: 'Costo por alumno del Gobierno Central (balboas)', titleFontSize: 14, titleColor: HEX.navy, catAxisLabelColor: HEX.navy, catAxisLabelFontSize: 13, valAxisHidden: true, valGridLine: { style: 'none' }, catGridLine: { style: 'none' }, showLegend: false, valAxisMinVal: 0, valAxisMaxVal: 3000,
+[['2.262 B/.', 'costo por alumno del Gobierno Central en 2024', K.violet], ['≈ 150.100 $', 'una aula de laboratorio de la licitación', K.pink], ['≈ 0', 'costo de equipo por escuela con Chispa Lab', K.green]].forEach((c, i) => {
+  const x = 0.5 + i * 2.1;
+  tarjeta(s, x, 1.35, 1.95, 1.65, c[2], 'Tarjeta ' + (i + 1));
+  T(s, c[0], { x: x + 0.08, y: 1.4, w: 1.8, h: 0.8, fontSize: 22, bold: true, color: c[2] === K.green ? '0E9F6E' : c[2], align: 'center', valign: 'middle', objectName: 'Cifra ' + (i + 1) });
+  T(s, c[1], { x: x + 0.1, y: 2.2, w: 1.75, h: 0.75, fontSize: 11, color: K.navy, align: 'center', valign: 'top', objectName: 'Etiqueta ' + (i + 1) });
 });
-s.addText([
-  { text: 'Quién paga: no los niños', options: { bold: true, fontSize: 16, color: C.text1, breakLine: true } },
-  { text: 'Ministerio de Educación, fundaciones y programas como ProFuturo, redes de escuelas y terapeutas de voz', options: { fontSize: 14, color: C.text1, breakLine: true, paraSpaceAfter: 8 } },
-  { text: 'Modelo', options: { bold: true, fontSize: 16, color: C.text1, breakLine: true } },
-  { text: 'Núcleo abierto y gratuito, más servicios: adaptación por país, packs de experimentos, formación docente y edición para terapeutas', options: { fontSize: 14, color: C.text1, breakLine: true, paraSpaceAfter: 8 } },
-  { text: 'Señales', options: { bold: true, fontSize: 16, color: C.text1, breakLine: true } },
-  { text: '44 M$ en internet escolar (2025) y 28,9 M$ en laboratorios (2026). Región Educativa de Veraguas: 54.708 estudiantes en el sistema oficial (2024)', options: { fontSize: 14, color: C.text1 } },
-], { x: 4.9, y: 1.4, w: 4.6, h: 3.5, margin: 0, valign: 'top', isTextBox: true, objectName: 'Modelo de mercado' });
-nota(s, 'Fuentes: INEC/Contraloría, cuadro 19 (30/1/2026; 2024 preliminar); La Prensa (11/6/2025 y 2/4/2026); Meduca (2024). Modelo propuesto, a validar en el piloto.');
+T(s, [
+  { text: 'Quién paga: no los niños. ', options: { bold: true, color: K.violet } }, { text: 'El Ministerio, fundaciones como ProFuturo y redes de escuelas, por adaptación, contenido y formación.', options: { breakLine: true, paraSpaceAfter: 6 } },
+  { text: 'Modelo: ', options: { bold: true, color: K.violet } }, { text: 'núcleo abierto y gratuito, más servicios.', options: { breakLine: true, paraSpaceAfter: 6 } },
+  { text: 'Veraguas: ', options: { bold: true, color: K.violet } }, { text: '54.708 estudiantes oficiales; el 10 % de primaria y premedia son ≈ 3.800.' }],
+  { x: 0.5, y: 3.2, w: 6.2, h: 1.85, fontSize: 14, color: K.navy, valign: 'top', objectName: 'Modelo de mercado' });
+telefono(s, '01.gif', 7.4, 1.2, 3.6, 'la rampa', K.orange);
+nota(s, 'Fuentes: INEC/Contraloría, cuadro 19 (2024 preliminar); La Prensa (2/4/2026); Meduca (2024). Modelo propuesto, a validar en el piloto.');
 s.addNotes(notas());
 
-// ---------- 11. Cierre ----------
+// ---------- 13. Cierre ----------
 s = pres.addSlide({ masterName: 'OSCURO', sectionTitle: 'Impacto y mercado' });
-s.addText('Lo que proponemos', { x: 0.6, y: 0.5, w: 6, h: 0.8, fontSize: 36, bold: true, color: C.background1, margin: 0, isTextBox: true, objectName: 'Título' });
+burbuja(s, -0.8, -0.8, 2.6, K.yellow, 'Adorno 1'); burbuja(s, 4.8, 4.1, 2.6, K.cyan, 'Adorno 2');
+T(s, 'Lo que proponemos', { x: 0.6, y: 0.4, w: 6, h: 0.8, fontSize: 38, bold: true, color: K.white, objectName: 'Título' });
 ['Un piloto en Veraguas con la UTP, ProFuturo y el Meduca', 'Probarlo con niños y docentes, en teléfonos de gama baja', 'Portugués e inglés, para el alcance de ProFuturo'].forEach((t, i) => {
-  const y = 1.5 + i * 0.85;
-  s.addText(String(i + 1), { x: 0.6, y, w: 0.6, h: 0.6, fontSize: 22, bold: true, color: C.text1, fill: { color: C.accent2 }, align: 'center', valign: 'middle', shape: pres.ShapeType.ellipse, margin: 0, isTextBox: true, objectName: 'Número ' + (i + 1) });
-  s.addText(t, { x: 1.4, y: y - 0.05, w: 5.2, h: 0.7, fontSize: 18, color: C.background1, margin: 0, valign: 'middle', isTextBox: true, objectName: 'Propuesta ' + (i + 1) });
+  const y = 1.4 + i * 0.85;
+  T(s, String(i + 1), { x: 0.6, y, w: 0.6, h: 0.6, fontSize: 22, bold: true, color: K.navy, fill: { color: K.yellow }, align: 'center', valign: 'middle', shape: pres.ShapeType.ellipse, objectName: 'Número ' + (i + 1) });
+  T(s, t, { x: 1.4, y: y - 0.05, w: 4.9, h: 0.7, fontSize: 17, color: K.white, valign: 'middle', objectName: 'Propuesta ' + (i + 1) });
 });
-s.addText('Cada teléfono, un laboratorio', { x: 0.6, y: 4.1, w: 6.2, h: 0.6, fontSize: 28, bold: true, color: C.accent2, margin: 0, isTextBox: true, objectName: 'Lema' });
-s.addText([{ text: 'Web: danielvaldess.github.io/chispa-lab', options: { breakLine: true } }, { text: 'APK y código: github.com/danielvaldess/chispa-lab' }], { x: 0.6, y: 4.7, w: 6.4, h: 0.65, fontSize: 13, color: C.accent1, margin: 0, valign: 'top', isTextBox: true, objectName: 'Enlaces' });
-telefono(s, 'final.png', 7.35, 0.55, 4.5, 'final de la estación');
+T(s, 'Cada teléfono, un laboratorio', { x: 0.6, y: 4.0, w: 6.0, h: 0.6, fontSize: 28, bold: true, color: K.yellow, objectName: 'Lema' });
+T(s, [{ text: 'Web: danielvaldess.github.io/chispa-lab', options: { breakLine: true } }, { text: 'APK y código: github.com/danielvaldess/chispa-lab' }], { x: 0.6, y: 4.65, w: 6.0, h: 0.6, fontSize: 13, color: K.cyan, objectName: 'Enlaces' });
+telefono(s, '05.gif', 6.75, 0.55, 4.4, 'luz y color', K.cyan);
+telefono(s, '03.gif', 8.55, 1.5, 3.3, 'la voz', K.pink);
 s.addNotes(notas());
 
 (async () => {

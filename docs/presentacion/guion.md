@@ -3,7 +3,7 @@
 Las 13 diapositivas y el texto para decir en cada una, con su tiempo. Total: **5:00**. La demo va primero: el jurado ve el juego en los primeros 12 segundos y lo entiende antes de oír datos.
 Este archivo es la fuente de las notas del orador del `.pptx` (el script de la presentación lee las secciones numeradas, en orden, y se detiene en la línea `---`). Para el vídeo de 3 minutos, ver [`guion-video.md`](guion-video.md).
 
-**Ritmo:** el texto suma **662 palabras**, unos 4:25 a 150 palabras por minuto, con el resto del tiempo como margen para cambiar de diapositiva y dejar ver la demo. Ninguna diapositiva pasa de 133 palabras por minuto. Conviene ensayarlo con cronómetro: si te pasas, recorta el texto, no hables más rápido.
+**Ritmo:** el texto suma **644 palabras**, unos 4:18 a 150 palabras por minuto, con el resto del tiempo como margen para cambiar de diapositiva y dejar ver la demo. Ninguna diapositiva pasa de 133 palabras por minuto. Conviene ensayarlo con cronómetro: si te pasas, recorta el texto, no hables más rápido.
 
 ## 1. Chispa Lab
 
@@ -13,13 +13,13 @@ Este archivo es la fuente de las notas del orador del `.pptx` (el script de la p
 
 [0:12 a 0:40] Así se juega. El niño predice, inclina el teléfono y una canica rueda por una rampa de cartón. Si se equivoca, Chispa no le da la respuesta: le pregunta con sus propios números, «¿es la mitad?». En Mi laboratorio juega libre, y hay experimentos con cosas de casa, como medir un péndulo con un hilo. Todo en el teléfono, sin conexión.
 
-## 3. Panamá tiene un reto de aprendizaje en ciencias
+## 3. Un laboratorio de ciencias cuesta unos 150.000 dólares por aula
 
-[0:40 a 1:13] El problema. Según el estudio regional de la UNESCO de 2025, en sexto grado solo el 27,7 por ciento de los niños de Panamá alcanza el nivel mínimo en lectura y el 10,1 en matemática. En Argentina, 34,5 y 17. Los estudiantes de pueblos originarios rinden menos. Y de ciencias no hay dato reciente: Panamá se retiró de PISA 2025 y el estudio regional lo publica a fines de este año.
+[0:40 a 1:13] El problema. En abril de 2026 el Estado licitó laboratorios científicos: 193 aulas para 73 centros de educación media, por 28,9 millones de dólares, unos 150 mil dólares por aula. Es una inversión grande que llega a pocos centros por vez. Y de Ciencias de sexto grado no hay medición reciente: el ERCE 2025 publica a fines de este año.
 
-## 4. El laboratorio y la conexión llegan despacio, el teléfono ya está
+## 4. La conexión también llega despacio, el teléfono ya está
 
-[1:13 a 1:32] El Estado invierte, pero despacio: contrató internet para 3.102 escuelas en 2025, por 44 millones de dólares, y en abril licitó laboratorios para 73 centros de media. Hay 17 clientes de internet fijo por cada 100 habitantes. El teléfono ya está.
+[1:13 a 1:32] La conexión también llega despacio: 17 clientes de internet fijo por cada 100 habitantes, y en la comarca Ngäbe Buglé falta internet. Pero el teléfono ya está, y Chispa Lab funciona en modo avión.
 
 ## 5. Nuestra idea: predice, formula, juega, descubre
 
