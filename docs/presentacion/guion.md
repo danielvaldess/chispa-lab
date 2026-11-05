@@ -1,9 +1,9 @@
 # Guion de la presentación (5 minutos)
 
-Las 13 diapositivas y el texto para decir en cada una, con su tiempo. Total: **5:00**. Estructura (ver el README): gancho con un dato, problema, solución, prueba, impacto y petición; **el juego en acción queda en la última diapositiva**, que se queda en pantalla durante las preguntas.
+Las 14 diapositivas y el texto para decir en cada una, con su tiempo. Total: **5:00**. Estructura (ver el README): gancho con un dato, problema, solución, prueba, impacto y petición; **la última diapositiva (preguntas y gracias, con el juego en acción) se queda en pantalla durante las preguntas**.
 Este archivo es la fuente de las notas del orador del `.pptx` (el script de la presentación lee las secciones numeradas, en orden, y se detiene en la línea `---`). Para el vídeo de 3 minutos, ver [`guion-video.md`](guion-video.md).
 
-**Ritmo:** el texto suma **663 palabras**, unos 4:25 a 150 palabras por minuto, con el resto del tiempo como margen para cambiar de diapositiva. Conviene ensayarlo con cronómetro: si te pasas, recorta el texto, no hables más rápido.
+**Ritmo:** el texto suma **676 palabras**, unos 4:30 a 150 palabras por minuto, con el resto del tiempo como margen para cambiar de diapositiva. Conviene ensayarlo con cronómetro: si te pasas, recorta el texto, no hables más rápido.
 
 ## 1. Chispa Lab
 
@@ -45,17 +45,21 @@ Este archivo es la fuente de las notas del orador del `.pptx` (el script de la p
 
 [3:30 a 3:52] Medimos el sistema: unos 230 kilobytes en la primera carga, 583 comprobaciones automáticas sin fallos, cero violaciones en la auditoría de accesibilidad y la IA tarda menos de medio milisegundo. Con la CPU cuatro veces más lenta mantiene entre 20 y 28 cuadros por segundo.
 
-## 11. Impacto esperado en Veraguas
+## 11. Meta: 3.800 estudiantes de Veraguas haciendo ciencia en 3 años
 
-[3:52 a 4:14] En la Región Educativa de Veraguas hay 38.250 estudiantes de primaria y premedia. Si Chispa Lab llega al uno, al cinco o al diez por ciento, son unos 380, casi 1.900 o unos 3.800 estudiantes. Contribuye a tres objetivos de desarrollo sostenible: educación de calidad, menos desigualdades y acceso a las TIC sin exigir conexión.
+[3:52 a 4:14] En la Región Educativa de Veraguas hay 38.250 estudiantes de primaria y premedia. Nuestra meta: unos 380 en el primer año, casi 1.900 en el segundo y unos 3.800 al tercero, el diez por ciento. Y contribuimos a tres objetivos de desarrollo sostenible: educación de calidad, menos desigualdades y acceso a las TIC sin exigir conexión.
 
-## 12. Mercado: hay quién lo necesita y quién lo financia
+## 12. Un laboratorio por casi cero, financiado por quien ya invierte en educación
 
-[4:14 a 4:42] Una aula de laboratorio de la licitación cuesta unos 150 mil dólares; Chispa Lab, casi cero por escuela. Es código abierto y no tiene servidor, así que se sostiene con servicios: adaptación, contenido y formación, que pagarían el Ministerio, fundaciones como ProFuturo y redes de escuelas.
+[4:14 a 4:42] Una aula de laboratorio de la licitación cuesta unos 150 mil dólares; Chispa Lab, casi cero por escuela. Es código abierto y no tiene servidor, así que se sostiene con servicios: adaptación, contenido y formación, que pagan el Ministerio, fundaciones como ProFuturo y redes de escuelas.
 
-## 13. Lo que proponemos
+## 13. Conclusión
 
-[4:42 a 5:00] Proponemos un piloto en Veraguas con la UTP, ProFuturo y el Ministerio, probarlo con niños y docentes en teléfonos de gama baja y traducirlo al portugués y al inglés. Cada teléfono, un laboratorio. Gracias. Mientras responden preguntas, el juego sigue en pantalla.
+[4:42 a 5:00] Para concluir: el problema es real, seis de cada diez estudiantes no alcanzan el nivel básico en ciencias. La solución ya funciona: un laboratorio en el teléfono, sin internet, inclusivo y con IA que aprende de cada niño. Proponemos un piloto en Veraguas con la UTP, ProFuturo y el Ministerio. Cada teléfono, un laboratorio.
+
+## 14. Preguntas y gracias
+
+[5:00] Muchas gracias. Con gusto responderemos sus preguntas; mientras tanto, el juego sigue en pantalla.
 
 ---
 

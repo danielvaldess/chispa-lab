@@ -188,27 +188,27 @@ s.addNotes(notas());
 
 // ---------- 11. Impacto esperado ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Impacto y mercado' });
-s.addText('Impacto esperado: hasta 3.800 estudiantes en Veraguas', { placeholder: 'title' });
-[['1 %', '≈ 380', 'piloto ampliado', K.cyan], ['5 %', '≈ 1.900', 'programa regional', K.orange], ['10 %', '≈ 3.800', 'meta a 3 años', K.pink]].forEach((c, i) => {
+s.addText('Meta: 3.800 estudiantes de Veraguas haciendo ciencia en 3 años', { placeholder: 'title' });
+[['1 %', '380', 'año 1: piloto ampliado', K.cyan], ['5 %', '1.900', 'año 2: programa regional', K.orange], ['10 %', '3.800', 'año 3: meta', K.pink]].forEach((c, i) => {
   const x = 0.5 + i * 2.1;
   tarjeta(s, x, 1.35, 1.95, 1.95, c[3], 'Escenario ' + (i + 1));
   T(s, c[0], { x: x + 0.05, y: 1.4, w: 1.85, h: 0.5, fontSize: 18, bold: true, color: K.navy, align: 'center', valign: 'middle', objectName: 'Adopción ' + (i + 1) });
   T(s, c[1], { x: x + 0.05, y: 1.9, w: 1.85, h: 0.8, fontSize: 30, bold: true, color: c[3] === K.cyan ? '0B8FB0' : c[3], align: 'center', valign: 'middle', objectName: 'Estudiantes ' + (i + 1) });
   T(s, c[2], { x: x + 0.05, y: 2.7, w: 1.85, h: 0.5, fontSize: 12, color: K.navy, align: 'center', valign: 'top', objectName: 'Escenario etiqueta ' + (i + 1) });
 });
-T(s, 'Escenarios sobre los 38.250 estudiantes de primaria y premedia de la Región Educativa de Veraguas (2024).', { x: 0.5, y: 3.4, w: 6.2, h: 0.4, fontSize: 11, italic: true, color: K.navy, objectName: 'Base del escenario' });
+T(s, 'Ruta de adopción sobre los 38.250 estudiantes de primaria y premedia de Veraguas.', { x: 0.5, y: 3.4, w: 6.2, h: 0.4, fontSize: 11, italic: true, color: K.navy, objectName: 'Base del escenario' });
 [['4', 'C5192D', 'Educación de calidad'], ['10', 'DD1367', 'Menos desigualdades'], ['9', 'F36D25', 'Acceso a las TIC']].forEach((o, i) => {
   const x = 0.5 + i * 2.1;
   T(s, o[0], { x, y: 4.0, w: 0.6, h: 0.6, fontSize: 22, bold: true, color: K.white, fill: { color: o[1] }, align: 'center', valign: 'middle', objectName: 'ODS ' + o[0] });
   T(s, 'ODS ' + o[0] + ': ' + o[2], { x: x + 0.68, y: 4.0, w: 1.35, h: 0.6, fontSize: 11, bold: true, color: K.navy, valign: 'middle', objectName: 'Nombre ODS ' + o[0] });
 });
 telefono(s, '01.gif', 7.5, 1.2, 3.6, 'la rampa', K.orange);
-nota(s, 'Estimación con supuestos declarados (docs/impacto-esperado.md). ODS: Naciones Unidas (sdgs.un.org), metas 4.1, 4.5, 4.a, 10.2 y 9.c.');
+nota(s, 'Base: Meduca (2024), 38.250 estudiantes de primaria y premedia en Veraguas (docs/impacto-esperado.md). ODS: Naciones Unidas, metas 4.1, 4.5, 4.a, 10.2 y 9.c.');
 s.addNotes(notas());
 
 // ---------- 12. Mercado ----------
 s = pres.addSlide({ masterName: 'CLARO', sectionTitle: 'Impacto y mercado' });
-s.addText('Mercado: hay quién lo necesita y quién lo financia', { placeholder: 'title' });
+s.addText('Un laboratorio por casi cero, financiado por quien ya invierte en educación', { placeholder: 'title' });
 [['2.262 B/.', 'costo por alumno del Gobierno Central en 2024', K.violet], ['≈ 150.100 $', 'una aula de laboratorio de la licitación', K.pink], ['≈ 0', 'costo de equipo por escuela con Chispa Lab', K.green]].forEach((c, i) => {
   const x = 0.5 + i * 2.1;
   tarjeta(s, x, 1.35, 1.95, 1.65, c[2], 'Tarjeta ' + (i + 1));
@@ -221,23 +221,30 @@ T(s, [
   { text: 'Veraguas: ', options: { bold: true, color: K.violet } }, { text: '54.708 estudiantes oficiales; el 10 % de primaria y premedia son ≈ 3.800.' }],
   { x: 0.5, y: 3.2, w: 6.2, h: 1.85, fontSize: 14, color: K.navy, valign: 'top', objectName: 'Modelo de mercado' });
 telefono(s, '02.gif', 7.4, 1.2, 3.6, 'el péndulo', K.violet);
-nota(s, 'Fuentes: INEC/Contraloría, cuadro 19 (2024 preliminar); La Prensa (2/4/2026); Meduca (2024). Modelo propuesto, a validar en el piloto.');
+nota(s, 'Fuentes: INEC/Contraloría, cuadro 19 (2024 preliminar); La Prensa (2/4/2026); Meduca (2024). Modelo de ingresos: servicios sobre un núcleo abierto.');
 s.addNotes(notas());
 
-// ---------- 13. Cierre y preguntas ----------
+// ---------- 13. Conclusión ----------
 s = pres.addSlide({ masterName: 'OSCURO', sectionTitle: 'Impacto y mercado' });
-burbuja(s, -0.8, -0.8, 2.6, K.yellow, 'Adorno 1'); burbuja(s, 3.2, 4.2, 2.4, K.cyan, 'Adorno 2');
-T(s, 'Lo que proponemos', { x: 0.5, y: 0.35, w: 4.4, h: 0.7, fontSize: 32, bold: true, color: K.white, objectName: 'Título' });
-['Un piloto en Veraguas con la UTP, ProFuturo y el Meduca', 'Probarlo con niños y docentes, en teléfonos de gama baja', 'Portugués e inglés, para el alcance de ProFuturo'].forEach((t, i) => {
-  const y = 1.25 + i * 0.85;
-  T(s, String(i + 1), { x: 0.5, y, w: 0.55, h: 0.55, fontSize: 20, bold: true, color: K.navy, fill: { color: K.yellow }, align: 'center', valign: 'middle', shape: pres.ShapeType.ellipse, objectName: 'Número ' + (i + 1) });
-  T(s, t, { x: 1.2, y: y - 0.08, w: 3.4, h: 0.72, fontSize: 14, color: K.white, valign: 'middle', objectName: 'Propuesta ' + (i + 1) });
+burbuja(s, -0.8, -0.8, 2.6, K.yellow, 'Adorno 1'); burbuja(s, 4.6, 4.3, 2.4, K.cyan, 'Adorno 2');
+T(s, 'Conclusión', { x: 0.5, y: 0.35, w: 5.5, h: 0.7, fontSize: 34, bold: true, color: K.white, objectName: 'Título' });
+[['El problema es real', '6 de cada 10 estudiantes panameños no alcanzan el nivel básico en ciencias, y más en las comarcas.', K.pink], ['La solución ya funciona', 'Un laboratorio en el teléfono: sin internet, inclusivo y con IA que aprende de cada niño.', K.green], ['Lo que proponemos', 'Un piloto en Veraguas con la UTP, ProFuturo y el Meduca.', K.yellow]].forEach((c, i) => {
+  const y = 1.25 + i * 1.05;
+  s.addShape(pres.ShapeType.roundRect, { x: 0.5, y, w: 5.9, h: 0.92, rectRadius: 0.12, fill: { color: K.white, transparency: 10 }, line: { color: c[2], width: 3 }, objectName: 'Tarjeta ' + (i + 1) });
+  T(s, [{ text: c[0], options: { bold: true, fontSize: 15, color: c[2] === K.yellow ? 'B8860B' : (c[2] === K.green ? '0E9F6E' : c[2]), breakLine: true } }, { text: c[1], options: { fontSize: 12, color: K.navy } }], { x: 0.7, y, w: 5.5, h: 0.92, valign: 'middle', objectName: 'Conclusión ' + (i + 1) });
 });
-T(s, 'Cada teléfono, un laboratorio', { x: 0.5, y: 3.85, w: 4.3, h: 0.9, fontSize: 24, bold: true, color: K.yellow, valign: 'middle', objectName: 'Lema' });
-T(s, [{ text: 'danielvaldess.github.io/chispa-lab', options: { breakLine: true } }, { text: 'github.com/danielvaldess/chispa-lab' }], { x: 0.5, y: 4.8, w: 4.4, h: 0.5, fontSize: 11.5, color: K.cyan, objectName: 'Enlaces' });
-[['01.gif', K.yellow], ['02.gif', K.pink], ['03.gif', K.green], ['07.gif', K.cyan]].forEach((t, i) => telefono(s, t[0], 5.1 + i * 1.18, 1.35, 2.5, 'el juego en acción ' + (i + 1), t[1]));
-T(s, 'El juego en acción', { x: 5.0, y: 4.1, w: 4.7, h: 0.4, fontSize: 14, bold: true, color: K.white, align: 'center', objectName: 'Pie juego' });
-T(s, 'Preguntas', { x: 5.0, y: 4.65, w: 4.7, h: 0.5, fontSize: 22, bold: true, color: K.yellow, align: 'center', objectName: 'Preguntas' });
+T(s, 'Cada teléfono, un laboratorio', { x: 0.5, y: 4.5, w: 6.0, h: 0.6, fontSize: 28, bold: true, color: K.yellow, valign: 'middle', objectName: 'Lema' });
+telefono(s, '07.gif', 6.7, 0.75, 3.7, 'Mi laboratorio', K.cyan);
+telefono(s, '01.gif', 8.35, 1.65, 3.0, 'la rampa', K.yellow);
+s.addNotes(notas());
+
+// ---------- 14. Preguntas y gracias ----------
+s = pres.addSlide({ masterName: 'OSCURO', sectionTitle: 'Impacto y mercado' });
+burbuja(s, 8.0, -1.0, 3.0, K.yellow, 'Adorno 1'); burbuja(s, -1.0, 4.2, 2.6, K.green, 'Adorno 2');
+T(s, '¿Preguntas?', { x: 0.5, y: 0.25, w: 5.0, h: 0.8, fontSize: 40, bold: true, color: K.yellow, objectName: 'Preguntas' });
+T(s, '¡Muchas gracias!', { x: 5.2, y: 0.3, w: 4.4, h: 0.7, fontSize: 28, bold: true, color: K.white, align: 'right', objectName: 'Gracias' });
+[['01.gif', K.yellow], ['02.gif', K.pink], ['03.gif', K.green], ['10.gif', K.cyan], ['07.gif', K.orange]].forEach((t, i) => telefono(s, t[0], 0.75 + i * 1.82, 1.25, 3.0, 'el juego en acción ' + (i + 1), t[1]));
+T(s, 'danielvaldess.github.io/chispa-lab  ·  github.com/danielvaldess/chispa-lab', { x: 0.5, y: 4.85, w: 9, h: 0.4, fontSize: 14, bold: true, color: K.cyan, align: 'center', objectName: 'Enlaces' });
 s.addNotes(notas());
 
 (async () => {

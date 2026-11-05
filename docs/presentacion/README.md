@@ -10,7 +10,7 @@
 - **`construir-presentacion.js`:** genera el `.pptx` con `pptxgenjs`. Para regenerarlo: `npm install pptxgenjs@3.12.0` en una carpeta aparte y ejecutarlo con las variables
   `SKILL` (carpeta de la herramienta que aplica el tema), `IMG` (carpeta `img`, con los fondos) y `SALIDA` (archivo de salida), con `NODE_PATH` apuntando a esa carpeta.
 
-## Estructura (5:00) y método
+## Estructura (5:00 y la diapositiva de preguntas) y método
 
 | N.º | Diapositiva | Tiempo | Minutos |
 |---|---|---|---|
@@ -24,19 +24,20 @@
 | 8 | **Para todos los niños:** siete apoyos (GIF de la elección de apoyos y del registro) | 0:26 | 2:30–2:56 |
 | 9 | IA que aprende dentro del teléfono (6 técnicas) | 0:34 | 2:56–3:30 |
 | 10 | Datos del proyecto | 0:22 | 3:30–3:52 |
-| 11 | Impacto esperado: escenarios del 1, 5 y 10 % de Veraguas, y ODS | 0:22 | 3:52–4:14 |
-| 12 | Mercado y sostenibilidad | 0:28 | 4:14–4:42 |
-| 13 | **Lo que proponemos + el juego en acción** (se queda en pantalla durante las preguntas) | 0:18 | 4:42–5:00 |
+| 11 | Meta: 3.800 estudiantes de Veraguas en 3 años (1, 5 y 10 %) y ODS | 0:22 | 3:52–4:14 |
+| 12 | Un laboratorio por casi cero, financiado por quien ya invierte en educación | 0:28 | 4:14–4:42 |
+| 13 | **Conclusión** (problema, solución y petición, con GIF de Mi laboratorio y la rampa) | 0:18 | 4:42–5:00 |
+| 14 | **¿Preguntas? ¡Muchas gracias!** con cinco GIF del juego en acción (se queda en pantalla) | — | después de los 5:00 |
 
 **Método aplicado** (prácticas de oratoria y de presentación de producto; las fuentes son divulgativas, no estudios):
 - **Gancho con un dato, no con la demo:** el pitch corto abre con un gancho y sigue con qué es, por qué importa, los números y la petición (estructura de cinco pasos habitual en pitch decks). Por eso la diapositiva 2 es la cifra de PISA.
-- **De «lo que es» a «lo que podría ser» y llamada a la acción** (Nancy Duarte, *Resonate*): problema (2 a 4), solución (5 a 9), prueba e impacto (10 a 12) y petición (13).
+- **De «lo que es» a «lo que podría ser» y llamada a la acción** (Nancy Duarte, *Resonate*): problema (2 a 4), solución (5 a 9), prueba e impacto (10 a 12) y petición (13), con la diapositiva 14 para las preguntas.
 - **Regla de tres** (Carmine Gallo): tres pilares (experimentar, incluir, acompañar al docente), tres escenarios de adopción, tres peticiones.
 - **Títulos que afirman** (una frase completa con la idea) y una sola idea por diapositiva, con un GIF de la propia app en lugar de texto.
 - **Primacía y recencia:** lo que más se recuerda es el principio y el final; el principio es el dato y el final es la petición con el juego funcionando durante las preguntas.
 - Los clips de cámara (Luz y color, Burbujas) no se muestran en la presentación.
 
-El texto de cada diapositiva suma 663 palabras: unos 4:25 a 150 palabras por minuto, y el resto del tiempo es margen para cambiar de diapositiva.
+El texto de cada diapositiva suma 676 palabras: unos 4:30 a 150 palabras por minuto, y el resto del tiempo es margen para cambiar de diapositiva.
 
 ## Qué cifras tienen fuente y cuáles son medidas propias
 
